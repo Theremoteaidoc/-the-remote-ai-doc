@@ -224,7 +224,7 @@ export default function App() {
                         <div className="absolute inset-0 w-2 h-2 bg-teal-400 rounded-full animate-ping" />
                       </div>
                       <div>
-                        <p className="text-white">Dr. Javier Rosas</p>
+                        <p className="text-xl font-semibold text-white">Dr. Javier Rosas</p>
                         <p className="text-sm text-slate-400">Ship Physician & AI Trainer</p>
                       </div>
                     </div>
@@ -240,7 +240,7 @@ export default function App() {
       <section className="relative border-y border-slate-800/50 py-12">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <ScrollReveal>
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
+            <div className="grid grid-cols-2 lg:grid-cols-5 gap-8">
               <div className="group text-center space-y-2 hover:scale-105 transition-transform duration-300 cursor-pointer">
                 <div className="relative inline-block text-4xl lg:text-5xl text-teal-400">
                   10+
@@ -250,24 +250,31 @@ export default function App() {
               </div>
               <div className="group text-center space-y-2 hover:scale-105 transition-transform duration-300 cursor-pointer">
                 <div className="relative inline-block text-4xl lg:text-5xl text-teal-400">
-                  5,000+
+                  4+
                   <div className="absolute inset-0 bg-teal-400/20 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 </div>
-                <div className="text-sm text-slate-500">Patients Served at Sea</div>
-              </div>
-              <div className="group text-center space-y-2 hover:scale-105 transition-transform duration-300 cursor-pointer">
-                <div className="relative inline-block text-4xl lg:text-5xl text-teal-400">
-                  1,000
-                  <div className="absolute inset-0 bg-teal-400/20 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                </div>
-                <div className="text-sm text-slate-500">Miles from Shore</div>
+                <div className="text-sm text-slate-500">AI Labeling Platforms</div>
               </div>
               <div className="group text-center space-y-2 hover:scale-105 transition-transform duration-300 cursor-pointer">
                 <div className="relative inline-block text-4xl lg:text-5xl text-teal-400">
                   4+
                   <div className="absolute inset-0 bg-teal-400/20 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 </div>
-                <div className="text-sm text-slate-500">AI Platforms Trained</div>
+                <div className="text-sm text-slate-500">Years Ship Doctor Worldwide</div>
+              </div>
+              <div className="group text-center space-y-2 hover:scale-105 transition-transform duration-300 cursor-pointer">
+                <div className="relative inline-block text-4xl lg:text-5xl text-teal-400">
+                  35+
+                  <div className="absolute inset-0 bg-teal-400/20 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                </div>
+                <div className="text-sm text-slate-500">Countries Visited</div>
+              </div>
+              <div className="group text-center space-y-2 hover:scale-105 transition-transform duration-300 cursor-pointer">
+                <div className="relative inline-block text-4xl lg:text-5xl text-teal-400">
+                  100+
+                  <div className="absolute inset-0 bg-teal-400/20 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                </div>
+                <div className="text-sm text-slate-500">LLM Real World Cases</div>
               </div>
             </div>
           </ScrollReveal>
