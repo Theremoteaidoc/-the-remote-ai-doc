@@ -320,6 +320,16 @@ export default function App() {
         </div>
       </section>
 
+      {/* Quote Section */}
+      <section className="py-16 text-center max-w-3xl mx-auto px-6">
+        <ScrollReveal>
+          <p className="text-2xl md:text-3xl text-slate-300 font-light italic leading-relaxed">
+            "When you're the only doctor for thousands of people,
+            <span className="text-teal-400 font-normal"> AI isn't a luxury — it's survival.</span>"
+          </p>
+        </ScrollReveal>
+      </section>
+
       {/* Expertise Section */}
       <section id="expertise" className="relative py-32 bg-slate-950">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
