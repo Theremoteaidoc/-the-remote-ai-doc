@@ -245,38 +245,38 @@ export default function App() {
             <div className="grid grid-cols-2 lg:grid-cols-5 gap-8">
               <div className="group text-center space-y-2 hover:scale-105 transition-transform duration-300 cursor-pointer">
                 <div className="relative inline-block text-4xl lg:text-5xl text-teal-400">
+                  1,000+
+                  <div className="absolute inset-0 bg-teal-400/20 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                </div>
+                <div className="text-sm text-slate-500">Miles from Shore</div>
+              </div>
+              <div className="group text-center space-y-2 hover:scale-105 transition-transform duration-300 cursor-pointer">
+                <div className="relative inline-block text-4xl lg:text-5xl text-teal-400">
+                  5,000+
+                  <div className="absolute inset-0 bg-teal-400/20 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                </div>
+                <div className="text-sm text-slate-500">Patients Treated at Sea</div>
+              </div>
+              <div className="group text-center space-y-2 hover:scale-105 transition-transform duration-300 cursor-pointer">
+                <div className="relative inline-block text-4xl lg:text-5xl text-teal-400">
                   10+
                   <div className="absolute inset-0 bg-teal-400/20 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 </div>
-                <div className="text-sm text-slate-500">Years Clinical Experience</div>
+                <div className="text-sm text-slate-500">Years Clinical Exp</div>
               </div>
               <div className="group text-center space-y-2 hover:scale-105 transition-transform duration-300 cursor-pointer">
                 <div className="relative inline-block text-4xl lg:text-5xl text-teal-400">
-                  4+
+                  5
                   <div className="absolute inset-0 bg-teal-400/20 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 </div>
-                <div className="text-sm text-slate-500">AI Labeling Platforms</div>
-              </div>
-              <div className="group text-center space-y-2 hover:scale-105 transition-transform duration-300 cursor-pointer">
-                <div className="relative inline-block text-4xl lg:text-5xl text-teal-400">
-                  4+
-                  <div className="absolute inset-0 bg-teal-400/20 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                </div>
-                <div className="text-sm text-slate-500">Years Ship Doctor Worldwide</div>
-              </div>
-              <div className="group text-center space-y-2 hover:scale-105 transition-transform duration-300 cursor-pointer">
-                <div className="relative inline-block text-4xl lg:text-5xl text-teal-400">
-                  35+
-                  <div className="absolute inset-0 bg-teal-400/20 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                </div>
-                <div className="text-sm text-slate-500">Countries Visited</div>
+                <div className="text-sm text-slate-500">AI Training Platforms</div>
               </div>
               <div className="group text-center space-y-2 hover:scale-105 transition-transform duration-300 cursor-pointer">
                 <div className="relative inline-block text-4xl lg:text-5xl text-teal-400">
                   100+
                   <div className="absolute inset-0 bg-teal-400/20 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 </div>
-                <div className="text-sm text-slate-500">LLM Real World Cases</div>
+                <div className="text-sm text-slate-500">Clinical LLM Cases</div>
               </div>
             </div>
           </ScrollReveal>
