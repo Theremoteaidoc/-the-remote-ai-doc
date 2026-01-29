@@ -138,11 +138,12 @@ export default function App() {
               <a href="#about" className="text-slate-400 hover:text-white transition-colors duration-300">About</a>
               <a href="#expertise" className="text-slate-400 hover:text-white transition-colors duration-300">Expertise</a>
               <a href="#connect" className="text-slate-400 hover:text-white transition-colors duration-300">Connect</a>
-              <button className="relative px-6 py-2.5 bg-teal-500 text-slate-950 rounded-lg hover:bg-teal-400 transition-all duration-300 hover:scale-105 group overflow-hidden">
+              <span className="text-slate-400 cursor-default">Blog <span className="text-xs text-teal-400">(Coming Soon)</span></span>
+              <a href="https://www.linkedin.com/in/javier-rosas-670267b0/" target="_blank" rel="noopener noreferrer" className="relative px-6 py-2.5 bg-teal-500 text-slate-950 rounded-lg hover:bg-teal-400 transition-all duration-300 hover:scale-105 group overflow-hidden">
                 <div className="absolute inset-0 bg-gradient-to-r from-teal-400 to-cyan-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 <div className="absolute -inset-1 bg-teal-500/50 blur-lg opacity-0 group-hover:opacity-70 transition-opacity duration-300" />
                 <span className="relative">Get in Touch</span>
-              </button>
+              </a>
             </div>
           </div>
         </div>
@@ -195,6 +196,7 @@ export default function App() {
                     <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
                   </button>
                 </form>
+                <p className="text-sm text-slate-500 mt-3">Join 100+ healthcare professionals</p>
               </ScrollReveal>
             </div>
 
