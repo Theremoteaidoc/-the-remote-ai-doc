@@ -150,74 +150,91 @@ export default function App() {
       </nav>
 
       {/* Hero Section */}
-      <section className="relative z-10 pt-32 pb-20 md:pt-44 md:pb-28 px-6 max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-[1.2fr_0.8fr] gap-12 lg:gap-16 items-center">
+      <section className="relative pt-20 pb-32 lg:pt-32 lg:pb-40">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            {/* Left Column */}
+            <div className="space-y-8">
+              <ScrollReveal>
+                <div className="flex items-center space-x-2 text-teal-400">
+                  <Star className="w-4 h-4 fill-teal-400" />
+                  <span className="text-sm">Your Guide to Clinical AI from the Edge of Medicine</span>
+                </div>
+              </ScrollReveal>
 
-          {/* Left: Copy */}
-          <ScrollReveal className="text-left">
-            <div className="flex items-center gap-2 text-teal-400 font-medium mb-6">
-              <Star className="w-4 h-4 fill-teal-400/20" />
-              <span className="text-xs uppercase tracking-wider">Your Guide to Clinical AI from the Edge of Medicine</span>
+              <ScrollReveal delay={100}>
+                <h1 className="text-5xl lg:text-7xl tracking-tight leading-[1.1] relative">
+                  Redefining<br />
+                  <span className="text-slate-400">the Future of</span><br />
+                  <span className="relative inline-block italic text-teal-400">
+                    Clinical
+                    <span className="absolute -inset-1 bg-teal-500/20 blur-2xl opacity-50" />
+                  </span> AI
+                </h1>
+              </ScrollReveal>
+
+              <ScrollReveal delay={200}>
+                <p className="text-lg text-slate-400 leading-relaxed max-w-xl">
+                  I practice medicine 1,000 miles from the nearest hospital — and I train the AI systems that will help the next generation of doctors do the same.
+                </p>
+              </ScrollReveal>
+
+              <ScrollReveal delay={300}>
+                <form onSubmit={(e) => handleSubscribe(e, email)} className="flex flex-col sm:flex-row gap-3 max-w-md">
+                  <input
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="Enter your email"
+                    className="flex-1 px-4 py-3 bg-slate-900/50 border border-slate-800/50 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-teal-500/50 focus:ring-1 focus:ring-teal-500/50 transition-all duration-300"
+                  />
+                  <button
+                    type="submit"
+                    className="px-6 py-3 bg-teal-500 text-slate-950 rounded-lg hover:bg-teal-400 transition-all duration-300 flex items-center justify-center space-x-2 group"
+                  >
+                    <span>Subscribe</span>
+                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
+                  </button>
+                </form>
+                <p className="text-sm text-slate-500 mt-3">Join 100+ healthcare professionals</p>
+              </ScrollReveal>
             </div>
 
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold text-white leading-[1.1] tracking-tight mb-6">
-              Redefining<br />
-              <span className="text-slate-500">the Future of</span><br />
-              <span className="italic text-teal-400">Clinical</span> AI
-            </h1>
+            {/* Right Column - Photo */}
+            <ScrollReveal delay={200} className="relative">
+              <div className="relative">
+                {/* Glow Behind Photo */}
+                <div className="absolute inset-0 bg-teal-500/30 blur-3xl rounded-2xl translate-y-4" />
+               
+                {/* Photo */}
+                <div className="relative rounded-2xl overflow-hidden bg-gradient-to-br from-slate-800 to-slate-900 aspect-[3/4] lg:aspect-[4/5]">
+                  {/* Actual Photo */}
+                  <img
+                    src="/profile.jpg"
+                    alt="Dr. Javier Rosas"
+                    className="w-full h-full object-cover"
+                  />
+                 
+                  {/* Gradient Overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent opacity-80" />
 
-            <p className="text-lg md:text-xl leading-relaxed text-slate-400 max-w-lg mb-8">
-              I practice medicine 1,000 miles from the nearest hospital — and I train the AI systems that will help the next generation of doctors do the same.
-            </p>
-
-            <form onSubmit={(e) => handleSubscribe(e, email)} className="flex flex-col sm:flex-row gap-3 max-w-md mb-3">
-              <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="Enter your email"
-                className="flex-1 bg-slate-900 border border-slate-800 rounded-lg px-4 py-3 text-white placeholder:text-slate-600 focus:outline-none focus:border-teal-500/50 focus:ring-1 focus:ring-teal-500/20 transition-all"
-              />
-              <button type="submit" className="bg-teal-500 hover:bg-teal-400 text-slate-950 font-semibold px-6 py-3 rounded-lg flex items-center justify-center gap-2 transition-all hover:scale-105">
-                Subscribe <ArrowRight className="w-4 h-4" />
-              </button>
-            </form>
-
-            <p className="text-sm text-slate-500">Join 100+ healthcare professionals</p>
-          </ScrollReveal>
-
-          {/* Right: Portrait */}
-          <ScrollReveal delay={200} className="relative group flex justify-center lg:justify-end">
-            <div className="relative w-full max-w-[300px] aspect-[4/5] rounded-2xl overflow-hidden border border-slate-800/50 bg-slate-900 shadow-2xl">
-
-              {/* Glow behind image */}
-              <div className="absolute inset-0 bg-teal-500/20 blur-[60px] scale-90 rounded-full -z-10 group-hover:bg-teal-400/30 transition-all duration-700"></div>
-
-              {/* Photo */}
-              <img
-                src="/profile.jpg"
-                alt="Dr. Javier Rosas"
-                className="w-full h-full object-cover"
-              />
-
-              {/* Gradient Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent opacity-60"></div>
-
-              {/* Floating Badge */}
-              <div className="absolute bottom-4 left-4 right-4 bg-slate-950/80 backdrop-blur-md border border-white/10 p-3 rounded-xl flex items-center gap-3">
-                <div className="relative">
-                  <div className="w-10 h-10 rounded-full bg-teal-500/20 flex items-center justify-center text-teal-400">
-                    <Stethoscope className="w-5 h-5" />
+                  {/* Floating Badge */}
+                  <div className="absolute bottom-6 left-6 right-6 bg-slate-900/80 backdrop-blur-sm border border-slate-800/50 rounded-xl p-4">
+                    <div className="flex items-center space-x-3">
+                      <div className="relative">
+                        <div className="w-2 h-2 bg-teal-400 rounded-full animate-pulse" />
+                        <div className="absolute inset-0 w-2 h-2 bg-teal-400 rounded-full animate-ping" />
+                      </div>
+                      <div>
+                        <p className="text-xl font-semibold text-white">Dr. Javier Rosas</p>
+                        <p className="text-sm text-slate-400">Ship Physician & AI Trainer</p>
+                      </div>
+                    </div>
                   </div>
-                  <span className="absolute -top-1 -right-1 w-3 h-3 bg-teal-500 border-2 border-slate-950 rounded-full animate-pulse"></span>
-                </div>
-                <div>
-                  <div className="text-white font-semibold text-sm">Dr. Javier Rosas</div>
-                  <div className="text-teal-400 text-xs font-medium">Ship Physician & AI Trainer</div>
                 </div>
               </div>
-            </div>
-          </ScrollReveal>
+            </ScrollReveal>
+          </div>
         </div>
       </section>
 
