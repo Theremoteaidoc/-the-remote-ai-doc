@@ -139,11 +139,14 @@ export default function App() {
               <a href="#expertise" className="text-slate-400 hover:text-white transition-colors duration-300">Expertise</a>
               <a href="#connect" className="text-slate-400 hover:text-white transition-colors duration-300">Connect</a>
               <span className="text-slate-400 cursor-default">Blog <span className="text-xs text-teal-400">(Coming Soon)</span></span>
-              <a href="https://www.linkedin.com/in/javier-rosas-670267b0/" target="_blank" rel="noopener noreferrer" className="relative px-6 py-2.5 bg-teal-500 text-slate-950 rounded-lg hover:bg-teal-400 transition-all duration-300 hover:scale-105 group overflow-hidden">
+              <button
+                onClick={() => window.Calendly?.initPopupWidget({ url: 'https://calendly.com/theremoteaidoc/30min' })}
+                className="relative px-6 py-2.5 bg-teal-500 text-slate-950 rounded-lg hover:bg-teal-400 transition-all duration-300 hover:scale-105 group overflow-hidden"
+              >
                 <div className="absolute inset-0 bg-gradient-to-r from-teal-400 to-cyan-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 <div className="absolute -inset-1 bg-teal-500/50 blur-lg opacity-0 group-hover:opacity-70 transition-opacity duration-300" />
-                <span className="relative">Get in Touch</span>
-              </a>
+                <span className="relative">Book a Call</span>
+              </button>
             </div>
           </div>
         </div>
