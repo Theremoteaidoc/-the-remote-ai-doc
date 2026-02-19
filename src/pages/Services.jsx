@@ -531,7 +531,7 @@ export default function Services() {
                 {t.hero.title}<br />
                 <span className="relative inline-block text-teal-400">
                   {t.hero.titleHighlight}
-                  <span className="absolute -inset-1 bg-teal-500/20 blur-2xl opacity-50" />
+                  <span className="absolute -inset-1 pointer-events-none bg-teal-500/20 blur-2xl opacity-50" />
                 </span>
               </h1>
             </ScrollReveal>
@@ -548,7 +548,7 @@ export default function Services() {
                 className="relative px-8 py-4 bg-teal-500 text-slate-950 rounded-lg hover:bg-teal-400 transition-all duration-300 hover:scale-105 group overflow-hidden text-lg font-semibold"
               >
                 <div className="absolute inset-0 bg-gradient-to-r from-teal-400 to-cyan-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                <div className="absolute -inset-1 bg-teal-500/50 blur-lg opacity-0 group-hover:opacity-70 transition-opacity duration-300" />
+                <div className="absolute -inset-1 pointer-events-none bg-teal-500/50 blur-lg opacity-0 group-hover:opacity-70 transition-opacity duration-300" />
                 <span className="relative flex items-center space-x-2">
                   <span>{t.hero.cta}</span>
                   <ArrowRight className="w-5 h-5" />
@@ -576,7 +576,7 @@ export default function Services() {
             <ScrollReveal delay={0}>
               <div className="group relative p-8 bg-slate-900/40 border border-slate-800/50 rounded-2xl hover:border-teal-500/50 transition-all duration-500">
                 {/* Card Glow Effect */}
-                <div className="absolute -inset-0.5 bg-gradient-to-r from-teal-500 to-cyan-500 rounded-2xl opacity-0 group-hover:opacity-20 blur-xl transition-opacity duration-500" />
+                <div className="absolute -inset-0.5 pointer-events-none bg-gradient-to-r from-teal-500 to-cyan-500 rounded-2xl opacity-0 group-hover:opacity-20 blur-xl transition-opacity duration-500" />
                 
                 {/* Badge */}
                 <div className="absolute -top-3 left-1/2 -translate-x-1/2">
@@ -628,7 +628,7 @@ export default function Services() {
             <ScrollReveal delay={100}>
               <div className="group relative p-8 bg-slate-900/40 border border-teal-500/50 rounded-2xl hover:border-teal-500 transition-all duration-500 scale-105">
                 {/* Card Glow Effect */}
-                <div className="absolute -inset-0.5 bg-gradient-to-r from-teal-500 to-cyan-500 rounded-2xl opacity-20 group-hover:opacity-30 blur-xl transition-opacity duration-500" />
+                <div className="absolute -inset-0.5 pointer-events-none bg-gradient-to-r from-teal-500 to-cyan-500 rounded-2xl opacity-20 group-hover:opacity-30 blur-xl transition-opacity duration-500" />
                 
                 {/* Badge */}
                 <div className="absolute -top-3 left-1/2 -translate-x-1/2">
@@ -680,7 +680,7 @@ export default function Services() {
             <ScrollReveal delay={200}>
               <div className="group relative p-8 bg-slate-900/40 border border-slate-800/50 rounded-2xl hover:border-teal-500/50 transition-all duration-500">
                 {/* Card Glow Effect */}
-                <div className="absolute -inset-0.5 bg-gradient-to-r from-teal-500 to-cyan-500 rounded-2xl opacity-0 group-hover:opacity-20 blur-xl transition-opacity duration-500" />
+                <div className="absolute -inset-0.5 pointer-events-none bg-gradient-to-r from-teal-500 to-cyan-500 rounded-2xl opacity-0 group-hover:opacity-20 blur-xl transition-opacity duration-500" />
                 
                 {/* Badge */}
                 <div className="absolute -top-3 left-1/2 -translate-x-1/2">
@@ -753,7 +753,7 @@ export default function Services() {
                 <ScrollReveal key={index} delay={index * 100}>
                   <div className="group relative p-6 bg-slate-900/40 border border-slate-800/50 rounded-2xl hover:border-teal-500/50 transition-all duration-500 text-center">
                     {/* Card Glow Effect */}
-                    <div className="absolute -inset-0.5 bg-gradient-to-r from-teal-500 to-cyan-500 rounded-2xl opacity-0 group-hover:opacity-20 blur-xl transition-opacity duration-500" />
+                    <div className="absolute -inset-0.5 pointer-events-none bg-gradient-to-r from-teal-500 to-cyan-500 rounded-2xl opacity-0 group-hover:opacity-20 blur-xl transition-opacity duration-500" />
                     
                     <div className="relative">
                       <div className="w-16 h-16 bg-teal-500/10 rounded-xl flex items-center justify-center mx-auto mb-4 group-hover:bg-teal-500/20 transition-colors duration-500">
@@ -797,7 +797,7 @@ export default function Services() {
                       <div className="w-24 h-24 bg-slate-900/40 border border-slate-800/50 rounded-2xl flex items-center justify-center group-hover:border-teal-500/50 transition-all duration-500">
                         <span className="text-2xl font-bold text-teal-400">{step.number}</span>
                       </div>
-                      <div className="absolute -inset-1 bg-teal-500/20 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                      <div className="absolute -inset-1 pointer-events-none bg-teal-500/20 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                     </div>
                     
                     <div>

@@ -149,7 +149,7 @@ function Layout({ children }) {
                 className="relative px-6 py-2.5 bg-teal-500 text-slate-950 rounded-lg hover:bg-teal-400 transition-all duration-300 hover:scale-105 group overflow-hidden"
               >
                 <div className="absolute inset-0 bg-gradient-to-r from-teal-400 to-cyan-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                <div className="absolute -inset-1 bg-teal-500/50 blur-lg opacity-0 group-hover:opacity-70 transition-opacity duration-300" />
+                <div className="absolute -inset-1 pointer-events-none bg-teal-500/50 blur-lg opacity-0 group-hover:opacity-70 transition-opacity duration-300" />
                 <span className="relative">Book a Call</span>
               </button>
             </div>
@@ -214,7 +214,7 @@ function Home() {
                   <span className="text-slate-400">the Future of</span><br />
                   <span className="relative inline-block italic text-teal-400">
                     Clinical
-                    <span className="absolute -inset-1 bg-teal-500/20 blur-2xl opacity-50" />
+                    <span className="absolute -inset-1 pointer-events-none bg-teal-500/20 blur-2xl opacity-50" />
                   </span> AI
                 </h1>
               </ScrollReveal>
@@ -393,7 +393,7 @@ function Home() {
             <ScrollReveal delay={0}>
               <div className="group relative p-8 bg-slate-900/40 border border-slate-800/50 rounded-2xl hover:border-teal-500/50 transition-all duration-500 space-y-4">
                 {/* Card Glow Effect */}
-                <div className="absolute -inset-0.5 bg-gradient-to-r from-teal-500 to-cyan-500 rounded-2xl opacity-0 group-hover:opacity-20 blur-xl transition-opacity duration-500" />
+                <div className="absolute -inset-0.5 pointer-events-none bg-gradient-to-r from-teal-500 to-cyan-500 rounded-2xl opacity-0 group-hover:opacity-20 blur-xl transition-opacity duration-500" />
 
                 <div className="relative">
                   <div className="w-12 h-12 bg-teal-500/10 rounded-xl flex items-center justify-center group-hover:bg-teal-500/20 transition-colors duration-500">
@@ -422,7 +422,7 @@ function Home() {
             <ScrollReveal delay={100}>
               <div className="group relative p-8 bg-slate-900/40 border border-slate-800/50 rounded-2xl hover:border-teal-500/50 transition-all duration-500 space-y-4">
                 {/* Card Glow Effect */}
-                <div className="absolute -inset-0.5 bg-gradient-to-r from-teal-500 to-cyan-500 rounded-2xl opacity-0 group-hover:opacity-20 blur-xl transition-opacity duration-500" />
+                <div className="absolute -inset-0.5 pointer-events-none bg-gradient-to-r from-teal-500 to-cyan-500 rounded-2xl opacity-0 group-hover:opacity-20 blur-xl transition-opacity duration-500" />
 
                 <div className="relative">
                   <div className="w-12 h-12 bg-teal-500/10 rounded-xl flex items-center justify-center group-hover:bg-teal-500/20 transition-colors duration-500">
@@ -451,7 +451,7 @@ function Home() {
             <ScrollReveal delay={200}>
               <div className="group relative p-8 bg-slate-900/40 border border-slate-800/50 rounded-2xl hover:border-teal-500/50 transition-all duration-500 space-y-4">
                 {/* Card Glow Effect */}
-                <div className="absolute -inset-0.5 bg-gradient-to-r from-teal-500 to-cyan-500 rounded-2xl opacity-0 group-hover:opacity-20 blur-xl transition-opacity duration-500" />
+                <div className="absolute -inset-0.5 pointer-events-none bg-gradient-to-r from-teal-500 to-cyan-500 rounded-2xl opacity-0 group-hover:opacity-20 blur-xl transition-opacity duration-500" />
 
                 <div className="relative">
                   <div className="w-12 h-12 bg-teal-500/10 rounded-xl flex items-center justify-center group-hover:bg-teal-500/20 transition-colors duration-500">
@@ -480,7 +480,7 @@ function Home() {
             <ScrollReveal delay={300}>
               <div className="group relative p-8 bg-slate-900/40 border border-slate-800/50 rounded-2xl hover:border-teal-500/50 transition-all duration-500 space-y-4">
                 {/* Card Glow Effect */}
-                <div className="absolute -inset-0.5 bg-gradient-to-r from-teal-500 to-cyan-500 rounded-2xl opacity-0 group-hover:opacity-20 blur-xl transition-opacity duration-500" />
+                <div className="absolute -inset-0.5 pointer-events-none bg-gradient-to-r from-teal-500 to-cyan-500 rounded-2xl opacity-0 group-hover:opacity-20 blur-xl transition-opacity duration-500" />
 
                 <div className="relative">
                   <div className="w-12 h-12 bg-teal-500/10 rounded-xl flex items-center justify-center group-hover:bg-teal-500/20 transition-colors duration-500">
