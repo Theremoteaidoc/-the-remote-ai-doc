@@ -178,8 +178,11 @@ export default function Servicios() {
                     <h3 className="text-xl md:text-2xl text-white font-semibold mb-2">Automatización de Procesos</h3>
                     <p className="text-slate-400 mb-4 text-sm md:text-base">Perfecto para consultorios pequeños y médicos independientes</p>
                     <div className="text-2xl md:text-3xl lg:text-4xl text-teal-400 font-bold mb-1">
-                      $2.100.000
-                      <span className="text-sm md:text-base lg:text-lg text-slate-500"> COP/mes</span>
+                      $2.100.000 COP
+                      <span className="text-sm md:text-base lg:text-lg text-slate-500"><br />implementación</span>
+                    </div>
+                    <div className="text-sm md:text-base text-slate-400">
+                      + $2.100.000 COP/año mantenimiento
                     </div>
                   </div>
 
@@ -203,9 +206,14 @@ export default function Servicios() {
                     <p className="text-sm text-slate-400 mb-4">
                       <strong>Ideal para:</strong> Consultorios pequeños, médicos independientes
                     </p>
-                    <button className="w-full px-6 py-3 bg-slate-800 text-white rounded-lg hover:bg-slate-700 transition-colors duration-300 min-h-[44px]">
-                      Iniciar Automatización
-                    </button>
+                    <a 
+                      href="https://buy.stripe.com/test_5kQ00i6YjgeH7Zt9lN2ZO00" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="block w-full px-6 py-3 bg-slate-800 text-white rounded-lg hover:bg-slate-700 transition-colors duration-300 min-h-[44px] text-center"
+                    >
+                      Contratar Ahora
+                    </a>
                   </div>
                 </div>
               </div>
@@ -229,8 +237,11 @@ export default function Servicios() {
                     <h3 className="text-xl md:text-2xl text-white font-semibold mb-2">Inteligencia Clínica</h3>
                     <p className="text-slate-400 mb-4 text-sm md:text-base">IA avanzada para consultorios con varios especialistas</p>
                     <div className="text-2xl md:text-3xl lg:text-4xl text-teal-400 font-bold mb-1">
-                      $4.200.000
-                      <span className="text-sm md:text-base lg:text-lg text-slate-500"> COP/mes</span>
+                      $4.200.000 COP
+                      <span className="text-sm md:text-base lg:text-lg text-slate-500"><br />implementación</span>
+                    </div>
+                    <div className="text-sm md:text-base text-slate-400">
+                      + $4.200.000 COP/año mantenimiento
                     </div>
                   </div>
 
@@ -254,9 +265,14 @@ export default function Servicios() {
                     <p className="text-sm text-slate-400 mb-4">
                       <strong>Ideal para:</strong> Consultorios grupo médico, clínicas especializadas
                     </p>
-                    <button className="w-full px-6 py-3 bg-teal-500 text-slate-950 rounded-lg hover:bg-teal-400 transition-colors duration-300 font-semibold min-h-[44px]">
-                      Mejorar a Inteligencia
-                    </button>
+                    <a 
+                      href="https://buy.stripe.com/test_fZu00i0zV8Mf6Vp8hJ2ZO01" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="block w-full px-6 py-3 bg-teal-500 text-slate-950 rounded-lg hover:bg-teal-400 transition-colors duration-300 font-semibold min-h-[44px] text-center"
+                    >
+                      Contratar Ahora
+                    </a>
                   </div>
                 </div>
               </div>
@@ -280,8 +296,11 @@ export default function Servicios() {
                     <h3 className="text-xl md:text-2xl text-white font-semibold mb-2">IA Empresarial</h3>
                     <p className="text-slate-400 mb-4 text-sm md:text-base">Transformación IA completa para sistemas de salud</p>
                     <div className="text-2xl md:text-3xl lg:text-4xl text-teal-400 font-bold mb-1">
-                      $10.500.000
-                      <span className="text-sm md:text-base lg:text-lg text-slate-500"> COP/mes</span>
+                      $10.500.000 COP
+                      <span className="text-sm md:text-base lg:text-lg text-slate-500"><br />implementación</span>
+                    </div>
+                    <div className="text-sm md:text-base text-slate-400">
+                      + $10.500.000 COP/año mantenimiento
                     </div>
                   </div>
 
@@ -305,12 +324,26 @@ export default function Servicios() {
                     <p className="text-sm text-slate-400 mb-4">
                       <strong>Ideal para:</strong> Grupos hospitalarios, sistemas de salud, operaciones médicas remotas
                     </p>
-                    <button className="w-full px-6 py-3 bg-slate-800 text-white rounded-lg hover:bg-slate-700 transition-colors duration-300 min-h-[44px]">
-                      Transformar con IA
-                    </button>
+                    <a 
+                      href="https://buy.stripe.com/test_aFa14mdmH1jN4NhapR2ZO02" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="block w-full px-6 py-3 bg-slate-800 text-white rounded-lg hover:bg-slate-700 transition-colors duration-300 min-h-[44px] text-center"
+                    >
+                      Contratar Ahora
+                    </a>
                   </div>
                 </div>
               </div>
+            </ScrollReveal>
+          </div>
+
+          {/* Payment Security Note */}
+          <div className="text-center mt-12">
+            <ScrollReveal delay={300}>
+              <p className="text-sm text-slate-400">
+                💳 Pago seguro con Stripe. Aceptamos tarjetas de crédito y débito.
+              </p>
             </ScrollReveal>
           </div>
         </div>

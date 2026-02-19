@@ -28,7 +28,8 @@ const content = {
       tier1: {
         name: 'Workflow Automation',
         price: '$497',
-        period: '/mo',
+        period: 'one-time setup',
+        maintenance: '+ $497/yr maintenance',
         badge: 'Most Popular',
         description: 'Perfect for small clinics and solo practitioners',
         features: [
@@ -40,12 +41,14 @@ const content = {
           'Email & chat support'
         ],
         bestFor: 'Small clinics, solo practitioners',
-        cta: 'Start Automation'
+        cta: 'Get Started',
+        stripeLink: 'https://buy.stripe.com/test_5kQ00i6YjgeH7Zt9lN2ZO00'
       },
       tier2: {
         name: 'Clinical Intelligence',
         price: '$997',
-        period: '/mo',
+        period: 'one-time setup',
+        maintenance: '+ $997/yr maintenance',
         badge: 'Best Value',
         description: 'Advanced AI for multi-provider practices',
         features: [
@@ -57,12 +60,14 @@ const content = {
           'Priority support with 2-hour response'
         ],
         bestFor: 'Multi-provider practices, specialty clinics',
-        cta: 'Upgrade to Intelligence'
+        cta: 'Start Now',
+        stripeLink: 'https://buy.stripe.com/test_fZu00i0zV8Mf6Vp8hJ2ZO01'
       },
       tier3: {
         name: 'Enterprise AI',
         price: '$2,497',
-        period: '/mo',
+        period: 'one-time setup',
+        maintenance: '+ $2,497/yr maintenance',
         badge: 'Enterprise',
         description: 'Complete AI transformation for health systems',
         features: [
@@ -74,7 +79,8 @@ const content = {
           'HIPAA compliance consulting & audit'
         ],
         bestFor: 'Hospital groups, health systems, maritime medical operations',
-        cta: 'Transform with AI'
+        cta: 'Get Started',
+        stripeLink: 'https://buy.stripe.com/test_aFa14mdmH1jN4NhapR2ZO02'
       }
     },
     whyUs: {
@@ -585,7 +591,10 @@ export default function Services() {
                     <p className="text-slate-400 mb-4">{t.tiers.tier1.description}</p>
                     <div className="text-4xl text-teal-400 font-bold mb-1">
                       {t.tiers.tier1.price}
-                      <span className="text-lg text-slate-500">{t.tiers.tier1.period}</span>
+                      <span className="text-lg text-slate-500"><br />{t.tiers.tier1.period}</span>
+                    </div>
+                    <div className="text-sm text-slate-400">
+                      {t.tiers.tier1.maintenance}
                     </div>
                   </div>
 
@@ -602,9 +611,14 @@ export default function Services() {
                     <p className="text-sm text-slate-400 mb-4">
                       <strong>Best for:</strong> {t.tiers.tier1.bestFor}
                     </p>
-                    <button className="w-full px-6 py-3 bg-slate-800 text-white rounded-lg hover:bg-slate-700 transition-colors duration-300">
+                    <a 
+                      href={t.tiers.tier1.stripeLink} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="block w-full px-6 py-3 bg-slate-800 text-white rounded-lg hover:bg-slate-700 transition-colors duration-300 text-center"
+                    >
                       {t.tiers.tier1.cta}
-                    </button>
+                    </a>
                   </div>
                 </div>
               </div>
@@ -629,7 +643,10 @@ export default function Services() {
                     <p className="text-slate-400 mb-4">{t.tiers.tier2.description}</p>
                     <div className="text-4xl text-teal-400 font-bold mb-1">
                       {t.tiers.tier2.price}
-                      <span className="text-lg text-slate-500">{t.tiers.tier2.period}</span>
+                      <span className="text-lg text-slate-500"><br />{t.tiers.tier2.period}</span>
+                    </div>
+                    <div className="text-sm text-slate-400">
+                      {t.tiers.tier2.maintenance}
                     </div>
                   </div>
 
@@ -646,9 +663,14 @@ export default function Services() {
                     <p className="text-sm text-slate-400 mb-4">
                       <strong>Best for:</strong> {t.tiers.tier2.bestFor}
                     </p>
-                    <button className="w-full px-6 py-3 bg-teal-500 text-slate-950 rounded-lg hover:bg-teal-400 transition-colors duration-300 font-semibold">
+                    <a 
+                      href={t.tiers.tier2.stripeLink} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="block w-full px-6 py-3 bg-teal-500 text-slate-950 rounded-lg hover:bg-teal-400 transition-colors duration-300 font-semibold text-center"
+                    >
                       {t.tiers.tier2.cta}
-                    </button>
+                    </a>
                   </div>
                 </div>
               </div>
@@ -673,7 +695,10 @@ export default function Services() {
                     <p className="text-slate-400 mb-4">{t.tiers.tier3.description}</p>
                     <div className="text-4xl text-teal-400 font-bold mb-1">
                       {t.tiers.tier3.price}
-                      <span className="text-lg text-slate-500">{t.tiers.tier3.period}</span>
+                      <span className="text-lg text-slate-500"><br />{t.tiers.tier3.period}</span>
+                    </div>
+                    <div className="text-sm text-slate-400">
+                      {t.tiers.tier3.maintenance}
                     </div>
                   </div>
 
@@ -690,9 +715,14 @@ export default function Services() {
                     <p className="text-sm text-slate-400 mb-4">
                       <strong>Best for:</strong> {t.tiers.tier3.bestFor}
                     </p>
-                    <button className="w-full px-6 py-3 bg-slate-800 text-white rounded-lg hover:bg-slate-700 transition-colors duration-300">
+                    <a 
+                      href={t.tiers.tier3.stripeLink} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="block w-full px-6 py-3 bg-slate-800 text-white rounded-lg hover:bg-slate-700 transition-colors duration-300 text-center"
+                    >
                       {t.tiers.tier3.cta}
-                    </button>
+                    </a>
                   </div>
                 </div>
               </div>
