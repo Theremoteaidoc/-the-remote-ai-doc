@@ -7,6 +7,7 @@ import Blog from './pages/Blog';
 import BlogPost from './pages/BlogPost';
 import Services from './pages/Services';
 import Servicios from './pages/Servicios';
+import Demo from './pages/Demo';
 
 function Layout({ children }) {
   const [scrollY, setScrollY] = useState(0);
@@ -594,6 +595,7 @@ export default function App() {
           <Route path="/servicios" element={<Servicios />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/blog/:slug" element={<BlogPost />} />
+          <Route path="/demo" element={<Demo />} />
         </Routes>
       </Layout>
     </HelmetProvider>
