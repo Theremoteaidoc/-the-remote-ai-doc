@@ -8,8 +8,9 @@ export default function Demo() {
     nombre: '',
     telefono: '',
     email: '',
-    fecha_preferida: '',
-    motivo_consulta: ''
+    fecha: '',
+    hora: '',
+    provider_id: ''
   });
   
   const [contactoForm, setContactoForm] = useState({
@@ -25,6 +26,55 @@ export default function Demo() {
   const [showContactResponse, setShowContactResponse] = useState(false);
   const [isSubmittingCita, setIsSubmittingCita] = useState(false);
   const [isSubmittingContacto, setIsSubmittingContacto] = useState(false);
+
+  // Medical providers data
+  const providers = [
+    { id: 'garcia', name: 'Dra. María García', specialty: 'Medicina General' },
+    { id: 'perez', name: 'Dr. Carlos Pérez', specialty: 'Pediatría' },
+    { id: 'rodriguez', name: 'Dra. Ana Rodríguez', specialty: 'Dermatología' },
+    { id: 'martinez', name: 'Dr. Luis Martínez', specialty: 'Medicina Interna' },
+    { id: 'lopez', name: 'Dra. Sofía López', specialty: 'Ginecología' }
+  ];
+
+  // Generate 30-minute time slots from 7:00 AM to 5:00 PM
+  const generateTimeSlots = () => {
+    const slots = [];
+    for (let hour = 7; hour <= 17; hour++) {
+      slots.push(`${hour.toString().padStart(2, '0')}:00`);
+      if (hour < 17) { // Don't add :30 for 17 (5:00 PM is the last slot)
+        slots.push(`${hour.toString().padStart(2, '0')}:30`);
+      }
+    }
+    return slots;
+  };
+
+  const timeSlots = generateTimeSlots();
+
+  // Mock availability - simulate some slots as taken
+  const isSlotAvailable = (providerId, date, time) => {
+    if (!providerId || !date || !time) return true;
+    
+    // Create a simple hash to make availability consistent but random-looking
+    const hash = (providerId + date + time).split('').reduce((a, b) => {
+      a = ((a << 5) - a) + b.charCodeAt(0);
+      return a & a;
+    }, 0);
+    
+    // Make ~30% of slots unavailable
+    return Math.abs(hash % 100) > 30;
+  };
+
+  const getAvailableSlots = (providerId, date) => {
+    if (!providerId || !date) return [];
+    
+    return timeSlots.map(time => ({
+      time,
+      available: isSlotAvailable(providerId, date, time)
+    }));
+  };
+
+  const selectedProvider = providers.find(p => p.id === citaForm.provider_id);
+  const availableSlots = getAvailableSlots(citaForm.provider_id, citaForm.fecha);
 
   // Animated counter hook
   const useCounter = (target, duration = 2000) => {
@@ -78,8 +128,9 @@ export default function Demo() {
         nombre: '',
         telefono: '',
         email: '',
-        fecha_preferida: '',
-        motivo_consulta: ''
+        fecha: '',
+        hora: '',
+        provider_id: ''
       });
       
     } catch (error) {
@@ -273,13 +324,13 @@ export default function Demo() {
                             <MessageCircle className="w-5 h-5 text-white" />
                           </div>
                           <div>
-                            <div className="text-green-400 font-semibold text-sm">Clínica Demo</div>
+                            <div className="text-green-400 font-semibold text-sm">+57 300 123 4567</div>
                             <div className="text-slate-500 text-xs">Ayer 10:30 AM</div>
                           </div>
                         </div>
                         <div className="bg-green-600 rounded-2xl rounded-bl-sm p-3 ml-4">
                           <p className="text-white text-sm leading-relaxed">
-                            Hola María 📋 Te recordamos tu cita mañana Martes 25 a las 10:00 AM. No olvides traer tu documento de identidad. ¿Necesitas reprogramar? Responde CAMBIAR. — Clínica Demo
+                            Hola María 📋 Te recordamos tu cita mañana Martes 25 a las 10:00 AM con Dra. García (Medicina General). No olvides traer tu documento de identidad. 📍 Calle 10 #43A-25, El Poblado. ¿Necesitas reprogramar? Responde CAMBIAR. — Clínica Demo
                           </p>
                         </div>
                       </div>
@@ -329,13 +380,13 @@ export default function Demo() {
                             <MessageCircle className="w-5 h-5 text-white" />
                           </div>
                           <div>
-                            <div className="text-green-400 font-semibold text-sm">Clínica Demo</div>
+                            <div className="text-green-400 font-semibold text-sm">+57 300 123 4567</div>
                             <div className="text-slate-500 text-xs">Hoy 3:15 PM</div>
                           </div>
                         </div>
                         <div className="bg-green-600 rounded-2xl rounded-bl-sm p-3 ml-4">
                           <p className="text-white text-sm leading-relaxed">
-                            Hola María 😊 Gracias por tu visita a Clínica Demo. ¿Nos ayudas con una reseña? Solo toma 30 segundos: [link]. Tu opinión nos ayuda a mejorar. ¡Gracias! 🙏
+                            Hola María 😊 Gracias por tu consulta con Dra. García en Clínica Demo. ¿Nos ayudas con una reseña? Solo toma 30 segundos: bit.ly/clinica-demo-review. Tu opinión nos ayuda a mejorar. ¡Gracias! 🙏
                           </p>
                         </div>
                       </div>
@@ -488,68 +539,119 @@ export default function Demo() {
 
       {/* Modal para Cita */}
       {showCitaModal && (
-        <div className="fixed inset-0 bg-slate-900/80 backdrop-blur-sm flex items-center justify-center p-4 z-50">
-          <div className="bg-slate-800 rounded-2xl p-8 max-w-md w-full border border-slate-700">
-            <h3 className="text-2xl text-white mb-6">Solicitar Cita</h3>
-            <form onSubmit={handleCitaSubmit} className="space-y-4">
-              <input
-                type="text"
-                placeholder="Nombre completo"
-                value={citaForm.nombre}
-                onChange={(e) => setCitaForm({...citaForm, nombre: e.target.value})}
-                className="w-full px-4 py-3 bg-slate-900 border border-slate-600 rounded-lg text-white placeholder-slate-400 focus:border-teal-500 focus:ring-1 focus:ring-teal-500"
-                required
-              />
-              <input
-                type="tel"
-                placeholder="Teléfono (+57...)"
-                value={citaForm.telefono}
-                onChange={(e) => setCitaForm({...citaForm, telefono: e.target.value})}
-                className="w-full px-4 py-3 bg-slate-900 border border-slate-600 rounded-lg text-white placeholder-slate-400 focus:border-teal-500 focus:ring-1 focus:ring-teal-500"
-                required
-              />
-              <input
-                type="email"
-                placeholder="Correo electrónico"
-                value={citaForm.email}
-                onChange={(e) => setCitaForm({...citaForm, email: e.target.value})}
-                className="w-full px-4 py-3 bg-slate-900 border border-slate-600 rounded-lg text-white placeholder-slate-400 focus:border-teal-500 focus:ring-1 focus:ring-teal-500"
-                required
-              />
-              <input
-                type="date"
-                value={citaForm.fecha_preferida}
-                onChange={(e) => setCitaForm({...citaForm, fecha_preferida: e.target.value})}
-                className="w-full px-4 py-3 bg-slate-900 border border-slate-600 rounded-lg text-white focus:border-teal-500 focus:ring-1 focus:ring-teal-500"
-                required
-              />
-              <select
-                value={citaForm.motivo_consulta}
-                onChange={(e) => setCitaForm({...citaForm, motivo_consulta: e.target.value})}
-                className="w-full px-4 py-3 bg-slate-900 border border-slate-600 rounded-lg text-white focus:border-teal-500 focus:ring-1 focus:ring-teal-500"
-                required
-              >
-                <option value="">Selecciona el motivo</option>
-                <option value="consulta_general">Consulta General</option>
-                <option value="control_rutinario">Control Rutinario</option>
-                <option value="especialista">Consulta Especialista</option>
-                <option value="examenes">Revisión de Exámenes</option>
-              </select>
+        <div className="fixed inset-0 bg-slate-900/80 backdrop-blur-sm flex items-center justify-center p-4 z-50 overflow-y-auto">
+          <div className="bg-slate-800 rounded-2xl p-6 max-w-lg w-full border border-slate-700 my-4">
+            <h3 className="text-2xl text-white mb-6">Agendar Cita Médica</h3>
+            <form onSubmit={handleCitaSubmit} className="space-y-5">
+              
+              {/* Personal Info */}
+              <div className="space-y-4">
+                <h4 className="text-lg text-teal-400 border-b border-slate-600 pb-2">Información Personal</h4>
+                <input
+                  type="text"
+                  placeholder="Nombre completo"
+                  value={citaForm.nombre}
+                  onChange={(e) => setCitaForm({...citaForm, nombre: e.target.value})}
+                  className="w-full px-4 py-3 bg-slate-900 border border-slate-600 rounded-lg text-white placeholder-slate-400 focus:border-teal-500 focus:ring-1 focus:ring-teal-500"
+                  required
+                />
+                <input
+                  type="tel"
+                  placeholder="Teléfono (+57 300 123 4567)"
+                  value={citaForm.telefono}
+                  onChange={(e) => setCitaForm({...citaForm, telefono: e.target.value})}
+                  className="w-full px-4 py-3 bg-slate-900 border border-slate-600 rounded-lg text-white placeholder-slate-400 focus:border-teal-500 focus:ring-1 focus:ring-teal-500"
+                  required
+                />
+                <input
+                  type="email"
+                  placeholder="Correo electrónico"
+                  value={citaForm.email}
+                  onChange={(e) => setCitaForm({...citaForm, email: e.target.value})}
+                  className="w-full px-4 py-3 bg-slate-900 border border-slate-600 rounded-lg text-white placeholder-slate-400 focus:border-teal-500 focus:ring-1 focus:ring-teal-500"
+                  required
+                />
+              </div>
+
+              {/* Provider Selection */}
+              <div className="space-y-4">
+                <h4 className="text-lg text-teal-400 border-b border-slate-600 pb-2">Seleccionar Médico</h4>
+                <select
+                  value={citaForm.provider_id}
+                  onChange={(e) => setCitaForm({...citaForm, provider_id: e.target.value, hora: ''})}
+                  className="w-full px-4 py-3 bg-slate-900 border border-slate-600 rounded-lg text-white focus:border-teal-500 focus:ring-1 focus:ring-teal-500"
+                  required
+                >
+                  <option value="">Selecciona un médico...</option>
+                  {providers.map(provider => (
+                    <option key={provider.id} value={provider.id}>
+                      {provider.name} — {provider.specialty}
+                    </option>
+                  ))}
+                </select>
+              </div>
+
+              {/* Date & Time Selection */}
+              <div className="space-y-4">
+                <h4 className="text-lg text-teal-400 border-b border-slate-600 pb-2">Fecha y Hora</h4>
+                <input
+                  type="date"
+                  value={citaForm.fecha}
+                  onChange={(e) => setCitaForm({...citaForm, fecha: e.target.value, hora: ''})}
+                  min={new Date().toISOString().split('T')[0]}
+                  className="w-full px-4 py-3 bg-slate-900 border border-slate-600 rounded-lg text-white focus:border-teal-500 focus:ring-1 focus:ring-teal-500"
+                  required
+                />
+
+                {/* Time Slots Grid */}
+                {citaForm.provider_id && citaForm.fecha && (
+                  <div>
+                    <label className="block text-sm text-slate-300 mb-3">Horarios disponibles:</label>
+                    <div className="grid grid-cols-3 gap-2 max-h-48 overflow-y-auto">
+                      {availableSlots.map(slot => (
+                        <button
+                          key={slot.time}
+                          type="button"
+                          disabled={!slot.available}
+                          onClick={() => setCitaForm({...citaForm, hora: slot.time})}
+                          className={`p-2 text-sm rounded-lg transition-all duration-200 ${
+                            citaForm.hora === slot.time
+                              ? 'bg-teal-500 text-slate-950 font-semibold'
+                              : slot.available
+                              ? 'bg-slate-700 text-white hover:bg-slate-600 border border-slate-600 hover:border-teal-500/50'
+                              : 'bg-slate-800 text-slate-500 cursor-not-allowed border border-slate-700'
+                          }`}
+                        >
+                          {slot.available ? slot.time : `${slot.time}\nOcupado`}
+                        </button>
+                      ))}
+                    </div>
+                    {selectedProvider && (
+                      <p className="text-xs text-slate-400 mt-2">
+                        Consultorio: {selectedProvider.name} — {selectedProvider.specialty}
+                      </p>
+                    )}
+                  </div>
+                )}
+              </div>
               
               <div className="flex space-x-3 pt-4">
                 <button
                   type="button"
-                  onClick={() => setShowCitaModal(false)}
+                  onClick={() => {
+                    setShowCitaModal(false);
+                    setCitaForm({nombre: '', telefono: '', email: '', fecha: '', hora: '', provider_id: ''});
+                  }}
                   className="flex-1 px-4 py-3 border border-slate-600 text-slate-300 rounded-lg hover:bg-slate-700 transition-colors"
                 >
                   Cancelar
                 </button>
                 <button
                   type="submit"
-                  disabled={isSubmittingCita}
-                  className="flex-1 px-4 py-3 bg-teal-500 text-slate-950 rounded-lg hover:bg-teal-400 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                  disabled={isSubmittingCita || !citaForm.hora}
+                  className="flex-1 px-4 py-3 bg-teal-500 text-slate-950 rounded-lg hover:bg-teal-400 transition-colors disabled:opacity-50 disabled:cursor-not-allowed font-semibold"
                 >
-                  {isSubmittingCita ? 'Enviando...' : 'Solicitar Cita'}
+                  {isSubmittingCita ? 'Agendando...' : 'Confirmar Cita'}
                 </button>
               </div>
             </form>
@@ -634,11 +736,16 @@ export default function Demo() {
             <div className="bg-slate-900 rounded-xl p-4 border border-slate-600 mb-6">
               <div className="flex items-center space-x-2 mb-3">
                 <MessageCircle className="w-5 h-5 text-green-400" />
-                <span className="text-green-400 font-semibold">WhatsApp</span>
+                <span className="text-green-400 font-semibold">+57 300 123 4567</span>
+                <span className="text-slate-400 text-xs">Ahora</span>
               </div>
-              <div className="bg-green-600 rounded-xl p-3 text-left">
-                <p className="text-white text-sm">
-                  Hola María 👋 Tu cita en Clínica Demo ha sido confirmada para el Lunes 24 de Febrero a las 10:00 AM. Responde CONFIRMAR para aceptar o CAMBIAR para reprogramar. — Clínica Demo | AutoMed Colombia
+              <div className="bg-green-600 rounded-xl rounded-bl-sm p-3 text-left">
+                <p className="text-white text-sm leading-relaxed">
+                  {citaForm.nombre ? `Hola ${citaForm.nombre}` : 'Hola María'} 👋 Tu cita con {selectedProvider?.name || 'Dra. María García'} ({selectedProvider?.specialty || 'Medicina General'}) ha sido confirmada para el {citaForm.fecha ? new Date(citaForm.fecha + 'T00:00:00').toLocaleDateString('es-CO', { weekday: 'long', day: 'numeric', month: 'long' }) : 'Lunes 24 de Febrero'} a las {citaForm.hora || '10:00'}.
+                  <br /><br />
+                  📍 Dirección: Calle 10 #43A-25, El Poblado, Medellín
+                  <br /><br />
+                  Responde CONFIRMAR para aceptar o CAMBIAR para reprogramar. — Clínica Demo | AutoMed Colombia
                 </p>
               </div>
             </div>
@@ -666,11 +773,12 @@ export default function Demo() {
             <div className="bg-slate-900 rounded-xl p-4 border border-slate-600 mb-6">
               <div className="flex items-center space-x-2 mb-3">
                 <MessageCircle className="w-5 h-5 text-green-400" />
-                <span className="text-green-400 font-semibold">WhatsApp</span>
+                <span className="text-green-400 font-semibold">+57 300 123 4567</span>
+                <span className="text-slate-400 text-xs">Ahora</span>
               </div>
-              <div className="bg-green-600 rounded-xl p-3 text-left">
-                <p className="text-white text-sm">
-                  Hola María 👋 Gracias por contactar a Clínica Demo. Un asesor te contactará en las próximas 2 horas. Mientras tanto, conoce nuestros servicios: [link]. — Clínica Demo | AutoMed Colombia
+              <div className="bg-green-600 rounded-xl rounded-bl-sm p-3 text-left">
+                <p className="text-white text-sm leading-relaxed">
+                  Hola {contactoForm.nombre || 'María'} 👋 Gracias por contactar a Clínica Demo. Un asesor te contactará en las próximas 2 horas. Mientras tanto, conoce nuestros servicios: clinicademo.com/servicios. — Clínica Demo | AutoMed Colombia
                 </p>
               </div>
             </div>
