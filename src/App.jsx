@@ -4,6 +4,7 @@ import { Star, ArrowRight, Linkedin, Twitter, Youtube, Stethoscope, Brain, Ship,
 import { ScrollReveal } from './components/ScrollReveal';
 import Blog from './pages/Blog';
 import BlogPost from './pages/BlogPost';
+import Services from './pages/Services';
 
 function Layout({ children }) {
   const [scrollY, setScrollY] = useState(0);
@@ -137,6 +138,7 @@ function Layout({ children }) {
             <div className="hidden md:flex items-center space-x-8">
               <Link to="/#about" className="text-slate-400 hover:text-white transition-colors duration-300">About</Link>
               <Link to="/#expertise" className="text-slate-400 hover:text-white transition-colors duration-300">Expertise</Link>
+              <Link to="/services" className="text-slate-400 hover:text-white transition-colors duration-300">Services</Link>
               <Link to="/#connect" className="text-slate-400 hover:text-white transition-colors duration-300">Connect</Link>
               <Link to="/blog" className="text-slate-400 hover:text-white transition-colors duration-300">Blog</Link>
               <button
@@ -584,6 +586,7 @@ export default function App() {
     <Layout>
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/services" element={<Services />} />
         <Route path="/blog" element={<Blog />} />
         <Route path="/blog/:slug" element={<BlogPost />} />
       </Routes>
