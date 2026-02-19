@@ -6,6 +6,7 @@ import { ScrollReveal } from './components/ScrollReveal';
 import Blog from './pages/Blog';
 import BlogPost from './pages/BlogPost';
 import Services from './pages/Services';
+import Servicios from './pages/Servicios';
 
 function Layout({ children }) {
   const [scrollY, setScrollY] = useState(0);
@@ -140,6 +141,7 @@ function Layout({ children }) {
               <Link to="/#about" className="text-slate-400 hover:text-white transition-colors duration-300">About</Link>
               <Link to="/#expertise" className="text-slate-400 hover:text-white transition-colors duration-300">Expertise</Link>
               <Link to="/services" className="text-slate-400 hover:text-white transition-colors duration-300">Services</Link>
+              <Link to="/servicios" className="text-slate-400 hover:text-white transition-colors duration-300">Servicios</Link>
               <Link to="/#connect" className="text-slate-400 hover:text-white transition-colors duration-300">Connect</Link>
               <Link to="/blog" className="text-slate-400 hover:text-white transition-colors duration-300">Blog</Link>
               <button
@@ -589,7 +591,7 @@ export default function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/services" element={<Services />} />
-          <Route path="/servicios" element={<Services />} />
+          <Route path="/servicios" element={<Servicios />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/blog/:slug" element={<BlogPost />} />
         </Routes>
