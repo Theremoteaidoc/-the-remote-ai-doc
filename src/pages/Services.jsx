@@ -1,10 +1,16 @@
 import { useState } from 'react';
+import { Helmet } from 'react-helmet-async';
 import { Check, ArrowRight, Users, Brain, Shield, Globe, Phone, Mail, MessageSquare, BarChart, FileText, Zap, Star, Clock, HelpCircle, ChevronDown } from 'lucide-react';
 import { ScrollReveal } from '../components/ScrollReveal';
 
 // Bilingual content object
 const content = {
   en: {
+    seo: {
+      title: 'AI-Powered Healthcare Automation Services | The Remote AI Doc',
+      description: 'Automate your healthcare practice with AI. Patient reminders, clinical document processing, EHR integration. Built by a practicing physician.',
+      canonicalUrl: 'https://theremoteaidoc.com/services'
+    },
     nav: {
       language: 'ES',
       languageSwitch: 'Español'
@@ -30,7 +36,7 @@ const content = {
           'Google Reviews auto-collection system',
           'Lead capture → automated response flows', 
           'Basic reporting dashboard',
-          'Standard n8n workflow templates',
+          'Standard custom automation workflows',
           'Email & chat support'
         ],
         bestFor: 'Small clinics, solo practitioners',
@@ -47,7 +53,7 @@ const content = {
           'Clinical document processing (intake forms, referrals)',
           'AI-powered patient triage pre-screening',
           'EHR data extraction & automated reporting',
-          'Custom n8n workflow development',
+          'Custom automation workflow development',
           'Priority support with 2-hour response'
         ],
         bestFor: 'Multi-provider practices, specialty clinics',
@@ -62,7 +68,7 @@ const content = {
         features: [
           'Everything in Clinical Intelligence',
           'Custom AI agent development',
-          'RAG-based clinical knowledge systems',
+          'AI-powered clinical knowledge bases',
           'Multi-location workflow orchestration',
           'Dedicated support + monthly strategy calls',
           'HIPAA compliance consulting & audit'
@@ -117,7 +123,7 @@ const content = {
         {
           number: '03',
           title: 'Build & Integrate',
-          description: 'Develop custom n8n workflows, AI integrations, and connect with your existing systems.',
+          description: 'Develop custom automation workflows, AI integrations, and connect with your existing systems.',
           duration: '2-4 weeks'
         },
         {
@@ -146,7 +152,7 @@ const content = {
         },
         {
           question: 'What if we need custom workflows?',
-          answer: 'All our tiers include some level of customization. Clinical Intelligence and Enterprise tiers offer full custom workflow development using n8n and AI integrations tailored to your specific practice needs.'
+          answer: 'All our tiers include some level of customization. Clinical Intelligence and Enterprise tiers offer full custom workflow development using advanced automation tools tailored to your specific practice needs.'
         },
         {
           question: 'Do you provide training for our staff?',
@@ -172,72 +178,126 @@ const content = {
       description: 'No sales pitch — just a strategic conversation about your practice\'s automation potential.',
       button: 'Book Discovery Call',
       calendlyUrl: 'https://calendly.com/theremoteaidoc/30min'
+    },
+    structuredData: {
+      '@context': 'https://schema.org',
+      '@type': 'Service',
+      'name': 'AI-Powered Healthcare Automation Services',
+      'provider': {
+        '@type': 'Person',
+        'name': 'Dr. Javier Rosas',
+        'jobTitle': 'Ship Physician & AI Automation Expert'
+      },
+      'description': 'Professional healthcare automation services using AI to streamline clinical workflows, reduce administrative burden, and improve patient outcomes.',
+      'offers': [
+        {
+          '@type': 'Offer',
+          'name': 'Workflow Automation',
+          'price': '497',
+          'priceCurrency': 'USD',
+          'priceSpecification': {
+            '@type': 'UnitPriceSpecification',
+            'price': '497',
+            'priceCurrency': 'USD',
+            'unitText': 'MONTH'
+          }
+        },
+        {
+          '@type': 'Offer',
+          'name': 'Clinical Intelligence',
+          'price': '997',
+          'priceCurrency': 'USD',
+          'priceSpecification': {
+            '@type': 'UnitPriceSpecification',
+            'price': '997',
+            'priceCurrency': 'USD',
+            'unitText': 'MONTH'
+          }
+        },
+        {
+          '@type': 'Offer',
+          'name': 'Enterprise AI',
+          'price': '2497',
+          'priceCurrency': 'USD',
+          'priceSpecification': {
+            '@type': 'UnitPriceSpecification',
+            'price': '2497',
+            'priceCurrency': 'USD',
+            'unitText': 'MONTH'
+          }
+        }
+      ]
     }
   },
   es: {
+    seo: {
+      title: 'Servicios de Automatización Médica con IA | AutoMed Colombia',
+      description: 'Automatiza tu consultorio médico con inteligencia artificial. Recordatorios, agenda, historias clínicas y más. Diseñado por médicos para médicos colombianos.',
+      canonicalUrl: 'https://theremoteaidoc.com/servicios'
+    },
     nav: {
       language: 'EN',
       languageSwitch: 'English'
     },
     hero: {
-      badge: 'Automatización Sanitaria Powered by AI',
-      title: 'Automatización Powered by AI',
-      titleHighlight: 'para Centros de Salud',
-      subtitle: 'Aplicando experiencia clínica en IA para automatizar flujos de trabajo sanitarios, reducir carga administrativa y mejorar resultados del paciente — construido por un médico que practica lo que automatiza.',
-      cta: 'Agendar Llamada de Descubrimiento'
+      badge: 'Automatización Médica con IA',
+      title: 'Automatización Inteligente',
+      titleHighlight: 'para Consultorios',
+      subtitle: 'Aplicando experiencia clínica en IA para automatizar procesos médicos, reducir carga administrativa y mejorar la atención al paciente — construido por un médico que usa lo que automatiza.',
+      cta: 'Agenda tu Llamada Gratis'
     },
     tiers: {
       title: 'Elige Tu Nivel de Automatización',
-      subtitle: 'Desde automatización básica hasta soluciones AI empresariales — todo diseñado con experiencia clínica',
+      subtitle: 'Desde automatización básica hasta soluciones IA empresariales — todo diseñado con experiencia clínica',
       tier1: {
-        name: 'Automatización de Flujos',
-        price: '$497',
-        period: '/mes',
+        name: 'Automatización de Procesos',
+        price: '$2.100.000',
+        period: ' COP/mes',
         badge: 'Más Popular',
-        description: 'Perfecto para clínicas pequeñas y profesionales independientes',
+        description: 'Perfecto para consultorios pequeños y médicos independientes',
         features: [
           'Recordatorios de citas (WhatsApp/SMS/Email)',
-          'Sistema auto-recolección de reseñas Google',
-          'Captura de leads → flujos respuesta automatizada',
-          'Dashboard básico de reportes',
-          'Templates estándar de workflows n8n',
+          'Sistema de recolección automática de reseñas Google',
+          'Captura de pacientes → respuestas automatizadas',
+          'Panel básico de reportes',
+          'Flujos de trabajo personalizados estándar',
           'Soporte por email y chat'
         ],
-        bestFor: 'Clínicas pequeñas, profesionales independientes',
+        bestFor: 'Consultorios pequeños, médicos independientes',
         cta: 'Iniciar Automatización'
       },
       tier2: {
         name: 'Inteligencia Clínica',
-        price: '$997',
-        period: '/mes',
-        badge: 'Mejor Valor',
-        description: 'IA avanzada para consultorios multi-proveedor',
+        price: '$4.200.000',
+        period: ' COP/mes',
+        badge: 'Más Recomendado',
+        description: 'IA avanzada para consultorios con varios especialistas',
         features: [
-          'Todo en Automatización de Flujos',
+          'Todo en Automatización de Procesos',
           'Procesamiento de documentos clínicos (formularios, referencias)',
-          'Pre-screening de triaje de pacientes con IA',
-          'Extracción de datos EHR y reportes automatizados',
-          'Desarrollo personalizado de workflows n8n',
+          'Pre-clasificación inteligente de pacientes',
+          'Extracción de datos de historia clínica y reportes automatizados',
+          'Desarrollo de flujos personalizados avanzados',
           'Soporte prioritario con respuesta en 2 horas'
         ],
-        bestFor: 'Consultorios multi-proveedor, clínicas especializadas',
-        cta: 'Actualizar a Inteligencia'
+        bestFor: 'Consultorios grupo médico, clínicas especializadas',
+        cta: 'Mejorar a Inteligencia'
       },
       tier3: {
         name: 'IA Empresarial',
-        price: '$2,497',
-        period: '/mes',
+        price: '$10.500.000',
+        period: ' COP/mes',
         badge: 'Empresarial',
         description: 'Transformación IA completa para sistemas de salud',
         features: [
           'Todo en Inteligencia Clínica',
           'Desarrollo de agentes IA personalizados',
-          'Sistemas de conocimiento clínico basados en RAG',
-          'Orquestación de workflows multi-ubicación',
+          'Sistemas de conocimiento clínico con IA',
+          'Coordinación de flujos multi-ubicación',
           'Soporte dedicado + llamadas estratégicas mensuales',
-          'Consultoría y auditoría de cumplimiento HIPAA'
+          'Consultoría y auditoría normativa colombiana de datos en salud'
         ],
-        bestFor: 'Grupos hospitalarios, sistemas de salud, operaciones médicas marítimas',
+        bestFor: 'Grupos hospitalarios, sistemas de salud, operaciones médicas remotas',
         cta: 'Transformar con IA'
       }
     },
@@ -248,7 +308,7 @@ const content = {
       values: [
         {
           title: 'Entendimiento Clínico',
-          description: 'Experiencia médica real en ambientes de alta presión — 1,000 millas de la costa sin respaldo.',
+          description: 'Experiencia médica real en ambientes de alta presión — 1,000 millas de la costa sin respaldo médico.',
           icon: 'users'
         },
         {
@@ -257,91 +317,140 @@ const content = {
           icon: 'brain'
         },
         {
-          title: 'Remoto-Primero',
-          description: 'Construido para equipos distribuidos y telesalud — probado en las ubicaciones más remotas de la Tierra.',
+          title: 'Medicina Remota',
+          description: 'Construido para equipos distribuidos y telemedicina — probado en las ubicaciones más remotas de la Tierra.',
           icon: 'globe'
         },
         {
-          title: 'Obsesionado con Seguridad',
-          description: 'El cumplimiento HIPAA no es opcional — está incorporado en cada flujo desde el día uno.',
+          title: 'Seguridad Total',
+          description: 'El cumplimiento de la normativa colombiana de datos en salud está incorporado en cada proceso desde el día uno.',
           icon: 'shield'
         }
       ]
     },
     process: {
-      title: 'Nuestro Proceso Probado',
+      title: 'Nuestro Proceso Comprobado',
       subtitle: 'De evaluación a automatización en 4 pasos estratégicos',
       steps: [
         {
           number: '01',
-          title: 'Llamada de Descubrimiento',
-          description: 'Entender tus flujos de trabajo, puntos de dolor y objetivos de automatización a través de evaluación detallada.',
+          title: 'Llamada Gratuita',
+          description: 'Entendemos tus procesos clínicos, puntos de dolor y objetivos de automatización a través de evaluación detallada.',
           duration: '1 semana'
         },
         {
           number: '02',
           title: 'Auditoría y Estrategia',
-          description: 'Mapear ineficiencias e identificar oportunidades de automatización con análisis de flujos clínicos.',
+          description: 'Mapeamos ineficiencias e identificamos oportunidades de automatización con análisis de flujos clínicos.',
           duration: '1-2 semanas'
         },
         {
           number: '03',
           title: 'Construir e Integrar',
-          description: 'Desarrollar workflows n8n personalizados, integraciones IA y conectar con tus sistemas existentes.',
+          description: 'Desarrollamos flujos personalizados, integraciones IA y conectamos con tus sistemas existentes.',
           duration: '2-4 semanas'
         },
         {
           number: '04',
-          title: 'Optimizar y Escalar',
-          description: 'Monitorear rendimiento, iterar basado en resultados y escalar automatizaciones exitosas.',
+          title: 'Optimizar y Crecer',
+          description: 'Monitoreamos rendimiento, mejoramos basado en resultados y escalamos automatizaciones exitosas.',
           duration: 'Continuo'
         }
       ]
     },
     faq: {
       title: 'Preguntas Frecuentes',
-      subtitle: 'Todo lo que necesitas saber sobre automatización IA en salud',
+      subtitle: 'Todo lo que necesitas saber sobre automatización IA en medicina',
       questions: [
         {
-          question: '¿Es compatible con HIPAA?',
-          answer: 'Absolutamente. Todos los flujos están diseñados con cumplimiento HIPAA como requisito fundamental. Usamos comunicaciones encriptadas, manejo seguro de datos y registros de auditoría comprehensivos.'
+          question: '¿Cumple con la normativa colombiana de datos en salud?',
+          answer: 'Absolutamente. Todos los procesos están diseñados cumpliendo la Ley 1581 de Protección de Datos y Resolución 1995. Usamos comunicaciones encriptadas, manejo seguro de datos y registros de auditoría completos.'
         },
         {
           question: '¿Cuánto tiempo toma la implementación?',
-          answer: 'Automatización de Flujos: 2-3 semanas. Inteligencia Clínica: 3-6 semanas. IA Empresarial: 6-12 semanas. Empezamos con victorias rápidas e implementamos gradualmente automatizaciones más complejas.'
+          answer: 'Automatización de Procesos: 2-3 semanas. Inteligencia Clínica: 3-6 semanas. IA Empresarial: 6-12 semanas. Empezamos con mejoras rápidas e implementamos gradualmente automatizaciones más complejas.'
         },
         {
-          question: '¿Se integrará con nuestro EHR existente?',
-          answer: 'Sí. Tenemos experiencia integrando con sistemas EHR principales incluyendo Epic, Cerner, AllScripts y otros. La complejidad varía, pero siempre encontramos forma de conectar tus sistemas de forma segura.'
+          question: '¿Se integra con nuestro sistema de historia clínica existente?',
+          answer: 'Sí. Tenemos experiencia integrando con sistemas de historia clínica como Hosvital, Servinte, SAHI, Medifolios, y otros. La complejidad varía, pero siempre encontramos forma de conectar tus sistemas de forma segura.'
         },
         {
           question: '¿Qué pasa si necesitamos flujos personalizados?',
-          answer: 'Todos nuestros niveles incluyen algún grado de personalización. Los niveles Inteligencia Clínica y Empresarial ofrecen desarrollo completo de workflows usando n8n e integraciones IA.'
+          answer: 'Todos nuestros planes incluyen algún nivel de personalización. Los planes Inteligencia Clínica y Empresarial ofrecen desarrollo completo de flujos personalizados usando herramientas avanzadas adaptadas a tu consulta.'
         },
         {
-          question: '¿Proporcionan entrenamiento para nuestro personal?',
-          answer: 'Sí. Incluimos entrenamiento comprehensivo para tu equipo, más soporte continuo. Los clientes Empresariales obtienen llamadas estratégicas mensuales para optimizar flujos.'
+          question: '¿Proporcionan entrenamiento para nuestro equipo?',
+          answer: 'Sí. Incluimos entrenamiento completo para tu equipo, más soporte continuo. Los clientes Empresariales obtienen llamadas estratégicas mensuales para optimizar procesos.'
         },
         {
-          question: '¿Qué los hace diferentes de otras compañías de automatización?',
-          answer: 'Soy un médico practicante que usa estos sistemas diariamente en ambientes de alto riesgo. Esta experiencia clínica del mundo real significa que tu automatización realmente funciona cuando más importa.'
+          question: '¿Qué los hace diferentes de otras empresas de automatización?',
+          answer: 'Soy un médico que practica y usa estos sistemas diariamente en ambientes de alto riesgo. Esta experiencia clínica del mundo real significa que tu automatización realmente funciona cuando más importa.'
         },
         {
-          question: '¿Pueden trabajar con consultorios internacionales?',
-          answer: 'Absolutamente. Habiendo trabajado en medicina marítima en aguas internacionales, entiendo los requisitos de salud globales. Tenemos experiencia con sistemas de salud de US y Colombia.'
+          question: '¿Trabajan con consultorios en Colombia?',
+          answer: 'Por supuesto. Entiendo perfectamente los requisitos del sistema de salud colombiano y tengo experiencia trabajando tanto con el sistema estadounidense como el colombiano.'
         },
         {
-          question: '¿Qué tipo de ROI podemos esperar?',
-          answer: 'Los clientes típicos ven ROI de 3-5x en 6 meses a través de reducción de costos administrativos, mejor adquisición de pacientes y mayor eficiencia. Rastreamos métricas y proporcionamos reportes mensuales.'
+          question: '¿Qué tipo de retorno de inversión podemos esperar?',
+          answer: 'Los clientes típicos ven retorno de 3-5x en 6 meses a través de reducción de costos administrativos, mejor captación de pacientes y mayor eficiencia. Hacemos seguimiento de métricas y proporcionamos reportes mensuales.'
         }
       ]
     },
     cta: {
-      title: '¿Listo para Automatizar tu Consulta?',
-      subtitle: 'Agenda una llamada de descubrimiento gratuita de 30 minutos para explorar cómo la IA puede transformar tus flujos de trabajo.',
-      description: 'Sin presentación de ventas — solo una conversación estratégica sobre el potencial de automatización de tu práctica.',
-      button: 'Agendar Llamada de Descubrimiento',
+      title: '¿Listo para Automatizar tu Consultorio?',
+      subtitle: 'Agenda una llamada gratuita de 30 minutos para explorar cómo la IA puede transformar tus procesos médicos.',
+      description: 'Sin presentación de ventas — solo una conversación estratégica sobre el potencial de automatización de tu consulta.',
+      button: 'Agendar Llamada Gratis',
       calendlyUrl: 'https://calendly.com/theremoteaidoc/30min'
+    },
+    structuredData: {
+      '@context': 'https://schema.org',
+      '@type': 'Service',
+      'name': 'Servicios de Automatización Médica con IA',
+      'provider': {
+        '@type': 'Person',
+        'name': 'Dr. Javier Rosas',
+        'jobTitle': 'Médico de Barco y Experto en Automatización IA'
+      },
+      'description': 'Servicios profesionales de automatización médica usando IA para optimizar procesos clínicos, reducir carga administrativa y mejorar la atención al paciente.',
+      'offers': [
+        {
+          '@type': 'Offer',
+          'name': 'Automatización de Procesos',
+          'price': '2100000',
+          'priceCurrency': 'COP',
+          'priceSpecification': {
+            '@type': 'UnitPriceSpecification',
+            'price': '2100000',
+            'priceCurrency': 'COP',
+            'unitText': 'MONTH'
+          }
+        },
+        {
+          '@type': 'Offer',
+          'name': 'Inteligencia Clínica',
+          'price': '4200000',
+          'priceCurrency': 'COP',
+          'priceSpecification': {
+            '@type': 'UnitPriceSpecification',
+            'price': '4200000',
+            'priceCurrency': 'COP',
+            'unitText': 'MONTH'
+          }
+        },
+        {
+          '@type': 'Offer',
+          'name': 'IA Empresarial',
+          'price': '10500000',
+          'priceCurrency': 'COP',
+          'priceSpecification': {
+            '@type': 'UnitPriceSpecification',
+            'price': '10500000',
+            'priceCurrency': 'COP',
+            'unitText': 'MONTH'
+          }
+        }
+      ]
     }
   }
 };
@@ -372,6 +481,24 @@ export default function Services() {
 
   return (
     <>
+      {/* SEO Helmet */}
+      <Helmet>
+        <title>{t.seo.title}</title>
+        <meta name="description" content={t.seo.description} />
+        <link rel="canonical" href={t.seo.canonicalUrl} />
+        
+        {/* Open Graph tags */}
+        <meta property="og:title" content={t.seo.title} />
+        <meta property="og:description" content={t.seo.description} />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={t.seo.canonicalUrl} />
+        
+        {/* Structured Data */}
+        <script type="application/ld+json">
+          {JSON.stringify(t.structuredData)}
+        </script>
+      </Helmet>
+
       {/* Language Toggle */}
       <div className="fixed top-24 right-6 z-50">
         <button
