@@ -238,7 +238,7 @@ const AutoPlayingPipeline = ({ language = 'en' }) => {
     if (!isRunning) return;
 
     // Variable duration per step — WhatsApp step (3) gets 30s, others 3.5s
-    const stepDurations = [3500, 3500, 3500, 30000, 3500, 3500, 5000];
+    const stepDurations = [3500, 3500, 3500, 30000, 20000, 20000, 5000];
     const stepDuration = stepDurations[currentStep] || 3500;
     
     if (currentStep < steps.length) {
@@ -347,31 +347,39 @@ const AutoPlayingPipeline = ({ language = 'en' }) => {
 
       case 4: // Reminder Scheduled
         return (
-          <div className="bg-white rounded-xl border border-slate-200 p-6 shadow-lg animate-fadeIn">
-            <div className="flex items-center space-x-4">
-              <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center">
-                <Clock className="w-6 h-6 text-blue-600" />
+          <div className="animate-fadeIn space-y-3">
+            <div className="flex items-center space-x-3 mb-2">
+              <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
+                <Clock className="w-4 h-4 text-blue-600" />
               </div>
-              <div className="flex-1">
-                <div className="font-medium text-slate-900">24 hours before appointment</div>
-                <div className="text-sm text-slate-600">→ automatic WhatsApp reminder</div>
-              </div>
+              <div className="text-sm font-medium text-slate-700">24h before → patient receives:</div>
             </div>
+            <WhatsAppPhone 
+              message={currentLang === 'es' 
+                ? "Hola María 📋 Recordatorio: Mañana Martes 25 a las 10:00 AM con Dra. García (Medicina General). No olvides tu documento de identidad.\n\n📍 Calle 10 #43A-25, El Poblado, Medellín\n\n¿Necesitas reprogramar? Responde CAMBIAR.\n— Clínica Demo | AutoMed"
+                : "Hello María 📋 Reminder: Tomorrow Tuesday 25th at 10:00 AM with Dr. García (General Medicine). Don't forget your ID.\n\n📍 123 Medical Plaza, Healthcare District\n\nNeed to reschedule? Reply CHANGE.\n— Medical Demo | AutoMed"
+              }
+              isActive={currentStep === 4} 
+            />
           </div>
         );
 
       case 5: // Review Request Queued
         return (
-          <div className="bg-white rounded-xl border border-slate-200 p-6 shadow-lg animate-fadeIn">
-            <div className="flex items-center space-x-4">
-              <div className="w-12 h-12 bg-yellow-100 rounded-full flex items-center justify-center">
-                <Star className="w-6 h-6 text-yellow-600" />
+          <div className="animate-fadeIn space-y-3">
+            <div className="flex items-center space-x-3 mb-2">
+              <div className="w-8 h-8 bg-yellow-100 rounded-full flex items-center justify-center">
+                <Star className="w-4 h-4 text-yellow-600" />
               </div>
-              <div className="flex-1">
-                <div className="font-medium text-slate-900">2 hours after consultation</div>
-                <div className="text-sm text-slate-600">→ Google review request via WhatsApp</div>
-              </div>
+              <div className="text-sm font-medium text-slate-700">2h after consultation → patient receives:</div>
             </div>
+            <WhatsAppPhone 
+              message={currentLang === 'es'
+                ? "Hola María 😊 Gracias por tu visita con Dra. García en Clínica Demo. ¿Nos ayudas con una reseña? Solo 30 segundos:\n\n⭐ bit.ly/clinica-demo-review\n\nTu opinión nos ayuda a mejorar. ¡Gracias! 🙏\n— Clínica Demo | AutoMed"
+                : "Hello María 😊 Thanks for your visit with Dr. García at Medical Demo. Would you help us with a review? Just 30 seconds:\n\n⭐ bit.ly/medical-demo-review\n\nYour feedback helps us improve. Thank you! 🙏\n— Medical Demo | AutoMed"
+              }
+              isActive={currentStep === 5} 
+            />
           </div>
         );
 
