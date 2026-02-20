@@ -1,5 +1,127 @@
 export const blogPosts = [
   {
+    id: 'google-amie-cardiology-rct',
+    slug: 'google-amie-cardiology-rct',
+    title: "Google's AMIE Just Changed the Game for Cardiology AI",
+    excerpt: "The first randomized controlled trial of an LLM in cardiology is here. Stanford and Google tested AMIE (built on Gemini 2.0 Flash) against general cardiologists — and the results are significant.",
+    category: 'Clinical AI Research',
+    date: 'February 10, 2026',
+    readTime: '8 min read',
+    featured: false,
+    // Generic article format - uses 'sections' instead of specific fields
+    format: 'article',
+    content: {
+      intro: `The first randomized controlled trial of an LLM in cardiology is here — and the results are significant.
+
+Welcome back to **Clinical AI from the Edge** — your weekly breakdown of healthcare AI from a physician who practices 1,000 miles from shore.
+
+This week, a study dropped in *Nature Medicine* that I think will be referenced for years. Let me break it down for you.`,
+
+      sections: [
+        {
+          title: 'The Study',
+          body: `**Title:** A large language model for complex cardiology care
+**Published:** Nature Medicine, February 6, 2026
+**Authors:** O'Sullivan, Palepu, Saab et al. (Stanford + Google)
+**Registration:** NCT06935253
+
+Researchers at Stanford's Center for Inherited Cardiovascular Disease teamed up with Google to test whether an LLM called **AMIE** (Articulate Medical Intelligence Explorer) — built on Gemini 2.0 Flash — could improve how general cardiologists manage complex genetic heart conditions.
+
+This wasn't another benchmark study. This was a **registered randomized controlled trial** using real patient data.`
+        },
+        {
+          title: 'The Setup',
+          body: `- 107 consecutive real-world patients suspected of genetic cardiomyopathy
+- Each case assessed by two general cardiologists — one with AMIE access, one without
+- Cardiologists had full access to clinical text reports AND raw data: ECGs, echocardiograms, cardiac MRI, stress tests, Holter monitors, and genetic results
+- AI-assisted cardiologists could view AMIE's assessment AND chat with it interactively
+- Three blinded subspecialists evaluated both assessments using a 10-domain rubric
+- Subspecialists didn't know which assessment was AI-assisted`
+        },
+        {
+          title: 'The Results',
+          body: `**Overall Preference**
+Subspecialists preferred AI-assisted assessments **46.7%** of the time vs **32.7%** for cardiologists alone (P = 0.02). The remaining 20.6% were ties.
+
+**Error Reduction**
+- Clinically significant errors: **13.1%** (AI-assisted) vs **24.3%** (unassisted) — a **45% reduction** (P = 0.033)
+- Missing content: **17.8%** vs **37.4%** — a **52% reduction** (P = 0.002)
+
+**Efficiency**
+- AMIE saved time in **50.5%** of cases
+- In 23.4% of those cases, it saved more than half the assessment time
+- Cardiologists said AMIE helped their assessment in **57%** of cases`
+        },
+        {
+          title: "Where AI Excelled — and Where It Didn't",
+          body: `This is the part most coverage will skip:
+
+The AI did **NOT** significantly improve diagnosis or triage decisions. Those were already strong from general cardiologists.
+
+Where it moved the needle was in **management plans** — the complex treatment decisions that require synthesizing multiple data streams simultaneously.
+
+This is exactly where subspecialist shortages cause the most harm.`
+        },
+        {
+          title: 'Hallucinations',
+          body: `- 91.6% of cases had zero hallucinations
+- 6.5% had clinically significant hallucinations — including fabricated imaging findings and demographic assumptions
+- Key finding: **when cardiologists challenged the AI, it self-corrected**`
+        },
+        {
+          title: 'Why This Matters',
+          body: `**The Subspecialist Crisis**
+
+The American College of Cardiology has identified a "cardiology workforce crisis." The numbers are stark:
+
+- 27 U.S. states have zero HCM subspecialist centers
+- 60%+ of HCM patients in the U.S. are undiagnosed
+- HCM is the leading cause of sudden cardiac death in young adults
+- Preventable with implantable defibrillators — if diagnosed in time
+
+This isn't an efficiency problem. **It's a mortality problem.**
+
+**The RCT Gap**
+
+A 2025 systematic review found zero RCTs of LLMs in cardiology. Despite 500+ observational LLM papers published in 2024, rigorous evaluation has been virtually nonexistent. This study sets a new standard.
+
+**No Fine-Tuning Required**
+
+AMIE wasn't fine-tuned on cardiology data. It used:
+- Web search capability
+- A self-critique reasoning chain
+- Just 9 example cases for prompt engineering
+
+That's it. A general-purpose model with clever inference architecture outperformed expectations. Imagine what domain-specific training could achieve.`
+        }
+      ],
+
+      bottomLine: "This study isn't about replacing cardiologists. It's about giving every general cardiologist access to subspecialist-level support — especially in the 27 states without a single HCM center. When a 45% reduction in clinically significant errors comes from a model that wasn't even fine-tuned for cardiology, we need to pay attention.",
+
+      myTake: `I manage suspected cardiomyopathies at sea with roughly 40 drugs (not 4,000), no cardiac MRI, basic ultrasound, and evacuation decisions that cost tens of thousands of dollars and take 12+ hours.
+
+When I read this paper, I don't see "AI vs doctors." I see the possibility that a physician like me — isolated, under-resourced, making high-stakes decisions alone — could have access to subspecialist-level reasoning at the point of care.
+
+The study is clear that autonomous deployment isn't ready. The 6.5% hallucination rate proves it. But as an assistive tool? With clinician oversight? This is the strongest evidence yet that LLMs can genuinely extend subspecialist expertise to the places that need it most.
+
+And I can tell you from experience — those places aren't just rural towns. Sometimes they're floating in the middle of the ocean.`,
+
+      watchNext: [
+        'Replication — Will other centers reproduce these results with different patient populations?',
+        'Prospective trials — This used retrospective data. Real-time clinical deployment is the next frontier.',
+        'Automation bias — The study flags this concern. Clinicians may over-rely on AI suggestions.',
+        'Equity — Single-center, English-only, U.S. population. Generalizability is unknown.',
+        'Open-source data — The full dataset is publicly available at Redivis. Other teams can now test their models.'
+      ],
+
+      quickLinks: [
+        { label: 'Full Paper: Nature Medicine', url: 'https://www.nature.com/articles/s41591-026-03608-8' },
+        { label: 'Open-Source Data: Redivis Dataset', url: 'https://redivis.com/datasets' },
+        { label: 'Clinical Trial Registration: NCT06935253', url: 'https://clinicaltrials.gov/study/NCT06935253' }
+      ]
+    }
+  },
+  {
     id: '6-platform-clinical-ai-comparison',
     slug: '6-platform-clinical-ai-comparison',
     title: 'I Tested 6 AI Platforms on the Same Clinical Case. The Results Should Concern You.',
