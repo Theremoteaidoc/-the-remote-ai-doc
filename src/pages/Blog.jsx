@@ -34,8 +34,8 @@ export default function Blog() {
           <ScrollReveal>
             <header className="mb-16 pb-8 border-b border-slate-700/60">
               <div className="flex items-center gap-3 mb-4">
-                <BookOpen className="w-5 h-5 text-teal-400" />
-                <span className="text-sm font-medium tracking-widest uppercase text-teal-400">
+                <BookOpen className="w-5 h-5 text-emerald-500" />
+                <span className="text-sm font-medium tracking-widest uppercase text-emerald-500">
                   The Remote AI Doc
                 </span>
               </div>
@@ -53,15 +53,15 @@ export default function Blog() {
             <Link to={`/blog/${featuredPost.slug}`} className="block group mb-14">
               <article className="pb-14 border-b border-slate-800/60">
                 <div className="flex items-center gap-2 mb-5">
-                  <span className="text-xs font-semibold tracking-widest uppercase text-teal-400 bg-teal-400/10 px-3 py-1 rounded-full">
+                  <span className="text-xs font-semibold tracking-widest uppercase text-emerald-400 bg-emerald-400/10 px-3 py-1 rounded-full">
                     Featured
                   </span>
-                  <span className="text-xs font-semibold tracking-widest uppercase text-slate-500">
+                  <span className="text-xs font-semibold tracking-widest uppercase text-emerald-600">
                     {featuredPost.category}
                   </span>
                 </div>
 
-                <h2 className="text-2xl lg:text-3xl font-serif font-bold text-white group-hover:text-teal-400 transition-colors duration-300 mb-4 leading-snug">
+                <h2 className="text-2xl lg:text-3xl font-serif font-bold text-white group-hover:text-emerald-400 transition-colors duration-300 mb-4 leading-snug">
                   {featuredPost.title}
                 </h2>
 
@@ -81,7 +81,7 @@ export default function Blog() {
                       <span className="text-sm text-slate-500 ml-1.5">rubric items</span>
                     </div>
                     <div>
-                      <span className="text-xl font-bold text-teal-400">{featuredPost.stats.performanceGap}</span>
+                      <span className="text-xl font-bold text-emerald-400">{featuredPost.stats.performanceGap}</span>
                       <span className="text-sm text-slate-500 ml-1.5">performance gap</span>
                     </div>
                   </div>
@@ -98,7 +98,7 @@ export default function Blog() {
                       {featuredPost.readTime}
                     </span>
                   </div>
-                  <span className="text-teal-400 text-sm flex items-center gap-1.5 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <span className="text-emerald-400 text-sm flex items-center gap-1.5 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                     Read <ArrowRight className="w-3.5 h-3.5" />
                   </span>
                 </div>
@@ -113,7 +113,7 @@ export default function Blog() {
                 <Link to={`/blog/${post.slug}`} className="block group">
                   <article className="py-10">
                     <div className="flex items-center gap-3 mb-3 text-sm">
-                      <span className="font-medium tracking-wide uppercase text-xs text-teal-400/80">
+                      <span className="font-semibold tracking-wide uppercase text-xs text-emerald-500">
                         {post.category}
                       </span>
                       <span className="text-slate-700">·</span>
@@ -125,7 +125,7 @@ export default function Blog() {
                       </span>
                     </div>
 
-                    <h2 className="text-xl lg:text-2xl font-serif font-bold text-white group-hover:text-teal-400 transition-colors duration-300 mb-3 leading-snug">
+                    <h2 className="text-xl lg:text-2xl font-serif font-bold text-white group-hover:text-emerald-400 transition-colors duration-300 mb-3 leading-snug">
                       {post.title}
                     </h2>
 
@@ -135,7 +135,7 @@ export default function Blog() {
 
                     <div className="flex items-center justify-between">
                       <span className="text-sm text-slate-500">Dr. Javier Rosas</span>
-                      <span className="text-teal-400 text-sm flex items-center gap-1.5 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      <span className="text-emerald-400 text-sm flex items-center gap-1.5 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                         Read article <ArrowRight className="w-3.5 h-3.5" />
                       </span>
                     </div>
@@ -155,7 +155,7 @@ export default function Blog() {
                 href="https://www.linkedin.com/newsletters/the-remote-ai-doc-weekly-clinical-ai-briefing-7296304837241720832/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-teal-400 hover:text-teal-300 text-sm font-medium transition-colors"
+                className="inline-flex items-center gap-2 text-emerald-400 hover:text-emerald-300 text-sm font-medium transition-colors"
               >
                 Subscribe to the newsletter <ArrowRight className="w-4 h-4" />
               </a>
