@@ -237,7 +237,9 @@ const AutoPlayingPipeline = ({ language = 'en' }) => {
   useEffect(() => {
     if (!isRunning) return;
 
-    const stepDuration = 3500; // 3.5 seconds per step
+    // Variable duration per step — WhatsApp step (3) gets 30s, others 3.5s
+    const stepDurations = [3500, 3500, 3500, 30000, 3500, 3500, 5000];
+    const stepDuration = stepDurations[currentStep] || 3500;
     
     if (currentStep < steps.length) {
       const timer = setTimeout(() => {
@@ -491,7 +493,7 @@ const WhatsAppPhone = ({ message, isActive }) => {
     const typingTimer = setTimeout(() => {
       setShowTyping(false);
       
-      // Start typing effect - 25ms per character
+      // Start typing effect - 100ms per character (slow, readable reveal)
       let index = 0;
       const typeTimer = setInterval(() => {
         if (index < message.length) {
@@ -501,7 +503,7 @@ const WhatsAppPhone = ({ message, isActive }) => {
           clearInterval(typeTimer);
           setIsComplete(true);
         }
-      }, 25);
+      }, 100);
 
       return () => clearInterval(typeTimer);
     }, 1500);
@@ -512,31 +514,64 @@ const WhatsAppPhone = ({ message, isActive }) => {
   if (!isActive) return null;
 
   return (
-    <div className="max-w-sm mx-auto">
-      {/* iPhone Frame */}
-      <div className="relative bg-black rounded-[2.5rem] p-2 shadow-2xl">
-        {/* Screen */}
-        <div className="bg-white rounded-[2.25rem] overflow-hidden">
-          {/* Notch */}
-          <div className="h-8 bg-black rounded-t-[2.25rem] flex items-center justify-center relative">
-            <div className="w-20 h-1.5 bg-slate-600 rounded-full"></div>
-          </div>
+    <div className="max-w-xs mx-auto" style={{ perspective: '1200px' }}>
+      {/* Premium 3D Phone Frame */}
+      <div 
+        className="relative"
+        style={{ 
+          transform: 'rotateY(-4deg) rotateX(2deg)',
+          transformStyle: 'preserve-3d'
+        }}
+      >
+        {/* Phone shadow on surface */}
+        <div className="absolute -bottom-6 left-4 right-4 h-8 bg-black/15 rounded-full blur-xl"></div>
+        
+        {/* Phone body */}
+        <div className="relative bg-gradient-to-b from-slate-800 via-slate-900 to-black rounded-[3rem] p-[3px] shadow-[0_25px_60px_-12px_rgba(0,0,0,0.4),0_0_0_1px_rgba(255,255,255,0.05)_inset]">
+          {/* Side buttons */}
+          <div className="absolute -left-[2px] top-28 w-[3px] h-8 bg-slate-700 rounded-l-sm"></div>
+          <div className="absolute -left-[2px] top-40 w-[3px] h-12 bg-slate-700 rounded-l-sm"></div>
+          <div className="absolute -left-[2px] top-56 w-[3px] h-12 bg-slate-700 rounded-l-sm"></div>
+          <div className="absolute -right-[2px] top-36 w-[3px] h-16 bg-slate-700 rounded-r-sm"></div>
           
-          {/* WhatsApp Header */}
-          <div className="bg-emerald-600 px-4 py-3 flex items-center space-x-3">
-            <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center">
-              <span className="text-emerald-600 text-xs font-bold">CD</span>
-            </div>
-            <div className="flex-1">
-              <div className="font-semibold text-white text-sm">Clínica Demo</div>
-              <div className="text-xs text-emerald-100">online</div>
-            </div>
-            <Phone className="w-5 h-5 text-white" />
-          </div>
-          
-          {/* Chat Area */}
-          <div className="bg-[#e5ddd5] min-h-[400px] p-4 relative" 
-               style={{ backgroundImage: 'url("data:image/svg+xml,%3Csvg width="260" height="260" viewBox="0 0 260 260" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%23000000" fill-opacity="0.03"%3E%3Cpath d="m129 201c0 6.627-5.373 12-12 12s-12-5.373-12-12 5.373-12 12-12 12 5.373 12 12zm-60 0c0 6.627-5.373 12-12 12s-12-5.373-12-12 5.373-12 12-12 12 5.373 12 12z"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")' }}>
+          {/* Inner bezel */}
+          <div className="bg-black rounded-[2.75rem] p-[2px]">
+            {/* Screen */}
+            <div className="bg-white rounded-[2.5rem] overflow-hidden">
+              {/* Dynamic Island / Status Bar */}
+              <div className="bg-white pt-3 pb-1 px-8 flex items-center justify-between">
+                <span className="text-xs font-semibold text-black">9:41</span>
+                <div className="w-28 h-[26px] bg-black rounded-full mx-auto"></div>
+                <div className="flex items-center space-x-1">
+                  <div className="flex space-x-[2px]">
+                    <div className="w-[3px] h-[6px] bg-black rounded-sm"></div>
+                    <div className="w-[3px] h-[8px] bg-black rounded-sm"></div>
+                    <div className="w-[3px] h-[10px] bg-black rounded-sm"></div>
+                    <div className="w-[3px] h-[12px] bg-black rounded-sm"></div>
+                  </div>
+                  <svg className="w-4 h-4 text-black" fill="currentColor" viewBox="0 0 24 24"><path d="M12.01 21.49L23.64 7c-.45-.34-4.93-4-11.64-4C5.28 3 .81 6.66.36 7l11.63 14.49.01.01.01-.01z"/></svg>
+                  <div className="w-6 h-3 border border-black rounded-sm relative">
+                    <div className="absolute inset-[2px] right-[3px] bg-black rounded-[1px]"></div>
+                  </div>
+                </div>
+              </div>
+              
+              {/* WhatsApp Header */}
+              <div className="bg-emerald-600 px-4 py-3 flex items-center space-x-3">
+                <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7"/></svg>
+                <div className="w-9 h-9 bg-emerald-100 rounded-full flex items-center justify-center ring-2 ring-white/20">
+                  <span className="text-emerald-700 text-xs font-bold">CD</span>
+                </div>
+                <div className="flex-1">
+                  <div className="font-semibold text-white text-sm">Clínica Demo</div>
+                  <div className="text-[11px] text-emerald-100">online</div>
+                </div>
+                <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+                <Phone className="w-5 h-5 text-white" />
+              </div>
+              
+              {/* Chat Area */}
+              <div className="bg-[#efeae2] min-h-[420px] p-4 relative">
             
             {showTyping ? (
               <div className="flex justify-start">
@@ -567,6 +602,26 @@ const WhatsAppPhone = ({ message, isActive }) => {
                 </div>
               </div>
             )}
+          </div>
+          
+          {/* Bottom input bar */}
+          <div className="bg-[#f0f0f0] px-3 py-2 flex items-center space-x-2">
+            <div className="w-8 h-8 bg-emerald-500 rounded-full flex items-center justify-center">
+              <span className="text-white text-lg">+</span>
+            </div>
+            <div className="flex-1 bg-white rounded-full px-4 py-2 text-xs text-slate-400">
+              Type a message
+            </div>
+            <div className="w-8 h-8 bg-emerald-500 rounded-full flex items-center justify-center">
+              <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M12 15c1.66 0 3-1.34 3-3V6c0-1.66-1.34-3-3-3S9 4.34 9 6v6c0 1.66 1.34 3 3 3z"/><path d="M17 12c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-2.08c3.39-.49 6-3.39 6-6.92h-2z"/></svg>
+            </div>
+          </div>
+          
+          {/* Home indicator */}
+          <div className="bg-white py-2 flex justify-center">
+            <div className="w-32 h-1 bg-black rounded-full"></div>
+          </div>
+        </div>
           </div>
         </div>
       </div>
