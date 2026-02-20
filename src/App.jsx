@@ -307,19 +307,8 @@ function Layout({ children }) {
 
   return (
     <div className="min-h-screen bg-white text-slate-800">
-      {/* Global language toggle - fixed position */}
-      <div className="fixed top-6 right-6 z-50">
-        <button
-          onClick={toggleLanguage}
-          className="flex items-center space-x-2 px-4 py-2 bg-white/90 backdrop-blur-sm border border-slate-200 rounded-lg text-slate-700 hover:text-teal-600 hover:border-teal-200 transition-all duration-300 shadow-sm"
-        >
-          <Globe className="w-4 h-4" />
-          <span className="text-sm font-medium">{t.nav.language}</span>
-        </button>
-      </div>
-
       {/* Navigation */}
-      <nav className="sticky top-0 z-40 bg-white/95 backdrop-blur-sm border-b border-slate-200">
+      <nav className="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-slate-200" style={{ WebkitBackdropFilter: 'blur(8px)' }}>
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="flex items-center justify-between h-20">
             {/* Logo */}
@@ -373,6 +362,14 @@ function Layout({ children }) {
               >
                 {t.nav.blog}
               </Link>
+              {/* Language toggle - desktop only (inline) */}
+              <button
+                onClick={toggleLanguage}
+                className="flex items-center space-x-1 text-slate-600 hover:text-teal-600 transition-colors duration-300 font-medium"
+              >
+                <Globe className="w-4 h-4" />
+                <span className="text-sm">{t.nav.language}</span>
+              </button>
               <button
                 onClick={() => window.Calendly?.initPopupWidget({ url: 'https://calendly.com/theremoteaidoc/30min' })}
                 className="px-6 py-3 bg-teal-600 text-white rounded-lg hover:bg-teal-700 transition-all duration-300 hover:scale-105 font-medium shadow-sm"
@@ -384,59 +381,86 @@ function Layout({ children }) {
             {/* Mobile menu button */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="md:hidden p-2 text-slate-600 hover:text-teal-600 transition-colors duration-300"
+              className="md:hidden relative z-50 p-3 -mr-2 text-slate-600 active:text-teal-600 transition-colors duration-150"
+              style={{ WebkitTapHighlightColor: 'transparent', touchAction: 'manipulation' }}
+              aria-label="Toggle menu"
+              aria-expanded={mobileMenuOpen}
             >
               {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
           </div>
 
           {/* Mobile Navigation */}
-          {mobileMenuOpen && (
-            <div className="md:hidden border-t border-slate-200 py-4 space-y-4">
+          <div 
+            className={`md:hidden border-t border-slate-200 overflow-hidden transition-all duration-300 ease-in-out ${mobileMenuOpen ? 'max-h-[500px] opacity-100 py-4' : 'max-h-0 opacity-0 py-0'}`}
+            style={{ WebkitOverflowScrolling: 'touch' }}
+          >
+            <div className="space-y-1">
               <button 
-                onClick={() => scrollToSection('about')}
-                className="block py-2 text-slate-600 hover:text-teal-600 transition-colors duration-300 font-medium"
+                onClick={() => { scrollToSection('about'); setMobileMenuOpen(false); }}
+                className="block w-full text-left py-3 px-2 text-slate-600 active:text-teal-600 active:bg-teal-50 rounded-lg transition-colors duration-150 font-medium text-lg"
+                style={{ WebkitTapHighlightColor: 'transparent', touchAction: 'manipulation' }}
               >
                 {t.nav.about}
               </button>
               <button 
-                onClick={() => scrollToSection('expertise')}
-                className="block py-2 text-slate-600 hover:text-teal-600 transition-colors duration-300 font-medium"
+                onClick={() => { scrollToSection('expertise'); setMobileMenuOpen(false); }}
+                className="block w-full text-left py-3 px-2 text-slate-600 active:text-teal-600 active:bg-teal-50 rounded-lg transition-colors duration-150 font-medium text-lg"
+                style={{ WebkitTapHighlightColor: 'transparent', touchAction: 'manipulation' }}
               >
                 {t.nav.expertise}
               </button>
               <Link 
-                to="/services" 
-                className="block py-2 text-slate-600 hover:text-teal-600 transition-colors duration-300 font-medium"
+                to="/services"
+                onClick={() => setMobileMenuOpen(false)}
+                className="block py-3 px-2 text-slate-600 active:text-teal-600 active:bg-teal-50 rounded-lg transition-colors duration-150 font-medium text-lg"
+                style={{ WebkitTapHighlightColor: 'transparent', touchAction: 'manipulation' }}
               >
                 {t.nav.services}
               </Link>
               <Link 
-                to="/demo" 
-                className="block py-2 text-teal-700 font-semibold"
+                to="/demo"
+                onClick={() => setMobileMenuOpen(false)}
+                className="flex items-center space-x-2 py-3 px-2 text-teal-700 active:bg-teal-50 rounded-lg transition-colors duration-150 font-semibold text-lg"
+                style={{ WebkitTapHighlightColor: 'transparent', touchAction: 'manipulation' }}
               >
-                {t.nav.demo}
+                <span className="relative inline-block w-2 h-2 bg-teal-500 rounded-full animate-pulse">
+                  <span className="absolute inset-0 w-2 h-2 bg-teal-400 rounded-full animate-ping"></span>
+                </span>
+                <span>{t.nav.demo}</span>
               </Link>
               <button 
-                onClick={() => scrollToSection('connect')}
-                className="block py-2 text-slate-600 hover:text-teal-600 transition-colors duration-300 font-medium"
+                onClick={() => { scrollToSection('connect'); setMobileMenuOpen(false); }}
+                className="block w-full text-left py-3 px-2 text-slate-600 active:text-teal-600 active:bg-teal-50 rounded-lg transition-colors duration-150 font-medium text-lg"
+                style={{ WebkitTapHighlightColor: 'transparent', touchAction: 'manipulation' }}
               >
                 {t.nav.connect}
               </button>
               <Link 
-                to="/blog" 
-                className="block py-2 text-slate-600 hover:text-teal-600 transition-colors duration-300 font-medium"
+                to="/blog"
+                onClick={() => setMobileMenuOpen(false)}
+                className="block py-3 px-2 text-slate-600 active:text-teal-600 active:bg-teal-50 rounded-lg transition-colors duration-150 font-medium text-lg"
+                style={{ WebkitTapHighlightColor: 'transparent', touchAction: 'manipulation' }}
               >
                 {t.nav.blog}
               </Link>
               <button
-                onClick={() => window.Calendly?.initPopupWidget({ url: 'https://calendly.com/theremoteaidoc/30min' })}
-                className="w-full mt-4 px-6 py-3 bg-teal-600 text-white rounded-lg hover:bg-teal-700 transition-colors duration-300 font-medium"
+                onClick={toggleLanguage}
+                className="flex items-center space-x-2 w-full text-left py-3 px-2 text-slate-600 active:text-teal-600 active:bg-teal-50 rounded-lg transition-colors duration-150 font-medium text-lg"
+                style={{ WebkitTapHighlightColor: 'transparent', touchAction: 'manipulation' }}
+              >
+                <Globe className="w-5 h-5" />
+                <span>{t.nav.language}</span>
+              </button>
+              <button
+                onClick={() => { window.Calendly?.initPopupWidget({ url: 'https://calendly.com/theremoteaidoc/30min' }); setMobileMenuOpen(false); }}
+                className="w-full mt-3 px-6 py-4 bg-teal-600 text-white rounded-lg active:bg-teal-700 transition-colors duration-150 font-medium text-lg"
+                style={{ WebkitTapHighlightColor: 'transparent', touchAction: 'manipulation' }}
               >
                 {t.nav.bookCall}
               </button>
             </div>
-          )}
+          </div>
         </div>
       </nav>
 
