@@ -1,59 +1,104 @@
 import { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { Phone, MessageCircle, Calendar, Star, TrendingUp, Clock, Users, CheckCircle, ArrowRight, ExternalLink, Play, Globe, FileText, Settings, Bell, BarChart3, X } from 'lucide-react';
-import { ScrollReveal } from '../components/ScrollReveal';
+import { 
+  Phone, MessageCircle, Calendar, Star, TrendingUp, Clock, Users, CheckCircle, 
+  ArrowRight, ExternalLink, Globe, FileText, Settings, Bell, BarChart3, 
+  RefreshCw, Zap, Activity, User, Mail, ChevronRight 
+} from 'lucide-react';
 
 const languages = {
   en: {
     seo: {
-      title: 'Live Demo — AutoMed Clinical Automation | The Remote AI Doc',
-      description: 'Experience how AutoMed transforms healthcare workflows with intelligent automation. Interactive demo for medical practices worldwide.',
+      title: 'AutoMed Clinical Automation Demo | The Remote AI Doc',
+      description: 'See AutoMed\'s clinical automation pipeline in action. Watch 7 automated steps that transform patient requests into confirmed appointments.',
     },
     nav: {
       language: 'Español'
     },
     hero: {
-      badge: 'Interactive Demo',
-      title: 'Clinical Automation',
-      titleHighlight: 'in Action',
-      subtitle: 'Experience how AutoMed transforms your medical practice with intelligent automation',
-      description: 'This is an interactive demonstration. Test each feature and discover the power of medical automation.'
+      badge: 'AutoMed Clinical Automation',
+      subtitle: 'See how it works'
     },
-    features: {
-      title: 'Core Features',
-      subtitle: 'Click "Try Now" to interact with each feature',
-      appointment: {
-        title: 'Request Appointment',
-        subtitle: 'Complete process automation',
-        description: 'Patients request appointments online and receive automatic confirmation via WhatsApp in seconds.',
-        cta: 'Try Now'
+    pipeline: {
+      steps: [
+        {
+          title: 'Form Received',
+          description: 'Patient data captured instantly',
+          icon: FileText
+        },
+        {
+          title: 'Processing Request',
+          description: 'n8n workflow triggered',
+          icon: Settings
+        },
+        {
+          title: 'Calendar Updated',
+          description: 'Appointment added to schedule',
+          icon: Calendar
+        },
+        {
+          title: 'WhatsApp Confirmation Sent',
+          description: 'Patient receives instant confirmation',
+          icon: MessageCircle
+        },
+        {
+          title: 'Reminder Scheduled',
+          description: '24h before: automatic reminder queued',
+          icon: Clock
+        },
+        {
+          title: 'Review Request Queued',
+          description: '2h after consultation: review request ready',
+          icon: Star
+        },
+        {
+          title: 'Complete!',
+          description: 'This took 0 seconds. Your staff did nothing.',
+          icon: CheckCircle,
+          isFinal: true
+        }
+      ],
+      watchAgain: 'Watch Again'
+    },
+    tryYourself: {
+      title: 'Try It Yourself',
+      subtitle: 'Submit the form below and watch the same automation run with YOUR data',
+      form: {
+        name: 'Full Name',
+        phone: 'Phone Number',
+        email: 'Email Address',
+        doctor: 'Select Doctor',
+        date: 'Appointment Date',
+        time: 'Preferred Time',
+        submit: 'Start Automation',
+        submitting: 'Processing...'
       },
-      reminder: {
-        title: 'Automatic Reminder',
-        subtitle: '24 hours before appointment',
-        description: 'Reduce no-shows with automatic WhatsApp reminders delivered at the perfect time.',
-        viewText: 'This is how your patient sees the reminder'
-      },
-      reviews: {
-        title: 'Automated Google Reviews',
-        subtitle: '2 hours post-consultation',
-        description: 'Clinics using AutoMed increase their Google reviews 3x in 30 days',
-        stat: 'Proven Statistic'
-      },
-      leads: {
-        title: 'Lead Capture',
-        subtitle: 'Instant response',
-        description: 'Convert visitors into patients with automated responses and intelligent follow-up.',
-        cta: 'Try Now'
-      }
+      doctors: [
+        'Dr. María García - General Medicine',
+        'Dr. Carlos Pérez - Pediatrics',
+        'Dra. Ana Rodríguez - Dermatology',
+        'Dr. Luis Martínez - Internal Medicine'
+      ],
+      times: [
+        '09:00 AM', '10:00 AM', '11:00 AM', '12:00 PM', 
+        '2:00 PM', '3:00 PM', '4:00 PM', '5:00 PM'
+      ]
+    },
+    whatsapp: {
+      en: (name, doctor, date, time) => 
+        `Hello ${name || 'María'} 👋 Your appointment with ${doctor || 'Dr. García'} (General Medicine) has been confirmed for ${date || 'Monday, February 24'} at ${time || '10:00 AM'}.\n\n📍 123 Medical Plaza, Healthcare District\n\nReply CONFIRM to accept or CHANGE to reschedule. — Medical Demo | AutoMed`,
+      es: (name, doctor, date, time) => 
+        `Hola ${name || 'María'} 👋 Tu cita con ${doctor || 'Dra. García'} (Medicina General) ha sido confirmada para el ${date || 'Lunes 24 de Febrero'} a las ${time || '10:00'}.\n\n📍 Calle 10 #43A-25, El Poblado\n\nResponde CONFIRMAR para aceptar o CAMBIAR para reprogramar. — Clínica Demo | AutoMed`
     },
     results: {
       title: 'Real Results',
       subtitle: 'Measurable impact from day one',
-      confirmed: 'Confirmed Appointments',
-      reviews: 'Google Reviews',
-      timeSaved: 'Hours Saved/Week',
-      newPatients: 'New Patients'
+      stats: [
+        { value: '94%', label: 'Confirmed Appointments' },
+        { value: '+340%', label: 'Google Reviews' },
+        { value: '8hrs', label: 'Hours Saved/Week' },
+        { value: '+45%', label: 'New Patients' }
+      ]
     },
     cta: {
       title: 'Ready to automate your practice?',
@@ -61,159 +106,100 @@ const languages = {
       bookCall: 'Schedule a free call',
       whatsapp: 'Message us on WhatsApp',
       footer: 'Dr. Javier Rosas • Medical AI Specialist'
-    },
-    modal: {
-      appointment: {
-        title: 'Schedule Medical Appointment',
-        personal: 'Personal Information',
-        fullName: 'Full name',
-        phone: 'Phone (+1 555 123 4567)',
-        email: 'Email address',
-        selectDoctor: 'Select Doctor',
-        selectDoctorPlaceholder: 'Choose a doctor...',
-        dateTime: 'Date and Time',
-        availableSlots: 'Available slots:',
-        cancel: 'Cancel',
-        confirm: 'Confirm Appointment'
-      },
-      contact: {
-        title: 'Contact Clinic',
-        fullName: 'Full name',
-        phone: 'Phone (+1...)',
-        email: 'Email address',
-        help: 'How can we help you?',
-        helpOptions: {
-          placeholder: 'How can we help you?',
-          general: 'General Information',
-          appointment: 'Schedule Appointment',
-          specialist: 'Specialist Consultation',
-          second_opinion: 'Second Opinion',
-          telemedicine: 'Telemedicine'
-        },
-        cancel: 'Cancel',
-        send: 'Send Message'
-      }
-    },
-    whatsappMessages: {
-      appointment: (name, doctor, specialty, date, time) => 
-        `Hello ${name || 'María'} 👋 Your appointment with ${doctor || 'Dr. María García'} (${specialty || 'General Medicine'}) has been confirmed for ${date || 'Monday, February 24'} at ${time || '10:00 AM'}.\n\nAddress: 123 Medical Plaza, Healthcare District\n\nReply CONFIRM to accept or CHANGE to reschedule. — Medical Demo | AutoMed`,
-      contact: (name) =>
-        `Hello ${name || 'María'} 😊 Thank you for contacting Medical Demo. An advisor will contact you within the next 2 hours. Meanwhile, learn about our services: medicaldemo.com/services. — Medical Demo | AutoMed`
-    },
-    automation: {
-      appointment: {
-        steps: [
-          {
-            title: '📋 Form Received',
-            description: 'Patient data captured instantly'
-          },
-          {
-            title: '⚙️ Processing Request',
-            description: 'n8n workflow triggered'
-          },
-          {
-            title: '📅 Calendar Updated',
-            description: 'Appointment added to schedule'
-          },
-          {
-            title: '💬 WhatsApp Confirmation Sent',
-            description: 'Patient receives instant confirmation'
-          },
-          {
-            title: '⏰ Reminder Scheduled',
-            description: '24h before: automatic reminder queued'
-          },
-          {
-            title: '⭐ Review Request Queued',
-            description: '2h after consultation: review request ready'
-          },
-          {
-            title: '✅ Complete!',
-            description: 'This took 0 seconds. Your staff did nothing.'
-          }
-        ]
-      },
-      contact: {
-        steps: [
-          {
-            title: '📋 Lead Captured',
-            description: 'Contact information stored securely'
-          },
-          {
-            title: '⚙️ Processing',
-            description: 'Lead scoring and categorization'
-          },
-          {
-            title: '💬 Auto-Response Sent',
-            description: 'Immediate acknowledgment via WhatsApp'
-          },
-          {
-            title: '📊 CRM Updated',
-            description: 'Lead added to follow-up pipeline'
-          },
-          {
-            title: '🔔 Staff Notified',
-            description: 'Team alerted for personal follow-up'
-          },
-          {
-            title: '✅ Complete!',
-            description: 'Lead captured and processed automatically'
-          }
-        ]
-      },
-      close: 'Close Automation'
     }
   },
   es: {
     seo: {
-      title: 'Demo en Vivo — Automatización Clínica AutoMed | The Remote AI Doc', 
-      description: 'Experimenta cómo AutoMed transforma los flujos de trabajo médicos con automatización inteligente. Demo interactivo para consultorios médicos.',
+      title: 'Demo Automatización Clínica AutoMed | The Remote AI Doc',
+      description: 'Observa la automatización clínica de AutoMed en acción. 7 pasos automatizados que transforman solicitudes en citas confirmadas.',
     },
     nav: {
       language: 'English'
     },
     hero: {
-      badge: 'Demo Interactivo',
-      title: 'Automatización Clínica',
-      titleHighlight: 'en Acción',
-      subtitle: 'Experimenta cómo AutoMed transforma tu consultorio médico con automatización inteligente',
-      description: 'Esta es una demostración interactiva. Prueba cada función y descubre el poder de la automatización médica.'
+      badge: 'Automatización Clínica AutoMed',
+      subtitle: 'Mira cómo funciona'
     },
-    features: {
-      title: 'Funciones Principales',
-      subtitle: 'Haz clic en "Probar" para interactuar con cada función',
-      appointment: {
-        title: 'Solicitar Cita',
-        subtitle: 'Automatización completa del proceso',
-        description: 'Los pacientes solicitan citas online y reciben confirmación automática por WhatsApp en segundos.',
-        cta: 'Probar Ahora'
+    pipeline: {
+      steps: [
+        {
+          title: 'Formulario Recibido',
+          description: 'Datos del paciente capturados instantáneamente',
+          icon: FileText
+        },
+        {
+          title: 'Procesando Solicitud',
+          description: 'Flujo de trabajo n8n activado',
+          icon: Settings
+        },
+        {
+          title: 'Calendario Actualizado',
+          description: 'Cita añadida a la agenda',
+          icon: Calendar
+        },
+        {
+          title: 'Confirmación WhatsApp Enviada',
+          description: 'Paciente recibe confirmación instantánea',
+          icon: MessageCircle
+        },
+        {
+          title: 'Recordatorio Programado',
+          description: '24h antes: recordatorio automático programado',
+          icon: Clock
+        },
+        {
+          title: 'Solicitud Reseña Programada',
+          description: '2h después consulta: solicitud reseña lista',
+          icon: Star
+        },
+        {
+          title: '¡Completo!',
+          description: 'Esto tomó 0 segundos. Tu equipo no hizo nada.',
+          icon: CheckCircle,
+          isFinal: true
+        }
+      ],
+      watchAgain: 'Ver Otra Vez'
+    },
+    tryYourself: {
+      title: 'Pruébalo Tú Mismo',
+      subtitle: 'Envía el formulario y observa la misma automatización ejecutarse con TUS datos',
+      form: {
+        name: 'Nombre Completo',
+        phone: 'Número de Teléfono',
+        email: 'Correo Electrónico',
+        doctor: 'Seleccionar Médico',
+        date: 'Fecha de Cita',
+        time: 'Hora Preferida',
+        submit: 'Iniciar Automatización',
+        submitting: 'Procesando...'
       },
-      reminder: {
-        title: 'Recordatorio Automático',
-        subtitle: '24 horas antes de la cita',
-        description: 'Reduce las ausencias con recordatorios automáticos por WhatsApp que llegan justo a tiempo.',
-        viewText: 'Así se ve el recordatorio que recibe tu paciente'
-      },
-      reviews: {
-        title: 'Reseñas Google Automáticas',
-        subtitle: '2 horas post-consulta',
-        description: 'Clínicas con AutoMed aumentan sus reseñas Google 3x en 30 días',
-        stat: 'Estadística Comprobada'
-      },
-      leads: {
-        title: 'Captura de Leads',
-        subtitle: 'Respuesta instantánea',
-        description: 'Convierte visitantes en pacientes con respuestas automáticas y seguimiento inteligente.',
-        cta: 'Probar Ahora'
-      }
+      doctors: [
+        'Dra. María García - Medicina General',
+        'Dr. Carlos Pérez - Pediatría',
+        'Dra. Ana Rodríguez - Dermatología',
+        'Dr. Luis Martínez - Medicina Interna'
+      ],
+      times: [
+        '09:00', '10:00', '11:00', '12:00', 
+        '14:00', '15:00', '16:00', '17:00'
+      ]
+    },
+    whatsapp: {
+      en: (name, doctor, date, time) => 
+        `Hello ${name || 'María'} 👋 Your appointment with ${doctor || 'Dr. García'} (General Medicine) has been confirmed for ${date || 'Monday, February 24'} at ${time || '10:00 AM'}.\n\n📍 123 Medical Plaza, Healthcare District\n\nReply CONFIRM to accept or CHANGE to reschedule. — Medical Demo | AutoMed`,
+      es: (name, doctor, date, time) => 
+        `Hola ${name || 'María'} 👋 Tu cita con ${doctor || 'Dra. García'} (Medicina General) ha sido confirmada para el ${date || 'Lunes 24 de Febrero'} a las ${time || '10:00'}.\n\n📍 Calle 10 #43A-25, El Poblado\n\nResponde CONFIRMAR para aceptar o CAMBIAR para reprogramar. — Clínica Demo | AutoMed`
     },
     results: {
       title: 'Resultados Reales',
       subtitle: 'Impacto medible desde el primer día',
-      confirmed: 'Citas Confirmadas',
-      reviews: 'Reseñas Google',
-      timeSaved: 'Tiempo Ahorrado/Sem',
-      newPatients: 'Pacientes Nuevos'
+      stats: [
+        { value: '94%', label: 'Citas Confirmadas' },
+        { value: '+340%', label: 'Reseñas Google' },
+        { value: '8hrs', label: 'Tiempo Ahorrado/Sem' },
+        { value: '+45%', label: 'Pacientes Nuevos' }
+      ]
     },
     cta: {
       title: '¿Listo para automatizar tu consultorio?',
@@ -221,117 +207,275 @@ const languages = {
       bookCall: 'Agenda una llamada gratis',
       whatsapp: 'Escríbenos por WhatsApp',
       footer: 'Dr. Javier Rosas • Especialista en IA Médica'
-    },
-    modal: {
-      appointment: {
-        title: 'Agendar Cita Médica',
-        personal: 'Información Personal',
-        fullName: 'Nombre completo',
-        phone: 'Teléfono (+57 300 123 4567)',
-        email: 'Correo electrónico',
-        selectDoctor: 'Seleccionar Médico',
-        selectDoctorPlaceholder: 'Selecciona un médico...',
-        dateTime: 'Fecha y Hora',
-        availableSlots: 'Horarios disponibles:',
-        cancel: 'Cancelar',
-        confirm: 'Confirmar Cita'
-      },
-      contact: {
-        title: 'Contactar Clínica',
-        fullName: 'Nombre completo',
-        phone: 'Teléfono (+57...)',
-        email: 'Correo electrónico',
-        help: '¿En qué te podemos ayudar?',
-        helpOptions: {
-          placeholder: '¿En qué te podemos ayudar?',
-          general: 'Información General',
-          appointment: 'Agendar una Cita',
-          specialist: 'Consulta con Especialista',
-          second_opinion: 'Segunda Opinión',
-          telemedicine: 'Telemedicina'
-        },
-        cancel: 'Cancelar',
-        send: 'Enviar Mensaje'
-      }
-    },
-    whatsappMessages: {
-      appointment: (name, doctor, specialty, date, time) => 
-        `Hola ${name || 'María'} 👋 Tu cita con ${doctor || 'Dra. María García'} (${specialty || 'Medicina General'}) ha sido confirmada para el ${date || 'Lunes 24 de Febrero'} a las ${time || '10:00'}.
-
-📍 Dirección: Calle 10 #43A-25, El Poblado, Medellín
-
-Responde CONFIRMAR para aceptar o CAMBIAR para reprogramar. — Clínica Demo | AutoMed`,
-      contact: (name) =>
-        `Hola ${name || 'María'} 😊 Gracias por contactar a Clínica Demo. Un asesor te contactará en las próximas 2 horas. Mientras tanto, conoce nuestros servicios: clinicademo.com/servicios. — Clínica Demo | AutoMed`
-    },
-    automation: {
-      appointment: {
-        steps: [
-          {
-            title: '📋 Formulario Recibido',
-            description: 'Datos del paciente capturados instantáneamente'
-          },
-          {
-            title: '⚙️ Procesando Solicitud',
-            description: 'Flujo de trabajo n8n activado'
-          },
-          {
-            title: '📅 Calendario Actualizado',
-            description: 'Cita añadida a la agenda'
-          },
-          {
-            title: '💬 Confirmación WhatsApp Enviada',
-            description: 'Paciente recibe confirmación instantánea'
-          },
-          {
-            title: '⏰ Recordatorio Programado',
-            description: '24h antes: recordatorio automático programado'
-          },
-          {
-            title: '⭐ Solicitud Reseña Programada',
-            description: '2h después consulta: solicitud reseña lista'
-          },
-          {
-            title: '✅ ¡Completo!',
-            description: 'Esto tomó 0 segundos. Tu equipo no hizo nada.'
-          }
-        ]
-      },
-      contact: {
-        steps: [
-          {
-            title: '📋 Lead Capturado',
-            description: 'Información de contacto almacenada'
-          },
-          {
-            title: '⚙️ Procesando',
-            description: 'Puntuación y categorización del lead'
-          },
-          {
-            title: '💬 Respuesta Automática Enviada',
-            description: 'Reconocimiento inmediato vía WhatsApp'
-          },
-          {
-            title: '📊 CRM Actualizado',
-            description: 'Lead añadido al pipeline de seguimiento'
-          },
-          {
-            title: '🔔 Personal Notificado',
-            description: 'Equipo alertado para seguimiento personal'
-          },
-          {
-            title: '✅ ¡Completo!',
-            description: 'Lead capturado y procesado automáticamente'
-          }
-        ]
-      },
-      close: 'Cerrar Automatización'
     }
   }
 };
 
-// WhatsApp Typing Effect Component
-const WhatsAppTypingEffect = ({ message, onComplete, isActive, contactName = "Medical Demo" }) => {
+// Auto-Playing Pipeline Component
+const AutoPlayingPipeline = ({ language = 'en' }) => {
+  const [currentStep, setCurrentStep] = useState(0);
+  const [isRunning, setIsRunning] = useState(false);
+  const [showWatchAgain, setShowWatchAgain] = useState(false);
+  const [completedSteps, setCompletedSteps] = useState(new Set());
+
+  const t = languages[language];
+  const steps = t.pipeline.steps;
+
+  const startPipeline = () => {
+    setCurrentStep(0);
+    setCompletedSteps(new Set());
+    setShowWatchAgain(false);
+    setIsRunning(true);
+  };
+
+  useEffect(() => {
+    // Auto-start on component mount
+    const timer = setTimeout(startPipeline, 1000);
+    return () => clearTimeout(timer);
+  }, []);
+
+  useEffect(() => {
+    if (!isRunning) return;
+
+    const stepDuration = 3500; // 3.5 seconds per step
+    
+    if (currentStep < steps.length) {
+      const timer = setTimeout(() => {
+        setCompletedSteps(prev => new Set(prev).add(currentStep));
+        
+        if (currentStep + 1 < steps.length) {
+          setCurrentStep(currentStep + 1);
+        } else {
+          // Pipeline complete
+          setIsRunning(false);
+          setShowWatchAgain(true);
+          
+          // Auto-restart after 5 seconds
+          setTimeout(() => {
+            startPipeline();
+          }, 5000);
+        }
+      }, stepDuration);
+
+      return () => clearTimeout(timer);
+    }
+  }, [currentStep, isRunning, steps.length]);
+
+  const renderStepContent = (stepIndex) => {
+    if (currentStep !== stepIndex) return null;
+
+    switch (stepIndex) {
+      case 0: // Form Received
+        return (
+          <div className="bg-white rounded-xl border border-slate-200 p-6 shadow-lg animate-fadeIn">
+            <div className="space-y-3">
+              <div className="text-sm text-slate-600">Patient Form Data</div>
+              <div className="grid grid-cols-2 gap-4 text-sm">
+                <div><span className="font-medium">Name:</span> María García</div>
+                <div><span className="font-medium">Doctor:</span> Dra. García</div>
+                <div><span className="font-medium">Date:</span> Feb 24</div>
+                <div><span className="font-medium">Time:</span> 10:00 AM</div>
+              </div>
+            </div>
+          </div>
+        );
+
+      case 1: // Processing Request
+        return (
+          <div className="bg-white rounded-xl border border-slate-200 p-6 shadow-lg animate-fadeIn">
+            <div className="space-y-4">
+              <div className="text-sm text-slate-600 mb-4">n8n Workflow</div>
+              <div className="flex items-center space-x-4">
+                {['Webhook', 'Process Data', 'Send Messages'].map((node, idx) => (
+                  <div key={idx} className="flex items-center">
+                    <div className={`w-16 h-8 rounded border-2 flex items-center justify-center text-xs font-medium transition-all duration-500 ${
+                      idx === 0 ? 'border-emerald-500 bg-emerald-50 text-emerald-700' :
+                      idx === 1 ? 'border-blue-500 bg-blue-50 text-blue-700' :
+                      'border-purple-500 bg-purple-50 text-purple-700'
+                    }`}>
+                      {node}
+                    </div>
+                    {idx < 2 && (
+                      <div className="w-8 h-0.5 bg-emerald-500 mx-2">
+                        <div className="w-2 h-0.5 bg-emerald-600 animate-pulse"></div>
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        );
+
+      case 2: // Calendar Updated
+        return (
+          <div className="bg-white rounded-xl border border-slate-200 p-6 shadow-lg animate-fadeIn">
+            <div className="text-sm text-slate-600 mb-4">February 2024</div>
+            <div className="grid grid-cols-7 gap-1 text-xs text-center">
+              {['S', 'M', 'T', 'W', 'T', 'F', 'S'].map(day => (
+                <div key={day} className="p-1 font-medium text-slate-400">{day}</div>
+              ))}
+              {Array.from({length: 28}).map((_, i) => (
+                <div key={i} className={`p-1 rounded ${
+                  i === 23 ? 'bg-emerald-500 text-white font-bold animate-pulse' : 
+                  'text-slate-700'
+                }`}>
+                  {i + 1}
+                </div>
+              ))}
+            </div>
+            <div className="mt-3 pt-3 border-t border-slate-100">
+              <div className="flex items-center text-xs text-emerald-600">
+                <CheckCircle className="w-3 h-3 mr-1" />
+                Appointment scheduled
+              </div>
+            </div>
+          </div>
+        );
+
+      case 3: // WhatsApp Confirmation - THE MONEY SHOT
+        return (
+          <div className="animate-fadeIn">
+            <WhatsAppPhone 
+              message={t.whatsapp[language]('María', 'Dra. García', 'Lunes 24 de Febrero', '10:00')}
+              isActive={true}
+            />
+          </div>
+        );
+
+      case 4: // Reminder Scheduled
+        return (
+          <div className="bg-white rounded-xl border border-slate-200 p-6 shadow-lg animate-fadeIn">
+            <div className="flex items-center space-x-4">
+              <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center">
+                <Clock className="w-6 h-6 text-blue-600" />
+              </div>
+              <div className="flex-1">
+                <div className="font-medium text-slate-900">24 hours before appointment</div>
+                <div className="text-sm text-slate-600">→ automatic WhatsApp reminder</div>
+              </div>
+            </div>
+          </div>
+        );
+
+      case 5: // Review Request Queued
+        return (
+          <div className="bg-white rounded-xl border border-slate-200 p-6 shadow-lg animate-fadeIn">
+            <div className="flex items-center space-x-4">
+              <div className="w-12 h-12 bg-yellow-100 rounded-full flex items-center justify-center">
+                <Star className="w-6 h-6 text-yellow-600" />
+              </div>
+              <div className="flex-1">
+                <div className="font-medium text-slate-900">2 hours after consultation</div>
+                <div className="text-sm text-slate-600">→ Google review request via WhatsApp</div>
+              </div>
+            </div>
+          </div>
+        );
+
+      case 6: // Complete!
+        return (
+          <div className="bg-emerald-50 border-2 border-emerald-200 rounded-xl p-8 shadow-lg animate-fadeIn">
+            <div className="text-center space-y-4">
+              <div className="w-16 h-16 bg-emerald-500 rounded-full flex items-center justify-center mx-auto">
+                <CheckCircle className="w-10 h-10 text-white" />
+              </div>
+              <div className="text-2xl font-bold text-emerald-800">
+                This took 0 seconds.
+              </div>
+              <div className="text-lg font-semibold text-emerald-700">
+                Your staff did nothing.
+              </div>
+              {showWatchAgain && (
+                <button
+                  onClick={startPipeline}
+                  className="mt-4 px-6 py-2 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700 transition-colors font-medium flex items-center space-x-2 mx-auto"
+                >
+                  <RefreshCw className="w-4 h-4" />
+                  <span>{t.pipeline.watchAgain}</span>
+                </button>
+              )}
+            </div>
+          </div>
+        );
+
+      default:
+        return null;
+    }
+  };
+
+  return (
+    <div className="grid lg:grid-cols-2 gap-12 items-start">
+      {/* Left Side - Pipeline Steps */}
+      <div className="space-y-6">
+        {steps.map((step, index) => {
+          const Icon = step.icon;
+          const isActive = currentStep === index && isRunning;
+          const isCompleted = completedSteps.has(index);
+          const isPending = currentStep < index || !isRunning;
+
+          return (
+            <div key={index} className="flex items-start space-x-4">
+              {/* Step Icon */}
+              <div className={`flex-shrink-0 w-12 h-12 rounded-full flex items-center justify-center border-2 transition-all duration-500 ${
+                isCompleted 
+                  ? 'bg-emerald-500 border-emerald-500' 
+                  : isActive 
+                    ? 'bg-emerald-100 border-emerald-500 animate-pulse' 
+                    : 'bg-slate-100 border-slate-300'
+              }`}>
+                {isCompleted ? (
+                  <CheckCircle className="w-6 h-6 text-white" />
+                ) : (
+                  <Icon className={`w-6 h-6 ${
+                    isActive ? 'text-emerald-600' : 'text-slate-400'
+                  }`} />
+                )}
+              </div>
+
+              {/* Step Content */}
+              <div className={`flex-1 transition-all duration-500 ${
+                isActive ? 'text-emerald-600' : 
+                isCompleted ? 'text-slate-700' : 
+                'text-slate-400'
+              }`}>
+                <h3 className={`font-semibold text-lg leading-tight ${
+                  isActive ? 'text-emerald-700' : 
+                  isCompleted ? 'text-slate-800' : 
+                  'text-slate-500'
+                }`}>
+                  📋 {step.title}
+                </h3>
+                <p className="text-sm mt-1 opacity-75">
+                  {step.description}
+                </p>
+              </div>
+
+              {/* Connecting Line */}
+              {index < steps.length - 1 && (
+                <div className="absolute left-6 mt-12 w-0.5 h-6 bg-slate-200"></div>
+              )}
+            </div>
+          );
+        })}
+      </div>
+
+      {/* Right Side - Content Area */}
+      <div className="lg:pl-8">
+        <div className="sticky top-8 space-y-6">
+          {steps.map((step, index) => (
+            <div key={index}>
+              {renderStepContent(index)}
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+// WhatsApp Phone Component
+const WhatsAppPhone = ({ message, isActive }) => {
   const [displayedText, setDisplayedText] = useState('');
   const [showTyping, setShowTyping] = useState(true);
   const [isComplete, setIsComplete] = useState(false);
@@ -343,11 +487,11 @@ const WhatsAppTypingEffect = ({ message, onComplete, isActive, contactName = "Me
     setDisplayedText('');
     setIsComplete(false);
 
-    // Show typing indicator for 2 seconds
+    // Show typing for 1.5 seconds
     const typingTimer = setTimeout(() => {
       setShowTyping(false);
       
-      // Start typing effect
+      // Start typing effect - 25ms per character
       let index = 0;
       const typeTimer = setInterval(() => {
         if (index < message.length) {
@@ -356,321 +500,237 @@ const WhatsAppTypingEffect = ({ message, onComplete, isActive, contactName = "Me
         } else {
           clearInterval(typeTimer);
           setIsComplete(true);
-          if (onComplete) onComplete();
         }
-      }, 30);
+      }, 25);
 
       return () => clearInterval(typeTimer);
-    }, 2000);
+    }, 1500);
 
     return () => clearTimeout(typingTimer);
-  }, [isActive, message, onComplete]);
+  }, [isActive, message]);
 
   if (!isActive) return null;
 
   return (
-    <div className="max-w-sm mx-auto bg-slate-900 rounded-3xl p-2 shadow-2xl">
-      {/* Phone notch */}
-      <div className="h-6 bg-black rounded-t-3xl flex items-center justify-center">
-        <div className="w-16 h-1 bg-slate-600 rounded-full"></div>
-      </div>
-      
-      {/* WhatsApp header */}
-      <div className="bg-emerald-600 px-4 py-3 flex items-center space-x-3 text-white">
-        <div className="w-8 h-8 bg-slate-200 rounded-full flex items-center justify-center">
-          <span className="text-slate-700 text-xs font-bold">MD</span>
-        </div>
-        <div className="flex-1">
-          <div className="font-semibold text-sm">{contactName}</div>
-          <div className="text-xs text-emerald-100">online</div>
-        </div>
-      </div>
-      
-      {/* Chat area */}
-      <div className="bg-slate-100 h-64 p-4 overflow-y-auto">
-        <div className="flex flex-col space-y-2">
-          {/* Incoming message */}
-          <div className="flex items-start space-x-2">
+    <div className="max-w-sm mx-auto">
+      {/* iPhone Frame */}
+      <div className="relative bg-black rounded-[2.5rem] p-2 shadow-2xl">
+        {/* Screen */}
+        <div className="bg-white rounded-[2.25rem] overflow-hidden">
+          {/* Notch */}
+          <div className="h-8 bg-black rounded-t-[2.25rem] flex items-center justify-center relative">
+            <div className="w-20 h-1.5 bg-slate-600 rounded-full"></div>
+          </div>
+          
+          {/* WhatsApp Header */}
+          <div className="bg-emerald-600 px-4 py-3 flex items-center space-x-3">
+            <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center">
+              <span className="text-emerald-600 text-xs font-bold">CD</span>
+            </div>
             <div className="flex-1">
-              {showTyping ? (
-                <div className="bg-white rounded-2xl rounded-tl-sm p-3 shadow-sm">
+              <div className="font-semibold text-white text-sm">Clínica Demo</div>
+              <div className="text-xs text-emerald-100">online</div>
+            </div>
+            <Phone className="w-5 h-5 text-white" />
+          </div>
+          
+          {/* Chat Area */}
+          <div className="bg-[#e5ddd5] min-h-[400px] p-4 relative" 
+               style={{ backgroundImage: 'url("data:image/svg+xml,%3Csvg width="260" height="260" viewBox="0 0 260 260" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%23000000" fill-opacity="0.03"%3E%3Cpath d="m129 201c0 6.627-5.373 12-12 12s-12-5.373-12-12 5.373-12 12-12 12 5.373 12 12zm-60 0c0 6.627-5.373 12-12 12s-12-5.373-12-12 5.373-12 12-12 12 5.373 12 12z"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")' }}>
+            
+            {showTyping ? (
+              <div className="flex justify-start">
+                <div className="bg-white rounded-2xl rounded-bl-sm p-3 shadow-sm max-w-xs">
                   <div className="flex space-x-1">
                     <div className="w-2 h-2 bg-slate-400 rounded-full animate-bounce"></div>
+                    <div className="w-2 h-2 bg-slate-400 rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
                     <div className="w-2 h-2 bg-slate-400 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
-                    <div className="w-2 h-2 bg-slate-400 rounded-full animate-bounce" style={{ animationDelay: '0.4s' }}></div>
                   </div>
                 </div>
-              ) : (
-                <div className="bg-white rounded-2xl rounded-tl-sm p-3 shadow-sm">
-                  <p className="text-slate-800 text-xs leading-relaxed whitespace-pre-wrap">
+              </div>
+            ) : (
+              <div className="flex justify-start">
+                <div className="bg-white rounded-2xl rounded-bl-sm p-3 shadow-sm max-w-xs">
+                  <p className="text-slate-800 text-sm leading-relaxed whitespace-pre-wrap">
                     {displayedText}
                     {!isComplete && <span className="animate-pulse">|</span>}
                   </p>
+                  {isComplete && (
+                    <div className="flex justify-end mt-1">
+                      <div className="flex items-center space-x-1 text-xs text-slate-500">
+                        <span>10:00</span>
+                        <CheckCircle className="w-3 h-3 text-blue-500" />
+                        <CheckCircle className="w-3 h-3 text-blue-500 -ml-2" />
+                      </div>
+                    </div>
+                  )}
                 </div>
-              )}
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-};
-
-// Calendar Animation Component
-const CalendarAnimation = ({ isActive, appointmentData }) => {
-  const [showCalendar, setShowCalendar] = useState(false);
-
-  useEffect(() => {
-    if (isActive) {
-      const timer = setTimeout(() => setShowCalendar(true), 500);
-      return () => clearTimeout(timer);
-    }
-  }, [isActive]);
-
-  if (!isActive) return null;
-
-  const today = new Date();
-  const appointmentDate = appointmentData?.fecha ? new Date(appointmentData.fecha + 'T00:00:00') : today;
-
-  return (
-    <div className={`transition-all duration-700 ${showCalendar ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}>
-      <div className="bg-white border border-slate-300 rounded-xl shadow-lg p-4 max-w-xs mx-auto">
-        <div className="text-center mb-4">
-          <h4 className="font-semibold text-slate-800">
-            {appointmentDate.toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}
-          </h4>
-        </div>
-        
-        <div className="grid grid-cols-7 gap-1 text-xs text-center text-slate-600 mb-2">
-          {['S', 'M', 'T', 'W', 'T', 'F', 'S'].map(day => (
-            <div key={day} className="p-1 font-medium">{day}</div>
-          ))}
-        </div>
-        
-        <div className="grid grid-cols-7 gap-1 text-xs">
-          {Array.from({ length: 35 }).map((_, i) => {
-            const date = i + 1;
-            const isAppointmentDay = date === appointmentDate.getDate();
-            return (
-              <div key={i} className={`p-2 rounded ${
-                isAppointmentDay 
-                  ? 'bg-emerald-600 text-white font-bold animate-pulse' 
-                  : date <= 31 
-                    ? 'text-slate-700 hover:bg-slate-100' 
-                    : 'text-slate-300'
-              }`}>
-                {date <= 31 ? date : ''}
               </div>
-            );
-          })}
-        </div>
-        
-        {showCalendar && (
-          <div className="mt-3 pt-3 border-t border-slate-200">
-            <div className="flex items-center justify-center space-x-2">
-              <CheckCircle className="w-4 h-4 text-emerald-600" />
-              <span className="text-xs text-slate-600">Appointment Added</span>
-            </div>
+            )}
           </div>
-        )}
+        </div>
       </div>
     </div>
   );
 };
 
-// Main Automation Flow Component
-const AutomationFlow = ({ steps, isActive, onComplete, formData, flowType }) => {
-  const [currentStep, setCurrentStep] = useState(-1);
-  const [completedSteps, setCompletedSteps] = useState(new Set());
+// Try It Yourself Form
+const TryYourselfForm = ({ language, onSubmit }) => {
+  const [formData, setFormData] = useState({
+    name: '',
+    phone: '',
+    email: '',
+    doctor: '',
+    date: '',
+    time: ''
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  useEffect(() => {
-    if (!isActive) {
-      setCurrentStep(-1);
-      setCompletedSteps(new Set());
-      return;
-    }
+  const t = languages[language];
 
-    const delays = [0, 1500, 3000, 4500, 7000, 9000, 11000]; // Different delays for each step
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setIsSubmitting(true);
     
-    const timers = steps.map((_, index) => 
-      setTimeout(() => {
-        setCurrentStep(index);
-        if (index > 0) {
-          setCompletedSteps(prev => new Set(prev).add(index - 1));
-        }
-      }, delays[index] || index * 2000)
-    );
-
-    // Complete the flow
-    const completeTimer = setTimeout(() => {
-      setCompletedSteps(prev => new Set(prev).add(steps.length - 1));
-      setCurrentStep(-1);
-      if (onComplete) {
-        setTimeout(onComplete, 1000);
-      }
-    }, delays[delays.length - 1] + 2000);
-
-    return () => {
-      timers.forEach(clearTimeout);
-      clearTimeout(completeTimer);
-    };
-  }, [isActive, steps, onComplete]);
-
-  if (!isActive) return null;
-
-  const getStepIcon = (stepIndex, step) => {
-    if (completedSteps.has(stepIndex)) return <CheckCircle className="w-6 h-6 text-emerald-600" />;
-    if (currentStep === stepIndex) {
-      // Return appropriate icons based on step content
-      if (step.title.includes('📋')) return <FileText className="w-6 h-6 text-emerald-600 animate-pulse" />;
-      if (step.title.includes('⚙️')) return <Settings className="w-6 h-6 text-emerald-600 animate-spin" />;
-      if (step.title.includes('📅')) return <Calendar className="w-6 h-6 text-emerald-600 animate-pulse" />;
-      if (step.title.includes('💬')) return <MessageCircle className="w-6 h-6 text-emerald-600 animate-pulse" />;
-      if (step.title.includes('⏰')) return <Clock className="w-6 h-6 text-emerald-600 animate-pulse" />;
-      if (step.title.includes('⭐')) return <Star className="w-6 h-6 text-emerald-600 animate-pulse" />;
-      if (step.title.includes('🔔')) return <Bell className="w-6 h-6 text-emerald-600 animate-pulse" />;
-      if (step.title.includes('📊')) return <BarChart3 className="w-6 h-6 text-emerald-600 animate-pulse" />;
-      if (step.title.includes('✅')) return <CheckCircle className="w-6 h-6 text-emerald-600 animate-pulse" />;
-    }
-    return <div className="w-6 h-6 rounded-full border-2 border-slate-300 bg-white"></div>;
-  };
-
-  const getStepContent = (stepIndex, step) => {
-    if (currentStep !== stepIndex) return null;
-
-    // Step 1: Show form data
-    if (stepIndex === 0 && formData) {
-      return (
-        <div className="bg-slate-50 border border-slate-200 rounded-lg p-4 animate-fadeIn">
-          <div className="text-sm text-slate-700 space-y-2">
-            <div><strong>Name:</strong> {formData.nombre}</div>
-            <div><strong>Phone:</strong> {formData.telefono}</div>
-            <div><strong>Email:</strong> {formData.email}</div>
-            {formData.fecha && <div><strong>Date:</strong> {formData.fecha}</div>}
-            {formData.hora && <div><strong>Time:</strong> {formData.hora}</div>}
-          </div>
-        </div>
-      );
-    }
-
-    // Step 2: Processing animation
-    if (stepIndex === 1) {
-      return (
-        <div className="bg-slate-50 border border-slate-200 rounded-lg p-4 animate-fadeIn">
-          <div className="flex items-center space-x-3">
-            <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-emerald-600"></div>
-            <span className="text-slate-700 text-sm">Workflow executing...</span>
-          </div>
-        </div>
-      );
-    }
-
-    // Step 3: Calendar for appointment flow
-    if (stepIndex === 2 && flowType === 'appointment') {
-      return <CalendarAnimation isActive={true} appointmentData={formData} />;
-    }
-
-    // Step 4: WhatsApp animation (main centerpiece)
-    if ((stepIndex === 3 && flowType === 'appointment') || (stepIndex === 2 && flowType === 'contact')) {
-      const message = flowType === 'appointment' 
-        ? `Hello ${formData?.nombre || 'María'} 👋 Your appointment with Dr. García has been confirmed for ${formData?.fecha || 'Monday, February 24'} at ${formData?.hora || '10:00 AM'}.\n\nAddress: 123 Medical Plaza\n\nReply CONFIRM to accept. — Medical Demo`
-        : `Hello ${formData?.nombre || 'María'} 😊 Thank you for contacting us. An advisor will contact you within 2 hours. — Medical Demo`;
-      
-      return <WhatsAppTypingEffect message={message} isActive={true} />;
-    }
-
-    // Final step: Summary
-    if (stepIndex === steps.length - 1) {
-      return (
-        <div className="bg-emerald-50 border border-emerald-200 rounded-lg p-4 animate-fadeIn">
-          <div className="text-center">
-            <div className="text-2xl font-bold text-emerald-800 mb-2">100% Automated</div>
-            <div className="text-sm text-emerald-700">
-              {flowType === 'appointment' ? '4 automations triggered' : '5 processes completed'}
-            </div>
-            <div className="text-xs text-emerald-600 mt-1 font-medium">
-              Staff involvement: 0 minutes
-            </div>
-          </div>
-        </div>
-      );
-    }
-
-    return null;
+    // Simulate processing
+    await new Promise(resolve => setTimeout(resolve, 2000));
+    
+    onSubmit(formData);
+    setIsSubmitting(false);
+    
+    // Reset form
+    setFormData({
+      name: '',
+      phone: '',
+      email: '',
+      doctor: '',
+      date: '',
+      time: ''
+    });
   };
 
   return (
-    <div className="space-y-6">
-      {/* Progress indicator */}
-      <div className="w-full bg-slate-200 rounded-full h-2">
-        <div 
-          className="bg-emerald-600 h-2 rounded-full transition-all duration-500"
-          style={{ width: `${((completedSteps.size + (currentStep >= 0 ? 1 : 0)) / steps.length) * 100}%` }}
-        />
-      </div>
-
-      <div className="flex">
-        {/* Timeline on the left */}
-        <div className="flex flex-col space-y-4 mr-8">
-          {steps.map((step, index) => (
-            <div key={index} className="flex items-center space-x-4">
-              <div className={`flex-shrink-0 transition-all duration-300 ${
-                currentStep === index ? 'animate-pulse' : ''
-              }`}>
-                {getStepIcon(index, step)}
-              </div>
-              <div className={`transition-all duration-300 ${
-                currentStep === index 
-                  ? 'text-emerald-600 font-semibold' 
-                  : completedSteps.has(index)
-                    ? 'text-slate-700'
-                    : 'text-slate-400'
-              }`}>
-                <div className="font-medium text-sm">{step.title}</div>
-                <div className="text-xs opacity-75">{step.description}</div>
-              </div>
+    <div className="max-w-2xl mx-auto">
+      <div className="bg-white rounded-2xl border border-slate-200 p-8 shadow-lg">
+        <form onSubmit={handleSubmit} className="space-y-6">
+          <div className="grid md:grid-cols-2 gap-6">
+            <div>
+              <input
+                type="text"
+                placeholder={t.tryYourself.form.name}
+                value={formData.name}
+                onChange={(e) => setFormData({...formData, name: e.target.value})}
+                className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:border-emerald-500 focus:ring-2 focus:ring-emerald-200 transition-colors"
+                required
+              />
             </div>
-          ))}
-        </div>
-
-        {/* Content area on the right */}
-        <div className="flex-1">
-          {steps.map((step, index) => (
-            <div key={index}>
-              {getStepContent(index, step)}
+            <div>
+              <input
+                type="tel"
+                placeholder={t.tryYourself.form.phone}
+                value={formData.phone}
+                onChange={(e) => setFormData({...formData, phone: e.target.value})}
+                className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:border-emerald-500 focus:ring-2 focus:ring-emerald-200 transition-colors"
+                required
+              />
             </div>
-          ))}
-        </div>
+          </div>
+
+          <div>
+            <input
+              type="email"
+              placeholder={t.tryYourself.form.email}
+              value={formData.email}
+              onChange={(e) => setFormData({...formData, email: e.target.value})}
+              className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:border-emerald-500 focus:ring-2 focus:ring-emerald-200 transition-colors"
+              required
+            />
+          </div>
+
+          <div>
+            <select
+              value={formData.doctor}
+              onChange={(e) => setFormData({...formData, doctor: e.target.value})}
+              className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:border-emerald-500 focus:ring-2 focus:ring-emerald-200 transition-colors"
+              required
+            >
+              <option value="">{t.tryYourself.form.doctor}</option>
+              {t.tryYourself.doctors.map((doctor, index) => (
+                <option key={index} value={doctor}>{doctor}</option>
+              ))}
+            </select>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-6">
+            <div>
+              <input
+                type="date"
+                value={formData.date}
+                onChange={(e) => setFormData({...formData, date: e.target.value})}
+                min={new Date().toISOString().split('T')[0]}
+                className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:border-emerald-500 focus:ring-2 focus:ring-emerald-200 transition-colors"
+                required
+              />
+            </div>
+            <div>
+              <select
+                value={formData.time}
+                onChange={(e) => setFormData({...formData, time: e.target.value})}
+                className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:border-emerald-500 focus:ring-2 focus:ring-emerald-200 transition-colors"
+                required
+              >
+                <option value="">{t.tryYourself.form.time}</option>
+                {t.tryYourself.times.map((time, index) => (
+                  <option key={index} value={time}>{time}</option>
+                ))}
+              </select>
+            </div>
+          </div>
+
+          <button
+            type="submit"
+            disabled={isSubmitting}
+            className="w-full px-8 py-4 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700 disabled:opacity-50 disabled:cursor-not-allowed font-semibold text-lg transition-colors flex items-center justify-center space-x-2"
+          >
+            <Activity className="w-5 h-5" />
+            <span>{isSubmitting ? t.tryYourself.form.submitting : t.tryYourself.form.submit}</span>
+          </button>
+        </form>
       </div>
     </div>
   );
 };
 
+// Animated Counter Hook
+const useCounter = (target, duration = 2000) => {
+  const [count, setCount] = useState(0);
+  const [isVisible, setIsVisible] = useState(false);
+  
+  useEffect(() => {
+    if (!isVisible) return;
+    
+    const increment = target / (duration / 16);
+    const timer = setInterval(() => {
+      setCount(prev => {
+        if (prev + increment >= target) {
+          clearInterval(timer);
+          return target;
+        }
+        return prev + increment;
+      });
+    }, 16);
+    
+    return () => clearInterval(timer);
+  }, [target, duration, isVisible]);
+  
+  return { count: Math.round(count), setIsVisible };
+};
+
+// Main Demo Component
 export default function Demo() {
   const [currentLang, setCurrentLang] = useState('en');
-  const [citaForm, setCitaForm] = useState({
-    nombre: '',
-    telefono: '',
-    email: '',
-    fecha: '',
-    hora: '',
-    provider_id: ''
-  });
-  
-  const [contactoForm, setContactoForm] = useState({
-    nombre: '',
-    telefono: '',
-    email: '',
-    interes: ''
-  });
-
-  const [showCitaModal, setShowCitaModal] = useState(false);
-  const [showContactoModal, setShowContactoModal] = useState(false);
-  const [showAutomationFlow, setShowAutomationFlow] = useState(false);
-  const [automationFlowType, setAutomationFlowType] = useState('appointment');
-  const [automationFormData, setAutomationFormData] = useState(null);
-  const [isSubmittingCita, setIsSubmittingCita] = useState(false);
-  const [isSubmittingContacto, setIsSubmittingContacto] = useState(false);
+  const [showUserPipeline, setShowUserPipeline] = useState(false);
+  const [userFormData, setUserFormData] = useState(null);
 
   const t = languages[currentLang];
 
@@ -678,142 +738,31 @@ export default function Demo() {
     setCurrentLang(currentLang === 'en' ? 'es' : 'en');
   };
 
-  // Medical providers data
-  const providers = [
-    { id: 'garcia', name: currentLang === 'en' ? 'Dr. Maria Garcia' : 'Dra. María García', specialty: currentLang === 'en' ? 'General Medicine' : 'Medicina General' },
-    { id: 'perez', name: currentLang === 'en' ? 'Dr. Carlos Perez' : 'Dr. Carlos Pérez', specialty: currentLang === 'en' ? 'Pediatrics' : 'Pediatría' },
-    { id: 'rodriguez', name: currentLang === 'en' ? 'Dr. Ana Rodriguez' : 'Dra. Ana Rodríguez', specialty: currentLang === 'en' ? 'Dermatology' : 'Dermatología' },
-    { id: 'martinez', name: currentLang === 'en' ? 'Dr. Luis Martinez' : 'Dr. Luis Martínez', specialty: currentLang === 'en' ? 'Internal Medicine' : 'Medicina Interna' },
-    { id: 'lopez', name: currentLang === 'en' ? 'Dr. Sofia Lopez' : 'Dra. Sofía López', specialty: currentLang === 'en' ? 'Gynecology' : 'Ginecología' }
-  ];
-
-  // Generate time slots
-  const generateTimeSlots = () => {
-    const slots = [];
-    for (let hour = 7; hour <= 17; hour++) {
-      slots.push(`${hour.toString().padStart(2, '0')}:00`);
-      if (hour < 17) {
-        slots.push(`${hour.toString().padStart(2, '0')}:30`);
-      }
-    }
-    return slots;
-  };
-
-  const timeSlots = generateTimeSlots();
-
-  // Mock availability
-  const isSlotAvailable = (providerId, date, time) => {
-    if (!providerId || !date || !time) return true;
-    const hash = (providerId + date + time).split('').reduce((a, b) => {
-      a = ((a << 5) - a) + b.charCodeAt(0);
-      return a & a;
-    }, 0);
-    return Math.abs(hash % 100) > 30;
-  };
-
-  const getAvailableSlots = (providerId, date) => {
-    if (!providerId || !date) return [];
-    return timeSlots.map(time => ({
-      time,
-      available: isSlotAvailable(providerId, date, time)
-    }));
-  };
-
-  const selectedProvider = providers.find(p => p.id === citaForm.provider_id);
-  const availableSlots = getAvailableSlots(citaForm.provider_id, citaForm.fecha);
-
-  // Animated counter hook
-  const useCounter = (target, duration = 2000) => {
-    const [count, setCount] = useState(0);
-    const [isVisible, setIsVisible] = useState(false);
+  const handleUserFormSubmit = (formData) => {
+    setUserFormData(formData);
+    setShowUserPipeline(true);
     
-    useEffect(() => {
-      if (!isVisible) return;
-      
-      const increment = target / (duration / 16);
-      const timer = setInterval(() => {
-        setCount(prev => {
-          if (prev + increment >= target) {
-            clearInterval(timer);
-            return target;
-          }
-          return prev + increment;
-        });
-      }, 16);
-      
-      return () => clearInterval(timer);
-    }, [target, duration, isVisible]);
-    
-    return { count: Math.round(count), setIsVisible };
+    // Hide after completion
+    setTimeout(() => {
+      setShowUserPipeline(false);
+    }, 30000); // 30 seconds total
   };
 
+  // Animated counters
   const { count: confirmationRate, setIsVisible: setConfirmationVisible } = useCounter(94, 2000);
   const { count: reviewIncrease, setIsVisible: setReviewVisible } = useCounter(340, 2500);
   const { count: timeSaved, setIsVisible: setTimeVisible } = useCounter(8, 1500);
   const { count: newPatients, setIsVisible: setPatientsVisible } = useCounter(45, 2000);
 
-  const handleCitaSubmit = async (e) => {
-    e.preventDefault();
-    setIsSubmittingCita(true);
-
-    try {
-      // Show automation flow instead of success modal
-      setAutomationFormData(citaForm);
-      setAutomationFlowType('appointment');
-      setShowAutomationFlow(true);
-      
-      setCitaForm({
-        nombre: '',
-        telefono: '',
-        email: '',
-        fecha: '',
-        hora: '',
-        provider_id: ''
-      });
-    } catch (error) {
-      console.log('Demo mode:', error);
-    } finally {
-      setIsSubmittingCita(false);
-      setShowCitaModal(false);
-    }
-  };
-
-  const handleContactoSubmit = async (e) => {
-    e.preventDefault();
-    setIsSubmittingContacto(true);
-
-    try {
-      // Show automation flow instead of success modal
-      setAutomationFormData(contactoForm);
-      setAutomationFlowType('contact');
-      setShowAutomationFlow(true);
-      
-      setContactoForm({
-        nombre: '',
-        telefono: '',
-        email: '',
-        interes: ''
-      });
-    } catch (error) {
-      console.log('Demo mode:', error);
-    } finally {
-      setIsSubmittingContacto(false);
-      setShowContactoModal(false);
-    }
-  };
-
-  // Intersection Observer for animated counters
+  // Intersection Observer for stats
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          const id = entry.target.id;
-          if (id === 'stats-section') {
-            setConfirmationVisible(true);
-            setReviewVisible(true);
-            setTimeVisible(true);
-            setPatientsVisible(true);
-          }
+        if (entry.isIntersecting && entry.target.id === 'stats-section') {
+          setConfirmationVisible(true);
+          setReviewVisible(true);
+          setTimeVisible(true);
+          setPatientsVisible(true);
         }
       });
     }, { threshold: 0.3 });
@@ -829,566 +778,200 @@ export default function Demo() {
   return (
     <>
       <Helmet>
-        <title>AutoMed Clinical Automation Demo | The Remote AI Doc</title>
-        <meta name="description" content="Interactive demo of WhatsApp-based clinical automation for medical practices. Appointment booking, smart reminders, review collection, and lead capture." />
+        <title>{t.seo.title}</title>
+        <meta name="description" content={t.seo.description} />
         <meta name="keywords" content="clinical automation demo, WhatsApp medical automation, healthcare AI demo, appointment booking automation, medical practice automation" />
         <link rel="canonical" href="https://theremoteaidoc.com/demo" />
-        <meta property="og:title" content="AutoMed Clinical Automation Demo | The Remote AI Doc" />
-        <meta property="og:description" content="Interactive demo of WhatsApp-based clinical automation for medical practices. Appointment booking, smart reminders, review collection, and lead capture." />
+        <meta property="og:title" content={t.seo.title} />
+        <meta property="og:description" content={t.seo.description} />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://theremoteaidoc.com/demo" />
         <meta property="og:image" content="https://theremoteaidoc.com/profile.jpg" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="AutoMed Clinical Automation Demo | The Remote AI Doc" />
-        <meta name="twitter:description" content="Interactive demo of WhatsApp-based clinical automation for medical practices. Appointment booking, smart reminders, review collection, and lead capture." />
+        <meta name="twitter:title" content={t.seo.title} />
+        <meta name="twitter:description" content={t.seo.description} />
         <meta name="twitter:image" content="https://theremoteaidoc.com/profile.jpg" />
       </Helmet>
 
-      {/* Global language toggle */}
+      {/* Language Toggle */}
       <div className="fixed top-6 right-6 z-50">
         <button
           onClick={toggleLanguage}
-          className="flex items-center space-x-2 px-4 py-2 bg-white/90 backdrop-blur-sm border border-slate-200 rounded-lg text-slate-700 hover:text-teal-600 hover:border-teal-200 transition-all duration-300 shadow-sm"
+          className="flex items-center space-x-2 px-4 py-2 bg-white/90 backdrop-blur-sm border border-slate-200 rounded-lg text-slate-700 hover:text-emerald-600 hover:border-emerald-200 transition-all duration-300 shadow-sm"
         >
           <Globe className="w-4 h-4" />
           <span className="text-sm font-medium">{t.nav.language}</span>
         </button>
       </div>
 
-      {/* Hero Section */}
-      <section className="relative pt-8 pb-20 lg:pt-16 lg:pb-32 bg-gradient-to-br from-white to-slate-50 overflow-hidden">
-        {/* Background Elements */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-teal-50 rounded-full blur-3xl opacity-60" />
-          <div className="absolute bottom-1/4 left-1/4 w-80 h-80 bg-teal-100 rounded-full blur-3xl opacity-40" />
-        </div>
-
-        <div className="max-w-7xl mx-auto px-6 lg:px-8 relative">
-          <div className="text-center space-y-8">
-            <ScrollReveal>
-              <div className="flex items-center justify-center space-x-2 text-teal-600 mb-6">
-                <div className="w-2 h-2 bg-teal-500 rounded-full animate-pulse" />
-                <span className="text-sm tracking-wider uppercase font-semibold">{t.hero.badge}</span>
-                <div className="w-2 h-2 bg-teal-500 rounded-full animate-pulse" />
-              </div>
-            </ScrollReveal>
-
-            <ScrollReveal delay={100}>
-              <h1 className="text-4xl lg:text-7xl font-bold tracking-tight leading-[1.1] text-slate-900">
-                <span className="text-teal-600">{t.hero.title}</span><br />
-                <span className="text-slate-600">Automatización</span><br />
-                <span className="relative inline-block">
-                  {t.hero.titleHighlight}
-                  <span className="absolute -bottom-2 left-0 right-0 h-1 bg-teal-200 rounded-full" />
-                </span>
-              </h1>
-            </ScrollReveal>
-
-            <ScrollReveal delay={200}>
-              <p className="text-xl lg:text-2xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
-                {t.hero.subtitle}
-              </p>
-            </ScrollReveal>
-
-            <ScrollReveal delay={300}>
-              <p className="text-base text-slate-500 max-w-2xl mx-auto">
-                {t.hero.description}
-              </p>
-            </ScrollReveal>
+      {/* Section 1: Hero + Auto-Playing Pipeline */}
+      <section className="bg-white text-slate-800 py-16 lg:py-24">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+          {/* Hero Text */}
+          <div className="text-center mb-16">
+            <h1 className="text-4xl lg:text-5xl font-bold text-slate-800 mb-4">
+              {t.hero.badge}
+            </h1>
+            <p className="text-xl text-slate-600">
+              {t.hero.subtitle}
+            </p>
           </div>
+
+          {/* Auto-Playing Pipeline */}
+          <AutoPlayingPipeline language={currentLang} />
         </div>
       </section>
 
-      {/* Interactive Demo Cards */}
-      <section className="relative py-20 bg-white">
+      {/* Section 2: Try It Yourself */}
+      <section className="bg-slate-50 py-20">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <ScrollReveal>
-            <div className="text-center mb-16">
-              <h2 className="text-3xl lg:text-4xl font-bold text-slate-900 mb-4">{t.features.title}</h2>
-              <p className="text-slate-600">{t.features.subtitle}</p>
-            </div>
-          </ScrollReveal>
-
-          <div className="grid lg:grid-cols-2 gap-8">
-            {/* Card 1: Solicitar Cita */}
-            <ScrollReveal delay={0}>
-              <div className="group relative p-8 bg-white border border-slate-200 rounded-2xl hover:border-teal-300 hover:shadow-lg transition-all duration-500">
-                <div className="space-y-6">
-                  <div className="flex items-center space-x-4">
-                    <div className="w-16 h-16 bg-teal-100 rounded-xl flex items-center justify-center group-hover:bg-teal-200 transition-colors duration-500">
-                      <Calendar className="w-8 h-8 text-teal-600" />
-                    </div>
-                    <div>
-                      <h3 className="text-2xl font-bold text-slate-900">{t.features.appointment.title}</h3>
-                      <p className="text-slate-600">{t.features.appointment.subtitle}</p>
-                    </div>
-                  </div>
-                  
-                  <p className="text-slate-600 leading-relaxed">
-                    {t.features.appointment.description}
-                  </p>
-                  
-                  <button
-                    onClick={() => setShowCitaModal(true)}
-                    className="w-full px-6 py-3 bg-teal-600 text-white rounded-lg hover:bg-teal-700 transition-all duration-300 font-semibold flex items-center justify-center space-x-2 group"
-                  >
-                    <span>{t.features.appointment.cta}</span>
-                    <Play className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
-                  </button>
-                </div>
-              </div>
-            </ScrollReveal>
-
-            {/* Card 2: Recordatorio Automático */}
-            <ScrollReveal delay={100}>
-              <div className="group relative p-8 bg-white border border-slate-200 rounded-2xl hover:border-teal-300 hover:shadow-lg transition-all duration-500">
-                <div className="space-y-6">
-                  <div className="flex items-center space-x-4">
-                    <div className="w-16 h-16 bg-teal-100 rounded-xl flex items-center justify-center group-hover:bg-teal-200 transition-colors duration-500">
-                      <Clock className="w-8 h-8 text-teal-600" />
-                    </div>
-                    <div>
-                      <h3 className="text-2xl font-bold text-slate-900">{t.features.reminder.title}</h3>
-                      <p className="text-slate-600">{t.features.reminder.subtitle}</p>
-                    </div>
-                  </div>
-                  
-                  <p className="text-slate-600 leading-relaxed">
-                    {t.features.reminder.description}
-                  </p>
-
-                  {/* Mock Phone Screen */}
-                  <div className="relative">
-                    <div className="max-w-sm mx-auto bg-white rounded-3xl p-4 border-2 border-slate-300 shadow-xl">
-                      <div className="bg-slate-50 rounded-2xl p-4">
-                        <div className="flex items-center space-x-3 mb-3">
-                          <div className="w-10 h-10 bg-green-500 rounded-full flex items-center justify-center">
-                            <MessageCircle className="w-5 h-5 text-white" />
-                          </div>
-                          <div>
-                            <div className="text-green-600 font-semibold text-sm">+1 555 123 4567</div>
-                            <div className="text-slate-500 text-xs">Yesterday 10:30 AM</div>
-                          </div>
-                        </div>
-                        <div className="bg-green-500 rounded-2xl rounded-bl-sm p-3 ml-4">
-                          <p className="text-white text-sm leading-relaxed">
-                            Hello María 📋 Reminder: Tomorrow Tuesday 25th at 10:00 AM with Dr. García (General Medicine). Don't forget your ID. 📍 123 Medical Plaza, Healthcare District. Need to reschedule? Reply CHANGE. — Medical Demo
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="absolute -top-2 -right-2 w-4 h-4 bg-teal-500 rounded-full animate-pulse" />
-                  </div>
-                  
-                  <div className="text-center">
-                    <p className="text-slate-500 text-sm">
-                      {t.features.reminder.viewText}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </ScrollReveal>
-
-            {/* Card 3: Reseñas Google Automáticas */}
-            <ScrollReveal delay={200}>
-              <div className="group relative p-8 bg-white border border-slate-200 rounded-2xl hover:border-teal-300 hover:shadow-lg transition-all duration-500">
-                <div className="space-y-6">
-                  <div className="flex items-center space-x-4">
-                    <div className="w-16 h-16 bg-teal-100 rounded-xl flex items-center justify-center group-hover:bg-teal-200 transition-colors duration-500">
-                      <Star className="w-8 h-8 text-teal-600" />
-                    </div>
-                    <div>
-                      <h3 className="text-2xl font-bold text-slate-900">{t.features.reviews.title}</h3>
-                      <p className="text-slate-600">{t.features.reviews.subtitle}</p>
-                    </div>
-                  </div>
-                  
-                  <div className="bg-teal-50 border border-teal-200 rounded-xl p-4">
-                    <div className="flex items-center space-x-2 text-teal-600 mb-2">
-                      <TrendingUp className="w-5 h-5" />
-                      <span className="font-semibold">{t.features.reviews.stat}</span>
-                    </div>
-                    <p className="text-slate-900 text-lg font-semibold">
-                      {t.features.reviews.description}
-                    </p>
-                  </div>
-
-                  {/* Mock Phone Screen */}
-                  <div className="relative">
-                    <div className="max-w-sm mx-auto bg-white rounded-3xl p-4 border-2 border-slate-300 shadow-xl">
-                      <div className="bg-slate-50 rounded-2xl p-4">
-                        <div className="flex items-center space-x-3 mb-3">
-                          <div className="w-10 h-10 bg-green-500 rounded-full flex items-center justify-center">
-                            <MessageCircle className="w-5 h-5 text-white" />
-                          </div>
-                          <div>
-                            <div className="text-green-600 font-semibold text-sm">+1 555 123 4567</div>
-                            <div className="text-slate-500 text-xs">Today 3:15 PM</div>
-                          </div>
-                        </div>
-                        <div className="bg-green-500 rounded-2xl rounded-bl-sm p-3 ml-4">
-                          <p className="text-white text-sm leading-relaxed">
-                            Hello María 😊 Thanks for your visit with Dr. García at Medical Demo. Would you help us with a review? Just 30 seconds: bit.ly/medical-demo-review. Your feedback helps us improve. Thanks! 🙏
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </ScrollReveal>
-
-            {/* Card 4: Captura de Leads */}
-            <ScrollReveal delay={300}>
-              <div className="group relative p-8 bg-white border border-slate-200 rounded-2xl hover:border-teal-300 hover:shadow-lg transition-all duration-500">
-                <div className="space-y-6">
-                  <div className="flex items-center space-x-4">
-                    <div className="w-16 h-16 bg-teal-100 rounded-xl flex items-center justify-center group-hover:bg-teal-200 transition-colors duration-500">
-                      <Users className="w-8 h-8 text-teal-600" />
-                    </div>
-                    <div>
-                      <h3 className="text-2xl font-bold text-slate-900">{t.features.leads.title}</h3>
-                      <p className="text-slate-600">{t.features.leads.subtitle}</p>
-                    </div>
-                  </div>
-                  
-                  <p className="text-slate-600 leading-relaxed">
-                    {t.features.leads.description}
-                  </p>
-                  
-                  <button
-                    onClick={() => setShowContactoModal(true)}
-                    className="w-full px-6 py-3 bg-teal-600 text-white rounded-lg hover:bg-teal-700 transition-all duration-300 font-semibold flex items-center justify-center space-x-2 group"
-                  >
-                    <span>{t.features.leads.cta}</span>
-                    <Play className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
-                  </button>
-                </div>
-              </div>
-            </ScrollReveal>
+          <div className="text-center mb-12">
+            <h2 className="text-3xl lg:text-4xl font-bold text-slate-800 mb-4">
+              {t.tryYourself.title}
+            </h2>
+            <p className="text-xl text-slate-600 max-w-3xl mx-auto">
+              {t.tryYourself.subtitle}
+            </p>
           </div>
+
+          <TryYourselfForm 
+            language={currentLang} 
+            onSubmit={handleUserFormSubmit}
+          />
+
+          {/* User's Custom Pipeline */}
+          {showUserPipeline && userFormData && (
+            <div className="mt-16 p-8 bg-white rounded-2xl border border-emerald-200 shadow-lg">
+              <div className="text-center mb-8">
+                <h3 className="text-2xl font-bold text-emerald-800 mb-2">
+                  Running automation with YOUR data...
+                </h3>
+                <p className="text-slate-600">Patient: {userFormData.name}</p>
+              </div>
+              <AutoPlayingPipeline language={currentLang} />
+            </div>
+          )}
         </div>
       </section>
 
-      {/* Results Dashboard */}
-      <section id="stats-section" className="relative py-32 bg-slate-50">
+      {/* Section 3: Stats Section */}
+      <section id="stats-section" className="bg-white py-20">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <ScrollReveal>
-            <div className="text-center mb-16">
-              <h2 className="text-3xl lg:text-4xl font-bold text-slate-900 mb-4">{t.results.title}</h2>
-              <p className="text-slate-600">{t.results.subtitle}</p>
-            </div>
-          </ScrollReveal>
+          <div className="text-center mb-16">
+            <h2 className="text-3xl lg:text-4xl font-bold text-slate-800 mb-4">
+              {t.results.title}
+            </h2>
+            <p className="text-xl text-slate-600">
+              {t.results.subtitle}
+            </p>
+          </div>
 
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
-            <ScrollReveal delay={0}>
-              <div className="group text-center p-8 bg-white border border-slate-200 rounded-2xl hover:border-teal-300 hover:shadow-lg transition-all duration-500 hover:scale-105">
-                <div className="text-4xl lg:text-5xl text-teal-600 mb-4 font-bold">
-                  {confirmationRate}%
-                </div>
-                <div className="text-sm text-slate-600 font-medium">{t.results.confirmed}</div>
+            <div className="text-center p-8 bg-slate-50 rounded-2xl border border-slate-200">
+              <div className="text-4xl lg:text-5xl text-emerald-600 mb-4 font-bold">
+                {confirmationRate}%
               </div>
-            </ScrollReveal>
+              <div className="text-sm text-slate-600 font-medium">
+                {t.results.stats[0].label}
+              </div>
+            </div>
 
-            <ScrollReveal delay={100}>
-              <div className="group text-center p-8 bg-white border border-slate-200 rounded-2xl hover:border-teal-300 hover:shadow-lg transition-all duration-500 hover:scale-105">
-                <div className="text-4xl lg:text-5xl text-teal-600 mb-4 font-bold">
-                  +{reviewIncrease}%
-                </div>
-                <div className="text-sm text-slate-600 font-medium">{t.results.reviews}</div>
+            <div className="text-center p-8 bg-slate-50 rounded-2xl border border-slate-200">
+              <div className="text-4xl lg:text-5xl text-emerald-600 mb-4 font-bold">
+                +{reviewIncrease}%
               </div>
-            </ScrollReveal>
+              <div className="text-sm text-slate-600 font-medium">
+                {t.results.stats[1].label}
+              </div>
+            </div>
 
-            <ScrollReveal delay={200}>
-              <div className="group text-center p-8 bg-white border border-slate-200 rounded-2xl hover:border-teal-300 hover:shadow-lg transition-all duration-500 hover:scale-105">
-                <div className="text-4xl lg:text-5xl text-teal-600 mb-4 font-bold">
-                  {timeSaved} hrs
-                </div>
-                <div className="text-sm text-slate-600 font-medium">{t.results.timeSaved}</div>
+            <div className="text-center p-8 bg-slate-50 rounded-2xl border border-slate-200">
+              <div className="text-4xl lg:text-5xl text-emerald-600 mb-4 font-bold">
+                {timeSaved}hrs
               </div>
-            </ScrollReveal>
+              <div className="text-sm text-slate-600 font-medium">
+                {t.results.stats[2].label}
+              </div>
+            </div>
 
-            <ScrollReveal delay={300}>
-              <div className="group text-center p-8 bg-white border border-slate-200 rounded-2xl hover:border-teal-300 hover:shadow-lg transition-all duration-500 hover:scale-105">
-                <div className="text-4xl lg:text-5xl text-teal-600 mb-4 font-bold">
-                  +{newPatients}%
-                </div>
-                <div className="text-sm text-slate-600 font-medium">{t.results.newPatients}</div>
+            <div className="text-center p-8 bg-slate-50 rounded-2xl border border-slate-200">
+              <div className="text-4xl lg:text-5xl text-emerald-600 mb-4 font-bold">
+                +{newPatients}%
               </div>
-            </ScrollReveal>
+              <div className="text-sm text-slate-600 font-medium">
+                {t.results.stats[3].label}
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="relative py-32 bg-white">
+      {/* Section 4: CTA */}
+      <section className="bg-slate-50 py-20">
         <div className="max-w-4xl mx-auto px-6 lg:px-8">
-          <ScrollReveal>
-            <div className="relative rounded-3xl bg-gradient-to-br from-emerald-800 to-slate-900 p-12 lg:p-16 overflow-hidden text-white text-center">
-              {/* Decorative Blur */}
-              <div className="absolute top-0 right-0 w-64 h-64 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none" />
-              <div className="absolute bottom-0 left-0 w-48 h-48 bg-emerald-500/5 rounded-full blur-2xl pointer-events-none" />
+          <div className="relative rounded-3xl bg-gradient-to-br from-emerald-800 to-slate-900 p-12 lg:p-16 overflow-hidden text-white text-center">
+            {/* Decorative Elements */}
+            <div className="absolute top-0 right-0 w-64 h-64 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none" />
+            <div className="absolute bottom-0 left-0 w-48 h-48 bg-emerald-500/5 rounded-full blur-2xl pointer-events-none" />
 
-              <div className="relative space-y-8">
-                <h2 className="text-3xl lg:text-4xl font-bold text-white">
-                  {t.cta.title}
-                </h2>
-                <p className="text-lg text-slate-200 max-w-2xl mx-auto leading-relaxed">
-                  {t.cta.subtitle}
+            <div className="relative space-y-8">
+              <h2 className="text-3xl lg:text-4xl font-bold text-white">
+                {t.cta.title}
+              </h2>
+              <p className="text-lg text-slate-200 max-w-2xl mx-auto leading-relaxed">
+                {t.cta.subtitle}
+              </p>
+
+              <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                <button
+                  onClick={() => window.open('https://calendly.com/theremoteaidoc/30min', '_blank')}
+                  className="px-8 py-4 bg-white text-emerald-700 rounded-xl hover:bg-slate-50 transition-all duration-300 flex items-center space-x-3 text-lg font-semibold group"
+                >
+                  <Calendar className="w-5 h-5" />
+                  <span>{t.cta.bookCall}</span>
+                  <ExternalLink className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
+                </button>
+                
+                <div className="flex items-center space-x-2 text-slate-300 text-sm">
+                  <span>or</span>
+                </div>
+                
+                <a
+                  href="https://wa.me/573001234567?text=Hello,%20I'm%20interested%20in%20AutoMed%20for%20my%20medical%20practice"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-6 py-3 bg-green-600 text-white rounded-xl hover:bg-green-700 transition-all duration-300 flex items-center space-x-2 group"
+                >
+                  <MessageCircle className="w-5 h-5" />
+                  <span>{t.cta.whatsapp}</span>
+                </a>
+              </div>
+
+              <div className="text-center">
+                <p className="text-slate-300 text-sm">
+                  <span className="font-semibold">{t.cta.footer}</span>
                 </p>
-
-                <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                  <button
-                    onClick={() => window.open('https://calendly.com/theremoteaidoc/30min', '_blank')}
-                    className="px-8 py-4 bg-white text-teal-700 rounded-xl hover:bg-slate-50 transition-all duration-300 flex items-center space-x-3 text-lg font-semibold group"
-                  >
-                    <Calendar className="w-5 h-5" />
-                    <span>{t.cta.bookCall}</span>
-                    <ExternalLink className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
-                  </button>
-                  
-                  <div className="flex items-center space-x-2 text-slate-300 text-sm">
-                    <span>or</span>
-                  </div>
-                  
-                  <a
-                    href="https://wa.me/573001234567?text=Hello,%20I'm%20interested%20in%20AutoMed%20for%20my%20medical%20practice"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="px-6 py-3 bg-green-600 text-white rounded-xl hover:bg-green-700 transition-all duration-300 flex items-center space-x-2 group"
-                  >
-                    <MessageCircle className="w-5 h-5" />
-                    <span>{t.cta.whatsapp}</span>
-                  </a>
-                </div>
-
-                <div className="text-center">
-                  <p className="text-slate-300 text-sm">
-                    <span className="font-semibold">{t.cta.footer}</span>
-                  </p>
-                </div>
               </div>
             </div>
-          </ScrollReveal>
+          </div>
         </div>
       </section>
 
-      {/* Modal para Cita */}
-      {showCitaModal && (
-        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center p-4 z-50 overflow-y-auto">
-          <div className="bg-white rounded-2xl p-6 max-w-lg w-full border border-slate-200 my-4 shadow-xl">
-            <h3 className="text-2xl font-bold text-slate-900 mb-6">{t.modal.appointment.title}</h3>
-            <form onSubmit={handleCitaSubmit} className="space-y-5">
-              
-              {/* Personal Info */}
-              <div className="space-y-4">
-                <h4 className="text-lg text-teal-600 border-b border-slate-200 pb-2 font-semibold">{t.modal.appointment.personal}</h4>
-                <input
-                  type="text"
-                  placeholder={t.modal.appointment.fullName}
-                  value={citaForm.nombre}
-                  onChange={(e) => setCitaForm({...citaForm, nombre: e.target.value})}
-                  className="w-full px-4 py-3 border border-slate-300 rounded-lg text-slate-900 placeholder-slate-500 focus:border-teal-500 focus:ring-2 focus:ring-teal-200"
-                  required
-                />
-                <input
-                  type="tel"
-                  placeholder={t.modal.appointment.phone}
-                  value={citaForm.telefono}
-                  onChange={(e) => setCitaForm({...citaForm, telefono: e.target.value})}
-                  className="w-full px-4 py-3 border border-slate-300 rounded-lg text-slate-900 placeholder-slate-500 focus:border-teal-500 focus:ring-2 focus:ring-teal-200"
-                  required
-                />
-                <input
-                  type="email"
-                  placeholder={t.modal.appointment.email}
-                  value={citaForm.email}
-                  onChange={(e) => setCitaForm({...citaForm, email: e.target.value})}
-                  className="w-full px-4 py-3 border border-slate-300 rounded-lg text-slate-900 placeholder-slate-500 focus:border-teal-500 focus:ring-2 focus:ring-teal-200"
-                  required
-                />
-              </div>
-
-              {/* Provider Selection */}
-              <div className="space-y-4">
-                <h4 className="text-lg text-teal-600 border-b border-slate-200 pb-2 font-semibold">{t.modal.appointment.selectDoctor}</h4>
-                <select
-                  value={citaForm.provider_id}
-                  onChange={(e) => setCitaForm({...citaForm, provider_id: e.target.value, hora: ''})}
-                  className="w-full px-4 py-3 border border-slate-300 rounded-lg text-slate-900 focus:border-teal-500 focus:ring-2 focus:ring-teal-200"
-                  required
-                >
-                  <option value="">{t.modal.appointment.selectDoctorPlaceholder}</option>
-                  {providers.map(provider => (
-                    <option key={provider.id} value={provider.id}>
-                      {provider.name} — {provider.specialty}
-                    </option>
-                  ))}
-                </select>
-              </div>
-
-              {/* Date & Time Selection */}
-              <div className="space-y-4">
-                <h4 className="text-lg text-teal-600 border-b border-slate-200 pb-2 font-semibold">{t.modal.appointment.dateTime}</h4>
-                <input
-                  type="date"
-                  value={citaForm.fecha}
-                  onChange={(e) => setCitaForm({...citaForm, fecha: e.target.value, hora: ''})}
-                  min={new Date().toISOString().split('T')[0]}
-                  className="w-full px-4 py-3 border border-slate-300 rounded-lg text-slate-900 focus:border-teal-500 focus:ring-2 focus:ring-teal-200"
-                  required
-                />
-
-                {/* Time Slots Grid */}
-                {citaForm.provider_id && citaForm.fecha && (
-                  <div>
-                    <label className="block text-sm text-slate-600 mb-3 font-medium">{t.modal.appointment.availableSlots}</label>
-                    <div className="grid grid-cols-3 gap-2 max-h-48 overflow-y-auto">
-                      {availableSlots.map(slot => (
-                        <button
-                          key={slot.time}
-                          type="button"
-                          disabled={!slot.available}
-                          onClick={() => setCitaForm({...citaForm, hora: slot.time})}
-                          className={`p-2 text-sm rounded-lg transition-all duration-200 ${
-                            citaForm.hora === slot.time
-                              ? 'bg-teal-600 text-white font-semibold'
-                              : slot.available
-                              ? 'bg-slate-100 text-slate-700 hover:bg-slate-200 border border-slate-300 hover:border-teal-300'
-                              : 'bg-slate-50 text-slate-400 cursor-not-allowed border border-slate-200'
-                          }`}
-                        >
-                          {slot.available ? slot.time : `${slot.time}\nBusy`}
-                        </button>
-                      ))}
-                    </div>
-                    {selectedProvider && (
-                      <p className="text-xs text-slate-500 mt-2">
-                        Clinic: {selectedProvider.name} — {selectedProvider.specialty}
-                      </p>
-                    )}
-                  </div>
-                )}
-              </div>
-              
-              <div className="flex space-x-3 pt-4">
-                <button
-                  type="button"
-                  onClick={() => {
-                    setShowCitaModal(false);
-                    setCitaForm({nombre: '', telefono: '', email: '', fecha: '', hora: '', provider_id: ''});
-                  }}
-                  className="flex-1 px-4 py-3 border border-slate-300 text-slate-600 rounded-lg hover:bg-slate-50 transition-colors"
-                >
-                  {t.modal.appointment.cancel}
-                </button>
-                <button
-                  type="submit"
-                  disabled={isSubmittingCita || !citaForm.hora}
-                  className="flex-1 px-4 py-3 bg-teal-600 text-white rounded-lg hover:bg-teal-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed font-semibold"
-                >
-                  {isSubmittingCita ? 'Scheduling...' : t.modal.appointment.confirm}
-                </button>
-              </div>
-            </form>
-          </div>
-        </div>
-      )}
-
-      {/* Modal para Contacto */}
-      {showContactoModal && (
-        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center p-4 z-50">
-          <div className="bg-white rounded-2xl p-8 max-w-md w-full border border-slate-200 shadow-xl">
-            <h3 className="text-2xl font-bold text-slate-900 mb-6">{t.modal.contact.title}</h3>
-            <form onSubmit={handleContactoSubmit} className="space-y-4">
-              <input
-                type="text"
-                placeholder={t.modal.contact.fullName}
-                value={contactoForm.nombre}
-                onChange={(e) => setContactoForm({...contactoForm, nombre: e.target.value})}
-                className="w-full px-4 py-3 border border-slate-300 rounded-lg text-slate-900 placeholder-slate-500 focus:border-teal-500 focus:ring-2 focus:ring-teal-200"
-                required
-              />
-              <input
-                type="tel"
-                placeholder={t.modal.contact.phone}
-                value={contactoForm.telefono}
-                onChange={(e) => setContactoForm({...contactoForm, telefono: e.target.value})}
-                className="w-full px-4 py-3 border border-slate-300 rounded-lg text-slate-900 placeholder-slate-500 focus:border-teal-500 focus:ring-2 focus:ring-teal-200"
-                required
-              />
-              <input
-                type="email"
-                placeholder={t.modal.contact.email}
-                value={contactoForm.email}
-                onChange={(e) => setContactoForm({...contactoForm, email: e.target.value})}
-                className="w-full px-4 py-3 border border-slate-300 rounded-lg text-slate-900 placeholder-slate-500 focus:border-teal-500 focus:ring-2 focus:ring-teal-200"
-              />
-              <select
-                value={contactoForm.interes}
-                onChange={(e) => setContactoForm({...contactoForm, interes: e.target.value})}
-                className="w-full px-4 py-3 border border-slate-300 rounded-lg text-slate-900 focus:border-teal-500 focus:ring-2 focus:ring-teal-200"
-                required
-              >
-                <option value="">{t.modal.contact.helpOptions.placeholder}</option>
-                <option value="informacion_general">{t.modal.contact.helpOptions.general}</option>
-                <option value="agendar_cita">{t.modal.contact.helpOptions.appointment}</option>
-                <option value="consulta_especialista">{t.modal.contact.helpOptions.specialist}</option>
-                <option value="segunda_opinion">{t.modal.contact.helpOptions.second_opinion}</option>
-                <option value="telemedicina">{t.modal.contact.helpOptions.telemedicine}</option>
-              </select>
-              
-              <div className="flex space-x-3 pt-4">
-                <button
-                  type="button"
-                  onClick={() => setShowContactoModal(false)}
-                  className="flex-1 px-4 py-3 border border-slate-300 text-slate-600 rounded-lg hover:bg-slate-50 transition-colors"
-                >
-                  {t.modal.contact.cancel}
-                </button>
-                <button
-                  type="submit"
-                  disabled={isSubmittingContacto}
-                  className="flex-1 px-4 py-3 bg-teal-600 text-white rounded-lg hover:bg-teal-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed font-semibold"
-                >
-                  {isSubmittingContacto ? 'Sending...' : t.modal.contact.send}
-                </button>
-              </div>
-            </form>
-          </div>
-        </div>
-      )}
-
-      {/* Automation Flow Simulator */}
-      {showAutomationFlow && (
-        <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 z-50">
-          <div className="bg-white rounded-2xl p-8 max-w-4xl w-full max-h-[90vh] overflow-y-auto border border-slate-200 shadow-2xl">
-            <div className="flex justify-between items-center mb-8">
-              <div>
-                <h3 className="text-2xl font-bold text-slate-900">Automation Flow</h3>
-                <p className="text-slate-600">Watch your practice automation in action</p>
-              </div>
-              <button
-                onClick={() => setShowAutomationFlow(false)}
-                className="p-2 text-slate-400 hover:text-slate-600 transition-colors"
-              >
-                <X className="w-6 h-6" />
-              </button>
-            </div>
-            
-            <AutomationFlow
-              steps={t.automation[automationFlowType].steps}
-              isActive={showAutomationFlow}
-              onComplete={() => {
-                // Auto close after showing complete state
-                setTimeout(() => setShowAutomationFlow(false), 3000);
-              }}
-              formData={automationFormData}
-              flowType={automationFlowType}
-            />
-          </div>
-        </div>
-      )}
+      <style jsx>{`
+        @keyframes fadeIn {
+          from {
+            opacity: 0;
+            transform: translateY(20px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        .animate-fadeIn {
+          animation: fadeIn 0.5s ease-out;
+        }
+      `}</style>
     </>
   );
 }
