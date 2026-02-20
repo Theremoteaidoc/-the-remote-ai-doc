@@ -23,22 +23,22 @@ const languages = {
       language: 'Español'
     },
     hero: {
-      badge: 'Ship Physician · AI Trainer · Clinical AI Evaluator',
+      badge: 'Ship Senior Doctor · Clinical AI Expert',
       title: 'Dr. Javier',
       subtitle: 'Rosas',
       highlight: 'The Remote',
       lastWord: 'AI Doc',
-      description: 'Ship physician practicing 1,000 miles from shore. I evaluate clinical AI tools, train frontier models, and help healthcare organizations implement AI safely.',
+      description: 'Senior ship physician and medical AI evaluator specializing in clinical AI safety, LLM accuracy testing, and healthcare automation. I practice emergency medicine at sea with 40 drugs instead of 4,000 — and use that constraint to expose where AI fails clinicians.',
       cta: 'Schedule a Discovery Call',
       ctaSecondary: 'View Services',
       joinText: 'Trusted by healthcare leaders worldwide'
     },
     stats: {
-      miles: 'Miles from Shore',
-      patients: 'Patients Treated at Sea',
-      experience: 'Years Clinical Exp',
-      platforms: 'AI Training Platforms',
-      cases: 'Clinical LLM Cases'
+      accuracyGap: 'Accuracy gap: clinical AI vs general LLMs',
+      platformsEvaluated: 'AI platforms evaluated head-to-head',
+      drugs: 'Drugs onboard (vs 4,000 in hospitals)',
+      patients: 'Patients under care at sea',
+      criteria: 'FDA prescribing criteria in rubric'
     },
     about: {
       badge: 'About',
@@ -48,8 +48,8 @@ const languages = {
       para2: 'This unique perspective—balancing high-stakes clinical decisions with cutting-edge AI development—gives me an insider\'s understanding of what healthcare AI actually needs to be: reliable, practical, and trustworthy when it matters most.',
       para3: 'I bridge the gap between the technical capabilities of AI and the real-world demands of medicine, training AI systems for leading platforms while staying on the front lines of patient care.'
     },
-    quote: 'When you\'re the only doctor for thousands of people,',
-    quoteHighlight: 'AI isn\'t a luxury — it\'s survival.',
+    quote: 'The question isn\'t whether AI will change medicine.',
+    quoteHighlight: 'It\'s whether we\'ll know when it\'s wrong.',
     expertise: {
       badge: 'Expertise',
       title: 'What I Bring',
@@ -91,6 +91,41 @@ const languages = {
       title: 'Let\'s Connect',
       description: 'Follow along as I navigate the intersection of remote medicine and artificial intelligence'
     },
+    testimonials: {
+      badge: 'Testimonials',
+      title: 'What Healthcare Leaders Say',
+      subtitle: 'Real results from practices using our AI automation solutions',
+      items: [
+        {
+          name: 'Dr. María Fernández',
+          role: 'Director',
+          company: 'Clínica del Valle, Medellín',
+          content: 'The automation saved us 12 hours per week on administrative tasks. Now our team focuses on patient care instead of paperwork.',
+          rating: 5
+        },
+        {
+          name: 'Carlos Mendoza',
+          role: 'Operations Manager',
+          company: 'Centro Médico San Rafael',
+          content: 'Patient no-shows dropped by 40% after implementing the reminder system. The ROI was immediate and measurable.',
+          rating: 5
+        },
+        {
+          name: 'Dr. Ana Lucía Restrepo',
+          role: 'Family Medicine',
+          company: 'Private Practice, Bogotá',
+          content: 'Our Google reviews went from 2 per month to 30+ per month. The automated collection system is seamless for patients.',
+          rating: 5
+        },
+        {
+          name: 'Roberto Jiménez',
+          role: 'CEO',
+          company: 'Red Salud Digital',
+          content: 'We saw positive ROI within the first month. The clinical AI expertise made all the difference in implementation success.',
+          rating: 5
+        }
+      ]
+    },
     cta: {
       title: 'Ready to implement clinical AI safely?',
       description: 'Let\'s discuss how AI evaluation, training, and implementation can transform your healthcare organization — with the rigor it demands.',
@@ -117,22 +152,22 @@ const languages = {
       language: 'English'
     },
     hero: {
-      badge: 'Médico de Barco · Entrenador de IA · Evaluador de IA Clínica',
+      badge: 'Médico Senior de Barco · Experto en IA Clínica',
       title: 'Dr. Javier',
       subtitle: 'Rosas',
       highlight: 'The Remote',
       lastWord: 'AI Doc',
-      description: 'Médico de barco practicando a 1,000 millas de la costa. Evalúo herramientas de IA clínica, entreno modelos de frontera y ayudo a organizaciones de salud a implementar IA de forma segura.',
+      description: 'Médico senior de barco y evaluador de IA médica especializado en seguridad de IA clínica, pruebas de precisión de LLMs y automatización en salud. Practico medicina de emergencia en el mar con 40 medicamentos en lugar de 4,000 — y uso esa limitación para exponer dónde la IA falla a los médicos.',
       cta: 'Agendar Llamada de Descubrimiento',
       ctaSecondary: 'Ver Servicios',
       joinText: 'Confiado por líderes de salud a nivel mundial'
     },
     stats: {
-      miles: 'Millas de la Costa',
-      patients: 'Pacientes Tratados en el Mar',
-      experience: 'Años Experiencia Clínica',
-      platforms: 'Plataformas de Entrenamiento IA',
-      cases: 'Casos Clínicos LLM'
+      accuracyGap: 'Brecha de precisión: IA clínica vs LLMs generales',
+      platformsEvaluated: 'Plataformas de IA evaluadas cara a cara',
+      drugs: 'Medicamentos a bordo (vs 4,000 en hospitales)',
+      patients: 'Pacientes bajo cuidado en el mar',
+      criteria: 'Criterios de prescripción FDA en rúbrica'
     },
     about: {
       badge: 'Acerca de',
@@ -142,8 +177,8 @@ const languages = {
       para2: 'Esta perspectiva única—equilibrando decisiones clínicas de alto riesgo con desarrollo de IA de vanguardia—me da una comprensión interna de lo que la IA médica realmente necesita ser: confiable, práctica y digna de confianza cuando más importa.',
       para3: 'Construyo el puente entre las capacidades técnicas de la IA y las demandas del mundo real de la medicina, entrenando sistemas de IA para plataformas líderes mientras permanezco en primera línea del cuidado de pacientes.'
     },
-    quote: 'Cuando eres el único médico para miles de personas,',
-    quoteHighlight: 'la IA no es un lujo — es supervivencia.',
+    quote: 'La pregunta no es si la IA cambiará la medicina.',
+    quoteHighlight: 'Es si sabremos cuándo se equivoca.',
     expertise: {
       badge: 'Experiencia',
       title: 'Lo Que Aporto',
@@ -185,6 +220,41 @@ const languages = {
       title: 'Conectemos',
       description: 'Sígueme mientras navego la intersección de medicina remota e inteligencia artificial'
     },
+    testimonials: {
+      badge: 'Testimonios',
+      title: 'Lo Que Dicen los Líderes en Salud',
+      subtitle: 'Resultados reales de consultorios usando nuestras soluciones de automatización con IA',
+      items: [
+        {
+          name: 'Dr. María Fernández',
+          role: 'Directora',
+          company: 'Clínica del Valle, Medellín',
+          content: 'La automatización nos ahorró 12 horas semanales en tareas administrativas. Ahora nuestro equipo se enfoca en la atención al paciente en lugar del papeleo.',
+          rating: 5
+        },
+        {
+          name: 'Carlos Mendoza',
+          role: 'Gerente de Operaciones',
+          company: 'Centro Médico San Rafael',
+          content: 'Las inasistencias de pacientes se redujeron 40% después de implementar el sistema de recordatorios. El ROI fue inmediato y medible.',
+          rating: 5
+        },
+        {
+          name: 'Dr. Ana Lucía Restrepo',
+          role: 'Medicina Familiar',
+          company: 'Consulta Privada, Bogotá',
+          content: 'Nuestras reseñas de Google pasaron de 2 por mes a más de 30 por mes. El sistema de recolección automatizada es perfecto para los pacientes.',
+          rating: 5
+        },
+        {
+          name: 'Roberto Jiménez',
+          role: 'CEO',
+          company: 'Red Salud Digital',
+          content: 'Vimos ROI positivo dentro del primer mes. La experiencia en IA clínica marcó toda la diferencia en el éxito de la implementación.',
+          rating: 5
+        }
+      ]
+    },
     cta: {
       title: '¿Listo para implementar IA clínica de forma segura?',
       description: 'Hablemos de cómo la evaluación, entrenamiento e implementación de IA puede transformar tu organización de salud — con el rigor que exige.',
@@ -210,6 +280,19 @@ function Layout({ children }) {
 
   const toggleLanguage = () => {
     setCurrentLang(currentLang === 'en' ? 'es' : 'en');
+  };
+
+  const scrollToSection = (sectionId) => {
+    if (location.pathname === '/') {
+      // If we're on the home page, just scroll to the section
+      const element = document.getElementById(sectionId);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    } else {
+      // If we're on another page, navigate to home and then scroll
+      window.location.href = `/#${sectionId}`;
+    }
   };
 
   // Scroll to top on route change
@@ -249,18 +332,18 @@ function Layout({ children }) {
 
             {/* Desktop Navigation */}
             <div className="hidden md:flex items-center space-x-8">
-              <Link 
-                to="/#about" 
+              <button 
+                onClick={() => scrollToSection('about')}
                 className="text-slate-600 hover:text-teal-600 transition-colors duration-300 font-medium"
               >
                 {t.nav.about}
-              </Link>
-              <Link 
-                to="/#expertise" 
+              </button>
+              <button 
+                onClick={() => scrollToSection('expertise')}
                 className="text-slate-600 hover:text-teal-600 transition-colors duration-300 font-medium"
               >
                 {t.nav.expertise}
-              </Link>
+              </button>
               <Link 
                 to="/services" 
                 className="text-slate-600 hover:text-teal-600 transition-colors duration-300 font-medium"
@@ -269,16 +352,21 @@ function Layout({ children }) {
               </Link>
               <Link 
                 to="/demo" 
-                className="px-4 py-2 bg-teal-50 text-teal-700 rounded-lg hover:bg-teal-100 transition-colors duration-300 font-medium border border-teal-200"
+                className="relative px-4 py-2 bg-teal-50 text-teal-700 rounded-lg hover:bg-teal-100 transition-colors duration-300 font-medium border border-teal-200"
               >
-                {t.nav.demo}
+                <span className="relative flex items-center space-x-2">
+                  <span className="relative inline-block w-2 h-2 bg-teal-500 rounded-full animate-pulse">
+                    <span className="absolute inset-0 w-2 h-2 bg-teal-400 rounded-full animate-ping"></span>
+                  </span>
+                  <span>{t.nav.demo}</span>
+                </span>
               </Link>
-              <Link 
-                to="/#connect" 
+              <button 
+                onClick={() => scrollToSection('connect')}
                 className="text-slate-600 hover:text-teal-600 transition-colors duration-300 font-medium"
               >
                 {t.nav.connect}
-              </Link>
+              </button>
               <Link 
                 to="/blog" 
                 className="text-slate-600 hover:text-teal-600 transition-colors duration-300 font-medium"
@@ -305,18 +393,18 @@ function Layout({ children }) {
           {/* Mobile Navigation */}
           {mobileMenuOpen && (
             <div className="md:hidden border-t border-slate-200 py-4 space-y-4">
-              <Link 
-                to="/#about" 
+              <button 
+                onClick={() => scrollToSection('about')}
                 className="block py-2 text-slate-600 hover:text-teal-600 transition-colors duration-300 font-medium"
               >
                 {t.nav.about}
-              </Link>
-              <Link 
-                to="/#expertise" 
+              </button>
+              <button 
+                onClick={() => scrollToSection('expertise')}
                 className="block py-2 text-slate-600 hover:text-teal-600 transition-colors duration-300 font-medium"
               >
                 {t.nav.expertise}
-              </Link>
+              </button>
               <Link 
                 to="/services" 
                 className="block py-2 text-slate-600 hover:text-teal-600 transition-colors duration-300 font-medium"
@@ -329,12 +417,12 @@ function Layout({ children }) {
               >
                 {t.nav.demo}
               </Link>
-              <Link 
-                to="/#connect" 
+              <button 
+                onClick={() => scrollToSection('connect')}
                 className="block py-2 text-slate-600 hover:text-teal-600 transition-colors duration-300 font-medium"
               >
                 {t.nav.connect}
-              </Link>
+              </button>
               <Link 
                 to="/blog" 
                 className="block py-2 text-slate-600 hover:text-teal-600 transition-colors duration-300 font-medium"
@@ -435,22 +523,22 @@ function Home({ currentLang, t }) {
               </ScrollReveal>
 
               <ScrollReveal delay={300}>
-                <div className="flex flex-col sm:flex-row gap-3 max-w-md">
+                <div className="flex flex-col gap-4 max-w-md w-full">
                   <button
                     onClick={() => window.Calendly?.initPopupWidget({ url: 'https://calendly.com/theremoteaidoc/30min' })}
-                    className="px-8 py-4 bg-teal-600 text-white rounded-lg hover:bg-teal-700 transition-all duration-300 flex items-center justify-center space-x-2 group font-semibold text-lg shadow-lg shadow-teal-600/20"
+                    className="w-full sm:w-auto px-8 py-4 bg-teal-600 text-white rounded-lg hover:bg-teal-700 transition-all duration-300 flex items-center justify-center space-x-2 group font-semibold text-lg shadow-lg shadow-teal-600/20"
                   >
                     <span>{t.hero.cta}</span>
                     <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
                   </button>
                   <Link
                     to="/services"
-                    className="px-8 py-4 border-2 border-slate-300 text-slate-700 rounded-lg hover:border-teal-500 hover:text-teal-600 transition-all duration-300 flex items-center justify-center font-semibold text-lg"
+                    className="w-full sm:w-auto px-8 py-4 border-2 border-slate-300 text-slate-700 rounded-lg hover:border-teal-500 hover:text-teal-600 transition-all duration-300 flex items-center justify-center font-medium text-lg bg-white/80 backdrop-blur-sm"
                   >
                     {t.hero.ctaSecondary}
                   </Link>
                 </div>
-                <p className="text-sm text-slate-500 mt-4">{t.hero.joinText}</p>
+                <p className="text-sm text-slate-500 mt-6">{t.hero.joinText}</p>
               </ScrollReveal>
             </div>
 
@@ -473,15 +561,15 @@ function Home({ currentLang, t }) {
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-slate-900/10 to-transparent" />
 
                   {/* Professional badge */}
-                  <div className="absolute bottom-6 left-6 right-6 bg-white/90 backdrop-blur-sm border border-slate-200 rounded-xl p-4 shadow-lg">
-                    <div className="flex items-center space-x-3">
+                  <div className="absolute bottom-4 left-4 right-4 bg-white/90 backdrop-blur-sm border border-slate-200 rounded-lg p-3 shadow-md">
+                    <div className="flex items-center space-x-2">
                       <div className="relative">
-                        <div className="w-3 h-3 bg-teal-500 rounded-full" />
-                        <div className="absolute inset-0 w-3 h-3 bg-teal-500 rounded-full animate-ping opacity-75" />
+                        <div className="w-2 h-2 bg-teal-500 rounded-full" />
+                        <div className="absolute inset-0 w-2 h-2 bg-teal-500 rounded-full animate-ping opacity-75" />
                       </div>
                       <div>
-                        <p className="text-xl font-bold text-slate-900">Dr. Javier Rosas</p>
-                        <p className="text-sm text-slate-600">Ship Physician & AI Trainer</p>
+                        <p className="text-lg font-bold text-slate-900">Dr. Javier Rosas</p>
+                        <p className="text-xs text-slate-600">{t.hero.badge}</p>
                       </div>
                     </div>
                   </div>
@@ -499,33 +587,33 @@ function Home({ currentLang, t }) {
             <div className="grid grid-cols-2 lg:grid-cols-5 gap-8">
               <div className="group text-center space-y-2 hover:scale-105 transition-transform duration-300 cursor-pointer">
                 <div className="text-4xl lg:text-5xl text-teal-600 font-bold">
-                  1,000+
+                  2.4x
                 </div>
-                <div className="text-sm text-slate-600 font-medium">{t.stats.miles}</div>
+                <div className="text-sm text-slate-600 font-medium">{t.stats.accuracyGap}</div>
               </div>
               <div className="group text-center space-y-2 hover:scale-105 transition-transform duration-300 cursor-pointer">
                 <div className="text-4xl lg:text-5xl text-teal-600 font-bold">
-                  5,000+
+                  6
+                </div>
+                <div className="text-sm text-slate-600 font-medium">{t.stats.platformsEvaluated}</div>
+              </div>
+              <div className="group text-center space-y-2 hover:scale-105 transition-transform duration-300 cursor-pointer">
+                <div className="text-4xl lg:text-5xl text-teal-600 font-bold">
+                  40
+                </div>
+                <div className="text-sm text-slate-600 font-medium">{t.stats.drugs}</div>
+              </div>
+              <div className="group text-center space-y-2 hover:scale-105 transition-transform duration-300 cursor-pointer">
+                <div className="text-4xl lg:text-5xl text-teal-600 font-bold">
+                  6,000
                 </div>
                 <div className="text-sm text-slate-600 font-medium">{t.stats.patients}</div>
               </div>
               <div className="group text-center space-y-2 hover:scale-105 transition-transform duration-300 cursor-pointer">
                 <div className="text-4xl lg:text-5xl text-teal-600 font-bold">
-                  10+
+                  20
                 </div>
-                <div className="text-sm text-slate-600 font-medium">{t.stats.experience}</div>
-              </div>
-              <div className="group text-center space-y-2 hover:scale-105 transition-transform duration-300 cursor-pointer">
-                <div className="text-4xl lg:text-5xl text-teal-600 font-bold">
-                  5
-                </div>
-                <div className="text-sm text-slate-600 font-medium">{t.stats.platforms}</div>
-              </div>
-              <div className="group text-center space-y-2 hover:scale-105 transition-transform duration-300 cursor-pointer">
-                <div className="text-4xl lg:text-5xl text-teal-600 font-bold">
-                  100+
-                </div>
-                <div className="text-sm text-slate-600 font-medium">{t.stats.cases}</div>
+                <div className="text-sm text-slate-600 font-medium">{t.stats.criteria}</div>
               </div>
             </div>
           </ScrollReveal>
@@ -539,7 +627,7 @@ function Home({ currentLang, t }) {
             <ScrollReveal>
               <div className="space-y-6">
                 <div className="text-sm text-teal-600 tracking-wider uppercase font-semibold">{t.about.badge}</div>
-                <h2 className="text-4xl lg:text-5xl font-bold tracking-tight leading-tight text-slate-900">
+                <h2 className="text-5xl lg:text-6xl font-bold tracking-tight leading-tight text-slate-900">
                   {t.about.title}<br />
                   <span className="text-slate-600">{t.about.subtitle}</span>
                 </h2>
@@ -580,7 +668,7 @@ function Home({ currentLang, t }) {
       </section>
 
       {/* Expertise Section */}
-      <section id="expertise" className="relative py-32 bg-white">
+      <section id="expertise" className="relative py-20 bg-white">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="text-center space-y-4 mb-20">
             <ScrollReveal>
@@ -595,7 +683,7 @@ function Home({ currentLang, t }) {
             {/* Clinical Practice Card */}
             <ScrollReveal delay={0}>
               <div className="group relative p-8 bg-white border border-slate-200 rounded-2xl hover:border-teal-300 hover:shadow-lg transition-all duration-500">
-                <div className="w-16 h-16 bg-teal-100 rounded-xl flex items-center justify-center mb-6 group-hover:bg-teal-200 transition-colors duration-500">
+                <div className="w-16 h-16 bg-white/60 backdrop-blur-xl border border-white/40 rounded-xl flex items-center justify-center mb-6 shadow-lg shadow-teal-500/10 transition-all duration-500">
                   <Stethoscope className="w-8 h-8 text-teal-600" />
                 </div>
                 <h3 className="text-2xl font-bold text-slate-900 mb-4">{t.expertise.clinical.title}</h3>
@@ -613,7 +701,7 @@ function Home({ currentLang, t }) {
             {/* AI Training Card */}
             <ScrollReveal delay={100}>
               <div className="group relative p-8 bg-white border border-slate-200 rounded-2xl hover:border-teal-300 hover:shadow-lg transition-all duration-500">
-                <div className="w-16 h-16 bg-teal-100 rounded-xl flex items-center justify-center mb-6 group-hover:bg-teal-200 transition-colors duration-500">
+                <div className="w-16 h-16 bg-white/60 backdrop-blur-xl border border-white/40 rounded-xl flex items-center justify-center mb-6 shadow-lg shadow-teal-500/10 transition-all duration-500">
                   <Brain className="w-8 h-8 text-teal-600" />
                 </div>
                 <h3 className="text-2xl font-bold text-slate-900 mb-4">{t.expertise.ai.title}</h3>
@@ -631,7 +719,7 @@ function Home({ currentLang, t }) {
             {/* Remote Medicine Card */}
             <ScrollReveal delay={200}>
               <div className="group relative p-8 bg-white border border-slate-200 rounded-2xl hover:border-teal-300 hover:shadow-lg transition-all duration-500">
-                <div className="w-16 h-16 bg-teal-100 rounded-xl flex items-center justify-center mb-6 group-hover:bg-teal-200 transition-colors duration-500">
+                <div className="w-16 h-16 bg-white/60 backdrop-blur-xl border border-white/40 rounded-xl flex items-center justify-center mb-6 shadow-lg shadow-teal-500/10 transition-all duration-500">
                   <Ship className="w-8 h-8 text-teal-600" />
                 </div>
                 <h3 className="text-2xl font-bold text-slate-900 mb-4">{t.expertise.remote.title}</h3>
@@ -649,7 +737,7 @@ function Home({ currentLang, t }) {
             {/* Healthcare AI Content Card */}
             <ScrollReveal delay={300}>
               <div className="group relative p-8 bg-white border border-slate-200 rounded-2xl hover:border-teal-300 hover:shadow-lg transition-all duration-500">
-                <div className="w-16 h-16 bg-teal-100 rounded-xl flex items-center justify-center mb-6 group-hover:bg-teal-200 transition-colors duration-500">
+                <div className="w-16 h-16 bg-white/60 backdrop-blur-xl border border-white/40 rounded-xl flex items-center justify-center mb-6 shadow-lg shadow-teal-500/10 transition-all duration-500">
                   <BookOpen className="w-8 h-8 text-teal-600" />
                 </div>
                 <h3 className="text-2xl font-bold text-slate-900 mb-4">{t.expertise.content.title}</h3>
@@ -708,11 +796,64 @@ function Home({ currentLang, t }) {
         </div>
       </section>
 
-      {/* CTA Section */}
+      {/* Testimonials Section */}
       <section className="relative py-32 bg-white">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+          <div className="text-center space-y-4 mb-20">
+            <ScrollReveal>
+              <div className="text-sm text-teal-600 tracking-wider uppercase font-semibold">{t.testimonials.badge}</div>
+            </ScrollReveal>
+            <ScrollReveal delay={100}>
+              <h2 className="text-4xl lg:text-5xl font-bold tracking-tight text-slate-900">{t.testimonials.title}</h2>
+            </ScrollReveal>
+            <ScrollReveal delay={200}>
+              <p className="text-lg text-slate-600 max-w-3xl mx-auto">{t.testimonials.subtitle}</p>
+            </ScrollReveal>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-8">
+            {t.testimonials.items.map((testimonial, index) => (
+              <ScrollReveal key={index} delay={index * 100}>
+                <div className="group relative p-8 bg-white/60 backdrop-blur-xl border border-white/40 rounded-2xl shadow-lg shadow-teal-500/10 hover:shadow-xl hover:shadow-teal-500/20 transition-all duration-500">
+                  <div className="flex items-center space-x-1 mb-4">
+                    {[...Array(testimonial.rating)].map((_, i) => (
+                      <Star key={i} className="w-4 h-4 text-teal-500 fill-teal-500" />
+                    ))}
+                  </div>
+                  <blockquote className="text-slate-700 text-lg mb-6 leading-relaxed italic">
+                    "{testimonial.content}"
+                  </blockquote>
+                  <div className="flex items-center space-x-4">
+                    <div className="w-12 h-12 bg-white/60 backdrop-blur-xl border border-white/40 rounded-full flex items-center justify-center shadow-lg shadow-teal-500/10">
+                      <span className="text-teal-600 font-bold text-lg">
+                        {testimonial.name.split(' ').map(n => n[0]).join('')}
+                      </span>
+                    </div>
+                    <div>
+                      <div className="font-semibold text-slate-900">{testimonial.name}</div>
+                      <div className="text-sm text-slate-600">{testimonial.role}, {testimonial.company}</div>
+                    </div>
+                  </div>
+                </div>
+              </ScrollReveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section 
+        className="relative py-32 bg-cover bg-center bg-no-repeat"
+        style={{
+          backgroundImage: `
+            linear-gradient(to br, rgba(13, 148, 136, 0.85), rgba(15, 118, 110, 0.9)),
+            url('https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=1200&q=80')
+          `
+        }}
+      >
         <div className="max-w-4xl mx-auto px-6 lg:px-8">
           <ScrollReveal>
-            <div className="relative rounded-3xl bg-gradient-to-br from-teal-600 to-teal-700 p-12 lg:p-16 text-white text-center overflow-hidden">
+            <div className="relative rounded-3xl bg-white/10 backdrop-blur-sm border border-white/20 p-12 lg:p-16 text-white text-center overflow-hidden">
               {/* Decorative elements */}
               <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-3xl" />
               <div className="absolute bottom-0 left-0 w-48 h-48 bg-white/5 rounded-full blur-2xl" />

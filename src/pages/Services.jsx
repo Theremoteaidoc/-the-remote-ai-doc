@@ -4,6 +4,157 @@ import { Check, ArrowRight, Users, Brain, Shield, Globe, Phone, Mail, MessageSqu
 import { ScrollReveal } from '../components/ScrollReveal';
 import { Link } from 'react-router-dom';
 
+// Add custom CSS for animations
+const styles = `
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  .animate-fadeInUp {
+    animation: fadeInUp 0.5s ease-out forwards;
+  }
+`;
+
+// WhatsApp Demo Component
+const WhatsAppDemo = () => {
+  const [currentStep, setCurrentStep] = useState(0);
+  const [showTyping, setShowTyping] = useState(false);
+  const [visibleMessages, setVisibleMessages] = useState([]);
+
+  const messages = [
+    { type: 'patient', text: 'Hola, quiero agendar una cita para el Dr. García', delay: 1000 },
+    { type: 'bot', text: '¡Hola! Con gusto te ayudo. ¿Qué día te queda mejor? 📅', delay: 2000 },
+    { type: 'patient', text: 'El jueves a las 3pm', delay: 1500 },
+    { type: 'bot', text: '✅ Perfecto. Tu cita con el Dr. García queda confirmada para el jueves a las 3:00 PM. Te enviaremos un recordatorio.', delay: 2500 }
+  ];
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (currentStep < messages.length) {
+        const message = messages[currentStep];
+        
+        // Show typing indicator for bot messages
+        if (message.type === 'bot') {
+          setShowTyping(true);
+          setTimeout(() => {
+            setShowTyping(false);
+            setVisibleMessages(prev => [...prev, { ...message, id: currentStep, timestamp: new Date() }]);
+            setCurrentStep(prev => prev + 1);
+          }, 1500);
+        } else {
+          setVisibleMessages(prev => [...prev, { ...message, id: currentStep, timestamp: new Date() }]);
+          setCurrentStep(prev => prev + 1);
+        }
+      } else {
+        // Reset after 8 seconds
+        setTimeout(() => {
+          setCurrentStep(0);
+          setVisibleMessages([]);
+          setShowTyping(false);
+        }, 8000);
+      }
+    }, messages[currentStep]?.delay || 3000);
+
+    return () => clearInterval(interval);
+  }, [currentStep]);
+
+  return (
+    <>
+      <style>{styles}</style>
+      <div className="relative max-w-sm mx-auto">
+      {/* Phone Frame */}
+      <div className="relative bg-gray-900 rounded-3xl p-3 shadow-2xl">
+        <div className="bg-black rounded-2xl overflow-hidden">
+          {/* WhatsApp Header */}
+          <div className="bg-teal-600 px-4 py-3 flex items-center space-x-3">
+            <div className="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center">
+              <span className="text-white text-xs font-bold">DR</span>
+            </div>
+            <div className="flex-1">
+              <div className="text-white font-medium text-sm">Dr. García</div>
+              <div className="text-teal-100 text-xs">AutoMed Assistant</div>
+            </div>
+            <div className="flex space-x-1">
+              <div className="w-2 h-2 bg-white/60 rounded-full"></div>
+              <div className="w-2 h-2 bg-white/60 rounded-full"></div>
+              <div className="w-2 h-2 bg-white/60 rounded-full"></div>
+            </div>
+          </div>
+
+          {/* Chat Messages */}
+          <div className="bg-gray-100 h-80 p-4 space-y-3 overflow-y-auto">
+            {visibleMessages.map((message) => (
+              <div
+                key={message.id}
+                className={`flex ${message.type === 'patient' ? 'justify-end' : 'justify-start'} animate-fadeInUp`}
+              >
+                <div
+                  className={`max-w-xs px-4 py-2 rounded-2xl ${
+                    message.type === 'patient'
+                      ? 'bg-teal-500 text-white rounded-br-md'
+                      : 'bg-white text-gray-800 rounded-bl-md shadow-sm'
+                  }`}
+                >
+                  <p className="text-sm">{message.text}</p>
+                  <div className={`text-xs mt-1 flex items-center justify-end space-x-1 ${
+                    message.type === 'patient' ? 'text-teal-100' : 'text-gray-500'
+                  }`}>
+                    <span>{message.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>
+                    {message.type === 'patient' && (
+                      <div className="flex space-x-0.5">
+                        <div className="w-1 h-1 bg-teal-200 rounded-full"></div>
+                        <div className="w-1 h-1 bg-teal-200 rounded-full"></div>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </div>
+            ))}
+
+            {/* Typing Indicator */}
+            {showTyping && (
+              <div className="flex justify-start animate-fadeInUp">
+                <div className="bg-white px-4 py-2 rounded-2xl rounded-bl-md shadow-sm">
+                  <div className="flex space-x-1">
+                    <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"></div>
+                    <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
+                    <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
+
+          {/* Input Area */}
+          <div className="bg-gray-200 px-4 py-2 flex items-center space-x-3">
+            <div className="flex-1 bg-white rounded-full px-4 py-2">
+              <span className="text-gray-400 text-sm">Escribir mensaje...</span>
+            </div>
+            <div className="w-8 h-8 bg-teal-500 rounded-full flex items-center justify-center">
+              <span className="text-white text-sm">▶</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Floating Labels */}
+      <div className="absolute -top-4 -right-4 bg-teal-500 text-white px-3 py-1 rounded-full text-xs font-medium animate-pulse">
+        Automation en Vivo
+      </div>
+      <div className="absolute -bottom-4 -left-4 bg-green-500 text-white px-3 py-1 rounded-full text-xs font-medium animate-pulse" style={{animationDelay: '1s'}}>
+        24/7 Disponible
+      </div>
+    </div>
+    </>
+  );
+};
+
 // Bilingual content object
 const content = {
   en: {
@@ -128,25 +279,25 @@ const content = {
           number: '01',
           title: 'Discovery Call',
           description: 'Understand your workflows, pain points, and automation goals through detailed practice assessment.',
-          duration: '1 week'
+          duration: 'Tailored to your practice'
         },
         {
           number: '02',
           title: 'Audit & Strategy',
           description: 'Map inefficiencies and identify automation opportunities with clinical workflow analysis.',
-          duration: '1-2 weeks'
+          duration: 'Tailored to your practice'
         },
         {
           number: '03',
           title: 'Build & Integrate',
           description: 'Develop custom automation workflows, AI integrations, and connect with your existing systems.',
-          duration: '2-4 weeks'
+          duration: 'Tailored to your practice'
         },
         {
           number: '04',
           title: 'Optimize & Scale',
           description: 'Monitor performance, iterate based on results, and scale successful automations.',
-          duration: 'Ongoing'
+          duration: 'Tailored to your practice'
         }
       ]
     },
@@ -361,25 +512,25 @@ const content = {
           number: '01',
           title: 'Llamada Gratuita',
           description: 'Entendemos tus procesos clínicos, puntos de dolor y objetivos de automatización a través de evaluación detallada.',
-          duration: '1 semana'
+          duration: 'Adaptado a tu consultorio'
         },
         {
           number: '02',
           title: 'Auditoría y Estrategia',
           description: 'Mapeamos ineficiencias e identificamos oportunidades de automatización con análisis de flujos clínicos.',
-          duration: '1-2 semanas'
+          duration: 'Adaptado a tu consultorio'
         },
         {
           number: '03',
           title: 'Construir e Integrar',
           description: 'Desarrollamos flujos personalizados, integraciones IA y conectamos con tus sistemas existentes.',
-          duration: '2-4 semanas'
+          duration: 'Adaptado a tu consultorio'
         },
         {
           number: '04',
           title: 'Optimizar y Crecer',
           description: 'Monitoreamos rendimiento, mejoramos basado en resultados y escalamos automatizaciones exitosas.',
-          duration: 'Continuo'
+          duration: 'Adaptado a tu consultorio'
         }
       ]
     },
@@ -627,76 +778,7 @@ export default function Services() {
             </ScrollReveal>
 
             <ScrollReveal delay={100}>
-              <div className="relative">
-                {/* Demo Preview Card */}
-                <div className="bg-white rounded-2xl shadow-xl border border-slate-200 overflow-hidden">
-                  {/* Demo Browser Header */}
-                  <div className="bg-slate-100 px-4 py-3 border-b border-slate-200">
-                    <div className="flex items-center space-x-2">
-                      <div className="flex space-x-2">
-                        <div className="w-3 h-3 bg-red-400 rounded-full"></div>
-                        <div className="w-3 h-3 bg-yellow-400 rounded-full"></div>
-                        <div className="w-3 h-3 bg-green-400 rounded-full"></div>
-                      </div>
-                      <div className="flex-1 bg-white rounded px-3 py-1 text-sm text-slate-600">
-                        theremoteaidoc.com/demo
-                      </div>
-                    </div>
-                  </div>
-                  
-                  {/* Demo Content Preview */}
-                  <div className="p-6 space-y-6">
-                    <div className="text-center">
-                      <h3 className="text-2xl font-bold text-slate-900 mb-2">Clinical Automation</h3>
-                      <p className="text-slate-600">in Action</p>
-                    </div>
-                    
-                    {/* Feature Cards Preview */}
-                    <div className="grid grid-cols-2 gap-4">
-                      <div className="p-4 bg-teal-50 rounded-lg border border-teal-200">
-                        <div className="w-8 h-8 bg-teal-600 rounded-lg mb-2 flex items-center justify-center">
-                          <MessageSquare className="w-5 h-5 text-white" />
-                        </div>
-                        <h4 className="font-semibold text-slate-900 text-sm">Appointment Booking</h4>
-                        <p className="text-xs text-slate-600 mt-1">Automated scheduling</p>
-                      </div>
-                      <div className="p-4 bg-teal-50 rounded-lg border border-teal-200">
-                        <div className="w-8 h-8 bg-teal-600 rounded-lg mb-2 flex items-center justify-center">
-                          <Clock className="w-5 h-5 text-white" />
-                        </div>
-                        <h4 className="font-semibold text-slate-900 text-sm">Smart Reminders</h4>
-                        <p className="text-xs text-slate-600 mt-1">WhatsApp automation</p>
-                      </div>
-                      <div className="p-4 bg-teal-50 rounded-lg border border-teal-200">
-                        <div className="w-8 h-8 bg-teal-600 rounded-lg mb-2 flex items-center justify-center">
-                          <Star className="w-5 h-5 text-white" />
-                        </div>
-                        <h4 className="font-semibold text-slate-900 text-sm">Review Collection</h4>
-                        <p className="text-xs text-slate-600 mt-1">Auto Google reviews</p>
-                      </div>
-                      <div className="p-4 bg-teal-50 rounded-lg border border-teal-200">
-                        <div className="w-8 h-8 bg-teal-600 rounded-lg mb-2 flex items-center justify-center">
-                          <Users className="w-5 h-5 text-white" />
-                        </div>
-                        <h4 className="font-semibold text-slate-900 text-sm">Lead Capture</h4>
-                        <p className="text-xs text-slate-600 mt-1">Instant responses</p>
-                      </div>
-                    </div>
-
-                    {/* Demo CTA */}
-                    <div className="text-center pt-2">
-                      <div className="inline-flex items-center px-4 py-2 bg-teal-600 text-white rounded-lg text-sm font-medium">
-                        <Play className="w-4 h-4 mr-2" />
-                        Interactive Demo Available
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Floating Elements */}
-                <div className="absolute -top-4 -right-4 w-8 h-8 bg-teal-500 rounded-full animate-pulse"></div>
-                <div className="absolute -bottom-4 -left-4 w-6 h-6 bg-teal-300 rounded-full animate-pulse" style={{animationDelay: '1s'}}></div>
-              </div>
+              <WhatsAppDemo />
             </ScrollReveal>
           </div>
         </div>
@@ -976,6 +1058,18 @@ export default function Services() {
               </ScrollReveal>
             ))}
           </div>
+          
+          <ScrollReveal delay={300}>
+            <div className="text-center mt-12">
+              <Link
+                to="/blog"
+                className="inline-flex items-center space-x-2 px-6 py-3 text-teal-600 border border-teal-200 rounded-lg hover:bg-teal-50 hover:border-teal-300 transition-all duration-300 font-medium"
+              >
+                <span>Learn more on our blog</span>
+                <ArrowRight className="w-4 h-4" />
+              </Link>
+            </div>
+          </ScrollReveal>
         </div>
       </section>
 
