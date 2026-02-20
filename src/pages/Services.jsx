@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { Check, ArrowRight, Users, Brain, Shield, Globe, Phone, Mail, MessageSquare, BarChart, FileText, Zap, Star, Clock, HelpCircle, ChevronDown } from 'lucide-react';
+import { Check, ArrowRight, Users, Brain, Shield, Globe, Phone, Mail, MessageSquare, BarChart, FileText, Zap, Star, Clock, HelpCircle, ChevronDown, Play, ExternalLink } from 'lucide-react';
 import { ScrollReveal } from '../components/ScrollReveal';
+import { Link } from 'react-router-dom';
 
 // Bilingual content object
 const content = {
@@ -12,7 +13,7 @@ const content = {
       canonicalUrl: 'https://theremoteaidoc.com/services'
     },
     nav: {
-      language: 'ES',
+      language: 'Español',
       languageSwitch: 'Español'
     },
     hero: {
@@ -20,7 +21,16 @@ const content = {
       title: 'AI-Powered Automation',
       titleHighlight: 'for Healthcare',
       subtitle: 'Bringing clinical AI expertise to automate healthcare workflows, reduce administrative burden, and improve patient outcomes — built by a doctor who practices what he automates.',
-      cta: 'Schedule Discovery Call'
+      cta: 'Schedule Discovery Call',
+      demoButton: 'See Live Demo'
+    },
+    demoSection: {
+      badge: 'Interactive Demo',
+      title: 'See Automation in Action',
+      subtitle: 'Experience how our AutoMed clinical automation transforms patient workflows',
+      description: 'Try our interactive demo to see exactly how appointment scheduling, patient reminders, and review collection work in real medical practices.',
+      tryDemo: 'Try Interactive Demo',
+      viewResults: 'View Real Results'
     },
     tiers: {
       title: 'Choose Your Automation Level',
@@ -242,7 +252,7 @@ const content = {
       canonicalUrl: 'https://theremoteaidoc.com/servicios'
     },
     nav: {
-      language: 'EN',
+      language: 'English',
       languageSwitch: 'English'
     },
     hero: {
@@ -250,7 +260,16 @@ const content = {
       title: 'Automatización Inteligente',
       titleHighlight: 'para Consultorios',
       subtitle: 'Aplicando experiencia clínica en IA para automatizar procesos médicos, reducir carga administrativa y mejorar la atención al paciente — construido por un médico que usa lo que automatiza.',
-      cta: 'Agenda tu Llamada Gratis'
+      cta: 'Agenda tu Llamada Gratis',
+      demoButton: 'Ver Demo en Vivo'
+    },
+    demoSection: {
+      badge: 'Demo Interactivo',
+      title: 'Ve la Automatización en Acción',
+      subtitle: 'Experimenta cómo nuestra automatización clínica AutoMed transforma los flujos de trabajo de pacientes',
+      description: 'Prueba nuestro demo interactivo para ver exactamente cómo funciona la programación de citas, recordatorios de pacientes y recolección de reseñas en consultorios médicos reales.',
+      tryDemo: 'Probar Demo Interactivo',
+      viewResults: 'Ver Resultados Reales'
     },
     tiers: {
       title: 'Elige Tu Nivel de Automatización',
@@ -506,94 +525,215 @@ export default function Services() {
       </Helmet>
 
       {/* Language Toggle */}
-      <div className="fixed top-24 right-6 z-50">
+      <div className="fixed top-6 right-6 z-50">
         <button
           onClick={toggleLanguage}
-          className="px-4 py-2 bg-slate-900/80 backdrop-blur-sm border border-slate-800/50 rounded-lg text-slate-300 hover:text-white hover:border-teal-500/50 transition-all duration-300"
+          className="flex items-center space-x-2 px-4 py-2 bg-white/90 backdrop-blur-sm border border-slate-200 rounded-lg text-slate-700 hover:text-teal-600 hover:border-teal-200 transition-all duration-300 shadow-sm"
         >
-          {t.nav.language}
+          <Globe className="w-4 h-4" />
+          <span className="text-sm font-medium">{t.nav.language}</span>
         </button>
       </div>
 
       {/* Hero Section */}
-      <section className="relative pt-20 pb-32 lg:pt-32 lg:pb-40">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+      <section className="relative pt-8 pb-20 lg:pt-16 lg:pb-32 bg-gradient-to-br from-white to-slate-50">
+        {/* Background Elements */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-teal-50 rounded-full blur-3xl opacity-60" />
+          <div className="absolute bottom-1/4 left-1/4 w-80 h-80 bg-teal-100 rounded-full blur-3xl opacity-40" />
+        </div>
+
+        <div className="max-w-7xl mx-auto px-6 lg:px-8 relative">
           <div className="text-center max-w-4xl mx-auto">
             <ScrollReveal>
-              <div className="flex items-center justify-center space-x-2 text-teal-400 mb-6">
-                <Star className="w-4 h-4 fill-teal-400" />
-                <span className="text-sm">{t.hero.badge}</span>
+              <div className="flex items-center justify-center space-x-2 text-teal-600 mb-6">
+                <Star className="w-4 h-4 fill-teal-600" />
+                <span className="text-sm font-medium">{t.hero.badge}</span>
               </div>
             </ScrollReveal>
 
             <ScrollReveal delay={100}>
-              <h1 className="text-5xl lg:text-7xl tracking-tight leading-[1.1] mb-8">
+              <h1 className="text-5xl lg:text-7xl font-bold tracking-tight leading-[1.1] mb-8 text-slate-900">
                 {t.hero.title}<br />
-                <span className="relative inline-block text-teal-400">
+                <span className="relative inline-block text-teal-600">
                   {t.hero.titleHighlight}
-                  <span className="absolute -inset-1 pointer-events-none bg-teal-500/20 blur-2xl opacity-50" />
+                  <span className="absolute -bottom-2 left-0 right-0 h-1 bg-teal-200 rounded-full" />
                 </span>
               </h1>
             </ScrollReveal>
 
             <ScrollReveal delay={200}>
-              <p className="text-lg text-slate-400 leading-relaxed max-w-3xl mx-auto mb-10">
+              <p className="text-lg text-slate-600 leading-relaxed max-w-3xl mx-auto mb-10">
                 {t.hero.subtitle}
               </p>
             </ScrollReveal>
 
             <ScrollReveal delay={300}>
-              <button
-                onClick={() => window.Calendly?.initPopupWidget({ url: t.cta.calendlyUrl })}
-                className="relative px-8 py-4 bg-teal-500 text-slate-950 rounded-lg hover:bg-teal-400 transition-all duration-300 hover:scale-105 group overflow-hidden text-lg font-semibold"
-              >
-                <div className="absolute inset-0 bg-gradient-to-r from-teal-400 to-cyan-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                <div className="absolute -inset-1 pointer-events-none bg-teal-500/50 blur-lg opacity-0 group-hover:opacity-70 transition-opacity duration-300" />
-                <span className="relative flex items-center space-x-2">
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <button
+                  onClick={() => window.Calendly?.initPopupWidget({ url: t.cta.calendlyUrl })}
+                  className="px-8 py-4 bg-teal-600 text-white rounded-lg hover:bg-teal-700 transition-all duration-300 hover:scale-105 text-lg font-semibold flex items-center justify-center space-x-2"
+                >
                   <span>{t.hero.cta}</span>
                   <ArrowRight className="w-5 h-5" />
-                </span>
-              </button>
+                </button>
+                <Link
+                  to="/demo"
+                  className="px-8 py-4 bg-white text-teal-600 border border-teal-200 rounded-lg hover:bg-teal-50 hover:border-teal-300 transition-all duration-300 hover:scale-105 text-lg font-semibold flex items-center justify-center space-x-2"
+                >
+                  <Play className="w-5 h-5" />
+                  <span>{t.hero.demoButton}</span>
+                </Link>
+              </div>
+            </ScrollReveal>
+          </div>
+        </div>
+      </section>
+
+      {/* Demo Section - Prominent Integration */}
+      <section className="relative py-20 bg-white border-y border-slate-200">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            <ScrollReveal>
+              <div className="space-y-6">
+                <div className="text-sm text-teal-600 tracking-wider uppercase font-semibold">{t.demoSection.badge}</div>
+                <h2 className="text-4xl lg:text-5xl font-bold tracking-tight leading-tight text-slate-900">
+                  {t.demoSection.title}
+                </h2>
+                <p className="text-xl text-slate-600 leading-relaxed">
+                  {t.demoSection.subtitle}
+                </p>
+                <p className="text-lg text-slate-600 leading-relaxed">
+                  {t.demoSection.description}
+                </p>
+                <div className="flex flex-col sm:flex-row gap-4">
+                  <Link
+                    to="/demo"
+                    className="px-8 py-4 bg-teal-600 text-white rounded-lg hover:bg-teal-700 transition-all duration-300 hover:scale-105 text-lg font-semibold flex items-center justify-center space-x-2 group"
+                  >
+                    <Play className="w-5 h-5" />
+                    <span>{t.demoSection.tryDemo}</span>
+                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
+                  </Link>
+                  <Link
+                    to="/demo#stats-section"
+                    className="px-6 py-4 bg-white text-slate-700 border border-slate-200 rounded-lg hover:bg-slate-50 hover:border-teal-200 transition-all duration-300 text-lg font-medium flex items-center justify-center space-x-2"
+                  >
+                    <BarChart className="w-5 h-5" />
+                    <span>{t.demoSection.viewResults}</span>
+                  </Link>
+                </div>
+              </div>
+            </ScrollReveal>
+
+            <ScrollReveal delay={100}>
+              <div className="relative">
+                {/* Demo Preview Card */}
+                <div className="bg-white rounded-2xl shadow-xl border border-slate-200 overflow-hidden">
+                  {/* Demo Browser Header */}
+                  <div className="bg-slate-100 px-4 py-3 border-b border-slate-200">
+                    <div className="flex items-center space-x-2">
+                      <div className="flex space-x-2">
+                        <div className="w-3 h-3 bg-red-400 rounded-full"></div>
+                        <div className="w-3 h-3 bg-yellow-400 rounded-full"></div>
+                        <div className="w-3 h-3 bg-green-400 rounded-full"></div>
+                      </div>
+                      <div className="flex-1 bg-white rounded px-3 py-1 text-sm text-slate-600">
+                        theremoteaidoc.com/demo
+                      </div>
+                    </div>
+                  </div>
+                  
+                  {/* Demo Content Preview */}
+                  <div className="p-6 space-y-6">
+                    <div className="text-center">
+                      <h3 className="text-2xl font-bold text-slate-900 mb-2">Clinical Automation</h3>
+                      <p className="text-slate-600">in Action</p>
+                    </div>
+                    
+                    {/* Feature Cards Preview */}
+                    <div className="grid grid-cols-2 gap-4">
+                      <div className="p-4 bg-teal-50 rounded-lg border border-teal-200">
+                        <div className="w-8 h-8 bg-teal-600 rounded-lg mb-2 flex items-center justify-center">
+                          <MessageSquare className="w-5 h-5 text-white" />
+                        </div>
+                        <h4 className="font-semibold text-slate-900 text-sm">Appointment Booking</h4>
+                        <p className="text-xs text-slate-600 mt-1">Automated scheduling</p>
+                      </div>
+                      <div className="p-4 bg-teal-50 rounded-lg border border-teal-200">
+                        <div className="w-8 h-8 bg-teal-600 rounded-lg mb-2 flex items-center justify-center">
+                          <Clock className="w-5 h-5 text-white" />
+                        </div>
+                        <h4 className="font-semibold text-slate-900 text-sm">Smart Reminders</h4>
+                        <p className="text-xs text-slate-600 mt-1">WhatsApp automation</p>
+                      </div>
+                      <div className="p-4 bg-teal-50 rounded-lg border border-teal-200">
+                        <div className="w-8 h-8 bg-teal-600 rounded-lg mb-2 flex items-center justify-center">
+                          <Star className="w-5 h-5 text-white" />
+                        </div>
+                        <h4 className="font-semibold text-slate-900 text-sm">Review Collection</h4>
+                        <p className="text-xs text-slate-600 mt-1">Auto Google reviews</p>
+                      </div>
+                      <div className="p-4 bg-teal-50 rounded-lg border border-teal-200">
+                        <div className="w-8 h-8 bg-teal-600 rounded-lg mb-2 flex items-center justify-center">
+                          <Users className="w-5 h-5 text-white" />
+                        </div>
+                        <h4 className="font-semibold text-slate-900 text-sm">Lead Capture</h4>
+                        <p className="text-xs text-slate-600 mt-1">Instant responses</p>
+                      </div>
+                    </div>
+
+                    {/* Demo CTA */}
+                    <div className="text-center pt-2">
+                      <div className="inline-flex items-center px-4 py-2 bg-teal-600 text-white rounded-lg text-sm font-medium">
+                        <Play className="w-4 h-4 mr-2" />
+                        Interactive Demo Available
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Floating Elements */}
+                <div className="absolute -top-4 -right-4 w-8 h-8 bg-teal-500 rounded-full animate-pulse"></div>
+                <div className="absolute -bottom-4 -left-4 w-6 h-6 bg-teal-300 rounded-full animate-pulse" style={{animationDelay: '1s'}}></div>
+              </div>
             </ScrollReveal>
           </div>
         </div>
       </section>
 
       {/* Service Tiers */}
-      <section className="relative py-32">
+      <section className="relative py-32 bg-slate-50">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="text-center mb-20">
             <ScrollReveal>
-              <h2 className="text-4xl lg:text-5xl tracking-tight mb-4">{t.tiers.title}</h2>
+              <h2 className="text-4xl lg:text-5xl font-bold tracking-tight mb-4 text-slate-900">{t.tiers.title}</h2>
             </ScrollReveal>
             <ScrollReveal delay={100}>
-              <p className="text-lg text-slate-400 max-w-3xl mx-auto">{t.tiers.subtitle}</p>
+              <p className="text-lg text-slate-600 max-w-3xl mx-auto">{t.tiers.subtitle}</p>
             </ScrollReveal>
           </div>
 
           <div className="grid lg:grid-cols-3 gap-8">
             {/* Tier 1 */}
             <ScrollReveal delay={0}>
-              <div className="group relative p-8 bg-slate-900/40 border border-slate-800/50 rounded-2xl hover:border-teal-500/50 transition-all duration-500">
-                {/* Card Glow Effect */}
-                <div className="absolute -inset-0.5 pointer-events-none bg-gradient-to-r from-teal-500 to-cyan-500 rounded-2xl opacity-0 group-hover:opacity-20 blur-xl transition-opacity duration-500" />
-                
+              <div className="group relative p-8 bg-white border border-slate-200 rounded-2xl hover:border-teal-300 hover:shadow-lg transition-all duration-500">
                 {/* Badge */}
                 <div className="absolute -top-3 left-1/2 -translate-x-1/2">
-                  <div className="px-3 py-1 bg-teal-500 text-slate-950 rounded-full text-sm font-semibold">
+                  <div className="px-3 py-1 bg-teal-600 text-white rounded-full text-sm font-semibold">
                     {t.tiers.tier1.badge}
                   </div>
                 </div>
 
-                <div className="relative space-y-6">
-                  <div className="text-center pt-4">
-                    <h3 className="text-2xl text-white font-semibold mb-2">{t.tiers.tier1.name}</h3>
-                    <p className="text-slate-400 mb-4">{t.tiers.tier1.description}</p>
-                    <div className="text-4xl text-teal-400 font-bold mb-1">
+                <div className="space-y-6 pt-4">
+                  <div className="text-center">
+                    <h3 className="text-2xl font-bold text-slate-900 mb-2">{t.tiers.tier1.name}</h3>
+                    <p className="text-slate-600 mb-4">{t.tiers.tier1.description}</p>
+                    <div className="text-4xl font-bold text-teal-600 mb-1">
                       {t.tiers.tier1.price}
                       <span className="text-lg text-slate-500"><br />{t.tiers.tier1.period}</span>
                     </div>
-                    <div className="text-sm text-slate-400">
+                    <div className="text-sm text-slate-500">
                       {t.tiers.tier1.maintenance}
                     </div>
                   </div>
@@ -601,21 +741,21 @@ export default function Services() {
                   <ul className="space-y-3">
                     {t.tiers.tier1.features.map((feature, index) => (
                       <li key={index} className="flex items-start space-x-3">
-                        <Check className="w-5 h-5 text-teal-400 flex-shrink-0 mt-0.5" />
-                        <span className="text-slate-300">{feature}</span>
+                        <Check className="w-5 h-5 text-teal-600 flex-shrink-0 mt-0.5" />
+                        <span className="text-slate-600">{feature}</span>
                       </li>
                     ))}
                   </ul>
 
-                  <div className="pt-4 border-t border-slate-800/50">
-                    <p className="text-sm text-slate-400 mb-4">
+                  <div className="pt-4 border-t border-slate-200">
+                    <p className="text-sm text-slate-500 mb-4">
                       <strong>Best for:</strong> {t.tiers.tier1.bestFor}
                     </p>
                     <a 
                       href={t.tiers.tier1.stripeLink} 
                       target="_blank" 
                       rel="noopener noreferrer"
-                      className="block w-full px-6 py-3 bg-slate-800 text-white rounded-lg hover:bg-slate-700 transition-colors duration-300 text-center"
+                      className="block w-full px-6 py-3 bg-slate-100 text-slate-700 rounded-lg hover:bg-slate-200 transition-colors duration-300 text-center font-medium"
                     >
                       {t.tiers.tier1.cta}
                     </a>
@@ -626,26 +766,23 @@ export default function Services() {
 
             {/* Tier 2 */}
             <ScrollReveal delay={100}>
-              <div className="group relative p-8 bg-slate-900/40 border border-teal-500/50 rounded-2xl hover:border-teal-500 transition-all duration-500 scale-105">
-                {/* Card Glow Effect */}
-                <div className="absolute -inset-0.5 pointer-events-none bg-gradient-to-r from-teal-500 to-cyan-500 rounded-2xl opacity-20 group-hover:opacity-30 blur-xl transition-opacity duration-500" />
-                
+              <div className="group relative p-8 bg-white border-2 border-teal-300 rounded-2xl hover:border-teal-400 hover:shadow-xl transition-all duration-500 scale-105">
                 {/* Badge */}
                 <div className="absolute -top-3 left-1/2 -translate-x-1/2">
-                  <div className="px-3 py-1 bg-gradient-to-r from-teal-500 to-cyan-500 text-slate-950 rounded-full text-sm font-semibold">
+                  <div className="px-3 py-1 bg-gradient-to-r from-teal-600 to-teal-700 text-white rounded-full text-sm font-semibold">
                     {t.tiers.tier2.badge}
                   </div>
                 </div>
 
-                <div className="relative space-y-6">
-                  <div className="text-center pt-4">
-                    <h3 className="text-2xl text-white font-semibold mb-2">{t.tiers.tier2.name}</h3>
-                    <p className="text-slate-400 mb-4">{t.tiers.tier2.description}</p>
-                    <div className="text-4xl text-teal-400 font-bold mb-1">
+                <div className="space-y-6 pt-4">
+                  <div className="text-center">
+                    <h3 className="text-2xl font-bold text-slate-900 mb-2">{t.tiers.tier2.name}</h3>
+                    <p className="text-slate-600 mb-4">{t.tiers.tier2.description}</p>
+                    <div className="text-4xl font-bold text-teal-600 mb-1">
                       {t.tiers.tier2.price}
                       <span className="text-lg text-slate-500"><br />{t.tiers.tier2.period}</span>
                     </div>
-                    <div className="text-sm text-slate-400">
+                    <div className="text-sm text-slate-500">
                       {t.tiers.tier2.maintenance}
                     </div>
                   </div>
@@ -653,21 +790,21 @@ export default function Services() {
                   <ul className="space-y-3">
                     {t.tiers.tier2.features.map((feature, index) => (
                       <li key={index} className="flex items-start space-x-3">
-                        <Check className="w-5 h-5 text-teal-400 flex-shrink-0 mt-0.5" />
-                        <span className="text-slate-300">{feature}</span>
+                        <Check className="w-5 h-5 text-teal-600 flex-shrink-0 mt-0.5" />
+                        <span className="text-slate-600">{feature}</span>
                       </li>
                     ))}
                   </ul>
 
-                  <div className="pt-4 border-t border-slate-800/50">
-                    <p className="text-sm text-slate-400 mb-4">
+                  <div className="pt-4 border-t border-slate-200">
+                    <p className="text-sm text-slate-500 mb-4">
                       <strong>Best for:</strong> {t.tiers.tier2.bestFor}
                     </p>
                     <a 
                       href={t.tiers.tier2.stripeLink} 
                       target="_blank" 
                       rel="noopener noreferrer"
-                      className="block w-full px-6 py-3 bg-teal-500 text-slate-950 rounded-lg hover:bg-teal-400 transition-colors duration-300 font-semibold text-center"
+                      className="block w-full px-6 py-3 bg-teal-600 text-white rounded-lg hover:bg-teal-700 transition-colors duration-300 font-semibold text-center"
                     >
                       {t.tiers.tier2.cta}
                     </a>
@@ -678,26 +815,23 @@ export default function Services() {
 
             {/* Tier 3 */}
             <ScrollReveal delay={200}>
-              <div className="group relative p-8 bg-slate-900/40 border border-slate-800/50 rounded-2xl hover:border-teal-500/50 transition-all duration-500">
-                {/* Card Glow Effect */}
-                <div className="absolute -inset-0.5 pointer-events-none bg-gradient-to-r from-teal-500 to-cyan-500 rounded-2xl opacity-0 group-hover:opacity-20 blur-xl transition-opacity duration-500" />
-                
+              <div className="group relative p-8 bg-white border border-slate-200 rounded-2xl hover:border-teal-300 hover:shadow-lg transition-all duration-500">
                 {/* Badge */}
                 <div className="absolute -top-3 left-1/2 -translate-x-1/2">
-                  <div className="px-3 py-1 bg-slate-800 text-slate-300 rounded-full text-sm font-semibold border border-slate-700">
+                  <div className="px-3 py-1 bg-slate-100 text-slate-600 rounded-full text-sm font-semibold border border-slate-300">
                     {t.tiers.tier3.badge}
                   </div>
                 </div>
 
-                <div className="relative space-y-6">
-                  <div className="text-center pt-4">
-                    <h3 className="text-2xl text-white font-semibold mb-2">{t.tiers.tier3.name}</h3>
-                    <p className="text-slate-400 mb-4">{t.tiers.tier3.description}</p>
-                    <div className="text-4xl text-teal-400 font-bold mb-1">
+                <div className="space-y-6 pt-4">
+                  <div className="text-center">
+                    <h3 className="text-2xl font-bold text-slate-900 mb-2">{t.tiers.tier3.name}</h3>
+                    <p className="text-slate-600 mb-4">{t.tiers.tier3.description}</p>
+                    <div className="text-4xl font-bold text-teal-600 mb-1">
                       {t.tiers.tier3.price}
                       <span className="text-lg text-slate-500"><br />{t.tiers.tier3.period}</span>
                     </div>
-                    <div className="text-sm text-slate-400">
+                    <div className="text-sm text-slate-500">
                       {t.tiers.tier3.maintenance}
                     </div>
                   </div>
@@ -705,21 +839,21 @@ export default function Services() {
                   <ul className="space-y-3">
                     {t.tiers.tier3.features.map((feature, index) => (
                       <li key={index} className="flex items-start space-x-3">
-                        <Check className="w-5 h-5 text-teal-400 flex-shrink-0 mt-0.5" />
-                        <span className="text-slate-300">{feature}</span>
+                        <Check className="w-5 h-5 text-teal-600 flex-shrink-0 mt-0.5" />
+                        <span className="text-slate-600">{feature}</span>
                       </li>
                     ))}
                   </ul>
 
-                  <div className="pt-4 border-t border-slate-800/50">
-                    <p className="text-sm text-slate-400 mb-4">
+                  <div className="pt-4 border-t border-slate-200">
+                    <p className="text-sm text-slate-500 mb-4">
                       <strong>Best for:</strong> {t.tiers.tier3.bestFor}
                     </p>
                     <a 
                       href={t.tiers.tier3.stripeLink} 
                       target="_blank" 
                       rel="noopener noreferrer"
-                      className="block w-full px-6 py-3 bg-slate-800 text-white rounded-lg hover:bg-slate-700 transition-colors duration-300 text-center"
+                      className="block w-full px-6 py-3 bg-slate-100 text-slate-700 rounded-lg hover:bg-slate-200 transition-colors duration-300 text-center font-medium"
                     >
                       {t.tiers.tier3.cta}
                     </a>
@@ -732,17 +866,17 @@ export default function Services() {
       </section>
 
       {/* Why Choose Us */}
-      <section className="relative py-32 bg-slate-950">
+      <section className="relative py-32 bg-white">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="text-center mb-16">
             <ScrollReveal>
-              <h2 className="text-4xl lg:text-5xl tracking-tight mb-4">{t.whyUs.title}</h2>
+              <h2 className="text-4xl lg:text-5xl font-bold tracking-tight mb-4 text-slate-900">{t.whyUs.title}</h2>
             </ScrollReveal>
             <ScrollReveal delay={100}>
-              <h3 className="text-2xl text-teal-400 mb-6">{t.whyUs.subtitle}</h3>
+              <h3 className="text-2xl text-teal-600 mb-6">{t.whyUs.subtitle}</h3>
             </ScrollReveal>
             <ScrollReveal delay={200}>
-              <p className="text-lg text-slate-400 max-w-3xl mx-auto">{t.whyUs.description}</p>
+              <p className="text-lg text-slate-600 max-w-3xl mx-auto">{t.whyUs.description}</p>
             </ScrollReveal>
           </div>
 
@@ -751,17 +885,12 @@ export default function Services() {
               const IconComponent = getIcon(value.icon);
               return (
                 <ScrollReveal key={index} delay={index * 100}>
-                  <div className="group relative p-6 bg-slate-900/40 border border-slate-800/50 rounded-2xl hover:border-teal-500/50 transition-all duration-500 text-center">
-                    {/* Card Glow Effect */}
-                    <div className="absolute -inset-0.5 pointer-events-none bg-gradient-to-r from-teal-500 to-cyan-500 rounded-2xl opacity-0 group-hover:opacity-20 blur-xl transition-opacity duration-500" />
-                    
-                    <div className="relative">
-                      <div className="w-16 h-16 bg-teal-500/10 rounded-xl flex items-center justify-center mx-auto mb-4 group-hover:bg-teal-500/20 transition-colors duration-500">
-                        <IconComponent className="w-8 h-8 text-teal-400 group-hover:scale-110 transition-transform duration-300" />
-                      </div>
-                      <h3 className="text-xl text-white mb-3">{value.title}</h3>
-                      <p className="text-slate-400">{value.description}</p>
+                  <div className="group relative p-6 bg-white border border-slate-200 rounded-2xl hover:border-teal-300 hover:shadow-lg transition-all duration-500 text-center">
+                    <div className="w-16 h-16 bg-teal-100 rounded-xl flex items-center justify-center mx-auto mb-4 group-hover:bg-teal-200 transition-colors duration-500">
+                      <IconComponent className="w-8 h-8 text-teal-600 group-hover:scale-110 transition-transform duration-300" />
                     </div>
+                    <h3 className="text-xl font-bold text-slate-900 mb-3">{value.title}</h3>
+                    <p className="text-slate-600">{value.description}</p>
                   </div>
                 </ScrollReveal>
               );
@@ -771,14 +900,14 @@ export default function Services() {
       </section>
 
       {/* Process */}
-      <section className="relative py-32">
+      <section className="relative py-32 bg-slate-50">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="text-center mb-16">
             <ScrollReveal>
-              <h2 className="text-4xl lg:text-5xl tracking-tight mb-4">{t.process.title}</h2>
+              <h2 className="text-4xl lg:text-5xl font-bold tracking-tight mb-4 text-slate-900">{t.process.title}</h2>
             </ScrollReveal>
             <ScrollReveal delay={100}>
-              <p className="text-lg text-slate-400 max-w-2xl mx-auto">{t.process.subtitle}</p>
+              <p className="text-lg text-slate-600 max-w-2xl mx-auto">{t.process.subtitle}</p>
             </ScrollReveal>
           </div>
 
@@ -788,24 +917,23 @@ export default function Services() {
                 <div className="relative">
                   {/* Connector Line */}
                   {index < t.process.steps.length - 1 && (
-                    <div className="hidden lg:block absolute top-12 left-full w-full h-0.5 bg-gradient-to-r from-teal-500 to-transparent opacity-30 -translate-y-1/2" 
+                    <div className="hidden lg:block absolute top-12 left-full w-full h-0.5 bg-gradient-to-r from-teal-300 to-transparent opacity-50 -translate-y-1/2" 
                          style={{ width: 'calc(100% - 2rem)' }} />
                   )}
                   
                   <div className="group text-center space-y-4">
                     <div className="relative inline-block">
-                      <div className="w-24 h-24 bg-slate-900/40 border border-slate-800/50 rounded-2xl flex items-center justify-center group-hover:border-teal-500/50 transition-all duration-500">
-                        <span className="text-2xl font-bold text-teal-400">{step.number}</span>
+                      <div className="w-24 h-24 bg-white border border-slate-200 rounded-2xl flex items-center justify-center group-hover:border-teal-300 group-hover:shadow-lg transition-all duration-500">
+                        <span className="text-2xl font-bold text-teal-600">{step.number}</span>
                       </div>
-                      <div className="absolute -inset-1 pointer-events-none bg-teal-500/20 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                     </div>
                     
                     <div>
-                      <h3 className="text-xl text-white mb-2">{step.title}</h3>
-                      <p className="text-slate-400 mb-3">{step.description}</p>
-                      <div className="flex items-center justify-center space-x-1 text-teal-400">
+                      <h3 className="text-xl font-bold text-slate-900 mb-2">{step.title}</h3>
+                      <p className="text-slate-600 mb-3">{step.description}</p>
+                      <div className="flex items-center justify-center space-x-1 text-teal-600">
                         <Clock className="w-4 h-4" />
-                        <span className="text-sm">{step.duration}</span>
+                        <span className="text-sm font-medium">{step.duration}</span>
                       </div>
                     </div>
                   </div>
@@ -817,31 +945,31 @@ export default function Services() {
       </section>
 
       {/* FAQ */}
-      <section className="relative py-32 bg-slate-950">
+      <section className="relative py-32 bg-white">
         <div className="max-w-4xl mx-auto px-6 lg:px-8">
           <div className="text-center mb-16">
             <ScrollReveal>
-              <h2 className="text-4xl lg:text-5xl tracking-tight mb-4">{t.faq.title}</h2>
+              <h2 className="text-4xl lg:text-5xl font-bold tracking-tight mb-4 text-slate-900">{t.faq.title}</h2>
             </ScrollReveal>
             <ScrollReveal delay={100}>
-              <p className="text-lg text-slate-400">{t.faq.subtitle}</p>
+              <p className="text-lg text-slate-600">{t.faq.subtitle}</p>
             </ScrollReveal>
           </div>
 
           <div className="space-y-4">
             {t.faq.questions.map((item, index) => (
               <ScrollReveal key={index} delay={index * 50}>
-                <div className="bg-slate-900/40 border border-slate-800/50 rounded-xl overflow-hidden hover:border-slate-700/50 transition-colors duration-300">
+                <div className="bg-white border border-slate-200 rounded-xl overflow-hidden hover:border-slate-300 hover:shadow-lg transition-all duration-300">
                   <button
                     onClick={() => toggleFaq(index)}
-                    className="w-full px-6 py-6 text-left flex items-center justify-between hover:bg-slate-900/60 transition-colors duration-300"
+                    className="w-full px-6 py-6 text-left flex items-center justify-between hover:bg-slate-50 transition-colors duration-300"
                   >
-                    <span className="text-lg text-white pr-4">{item.question}</span>
-                    <ChevronDown className={`w-5 h-5 text-teal-400 flex-shrink-0 transition-transform duration-300 ${openFaq === index ? 'rotate-180' : ''}`} />
+                    <span className="text-lg font-semibold text-slate-900 pr-4">{item.question}</span>
+                    <ChevronDown className={`w-5 h-5 text-teal-600 flex-shrink-0 transition-transform duration-300 ${openFaq === index ? 'rotate-180' : ''}`} />
                   </button>
                   {openFaq === index && (
                     <div className="px-6 pb-6">
-                      <p className="text-slate-400 leading-relaxed">{item.answer}</p>
+                      <p className="text-slate-600 leading-relaxed">{item.answer}</p>
                     </div>
                   )}
                 </div>
@@ -852,28 +980,28 @@ export default function Services() {
       </section>
 
       {/* Final CTA */}
-      <section className="relative py-32">
+      <section className="relative py-32 bg-slate-50">
         <div className="max-w-4xl mx-auto px-6 lg:px-8">
           <ScrollReveal>
-            <div className="relative rounded-3xl bg-gradient-to-br from-teal-600 to-teal-500 p-12 lg:p-16 overflow-hidden text-center">
+            <div className="relative rounded-3xl bg-gradient-to-br from-teal-600 to-teal-700 p-12 lg:p-16 overflow-hidden text-center text-white">
               {/* Decorative Blur */}
               <div className="absolute top-0 right-0 w-64 h-64 bg-white/20 rounded-full blur-3xl" />
               <div className="absolute bottom-0 left-0 w-48 h-48 bg-white/10 rounded-full blur-2xl" />
 
               <div className="relative space-y-6">
-                <h2 className="text-3xl lg:text-4xl text-slate-900 font-bold">
+                <h2 className="text-3xl lg:text-4xl font-bold">
                   {t.cta.title}
                 </h2>
-                <p className="text-xl text-slate-900/80 max-w-2xl mx-auto">
+                <p className="text-xl text-teal-100 max-w-2xl mx-auto">
                   {t.cta.subtitle}
                 </p>
-                <p className="text-slate-900/70">
+                <p className="text-teal-100">
                   {t.cta.description}
                 </p>
                 
                 <button
                   onClick={() => window.Calendly?.initPopupWidget({ url: t.cta.calendlyUrl })}
-                  className="inline-flex items-center space-x-3 px-8 py-4 bg-slate-900 text-white rounded-lg hover:bg-slate-800 transition-all duration-300 hover:scale-105 text-lg font-semibold"
+                  className="inline-flex items-center space-x-3 px-8 py-4 bg-white text-teal-700 rounded-lg hover:bg-slate-50 transition-all duration-300 hover:scale-105 text-lg font-semibold"
                 >
                   <span>{t.cta.button}</span>
                   <ArrowRight className="w-5 h-5" />

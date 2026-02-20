@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Routes, Route, Link, useLocation } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
-import { Star, ArrowRight, Linkedin, Twitter, Youtube, Stethoscope, Brain, Ship, BookOpen } from 'lucide-react';
+import { Star, ArrowRight, Linkedin, Twitter, Youtube, Stethoscope, Brain, Ship, BookOpen, Globe, Menu, X } from 'lucide-react';
 import { ScrollReveal } from './components/ScrollReveal';
 import Blog from './pages/Blog';
 import BlogPost from './pages/BlogPost';
@@ -9,174 +9,366 @@ import Services from './pages/Services';
 import Servicios from './pages/Servicios';
 import Demo from './pages/Demo';
 
+// Language context for global state management
+const languages = {
+  en: {
+    nav: {
+      about: 'About',
+      expertise: 'Expertise', 
+      services: 'Services',
+      demo: 'Live Demo',
+      connect: 'Connect',
+      blog: 'Blog',
+      bookCall: 'Book a Call',
+      language: 'Español'
+    },
+    hero: {
+      badge: 'Your Guide to Clinical AI from the Edge of Medicine',
+      title: 'Redefining',
+      subtitle: 'the Future of',
+      highlight: 'Clinical',
+      lastWord: 'AI',
+      description: 'I practice medicine 1,000 miles from the nearest hospital — and I train the AI systems that will help the next generation of doctors do the same.',
+      emailPlaceholder: 'Enter your email',
+      subscribe: 'Subscribe',
+      joinText: 'Join 100+ healthcare professionals'
+    },
+    stats: {
+      miles: 'Miles from Shore',
+      patients: 'Patients Treated at Sea',
+      experience: 'Years Clinical Exp',
+      platforms: 'AI Training Platforms',
+      cases: 'Clinical LLM Cases'
+    },
+    about: {
+      badge: 'About',
+      title: 'Not Your Typical',
+      subtitle: 'AI Expert',
+      para1: 'Most AI trainers work from coffee shops. I work from the middle of the ocean, practicing emergency medicine on cruise ships where the nearest hospital is days away by helicopter.',
+      para2: 'This unique perspective—balancing high-stakes clinical decisions with cutting-edge AI development—gives me an insider\'s understanding of what healthcare AI actually needs to be: reliable, practical, and trustworthy when it matters most.',
+      para3: 'I bridge the gap between the technical capabilities of AI and the real-world demands of medicine, training AI systems for leading platforms while staying on the front lines of patient care.'
+    },
+    quote: 'When you\'re the only doctor for thousands of people,',
+    quoteHighlight: 'AI isn\'t a luxury — it\'s survival.',
+    expertise: {
+      badge: 'Expertise',
+      title: 'What I Bring',
+      clinical: {
+        title: 'Clinical Practice',
+        items: [
+          'Ship Physician, Royal Caribbean',
+          '10+ Years Emergency & Maritime Medicine', 
+          'High-stakes decision making in isolation'
+        ]
+      },
+      ai: {
+        title: 'AI Training & Evaluation',
+        items: [
+          'Medical AI Trainer — Mercor AI, Micro1, Pareto, Alignerr',
+          'RLHF & Prompt Engineering',
+          'Clinical Peer Reviewer'
+        ]
+      },
+      remote: {
+        title: 'Remote Medicine',
+        items: [
+          'Practicing 1,000+ miles from hospitals',
+          'Telemedicine & AI-assisted diagnosis',
+          'Resource-limited healthcare solutions'
+        ]
+      },
+      content: {
+        title: 'Healthcare AI Content',
+        items: [
+          'Clinical AI tool reviews',
+          'Practical implementation guides',
+          'Future of medicine insights'
+        ]
+      }
+    },
+    connect: {
+      badge: 'Connect',
+      title: 'Let\'s Connect',
+      description: 'Follow along as I navigate the intersection of remote medicine and artificial intelligence'
+    },
+    cta: {
+      title: 'Ready to explore the future of clinical AI?',
+      description: 'Join my weekly newsletter for practical insights on healthcare AI, remote medicine, and the tools shaping tomorrow\'s clinical practice.',
+      emailPlaceholder: 'Enter your email',
+      subscribe: 'Subscribe'
+    },
+    footer: {
+      privacy: 'Privacy',
+      terms: 'Terms',
+      contact: 'Contact'
+    }
+  },
+  es: {
+    nav: {
+      about: 'Acerca de',
+      expertise: 'Experiencia',
+      services: 'Servicios',
+      demo: 'Demo en Vivo',
+      connect: 'Contacto',
+      blog: 'Blog',
+      bookCall: 'Agendar Llamada',
+      language: 'English'
+    },
+    hero: {
+      badge: 'Tu Guía de IA Clínica desde el Borde de la Medicina',
+      title: 'Redefiniendo',
+      subtitle: 'el Futuro de la',
+      highlight: 'IA',
+      lastWord: 'Clínica',
+      description: 'Practico medicina a 1,000 millas del hospital más cercano — y entreno los sistemas de IA que ayudarán a la próxima generación de médicos a hacer lo mismo.',
+      emailPlaceholder: 'Ingresa tu email',
+      subscribe: 'Suscribirse',
+      joinText: 'Únete a 100+ profesionales de la salud'
+    },
+    stats: {
+      miles: 'Millas de la Costa',
+      patients: 'Pacientes Tratados en el Mar',
+      experience: 'Años Experiencia Clínica',
+      platforms: 'Plataformas de Entrenamiento IA',
+      cases: 'Casos Clínicos LLM'
+    },
+    about: {
+      badge: 'Acerca de',
+      title: 'No Soy el Típico',
+      subtitle: 'Experto en IA',
+      para1: 'La mayoría de entrenadores de IA trabajan desde cafeterías. Yo trabajo desde el medio del océano, practicando medicina de emergencia en cruceros donde el hospital más cercano está a días de distancia en helicóptero.',
+      para2: 'Esta perspectiva única—equilibrando decisiones clínicas de alto riesgo con desarrollo de IA de vanguardia—me da una comprensión interna de lo que la IA médica realmente necesita ser: confiable, práctica y digna de confianza cuando más importa.',
+      para3: 'Construyo el puente entre las capacidades técnicas de la IA y las demandas del mundo real de la medicina, entrenando sistemas de IA para plataformas líderes mientras permanezco en primera línea del cuidado de pacientes.'
+    },
+    quote: 'Cuando eres el único médico para miles de personas,',
+    quoteHighlight: 'la IA no es un lujo — es supervivencia.',
+    expertise: {
+      badge: 'Experiencia',
+      title: 'Lo Que Aporto',
+      clinical: {
+        title: 'Práctica Clínica',
+        items: [
+          'Médico de Barco, Royal Caribbean',
+          '10+ Años Medicina de Emergencia y Marítima',
+          'Toma de decisiones de alto riesgo en aislamiento'
+        ]
+      },
+      ai: {
+        title: 'Entrenamiento y Evaluación de IA',
+        items: [
+          'Entrenador de IA Médica — Mercor AI, Micro1, Pareto, Alignerr',
+          'RLHF e Ingeniería de Prompts',
+          'Revisor Clínico de Pares'
+        ]
+      },
+      remote: {
+        title: 'Medicina Remota',
+        items: [
+          'Practicando a 1,000+ millas de hospitales',
+          'Telemedicina y diagnóstico asistido por IA',
+          'Soluciones de atención médica con recursos limitados'
+        ]
+      },
+      content: {
+        title: 'Contenido de IA Médica',
+        items: [
+          'Revisiones de herramientas de IA clínica',
+          'Guías de implementación práctica',
+          'Perspectivas del futuro de la medicina'
+        ]
+      }
+    },
+    connect: {
+      badge: 'Contacto',
+      title: 'Conectemos',
+      description: 'Sígueme mientras navego la intersección de medicina remota e inteligencia artificial'
+    },
+    cta: {
+      title: '¿Listo para explorar el futuro de la IA clínica?',
+      description: 'Únete a mi boletín semanal para conocimientos prácticos sobre IA médica, medicina remota y las herramientas que moldean la práctica clínica del mañana.',
+      emailPlaceholder: 'Ingresa tu email',
+      subscribe: 'Suscribirse'
+    },
+    footer: {
+      privacy: 'Privacidad',
+      terms: 'Términos',
+      contact: 'Contacto'
+    }
+  }
+};
+
 function Layout({ children }) {
-  const [scrollY, setScrollY] = useState(0);
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [currentLang, setCurrentLang] = useState('en');
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const location = useLocation();
 
-  useEffect(() => {
-    const handleScroll = () => setScrollY(window.scrollY);
-    const handleMouseMove = (e) => {
-      setMousePosition({ x: e.clientX, y: e.clientY });
-    };
+  const t = languages[currentLang];
 
-    window.addEventListener('scroll', handleScroll);
-    window.addEventListener('mousemove', handleMouseMove);
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-      window.removeEventListener('mousemove', handleMouseMove);
-    };
-  }, []);
+  const toggleLanguage = () => {
+    setCurrentLang(currentLang === 'en' ? 'es' : 'en');
+  };
 
   // Scroll to top on route change
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [location.pathname]);
 
+  // Close mobile menu on route change
+  useEffect(() => {
+    setMobileMenuOpen(false);
+  }, [location.pathname]);
+
   return (
-    <div className="min-h-screen bg-slate-950 text-white overflow-x-hidden">
-      {/* Aurora Background Effect */}
-      <div className="fixed inset-0 overflow-hidden pointer-events-none">
-        {/* Primary Aurora Glow */}
-        <div
-          className="absolute -top-1/2 left-1/2 -translate-x-1/2 w-[1200px] h-[1200px] rounded-full opacity-20 animate-pulse"
-          style={{
-            background: 'radial-gradient(circle, rgba(45, 212, 191, 0.3) 0%, rgba(34, 211, 238, 0.2) 30%, transparent 70%)',
-            animation: 'pulse 8s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-          }}
-        />
-
-        {/* Secondary Parallax Glow */}
-        <div
-          className="absolute top-1/4 right-1/4 w-[800px] h-[800px] rounded-full opacity-15"
-          style={{
-            background: 'radial-gradient(circle, rgba(34, 211, 238, 0.25) 0%, transparent 60%)',
-            transform: `translateY(${scrollY * 0.3}px)`,
-            animation: 'float 10s ease-in-out infinite',
-          }}
-        />
-
-        {/* Tertiary Moving Glow */}
-        <div
-          className="absolute bottom-1/4 left-1/3 w-[600px] h-[600px] rounded-full opacity-10"
-          style={{
-            background: 'radial-gradient(circle, rgba(45, 212, 191, 0.3) 0%, transparent 50%)',
-            animation: 'float 12s ease-in-out infinite reverse',
-          }}
-        />
-
-        {/* Mouse Follow Glow */}
-        <div
-          className="absolute w-[500px] h-[500px] rounded-full opacity-5 pointer-events-none transition-all duration-1000 ease-out"
-          style={{
-            background: 'radial-gradient(circle, rgba(45, 212, 191, 0.4) 0%, transparent 70%)',
-            left: `${mousePosition.x - 250}px`,
-            top: `${mousePosition.y - 250}px`,
-          }}
-        />
-
-        {/* Subtle Grid Overlay */}
-        <div
-          className="absolute inset-0 opacity-[0.02]"
-          style={{
-            backgroundImage: 'linear-gradient(rgba(148, 163, 184, 0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(148, 163, 184, 0.5) 1px, transparent 1px)',
-            backgroundSize: '50px 50px',
-          }}
-        />
+    <div className="min-h-screen bg-white text-slate-800">
+      {/* Global language toggle - fixed position */}
+      <div className="fixed top-6 right-6 z-50">
+        <button
+          onClick={toggleLanguage}
+          className="flex items-center space-x-2 px-4 py-2 bg-white/90 backdrop-blur-sm border border-slate-200 rounded-lg text-slate-700 hover:text-teal-600 hover:border-teal-200 transition-all duration-300 shadow-sm"
+        >
+          <Globe className="w-4 h-4" />
+          <span className="text-sm font-medium">{t.nav.language}</span>
+        </button>
       </div>
-
-      {/* Floating Particles */}
-      <div className="fixed inset-0 overflow-hidden pointer-events-none">
-        {[...Array(20)].map((_, i) => (
-          <div
-            key={i}
-            className="absolute w-1 h-1 bg-teal-400/30 rounded-full"
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              animation: `float ${5 + Math.random() * 10}s ease-in-out infinite`,
-              animationDelay: `${Math.random() * 5}s`,
-            }}
-          />
-        ))}
-      </div>
-
-      {/* CSS Animations */}
-      <style>{`
-        @keyframes float {
-          0%, 100% { transform: translateY(0px) translateX(0px); }
-          25% { transform: translateY(-20px) translateX(10px); }
-          50% { transform: translateY(-10px) translateX(-10px); }
-          75% { transform: translateY(-30px) translateX(5px); }
-        }
-
-        @keyframes glow-pulse {
-          0%, 100% { opacity: 0.5; filter: blur(20px); }
-          50% { opacity: 0.8; filter: blur(25px); }
-        }
-
-        @keyframes border-flow {
-          0%, 100% { border-color: rgba(100, 116, 139, 0.3); }
-          50% { border-color: rgba(45, 212, 191, 0.5); }
-        }
-
-        @keyframes shimmer {
-          0% { background-position: -200% center; }
-          100% { background-position: 200% center; }
-        }
-      `}</style>
 
       {/* Navigation */}
-      <nav className="relative z-50 border-b border-slate-800/50 backdrop-blur-sm">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8 py-6">
-          <div className="flex items-center justify-between">
+      <nav className="sticky top-0 z-40 bg-white/95 backdrop-blur-sm border-b border-slate-200">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+          <div className="flex items-center justify-between h-20">
+            {/* Logo */}
             <Link to="/" className="flex items-center space-x-2">
-              <span className="text-2xl tracking-tight">
-                <span className="text-teal-400">Remote</span>
-                <span className="text-white">AIDoc</span>
+              <span className="text-2xl font-bold tracking-tight">
+                <span className="text-teal-600">Remote</span>
+                <span className="text-slate-800">AIDoc</span>
               </span>
             </Link>
 
+            {/* Desktop Navigation */}
             <div className="hidden md:flex items-center space-x-8">
-              <Link to="/#about" className="text-slate-400 hover:text-white transition-colors duration-300">About</Link>
-              <Link to="/#expertise" className="text-slate-400 hover:text-white transition-colors duration-300">Expertise</Link>
-              <Link to="/services" className="text-slate-400 hover:text-white transition-colors duration-300">Services</Link>
-              <Link to="/servicios" className="text-slate-400 hover:text-white transition-colors duration-300">Servicios</Link>
-              <Link to="/#connect" className="text-slate-400 hover:text-white transition-colors duration-300">Connect</Link>
-              <Link to="/blog" className="text-slate-400 hover:text-white transition-colors duration-300">Blog</Link>
+              <Link 
+                to="/#about" 
+                className="text-slate-600 hover:text-teal-600 transition-colors duration-300 font-medium"
+              >
+                {t.nav.about}
+              </Link>
+              <Link 
+                to="/#expertise" 
+                className="text-slate-600 hover:text-teal-600 transition-colors duration-300 font-medium"
+              >
+                {t.nav.expertise}
+              </Link>
+              <Link 
+                to="/services" 
+                className="text-slate-600 hover:text-teal-600 transition-colors duration-300 font-medium"
+              >
+                {t.nav.services}
+              </Link>
+              <Link 
+                to="/demo" 
+                className="px-4 py-2 bg-teal-50 text-teal-700 rounded-lg hover:bg-teal-100 transition-colors duration-300 font-medium border border-teal-200"
+              >
+                {t.nav.demo}
+              </Link>
+              <Link 
+                to="/#connect" 
+                className="text-slate-600 hover:text-teal-600 transition-colors duration-300 font-medium"
+              >
+                {t.nav.connect}
+              </Link>
+              <Link 
+                to="/blog" 
+                className="text-slate-600 hover:text-teal-600 transition-colors duration-300 font-medium"
+              >
+                {t.nav.blog}
+              </Link>
               <button
                 onClick={() => window.Calendly?.initPopupWidget({ url: 'https://calendly.com/theremoteaidoc/30min' })}
-                className="relative px-6 py-2.5 bg-teal-500 text-slate-950 rounded-lg hover:bg-teal-400 transition-all duration-300 hover:scale-105 group overflow-hidden"
+                className="px-6 py-3 bg-teal-600 text-white rounded-lg hover:bg-teal-700 transition-all duration-300 hover:scale-105 font-medium shadow-sm"
               >
-                <div className="absolute inset-0 bg-gradient-to-r from-teal-400 to-cyan-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                <div className="absolute -inset-1 pointer-events-none bg-teal-500/50 blur-lg opacity-0 group-hover:opacity-70 transition-opacity duration-300" />
-                <span className="relative">Book a Call</span>
+                {t.nav.bookCall}
               </button>
             </div>
+
+            {/* Mobile menu button */}
+            <button
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className="md:hidden p-2 text-slate-600 hover:text-teal-600 transition-colors duration-300"
+            >
+              {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            </button>
           </div>
+
+          {/* Mobile Navigation */}
+          {mobileMenuOpen && (
+            <div className="md:hidden border-t border-slate-200 py-4 space-y-4">
+              <Link 
+                to="/#about" 
+                className="block py-2 text-slate-600 hover:text-teal-600 transition-colors duration-300 font-medium"
+              >
+                {t.nav.about}
+              </Link>
+              <Link 
+                to="/#expertise" 
+                className="block py-2 text-slate-600 hover:text-teal-600 transition-colors duration-300 font-medium"
+              >
+                {t.nav.expertise}
+              </Link>
+              <Link 
+                to="/services" 
+                className="block py-2 text-slate-600 hover:text-teal-600 transition-colors duration-300 font-medium"
+              >
+                {t.nav.services}
+              </Link>
+              <Link 
+                to="/demo" 
+                className="block py-2 text-teal-700 font-semibold"
+              >
+                {t.nav.demo}
+              </Link>
+              <Link 
+                to="/#connect" 
+                className="block py-2 text-slate-600 hover:text-teal-600 transition-colors duration-300 font-medium"
+              >
+                {t.nav.connect}
+              </Link>
+              <Link 
+                to="/blog" 
+                className="block py-2 text-slate-600 hover:text-teal-600 transition-colors duration-300 font-medium"
+              >
+                {t.nav.blog}
+              </Link>
+              <button
+                onClick={() => window.Calendly?.initPopupWidget({ url: 'https://calendly.com/theremoteaidoc/30min' })}
+                className="w-full mt-4 px-6 py-3 bg-teal-600 text-white rounded-lg hover:bg-teal-700 transition-colors duration-300 font-medium"
+              >
+                {t.nav.bookCall}
+              </button>
+            </div>
+          )}
         </div>
       </nav>
 
       {/* Page Content */}
-      {children}
+      <main className="relative">
+        {React.cloneElement(children, { currentLang, t })}
+      </main>
 
       {/* Footer */}
-      <footer className="relative border-t border-slate-800/50 py-12">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+      <footer className="border-t border-slate-200 bg-slate-50">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8 py-12">
           <div className="flex flex-col md:flex-row items-center justify-between gap-6">
             <div className="flex items-center space-x-2">
-              <span className="text-xl">
-                <span className="text-teal-400">Remote</span>
-                <span className="text-white">AIDoc</span>
+              <span className="text-xl font-bold">
+                <span className="text-teal-600">Remote</span>
+                <span className="text-slate-800">AIDoc</span>
               </span>
               <span className="text-slate-500">© 2026</span>
             </div>
 
             <div className="flex items-center space-x-8 text-sm">
-              <a href="#privacy" className="text-slate-500 hover:text-white transition-colors duration-300">Privacy</a>
-              <a href="#terms" className="text-slate-500 hover:text-white transition-colors duration-300">Terms</a>
-              <a href="#contact" className="text-slate-500 hover:text-white transition-colors duration-300">Contact</a>
+              <a href="#privacy" className="text-slate-500 hover:text-teal-600 transition-colors duration-300">{t.footer.privacy}</a>
+              <a href="#terms" className="text-slate-500 hover:text-teal-600 transition-colors duration-300">{t.footer.terms}</a>
+              <a href="#contact" className="text-slate-500 hover:text-teal-600 transition-colors duration-300">{t.footer.contact}</a>
             </div>
           </div>
         </div>
@@ -185,7 +377,7 @@ function Layout({ children }) {
   );
 }
 
-function Home() {
+function Home({ currentLang, t }) {
   const [email, setEmail] = useState('');
   const [ctaEmail, setCtaEmail] = useState('');
 
@@ -197,32 +389,38 @@ function Home() {
   return (
     <>
       {/* Hero Section */}
-      <section className="relative pt-20 pb-32 lg:pt-32 lg:pb-40">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+      <section className="relative pt-8 pb-20 lg:pt-16 lg:pb-32 bg-gradient-to-br from-white to-slate-50">
+        {/* Subtle background elements */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-teal-50 rounded-full blur-3xl opacity-60" />
+          <div className="absolute bottom-1/4 left-1/4 w-80 h-80 bg-teal-100 rounded-full blur-3xl opacity-40" />
+        </div>
+
+        <div className="max-w-7xl mx-auto px-6 lg:px-8 relative">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             {/* Left Column */}
             <div className="space-y-8">
               <ScrollReveal>
-                <div className="flex items-center space-x-2 text-teal-400">
-                  <Star className="w-4 h-4 fill-teal-400" />
-                  <span className="text-sm">Your Guide to Clinical AI from the Edge of Medicine</span>
+                <div className="flex items-center space-x-2 text-teal-600">
+                  <Star className="w-4 h-4 fill-teal-600" />
+                  <span className="text-sm font-medium">{t.hero.badge}</span>
                 </div>
               </ScrollReveal>
 
               <ScrollReveal delay={100}>
-                <h1 className="text-5xl lg:text-7xl tracking-tight leading-[1.1] relative">
-                  Redefining<br />
-                  <span className="text-slate-400">the Future of</span><br />
-                  <span className="relative inline-block italic text-teal-400">
-                    Clinical
-                    <span className="absolute -inset-1 pointer-events-none bg-teal-500/20 blur-2xl opacity-50" />
-                  </span> AI
+                <h1 className="text-5xl lg:text-7xl font-bold tracking-tight leading-[1.1] text-slate-900">
+                  {t.hero.title}<br />
+                  <span className="text-slate-600">{t.hero.subtitle}</span><br />
+                  <span className="relative inline-block text-teal-600">
+                    {t.hero.highlight}
+                    <span className="absolute -bottom-2 left-0 right-0 h-1 bg-teal-200 rounded-full" />
+                  </span> {t.hero.lastWord}
                 </h1>
               </ScrollReveal>
 
               <ScrollReveal delay={200}>
-                <p className="text-lg text-slate-400 leading-relaxed max-w-xl">
-                  I practice medicine 1,000 miles from the nearest hospital — and I train the AI systems that will help the next generation of doctors do the same.
+                <p className="text-lg text-slate-600 leading-relaxed max-w-xl">
+                  {t.hero.description}
                 </p>
               </ScrollReveal>
 
@@ -232,29 +430,29 @@ function Home() {
                     type="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    placeholder="Enter your email"
-                    className="flex-1 px-4 py-3 bg-slate-900/50 border border-slate-800/50 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-teal-500/50 focus:ring-1 focus:ring-teal-500/50 transition-all duration-300"
+                    placeholder={t.hero.emailPlaceholder}
+                    className="flex-1 px-4 py-3 border border-slate-300 rounded-lg text-slate-900 placeholder-slate-500 focus:outline-none focus:border-teal-500 focus:ring-2 focus:ring-teal-200 transition-all duration-300"
                   />
                   <button
                     type="submit"
-                    className="px-6 py-3 bg-teal-500 text-slate-950 rounded-lg hover:bg-teal-400 transition-all duration-300 flex items-center justify-center space-x-2 group"
+                    className="px-6 py-3 bg-teal-600 text-white rounded-lg hover:bg-teal-700 transition-all duration-300 flex items-center justify-center space-x-2 group font-medium"
                   >
-                    <span>Subscribe</span>
+                    <span>{t.hero.subscribe}</span>
                     <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
                   </button>
                 </form>
-                <p className="text-sm text-slate-500 mt-3">Join 100+ healthcare professionals</p>
+                <p className="text-sm text-slate-500 mt-3">{t.hero.joinText}</p>
               </ScrollReveal>
             </div>
 
             {/* Right Column - Photo */}
             <ScrollReveal delay={200} className="relative">
               <div className="relative">
-                {/* Glow Behind Photo */}
-                <div className="absolute inset-0 bg-teal-500/30 blur-3xl rounded-2xl translate-y-4" />
+                {/* Subtle glow behind photo */}
+                <div className="absolute inset-0 bg-teal-100 blur-3xl rounded-2xl opacity-30 translate-y-4" />
 
-                {/* Photo */}
-                <div className="relative rounded-2xl overflow-hidden bg-gradient-to-br from-slate-800 to-slate-900 aspect-[3/4] lg:aspect-[4/5]">
+                {/* Photo container */}
+                <div className="relative rounded-2xl overflow-hidden bg-white shadow-xl aspect-[3/4] lg:aspect-[4/5] border border-slate-200">
                   {/* Actual Photo */}
                   <img
                     src="/profile.jpg"
@@ -262,19 +460,19 @@ function Home() {
                     className="w-full h-full object-cover"
                   />
 
-                  {/* Gradient Overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent opacity-80" />
+                  {/* Subtle gradient overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-slate-900/10 to-transparent" />
 
-                  {/* Floating Badge */}
-                  <div className="absolute bottom-6 left-6 right-6 bg-slate-900/80 backdrop-blur-sm border border-slate-800/50 rounded-xl p-4">
+                  {/* Professional badge */}
+                  <div className="absolute bottom-6 left-6 right-6 bg-white/90 backdrop-blur-sm border border-slate-200 rounded-xl p-4 shadow-lg">
                     <div className="flex items-center space-x-3">
                       <div className="relative">
-                        <div className="w-2 h-2 bg-teal-400 rounded-full animate-pulse" />
-                        <div className="absolute inset-0 w-2 h-2 bg-teal-400 rounded-full animate-ping" />
+                        <div className="w-3 h-3 bg-teal-500 rounded-full" />
+                        <div className="absolute inset-0 w-3 h-3 bg-teal-500 rounded-full animate-ping opacity-75" />
                       </div>
                       <div>
-                        <p className="text-xl font-semibold text-white">Dr. Javier Rosas</p>
-                        <p className="text-sm text-slate-400">Ship Physician & AI Trainer</p>
+                        <p className="text-xl font-bold text-slate-900">Dr. Javier Rosas</p>
+                        <p className="text-sm text-slate-600">Ship Physician & AI Trainer</p>
                       </div>
                     </div>
                   </div>
@@ -286,44 +484,39 @@ function Home() {
       </section>
 
       {/* Stats Bar */}
-      <section className="relative border-y border-slate-800/50 py-12">
+      <section className="relative border-y border-slate-200 py-16 bg-white">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <ScrollReveal>
             <div className="grid grid-cols-2 lg:grid-cols-5 gap-8">
               <div className="group text-center space-y-2 hover:scale-105 transition-transform duration-300 cursor-pointer">
-                <div className="relative inline-block text-4xl lg:text-5xl text-teal-400">
+                <div className="text-4xl lg:text-5xl text-teal-600 font-bold">
                   1,000+
-                  <div className="absolute inset-0 bg-teal-400/20 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 </div>
-                <div className="text-sm text-slate-500">Miles from Shore</div>
+                <div className="text-sm text-slate-600 font-medium">{t.stats.miles}</div>
               </div>
               <div className="group text-center space-y-2 hover:scale-105 transition-transform duration-300 cursor-pointer">
-                <div className="relative inline-block text-4xl lg:text-5xl text-teal-400">
+                <div className="text-4xl lg:text-5xl text-teal-600 font-bold">
                   5,000+
-                  <div className="absolute inset-0 bg-teal-400/20 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 </div>
-                <div className="text-sm text-slate-500">Patients Treated at Sea</div>
+                <div className="text-sm text-slate-600 font-medium">{t.stats.patients}</div>
               </div>
               <div className="group text-center space-y-2 hover:scale-105 transition-transform duration-300 cursor-pointer">
-                <div className="relative inline-block text-4xl lg:text-5xl text-teal-400">
+                <div className="text-4xl lg:text-5xl text-teal-600 font-bold">
                   10+
-                  <div className="absolute inset-0 bg-teal-400/20 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 </div>
-                <div className="text-sm text-slate-500">Years Clinical Exp</div>
+                <div className="text-sm text-slate-600 font-medium">{t.stats.experience}</div>
               </div>
               <div className="group text-center space-y-2 hover:scale-105 transition-transform duration-300 cursor-pointer">
-                <div className="relative inline-block text-4xl lg:text-5xl text-teal-400">
+                <div className="text-4xl lg:text-5xl text-teal-600 font-bold">
                   5
-                  <div className="absolute inset-0 bg-teal-400/20 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 </div>
-                <div className="text-sm text-slate-500">AI Training Platforms</div>
+                <div className="text-sm text-slate-600 font-medium">{t.stats.platforms}</div>
               </div>
               <div className="group text-center space-y-2 hover:scale-105 transition-transform duration-300 cursor-pointer">
-                <div className="relative inline-block text-4xl lg:text-5xl text-teal-400">
+                <div className="text-4xl lg:text-5xl text-teal-600 font-bold">
                   100+
-                  <div className="absolute inset-0 bg-teal-400/20 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 </div>
-                <div className="text-sm text-slate-500">Clinical LLM Cases</div>
+                <div className="text-sm text-slate-600 font-medium">{t.stats.cases}</div>
               </div>
             </div>
           </ScrollReveal>
@@ -331,35 +524,35 @@ function Home() {
       </section>
 
       {/* About Section */}
-      <section id="about" className="relative py-32">
+      <section id="about" className="relative py-32 bg-slate-50">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-16">
             <ScrollReveal>
               <div className="space-y-6">
-                <div className="text-sm text-teal-400 tracking-wider uppercase">About</div>
-                <h2 className="text-4xl lg:text-5xl tracking-tight leading-tight">
-                  Not Your Typical<br />
-                  <span className="text-slate-500">AI Expert</span>
+                <div className="text-sm text-teal-600 tracking-wider uppercase font-semibold">{t.about.badge}</div>
+                <h2 className="text-4xl lg:text-5xl font-bold tracking-tight leading-tight text-slate-900">
+                  {t.about.title}<br />
+                  <span className="text-slate-600">{t.about.subtitle}</span>
                 </h2>
               </div>
             </ScrollReveal>
 
             <div className="space-y-6">
               <ScrollReveal delay={100}>
-                <p className="text-lg text-slate-400 leading-relaxed">
-                  Most AI trainers work from coffee shops. I work from the middle of the ocean, practicing emergency medicine on cruise ships where the nearest hospital is days away by helicopter.
+                <p className="text-lg text-slate-600 leading-relaxed">
+                  {t.about.para1}
                 </p>
               </ScrollReveal>
 
               <ScrollReveal delay={200}>
-                <p className="text-lg text-slate-400 leading-relaxed">
-                  This unique perspective—balancing high-stakes clinical decisions with cutting-edge AI development—gives me an insider's understanding of what healthcare AI actually needs to be: reliable, practical, and trustworthy when it matters most.
+                <p className="text-lg text-slate-600 leading-relaxed">
+                  {t.about.para2}
                 </p>
               </ScrollReveal>
 
               <ScrollReveal delay={300}>
-                <p className="text-lg text-slate-400 leading-relaxed">
-                  I bridge the gap between the technical capabilities of AI and the real-world demands of medicine, training AI systems for leading platforms while staying on the front lines of patient care.
+                <p className="text-lg text-slate-600 leading-relaxed">
+                  {t.about.para3}
                 </p>
               </ScrollReveal>
             </div>
@@ -368,141 +561,97 @@ function Home() {
       </section>
 
       {/* Quote Section */}
-      <section className="py-16 text-center max-w-3xl mx-auto px-6">
+      <section className="py-20 text-center max-w-4xl mx-auto px-6 bg-white">
         <ScrollReveal>
-          <p className="text-2xl md:text-3xl text-slate-300 font-light italic leading-relaxed">
-            "When you're the only doctor for thousands of people,
-            <span className="text-teal-400 font-normal"> AI isn't a luxury — it's survival.</span>"
+          <p className="text-2xl md:text-3xl text-slate-700 font-light italic leading-relaxed">
+            "{t.quote}
+            <span className="text-teal-600 font-medium"> {t.quoteHighlight}</span>"
           </p>
         </ScrollReveal>
       </section>
 
       {/* Expertise Section */}
-      <section id="expertise" className="relative py-32 bg-slate-950">
+      <section id="expertise" className="relative py-32 bg-white">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="text-center space-y-4 mb-20">
             <ScrollReveal>
-              <div className="text-sm text-teal-400 tracking-wider uppercase">Expertise</div>
+              <div className="text-sm text-teal-600 tracking-wider uppercase font-semibold">{t.expertise.badge}</div>
             </ScrollReveal>
             <ScrollReveal delay={100}>
-              <h2 className="text-4xl lg:text-5xl tracking-tight">What I Bring</h2>
+              <h2 className="text-4xl lg:text-5xl font-bold tracking-tight text-slate-900">{t.expertise.title}</h2>
             </ScrollReveal>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-6">
-            {/* Card 1 - Clinical Practice */}
+          <div className="grid md:grid-cols-2 gap-8">
+            {/* Clinical Practice Card */}
             <ScrollReveal delay={0}>
-              <div className="group relative p-8 bg-slate-900/40 border border-slate-800/50 rounded-2xl hover:border-teal-500/50 transition-all duration-500 space-y-4">
-                {/* Card Glow Effect */}
-                <div className="absolute -inset-0.5 pointer-events-none bg-gradient-to-r from-teal-500 to-cyan-500 rounded-2xl opacity-0 group-hover:opacity-20 blur-xl transition-opacity duration-500" />
-
-                <div className="relative">
-                  <div className="w-12 h-12 bg-teal-500/10 rounded-xl flex items-center justify-center group-hover:bg-teal-500/20 transition-colors duration-500">
-                    <Stethoscope className="w-6 h-6 text-teal-400 group-hover:scale-110 transition-transform duration-300" />
-                  </div>
-                  <h3 className="text-2xl text-white mt-4">Clinical Practice</h3>
-                  <ul className="space-y-3 text-slate-400 mt-4">
-                    <li className="flex items-start">
-                      <span className="text-teal-400 mr-2">•</span>
-                      Ship Physician, Royal Caribbean
-                    </li>
-                    <li className="flex items-start">
-                      <span className="text-teal-400 mr-2">•</span>
-                      10+ Years Emergency & Maritime Medicine
-                    </li>
-                    <li className="flex items-start">
-                      <span className="text-teal-400 mr-2">•</span>
-                      High-stakes decision making in isolation
-                    </li>
-                  </ul>
+              <div className="group relative p-8 bg-white border border-slate-200 rounded-2xl hover:border-teal-300 hover:shadow-lg transition-all duration-500">
+                <div className="w-16 h-16 bg-teal-100 rounded-xl flex items-center justify-center mb-6 group-hover:bg-teal-200 transition-colors duration-500">
+                  <Stethoscope className="w-8 h-8 text-teal-600" />
                 </div>
+                <h3 className="text-2xl font-bold text-slate-900 mb-4">{t.expertise.clinical.title}</h3>
+                <ul className="space-y-3 text-slate-600">
+                  {t.expertise.clinical.items.map((item, index) => (
+                    <li key={index} className="flex items-start">
+                      <span className="text-teal-600 mr-3 font-bold">•</span>
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
               </div>
             </ScrollReveal>
 
-            {/* Card 2 - AI Training */}
+            {/* AI Training Card */}
             <ScrollReveal delay={100}>
-              <div className="group relative p-8 bg-slate-900/40 border border-slate-800/50 rounded-2xl hover:border-teal-500/50 transition-all duration-500 space-y-4">
-                {/* Card Glow Effect */}
-                <div className="absolute -inset-0.5 pointer-events-none bg-gradient-to-r from-teal-500 to-cyan-500 rounded-2xl opacity-0 group-hover:opacity-20 blur-xl transition-opacity duration-500" />
-
-                <div className="relative">
-                  <div className="w-12 h-12 bg-teal-500/10 rounded-xl flex items-center justify-center group-hover:bg-teal-500/20 transition-colors duration-500">
-                    <Brain className="w-6 h-6 text-teal-400 group-hover:scale-110 transition-transform duration-300" />
-                  </div>
-                  <h3 className="text-2xl text-white mt-4">AI Training & Evaluation</h3>
-                  <ul className="space-y-3 text-slate-400 mt-4">
-                    <li className="flex items-start">
-                      <span className="text-teal-400 mr-2">•</span>
-                      Medical AI Trainer — Mercor AI, Micro1, Pareto, Alignerr
-                    </li>
-                    <li className="flex items-start">
-                      <span className="text-teal-400 mr-2">•</span>
-                      RLHF & Prompt Engineering
-                    </li>
-                    <li className="flex items-start">
-                      <span className="text-teal-400 mr-2">•</span>
-                      Clinical Peer Reviewer
-                    </li>
-                  </ul>
+              <div className="group relative p-8 bg-white border border-slate-200 rounded-2xl hover:border-teal-300 hover:shadow-lg transition-all duration-500">
+                <div className="w-16 h-16 bg-teal-100 rounded-xl flex items-center justify-center mb-6 group-hover:bg-teal-200 transition-colors duration-500">
+                  <Brain className="w-8 h-8 text-teal-600" />
                 </div>
+                <h3 className="text-2xl font-bold text-slate-900 mb-4">{t.expertise.ai.title}</h3>
+                <ul className="space-y-3 text-slate-600">
+                  {t.expertise.ai.items.map((item, index) => (
+                    <li key={index} className="flex items-start">
+                      <span className="text-teal-600 mr-3 font-bold">•</span>
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
               </div>
             </ScrollReveal>
 
-            {/* Card 3 - Remote Medicine */}
+            {/* Remote Medicine Card */}
             <ScrollReveal delay={200}>
-              <div className="group relative p-8 bg-slate-900/40 border border-slate-800/50 rounded-2xl hover:border-teal-500/50 transition-all duration-500 space-y-4">
-                {/* Card Glow Effect */}
-                <div className="absolute -inset-0.5 pointer-events-none bg-gradient-to-r from-teal-500 to-cyan-500 rounded-2xl opacity-0 group-hover:opacity-20 blur-xl transition-opacity duration-500" />
-
-                <div className="relative">
-                  <div className="w-12 h-12 bg-teal-500/10 rounded-xl flex items-center justify-center group-hover:bg-teal-500/20 transition-colors duration-500">
-                    <Ship className="w-6 h-6 text-teal-400 group-hover:scale-110 transition-transform duration-300" />
-                  </div>
-                  <h3 className="text-2xl text-white mt-4">Remote Medicine</h3>
-                  <ul className="space-y-3 text-slate-400 mt-4">
-                    <li className="flex items-start">
-                      <span className="text-teal-400 mr-2">•</span>
-                      Practicing 1,000+ miles from hospitals
-                    </li>
-                    <li className="flex items-start">
-                      <span className="text-teal-400 mr-2">•</span>
-                      Telemedicine & AI-assisted diagnosis
-                    </li>
-                    <li className="flex items-start">
-                      <span className="text-teal-400 mr-2">•</span>
-                      Resource-limited healthcare solutions
-                    </li>
-                  </ul>
+              <div className="group relative p-8 bg-white border border-slate-200 rounded-2xl hover:border-teal-300 hover:shadow-lg transition-all duration-500">
+                <div className="w-16 h-16 bg-teal-100 rounded-xl flex items-center justify-center mb-6 group-hover:bg-teal-200 transition-colors duration-500">
+                  <Ship className="w-8 h-8 text-teal-600" />
                 </div>
+                <h3 className="text-2xl font-bold text-slate-900 mb-4">{t.expertise.remote.title}</h3>
+                <ul className="space-y-3 text-slate-600">
+                  {t.expertise.remote.items.map((item, index) => (
+                    <li key={index} className="flex items-start">
+                      <span className="text-teal-600 mr-3 font-bold">•</span>
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
               </div>
             </ScrollReveal>
 
-            {/* Card 4 - Healthcare AI Content */}
+            {/* Healthcare AI Content Card */}
             <ScrollReveal delay={300}>
-              <div className="group relative p-8 bg-slate-900/40 border border-slate-800/50 rounded-2xl hover:border-teal-500/50 transition-all duration-500 space-y-4">
-                {/* Card Glow Effect */}
-                <div className="absolute -inset-0.5 pointer-events-none bg-gradient-to-r from-teal-500 to-cyan-500 rounded-2xl opacity-0 group-hover:opacity-20 blur-xl transition-opacity duration-500" />
-
-                <div className="relative">
-                  <div className="w-12 h-12 bg-teal-500/10 rounded-xl flex items-center justify-center group-hover:bg-teal-500/20 transition-colors duration-500">
-                    <BookOpen className="w-6 h-6 text-teal-400 group-hover:scale-110 transition-transform duration-300" />
-                  </div>
-                  <h3 className="text-2xl text-white mt-4">Healthcare AI Content</h3>
-                  <ul className="space-y-3 text-slate-400 mt-4">
-                    <li className="flex items-start">
-                      <span className="text-teal-400 mr-2">•</span>
-                      Clinical AI tool reviews
-                    </li>
-                    <li className="flex items-start">
-                      <span className="text-teal-400 mr-2">•</span>
-                      Practical implementation guides
-                    </li>
-                    <li className="flex items-start">
-                      <span className="text-teal-400 mr-2">•</span>
-                      Future of medicine insights
-                    </li>
-                  </ul>
+              <div className="group relative p-8 bg-white border border-slate-200 rounded-2xl hover:border-teal-300 hover:shadow-lg transition-all duration-500">
+                <div className="w-16 h-16 bg-teal-100 rounded-xl flex items-center justify-center mb-6 group-hover:bg-teal-200 transition-colors duration-500">
+                  <BookOpen className="w-8 h-8 text-teal-600" />
                 </div>
+                <h3 className="text-2xl font-bold text-slate-900 mb-4">{t.expertise.content.title}</h3>
+                <ul className="space-y-3 text-slate-600">
+                  {t.expertise.content.items.map((item, index) => (
+                    <li key={index} className="flex items-start">
+                      <span className="text-teal-600 mr-3 font-bold">•</span>
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
               </div>
             </ScrollReveal>
           </div>
@@ -510,35 +659,40 @@ function Home() {
       </section>
 
       {/* Connect Section */}
-      <section id="connect" className="relative py-32">
+      <section id="connect" className="relative py-32 bg-slate-50">
         <div className="max-w-4xl mx-auto px-6 lg:px-8 text-center">
           <div className="space-y-4 mb-12">
             <ScrollReveal>
-              <div className="text-sm text-teal-400 tracking-wider uppercase">Connect</div>
+              <div className="text-sm text-teal-600 tracking-wider uppercase font-semibold">{t.connect.badge}</div>
             </ScrollReveal>
             <ScrollReveal delay={100}>
-              <h2 className="text-4xl lg:text-5xl tracking-tight">Let's Connect</h2>
+              <h2 className="text-4xl lg:text-5xl font-bold tracking-tight text-slate-900">{t.connect.title}</h2>
             </ScrollReveal>
             <ScrollReveal delay={200}>
-              <p className="text-lg text-slate-400 max-w-2xl mx-auto">
-                Follow along as I navigate the intersection of remote medicine and artificial intelligence
+              <p className="text-lg text-slate-600 max-w-2xl mx-auto">
+                {t.connect.description}
               </p>
             </ScrollReveal>
           </div>
 
           <ScrollReveal delay={300}>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <a href="https://www.linkedin.com/in/javier-rosas-670267b0/" target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto px-8 py-4 bg-slate-900/40 border border-slate-800/50 rounded-xl hover:border-teal-500/50 transition-all duration-300 flex items-center justify-center space-x-3 group">
-                <Linkedin className="w-5 h-5 text-teal-400 group-hover:scale-110 transition-transform duration-300" />
-                <span className="text-white">LinkedIn</span>
+              <a 
+                href="https://www.linkedin.com/in/javier-rosas-670267b0/" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="w-full sm:w-auto px-8 py-4 bg-white border border-slate-200 rounded-xl hover:border-teal-300 hover:shadow-lg transition-all duration-300 flex items-center justify-center space-x-3 group"
+              >
+                <Linkedin className="w-5 h-5 text-teal-600 group-hover:scale-110 transition-transform duration-300" />
+                <span className="text-slate-700 font-medium">LinkedIn</span>
               </a>
-              <button className="w-full sm:w-auto px-8 py-4 bg-slate-900/40 border border-slate-800/50 rounded-xl hover:border-teal-500/50 transition-all duration-300 flex items-center justify-center space-x-3 group">
-                <Twitter className="w-5 h-5 text-teal-400 group-hover:scale-110 transition-transform duration-300" />
-                <span className="text-white">Twitter / X</span>
+              <button className="w-full sm:w-auto px-8 py-4 bg-white border border-slate-200 rounded-xl hover:border-teal-300 hover:shadow-lg transition-all duration-300 flex items-center justify-center space-x-3 group">
+                <Twitter className="w-5 h-5 text-teal-600 group-hover:scale-110 transition-transform duration-300" />
+                <span className="text-slate-700 font-medium">Twitter / X</span>
               </button>
-              <button className="w-full sm:w-auto px-8 py-4 bg-slate-900/40 border border-slate-800/50 rounded-xl hover:border-teal-500/50 transition-all duration-300 flex items-center justify-center space-x-3 group">
-                <Youtube className="w-5 h-5 text-teal-400 group-hover:scale-110 transition-transform duration-300" />
-                <span className="text-white">YouTube</span>
+              <button className="w-full sm:w-auto px-8 py-4 bg-white border border-slate-200 rounded-xl hover:border-teal-300 hover:shadow-lg transition-all duration-300 flex items-center justify-center space-x-3 group">
+                <Youtube className="w-5 h-5 text-teal-600 group-hover:scale-110 transition-transform duration-300" />
+                <span className="text-slate-700 font-medium">YouTube</span>
               </button>
             </div>
           </ScrollReveal>
@@ -546,19 +700,20 @@ function Home() {
       </section>
 
       {/* CTA Section */}
-      <section className="relative py-32">
+      <section className="relative py-32 bg-white">
         <div className="max-w-4xl mx-auto px-6 lg:px-8">
           <ScrollReveal>
-            <div className="relative rounded-3xl bg-gradient-to-br from-teal-600 to-teal-500 p-12 lg:p-16 overflow-hidden">
-              {/* Decorative Blur */}
-              <div className="absolute top-0 right-0 w-64 h-64 bg-white/20 rounded-full blur-3xl" />
+            <div className="relative rounded-3xl bg-gradient-to-br from-teal-600 to-teal-700 p-12 lg:p-16 text-white text-center overflow-hidden">
+              {/* Decorative elements */}
+              <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-3xl" />
+              <div className="absolute bottom-0 left-0 w-48 h-48 bg-white/5 rounded-full blur-2xl" />
 
-              <div className="relative space-y-8 text-center">
-                <h2 className="text-3xl lg:text-4xl text-slate-900">
-                  Ready to explore the future of clinical AI?
+              <div className="relative space-y-8">
+                <h2 className="text-3xl lg:text-4xl font-bold">
+                  {t.cta.title}
                 </h2>
-                <p className="text-lg text-slate-900/80 max-w-xl mx-auto">
-                  Join my weekly newsletter for practical insights on healthcare AI, remote medicine, and the tools shaping tomorrow's clinical practice.
+                <p className="text-lg text-teal-100 max-w-xl mx-auto">
+                  {t.cta.description}
                 </p>
 
                 <form onSubmit={(e) => handleSubscribe(e, ctaEmail)} className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
@@ -566,14 +721,14 @@ function Home() {
                     type="email"
                     value={ctaEmail}
                     onChange={(e) => setCtaEmail(e.target.value)}
-                    placeholder="Enter your email"
-                    className="flex-1 px-4 py-3 bg-white text-slate-900 rounded-lg placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-slate-900/20 transition-all duration-300"
+                    placeholder={t.cta.emailPlaceholder}
+                    className="flex-1 px-4 py-3 bg-white text-slate-900 rounded-lg placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-teal-300 transition-all duration-300"
                   />
                   <button
                     type="submit"
-                    className="px-6 py-3 bg-slate-900 text-white rounded-lg hover:bg-slate-800 transition-all duration-300"
+                    className="px-6 py-3 bg-white text-teal-700 rounded-lg hover:bg-teal-50 transition-all duration-300 font-medium"
                   >
-                    Subscribe
+                    {t.cta.subscribe}
                   </button>
                 </form>
               </div>
@@ -588,16 +743,38 @@ function Home() {
 export default function App() {
   return (
     <HelmetProvider>
-      <Layout>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/services" element={<Services />} />
-          <Route path="/servicios" element={<Servicios />} />
-          <Route path="/blog" element={<Blog />} />
-          <Route path="/blog/:slug" element={<BlogPost />} />
-          <Route path="/demo" element={<Demo />} />
-        </Routes>
-      </Layout>
+      <Routes>
+        <Route path="/" element={
+          <Layout>
+            <Home />
+          </Layout>
+        } />
+        <Route path="/services" element={
+          <Layout>
+            <Services />
+          </Layout>
+        } />
+        <Route path="/servicios" element={
+          <Layout>
+            <Servicios />
+          </Layout>
+        } />
+        <Route path="/blog" element={
+          <Layout>
+            <Blog />
+          </Layout>
+        } />
+        <Route path="/blog/:slug" element={
+          <Layout>
+            <BlogPost />
+          </Layout>
+        } />
+        <Route path="/demo" element={
+          <Layout>
+            <Demo />
+          </Layout>
+        } />
+      </Routes>
     </HelmetProvider>
   );
 }
