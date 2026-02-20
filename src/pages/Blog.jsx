@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
-import { ArrowRight, Clock, Tag, BookOpen } from 'lucide-react';
-import { ScrollReveal } from '../components/ScrollReveal';
+import { ArrowRight, Clock, BookOpen } from 'lucide-react';
 import { getAllPosts } from '../data/blogPosts';
 
 export default function Blog() {
@@ -31,7 +30,7 @@ export default function Blog() {
         <div className="max-w-4xl mx-auto px-6 lg:px-8">
           
           {/* Journal-style Header */}
-          <ScrollReveal>
+          
             <header className="mb-16 pb-8 border-b border-slate-700/60">
               <div className="flex items-center gap-3 mb-4">
                 <BookOpen className="w-5 h-5 text-emerald-500" />
@@ -46,10 +45,10 @@ export default function Blog() {
                 Evidence-based analysis of healthcare AI — research reviews, clinical evaluations, and critical commentary from a physician practicing 1,000 miles from shore.
               </p>
             </header>
-          </ScrollReveal>
+          
 
           {/* Featured Article */}
-          <ScrollReveal delay={100}>
+          
             <Link to={`/blog/${featuredPost.slug}`} className="block group mb-14">
               <article className="pb-14 border-b border-slate-800/60">
                 <div className="flex items-center gap-2 mb-5">
@@ -104,12 +103,12 @@ export default function Blog() {
                 </div>
               </article>
             </Link>
-          </ScrollReveal>
+          
 
           {/* Article List */}
           <div className="space-y-0 divide-y divide-slate-800/60">
             {otherPosts.map((post, index) => (
-              <ScrollReveal key={post.id} delay={150 + index * 80}>
+              
                 <Link to={`/blog/${post.slug}`} className="block group">
                   <article className="py-10">
                     <div className="flex items-center gap-3 mb-3 text-sm">
@@ -141,12 +140,12 @@ export default function Blog() {
                     </div>
                   </article>
                 </Link>
-              </ScrollReveal>
+              
             ))}
           </div>
 
           {/* Newsletter CTA */}
-          <ScrollReveal delay={300}>
+          
             <div className="mt-16 pt-12 border-t border-slate-700/60 text-center">
               <p className="text-slate-500 text-sm mb-2">
                 New articles published weekly on LinkedIn
@@ -160,7 +159,7 @@ export default function Blog() {
                 Subscribe to the newsletter <ArrowRight className="w-4 h-4" />
               </a>
             </div>
-          </ScrollReveal>
+          
         </div>
       </section>
     </>
