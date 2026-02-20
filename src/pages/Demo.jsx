@@ -690,16 +690,16 @@ export default function Demo() {
       <section className="relative py-32 bg-white">
         <div className="max-w-4xl mx-auto px-6 lg:px-8">
           <ScrollReveal>
-            <div className="relative rounded-3xl bg-gradient-to-br from-teal-600 to-teal-700 p-12 lg:p-16 overflow-hidden text-white text-center">
+            <div className="relative rounded-3xl bg-gradient-to-br from-emerald-800 to-slate-900 p-12 lg:p-16 overflow-hidden text-white text-center">
               {/* Decorative Blur */}
-              <div className="absolute top-0 right-0 w-64 h-64 bg-white/20 rounded-full blur-3xl pointer-events-none" />
-              <div className="absolute bottom-0 left-0 w-48 h-48 bg-white/10 rounded-full blur-2xl pointer-events-none" />
+              <div className="absolute top-0 right-0 w-64 h-64 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none" />
+              <div className="absolute bottom-0 left-0 w-48 h-48 bg-emerald-500/5 rounded-full blur-2xl pointer-events-none" />
 
               <div className="relative space-y-8">
-                <h2 className="text-3xl lg:text-4xl font-bold">
+                <h2 className="text-3xl lg:text-4xl font-bold text-white">
                   {t.cta.title}
                 </h2>
-                <p className="text-lg text-teal-100 max-w-2xl mx-auto leading-relaxed">
+                <p className="text-lg text-slate-200 max-w-2xl mx-auto leading-relaxed">
                   {t.cta.subtitle}
                 </p>
 
@@ -713,7 +713,7 @@ export default function Demo() {
                     <ExternalLink className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
                   </button>
                   
-                  <div className="flex items-center space-x-2 text-teal-100 text-sm">
+                  <div className="flex items-center space-x-2 text-slate-300 text-sm">
                     <span>or</span>
                   </div>
                   
@@ -729,7 +729,7 @@ export default function Demo() {
                 </div>
 
                 <div className="text-center">
-                  <p className="text-teal-100 text-sm">
+                  <p className="text-slate-300 text-sm">
                     <span className="font-semibold">{t.cta.footer}</span>
                   </p>
                 </div>

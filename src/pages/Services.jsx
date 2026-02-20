@@ -1077,19 +1077,19 @@ export default function Services() {
       <section className="relative py-32 bg-slate-50">
         <div className="max-w-4xl mx-auto px-6 lg:px-8">
           <ScrollReveal>
-            <div className="relative rounded-3xl bg-gradient-to-br from-teal-600 to-teal-700 p-12 lg:p-16 overflow-hidden text-center text-white">
+            <div className="relative rounded-3xl bg-gradient-to-br from-emerald-800 to-slate-900 p-12 lg:p-16 overflow-hidden text-center text-white">
               {/* Decorative Blur */}
-              <div className="absolute top-0 right-0 w-64 h-64 bg-white/20 rounded-full blur-3xl" />
-              <div className="absolute bottom-0 left-0 w-48 h-48 bg-white/10 rounded-full blur-2xl" />
+              <div className="absolute top-0 right-0 w-64 h-64 bg-emerald-500/10 rounded-full blur-3xl" />
+              <div className="absolute bottom-0 left-0 w-48 h-48 bg-emerald-500/5 rounded-full blur-2xl" />
 
               <div className="relative space-y-6">
-                <h2 className="text-3xl lg:text-4xl font-bold">
+                <h2 className="text-3xl lg:text-4xl font-bold text-white">
                   {t.cta.title}
                 </h2>
-                <p className="text-xl text-teal-100 max-w-2xl mx-auto">
+                <p className="text-xl text-slate-200 max-w-2xl mx-auto">
                   {t.cta.subtitle}
                 </p>
-                <p className="text-teal-100">
+                <p className="text-slate-300">
                   {t.cta.description}
                 </p>
                 
