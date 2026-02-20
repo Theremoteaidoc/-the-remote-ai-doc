@@ -112,13 +112,95 @@ const ArticleRenderer = ({ post }) => {
             </ScrollReveal>
           )}
 
-          {/* From the Ship */}
-          {content.fromTheShip && (
+          {/* My Take */}
+          {content.myTake && (
             <ScrollReveal delay={100}>
-              <h2 className="text-2xl font-bold text-white mt-12 mb-4">From the Ship</h2>
+              <h2 className="text-2xl font-bold text-white mt-12 mb-4">My Take from 1,000 Miles Out</h2>
               <div className="text-lg text-slate-300 leading-relaxed space-y-6">
-                {content.fromTheShip.split('\n\n').map((para, i) => (
+                {content.myTake.split('\n\n').map((para, i) => (
+                  <p key={i} dangerouslySetInnerHTML={{ __html: parseMarkdown(para) }} />
+                ))}
+              </div>
+            </ScrollReveal>
+          )}
+
+          {/* What to Watch Next */}
+          {content.watchNext && (
+            <ScrollReveal delay={100}>
+              <h2 className="text-2xl font-bold text-white mt-12 mb-4">What to Watch Next</h2>
+              <ul className="space-y-3 ml-1">
+                {content.watchNext.map((item, i) => (
+                  <li key={i} className="flex gap-3 text-lg text-slate-300">
+                    <span className="text-teal-400 mt-1">•</span>
+                    <span dangerouslySetInnerHTML={{ __html: parseMarkdown(item) }} />
+                  </li>
+                ))}
+              </ul>
+            </ScrollReveal>
+          )}
+
+          {/* Quick Links */}
+          {content.quickLinks && (
+            <ScrollReveal delay={100}>
+              <div className="bg-slate-900 border border-slate-800 rounded-2xl p-8 mt-12">
+                <div className="text-white font-bold text-lg mb-4">Quick Links</div>
+                <ul className="space-y-3">
+                  {content.quickLinks.map((link, i) => (
+                    <li key={i}>
+                      <a href={link.url} target="_blank" rel="noopener noreferrer" className="text-teal-400 hover:text-teal-300 transition-colors text-lg">
+                        {link.label} →
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </ScrollReveal>
+          )}
+
+          {/* My Take */}
+          {content.myTake && (
+            <ScrollReveal delay={100}>
+              <h2 className="text-2xl font-bold text-white mt-12 mb-4">My Take from 1,000 Miles Out</h2>
+              <div className="text-lg text-slate-300 leading-relaxed space-y-6">
+                {content.myTake.split('\n\n').map((para, i) => (
                   <p key={i}>{para}</p>
+                ))}
+              </div>
+            </ScrollReveal>
+          )}
+
+          {/* Watch Next */}
+          {content.watchNext && (
+            <ScrollReveal delay={100}>
+              <h2 className="text-2xl font-bold text-white mt-12 mb-4">What to Watch Next</h2>
+              <ul className="space-y-3">
+                {content.watchNext.map((item, i) => (
+                  <li key={i} className="flex items-start gap-3 text-slate-300">
+                    <span className="text-teal-400 mt-1">•</span>
+                    <span className="text-lg leading-relaxed">{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </ScrollReveal>
+          )}
+
+          {/* Quick Links */}
+          {content.quickLinks && (
+            <ScrollReveal delay={100}>
+              <h2 className="text-2xl font-bold text-white mt-12 mb-4">Quick Links</h2>
+              <div className="space-y-3">
+                {content.quickLinks.map((link, i) => (
+                  <div key={i} className="flex items-center gap-3">
+                    <span className="text-teal-400">→</span>
+                    <a 
+                      href={link.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-teal-400 hover:text-teal-300 transition-colors font-medium"
+                    >
+                      {link.label}
+                    </a>
+                  </div>
                 ))}
               </div>
             </ScrollReveal>
