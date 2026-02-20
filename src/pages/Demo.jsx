@@ -497,26 +497,29 @@ const WhatsAppPhone = ({ message, isActive }) => {
     setDisplayedText('');
     setIsComplete(false);
 
+    let typeTimerRef = null;
+
     // Show typing for 1.5 seconds
     const typingTimer = setTimeout(() => {
       setShowTyping(false);
       
       // Start typing effect - 100ms per character (slow, readable reveal)
       let index = 0;
-      const typeTimer = setInterval(() => {
+      typeTimerRef = setInterval(() => {
         if (index < message.length) {
           setDisplayedText(message.substring(0, index + 1));
           index++;
         } else {
-          clearInterval(typeTimer);
+          clearInterval(typeTimerRef);
           setIsComplete(true);
         }
       }, 100);
-
-      return () => clearInterval(typeTimer);
     }, 1500);
 
-    return () => clearTimeout(typingTimer);
+    return () => {
+      clearTimeout(typingTimer);
+      if (typeTimerRef) clearInterval(typeTimerRef);
+    };
   }, [isActive, message]);
 
   if (!isActive) return null;
