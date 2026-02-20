@@ -880,16 +880,6 @@ export default function Demo() {
       </Helmet>
 
       {/* Language Toggle */}
-      <div className="fixed top-6 right-6 z-50">
-        <button
-          onClick={toggleLanguage}
-          className="flex items-center space-x-2 px-4 py-2 bg-white/90 backdrop-blur-sm border border-slate-200 rounded-lg text-slate-700 hover:text-emerald-600 hover:border-emerald-200 transition-all duration-300 shadow-sm"
-        >
-          <Globe className="w-4 h-4" />
-          <span className="text-sm font-medium">{t.nav.language}</span>
-        </button>
-      </div>
-
       {/* Section 1: Hero + Auto-Playing Pipeline */}
       <section className="bg-white text-slate-800 py-16 lg:py-24">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">

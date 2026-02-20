@@ -676,16 +676,6 @@ export default function Services() {
       </Helmet>
 
       {/* Language Toggle */}
-      <div className="fixed top-6 right-6 z-50">
-        <button
-          onClick={toggleLanguage}
-          className="flex items-center space-x-2 px-4 py-2 bg-white/90 backdrop-blur-sm border border-slate-200 rounded-lg text-slate-700 hover:text-teal-600 hover:border-teal-200 transition-all duration-300 shadow-sm"
-        >
-          <Globe className="w-4 h-4" />
-          <span className="text-sm font-medium">{t.nav.language}</span>
-        </button>
-      </div>
-
       {/* Hero Section */}
       <section className="relative pt-8 pb-20 lg:pt-16 lg:pb-32 bg-gradient-to-br from-white to-slate-50">
         {/* Background Elements */}
