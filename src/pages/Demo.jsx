@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { Phone, MessageCircle, Calendar, Star, TrendingUp, Clock, Users, CheckCircle, ArrowRight, ExternalLink, Play, Globe } from 'lucide-react';
+import { Phone, MessageCircle, Calendar, Star, TrendingUp, Clock, Users, CheckCircle, ArrowRight, ExternalLink, Play, Globe, FileText, Settings, Bell, BarChart3, X } from 'lucide-react';
 import { ScrollReveal } from '../components/ScrollReveal';
 
 const languages = {
@@ -92,13 +92,6 @@ const languages = {
         },
         cancel: 'Cancel',
         send: 'Send Message'
-      },
-      success: {
-        appointmentTitle: 'Appointment Requested!',
-        contactTitle: 'Message Sent!',
-        whatsappMessage: 'You will receive confirmation via WhatsApp:',
-        autoResponse: 'Automatic response sent:',
-        continue: 'Continue Exploring'
       }
     },
     whatsappMessages: {
@@ -106,6 +99,69 @@ const languages = {
         `Hello ${name || 'María'} 👋 Your appointment with ${doctor || 'Dr. María García'} (${specialty || 'General Medicine'}) has been confirmed for ${date || 'Monday, February 24'} at ${time || '10:00 AM'}.\n\nAddress: 123 Medical Plaza, Healthcare District\n\nReply CONFIRM to accept or CHANGE to reschedule. — Medical Demo | AutoMed`,
       contact: (name) =>
         `Hello ${name || 'María'} 😊 Thank you for contacting Medical Demo. An advisor will contact you within the next 2 hours. Meanwhile, learn about our services: medicaldemo.com/services. — Medical Demo | AutoMed`
+    },
+    automation: {
+      appointment: {
+        steps: [
+          {
+            title: '📋 Form Received',
+            description: 'Patient data captured instantly'
+          },
+          {
+            title: '⚙️ Processing Request',
+            description: 'n8n workflow triggered'
+          },
+          {
+            title: '📅 Calendar Updated',
+            description: 'Appointment added to schedule'
+          },
+          {
+            title: '💬 WhatsApp Confirmation Sent',
+            description: 'Patient receives instant confirmation'
+          },
+          {
+            title: '⏰ Reminder Scheduled',
+            description: '24h before: automatic reminder queued'
+          },
+          {
+            title: '⭐ Review Request Queued',
+            description: '2h after consultation: review request ready'
+          },
+          {
+            title: '✅ Complete!',
+            description: 'This took 0 seconds. Your staff did nothing.'
+          }
+        ]
+      },
+      contact: {
+        steps: [
+          {
+            title: '📋 Lead Captured',
+            description: 'Contact information stored securely'
+          },
+          {
+            title: '⚙️ Processing',
+            description: 'Lead scoring and categorization'
+          },
+          {
+            title: '💬 Auto-Response Sent',
+            description: 'Immediate acknowledgment via WhatsApp'
+          },
+          {
+            title: '📊 CRM Updated',
+            description: 'Lead added to follow-up pipeline'
+          },
+          {
+            title: '🔔 Staff Notified',
+            description: 'Team alerted for personal follow-up'
+          },
+          {
+            title: '✅ Complete!',
+            description: 'Lead captured and processed automatically'
+          }
+        ]
+      },
+      close: 'Close Automation'
     }
   },
   es: {
@@ -196,13 +252,6 @@ const languages = {
         },
         cancel: 'Cancelar',
         send: 'Enviar Mensaje'
-      },
-      success: {
-        appointmentTitle: '¡Cita Solicitada!',
-        contactTitle: '¡Mensaje Enviado!',
-        whatsappMessage: 'Recibirás confirmación por WhatsApp:',
-        autoResponse: 'Respuesta automática enviada:',
-        continue: 'Continuar Explorando'
       }
     },
     whatsappMessages: {
@@ -214,8 +263,387 @@ const languages = {
 Responde CONFIRMAR para aceptar o CAMBIAR para reprogramar. — Clínica Demo | AutoMed`,
       contact: (name) =>
         `Hola ${name || 'María'} 😊 Gracias por contactar a Clínica Demo. Un asesor te contactará en las próximas 2 horas. Mientras tanto, conoce nuestros servicios: clinicademo.com/servicios. — Clínica Demo | AutoMed`
+    },
+    automation: {
+      appointment: {
+        steps: [
+          {
+            title: '📋 Formulario Recibido',
+            description: 'Datos del paciente capturados instantáneamente'
+          },
+          {
+            title: '⚙️ Procesando Solicitud',
+            description: 'Flujo de trabajo n8n activado'
+          },
+          {
+            title: '📅 Calendario Actualizado',
+            description: 'Cita añadida a la agenda'
+          },
+          {
+            title: '💬 Confirmación WhatsApp Enviada',
+            description: 'Paciente recibe confirmación instantánea'
+          },
+          {
+            title: '⏰ Recordatorio Programado',
+            description: '24h antes: recordatorio automático programado'
+          },
+          {
+            title: '⭐ Solicitud Reseña Programada',
+            description: '2h después consulta: solicitud reseña lista'
+          },
+          {
+            title: '✅ ¡Completo!',
+            description: 'Esto tomó 0 segundos. Tu equipo no hizo nada.'
+          }
+        ]
+      },
+      contact: {
+        steps: [
+          {
+            title: '📋 Lead Capturado',
+            description: 'Información de contacto almacenada'
+          },
+          {
+            title: '⚙️ Procesando',
+            description: 'Puntuación y categorización del lead'
+          },
+          {
+            title: '💬 Respuesta Automática Enviada',
+            description: 'Reconocimiento inmediato vía WhatsApp'
+          },
+          {
+            title: '📊 CRM Actualizado',
+            description: 'Lead añadido al pipeline de seguimiento'
+          },
+          {
+            title: '🔔 Personal Notificado',
+            description: 'Equipo alertado para seguimiento personal'
+          },
+          {
+            title: '✅ ¡Completo!',
+            description: 'Lead capturado y procesado automáticamente'
+          }
+        ]
+      },
+      close: 'Cerrar Automatización'
     }
   }
+};
+
+// WhatsApp Typing Effect Component
+const WhatsAppTypingEffect = ({ message, onComplete, isActive, contactName = "Medical Demo" }) => {
+  const [displayedText, setDisplayedText] = useState('');
+  const [showTyping, setShowTyping] = useState(true);
+  const [isComplete, setIsComplete] = useState(false);
+
+  useEffect(() => {
+    if (!isActive || !message) return;
+
+    setShowTyping(true);
+    setDisplayedText('');
+    setIsComplete(false);
+
+    // Show typing indicator for 2 seconds
+    const typingTimer = setTimeout(() => {
+      setShowTyping(false);
+      
+      // Start typing effect
+      let index = 0;
+      const typeTimer = setInterval(() => {
+        if (index < message.length) {
+          setDisplayedText(message.substring(0, index + 1));
+          index++;
+        } else {
+          clearInterval(typeTimer);
+          setIsComplete(true);
+          if (onComplete) onComplete();
+        }
+      }, 30);
+
+      return () => clearInterval(typeTimer);
+    }, 2000);
+
+    return () => clearTimeout(typingTimer);
+  }, [isActive, message, onComplete]);
+
+  if (!isActive) return null;
+
+  return (
+    <div className="max-w-sm mx-auto bg-slate-900 rounded-3xl p-2 shadow-2xl">
+      {/* Phone notch */}
+      <div className="h-6 bg-black rounded-t-3xl flex items-center justify-center">
+        <div className="w-16 h-1 bg-slate-600 rounded-full"></div>
+      </div>
+      
+      {/* WhatsApp header */}
+      <div className="bg-emerald-600 px-4 py-3 flex items-center space-x-3 text-white">
+        <div className="w-8 h-8 bg-slate-200 rounded-full flex items-center justify-center">
+          <span className="text-slate-700 text-xs font-bold">MD</span>
+        </div>
+        <div className="flex-1">
+          <div className="font-semibold text-sm">{contactName}</div>
+          <div className="text-xs text-emerald-100">online</div>
+        </div>
+      </div>
+      
+      {/* Chat area */}
+      <div className="bg-slate-100 h-64 p-4 overflow-y-auto">
+        <div className="flex flex-col space-y-2">
+          {/* Incoming message */}
+          <div className="flex items-start space-x-2">
+            <div className="flex-1">
+              {showTyping ? (
+                <div className="bg-white rounded-2xl rounded-tl-sm p-3 shadow-sm">
+                  <div className="flex space-x-1">
+                    <div className="w-2 h-2 bg-slate-400 rounded-full animate-bounce"></div>
+                    <div className="w-2 h-2 bg-slate-400 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
+                    <div className="w-2 h-2 bg-slate-400 rounded-full animate-bounce" style={{ animationDelay: '0.4s' }}></div>
+                  </div>
+                </div>
+              ) : (
+                <div className="bg-white rounded-2xl rounded-tl-sm p-3 shadow-sm">
+                  <p className="text-slate-800 text-xs leading-relaxed whitespace-pre-wrap">
+                    {displayedText}
+                    {!isComplete && <span className="animate-pulse">|</span>}
+                  </p>
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+// Calendar Animation Component
+const CalendarAnimation = ({ isActive, appointmentData }) => {
+  const [showCalendar, setShowCalendar] = useState(false);
+
+  useEffect(() => {
+    if (isActive) {
+      const timer = setTimeout(() => setShowCalendar(true), 500);
+      return () => clearTimeout(timer);
+    }
+  }, [isActive]);
+
+  if (!isActive) return null;
+
+  const today = new Date();
+  const appointmentDate = appointmentData?.fecha ? new Date(appointmentData.fecha + 'T00:00:00') : today;
+
+  return (
+    <div className={`transition-all duration-700 ${showCalendar ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}>
+      <div className="bg-white border border-slate-300 rounded-xl shadow-lg p-4 max-w-xs mx-auto">
+        <div className="text-center mb-4">
+          <h4 className="font-semibold text-slate-800">
+            {appointmentDate.toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}
+          </h4>
+        </div>
+        
+        <div className="grid grid-cols-7 gap-1 text-xs text-center text-slate-600 mb-2">
+          {['S', 'M', 'T', 'W', 'T', 'F', 'S'].map(day => (
+            <div key={day} className="p-1 font-medium">{day}</div>
+          ))}
+        </div>
+        
+        <div className="grid grid-cols-7 gap-1 text-xs">
+          {Array.from({ length: 35 }).map((_, i) => {
+            const date = i + 1;
+            const isAppointmentDay = date === appointmentDate.getDate();
+            return (
+              <div key={i} className={`p-2 rounded ${
+                isAppointmentDay 
+                  ? 'bg-emerald-600 text-white font-bold animate-pulse' 
+                  : date <= 31 
+                    ? 'text-slate-700 hover:bg-slate-100' 
+                    : 'text-slate-300'
+              }`}>
+                {date <= 31 ? date : ''}
+              </div>
+            );
+          })}
+        </div>
+        
+        {showCalendar && (
+          <div className="mt-3 pt-3 border-t border-slate-200">
+            <div className="flex items-center justify-center space-x-2">
+              <CheckCircle className="w-4 h-4 text-emerald-600" />
+              <span className="text-xs text-slate-600">Appointment Added</span>
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+};
+
+// Main Automation Flow Component
+const AutomationFlow = ({ steps, isActive, onComplete, formData, flowType }) => {
+  const [currentStep, setCurrentStep] = useState(-1);
+  const [completedSteps, setCompletedSteps] = useState(new Set());
+
+  useEffect(() => {
+    if (!isActive) {
+      setCurrentStep(-1);
+      setCompletedSteps(new Set());
+      return;
+    }
+
+    const delays = [0, 1500, 3000, 4500, 7000, 9000, 11000]; // Different delays for each step
+    
+    const timers = steps.map((_, index) => 
+      setTimeout(() => {
+        setCurrentStep(index);
+        if (index > 0) {
+          setCompletedSteps(prev => new Set(prev).add(index - 1));
+        }
+      }, delays[index] || index * 2000)
+    );
+
+    // Complete the flow
+    const completeTimer = setTimeout(() => {
+      setCompletedSteps(prev => new Set(prev).add(steps.length - 1));
+      setCurrentStep(-1);
+      if (onComplete) {
+        setTimeout(onComplete, 1000);
+      }
+    }, delays[delays.length - 1] + 2000);
+
+    return () => {
+      timers.forEach(clearTimeout);
+      clearTimeout(completeTimer);
+    };
+  }, [isActive, steps, onComplete]);
+
+  if (!isActive) return null;
+
+  const getStepIcon = (stepIndex, step) => {
+    if (completedSteps.has(stepIndex)) return <CheckCircle className="w-6 h-6 text-emerald-600" />;
+    if (currentStep === stepIndex) {
+      // Return appropriate icons based on step content
+      if (step.title.includes('📋')) return <FileText className="w-6 h-6 text-emerald-600 animate-pulse" />;
+      if (step.title.includes('⚙️')) return <Settings className="w-6 h-6 text-emerald-600 animate-spin" />;
+      if (step.title.includes('📅')) return <Calendar className="w-6 h-6 text-emerald-600 animate-pulse" />;
+      if (step.title.includes('💬')) return <MessageCircle className="w-6 h-6 text-emerald-600 animate-pulse" />;
+      if (step.title.includes('⏰')) return <Clock className="w-6 h-6 text-emerald-600 animate-pulse" />;
+      if (step.title.includes('⭐')) return <Star className="w-6 h-6 text-emerald-600 animate-pulse" />;
+      if (step.title.includes('🔔')) return <Bell className="w-6 h-6 text-emerald-600 animate-pulse" />;
+      if (step.title.includes('📊')) return <BarChart3 className="w-6 h-6 text-emerald-600 animate-pulse" />;
+      if (step.title.includes('✅')) return <CheckCircle className="w-6 h-6 text-emerald-600 animate-pulse" />;
+    }
+    return <div className="w-6 h-6 rounded-full border-2 border-slate-300 bg-white"></div>;
+  };
+
+  const getStepContent = (stepIndex, step) => {
+    if (currentStep !== stepIndex) return null;
+
+    // Step 1: Show form data
+    if (stepIndex === 0 && formData) {
+      return (
+        <div className="bg-slate-50 border border-slate-200 rounded-lg p-4 animate-fadeIn">
+          <div className="text-sm text-slate-700 space-y-2">
+            <div><strong>Name:</strong> {formData.nombre}</div>
+            <div><strong>Phone:</strong> {formData.telefono}</div>
+            <div><strong>Email:</strong> {formData.email}</div>
+            {formData.fecha && <div><strong>Date:</strong> {formData.fecha}</div>}
+            {formData.hora && <div><strong>Time:</strong> {formData.hora}</div>}
+          </div>
+        </div>
+      );
+    }
+
+    // Step 2: Processing animation
+    if (stepIndex === 1) {
+      return (
+        <div className="bg-slate-50 border border-slate-200 rounded-lg p-4 animate-fadeIn">
+          <div className="flex items-center space-x-3">
+            <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-emerald-600"></div>
+            <span className="text-slate-700 text-sm">Workflow executing...</span>
+          </div>
+        </div>
+      );
+    }
+
+    // Step 3: Calendar for appointment flow
+    if (stepIndex === 2 && flowType === 'appointment') {
+      return <CalendarAnimation isActive={true} appointmentData={formData} />;
+    }
+
+    // Step 4: WhatsApp animation (main centerpiece)
+    if ((stepIndex === 3 && flowType === 'appointment') || (stepIndex === 2 && flowType === 'contact')) {
+      const message = flowType === 'appointment' 
+        ? `Hello ${formData?.nombre || 'María'} 👋 Your appointment with Dr. García has been confirmed for ${formData?.fecha || 'Monday, February 24'} at ${formData?.hora || '10:00 AM'}.\n\nAddress: 123 Medical Plaza\n\nReply CONFIRM to accept. — Medical Demo`
+        : `Hello ${formData?.nombre || 'María'} 😊 Thank you for contacting us. An advisor will contact you within 2 hours. — Medical Demo`;
+      
+      return <WhatsAppTypingEffect message={message} isActive={true} />;
+    }
+
+    // Final step: Summary
+    if (stepIndex === steps.length - 1) {
+      return (
+        <div className="bg-emerald-50 border border-emerald-200 rounded-lg p-4 animate-fadeIn">
+          <div className="text-center">
+            <div className="text-2xl font-bold text-emerald-800 mb-2">100% Automated</div>
+            <div className="text-sm text-emerald-700">
+              {flowType === 'appointment' ? '4 automations triggered' : '5 processes completed'}
+            </div>
+            <div className="text-xs text-emerald-600 mt-1 font-medium">
+              Staff involvement: 0 minutes
+            </div>
+          </div>
+        </div>
+      );
+    }
+
+    return null;
+  };
+
+  return (
+    <div className="space-y-6">
+      {/* Progress indicator */}
+      <div className="w-full bg-slate-200 rounded-full h-2">
+        <div 
+          className="bg-emerald-600 h-2 rounded-full transition-all duration-500"
+          style={{ width: `${((completedSteps.size + (currentStep >= 0 ? 1 : 0)) / steps.length) * 100}%` }}
+        />
+      </div>
+
+      <div className="flex">
+        {/* Timeline on the left */}
+        <div className="flex flex-col space-y-4 mr-8">
+          {steps.map((step, index) => (
+            <div key={index} className="flex items-center space-x-4">
+              <div className={`flex-shrink-0 transition-all duration-300 ${
+                currentStep === index ? 'animate-pulse' : ''
+              }`}>
+                {getStepIcon(index, step)}
+              </div>
+              <div className={`transition-all duration-300 ${
+                currentStep === index 
+                  ? 'text-emerald-600 font-semibold' 
+                  : completedSteps.has(index)
+                    ? 'text-slate-700'
+                    : 'text-slate-400'
+              }`}>
+                <div className="font-medium text-sm">{step.title}</div>
+                <div className="text-xs opacity-75">{step.description}</div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Content area on the right */}
+        <div className="flex-1">
+          {steps.map((step, index) => (
+            <div key={index}>
+              {getStepContent(index, step)}
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default function Demo() {
@@ -238,8 +666,9 @@ export default function Demo() {
 
   const [showCitaModal, setShowCitaModal] = useState(false);
   const [showContactoModal, setShowContactoModal] = useState(false);
-  const [showWhatsAppMessage, setShowWhatsAppMessage] = useState(false);
-  const [showContactResponse, setShowContactResponse] = useState(false);
+  const [showAutomationFlow, setShowAutomationFlow] = useState(false);
+  const [automationFlowType, setAutomationFlowType] = useState('appointment');
+  const [automationFormData, setAutomationFormData] = useState(null);
   const [isSubmittingCita, setIsSubmittingCita] = useState(false);
   const [isSubmittingContacto, setIsSubmittingContacto] = useState(false);
 
@@ -328,8 +757,11 @@ export default function Demo() {
     setIsSubmittingCita(true);
 
     try {
-      // Show WhatsApp confirmation message
-      setShowWhatsAppMessage(true);
+      // Show automation flow instead of success modal
+      setAutomationFormData(citaForm);
+      setAutomationFlowType('appointment');
+      setShowAutomationFlow(true);
+      
       setCitaForm({
         nombre: '',
         telefono: '',
@@ -340,7 +772,6 @@ export default function Demo() {
       });
     } catch (error) {
       console.log('Demo mode:', error);
-      setShowWhatsAppMessage(true);
     } finally {
       setIsSubmittingCita(false);
       setShowCitaModal(false);
@@ -352,7 +783,11 @@ export default function Demo() {
     setIsSubmittingContacto(true);
 
     try {
-      setShowContactResponse(true);
+      // Show automation flow instead of success modal
+      setAutomationFormData(contactoForm);
+      setAutomationFlowType('contact');
+      setShowAutomationFlow(true);
+      
       setContactoForm({
         nombre: '',
         telefono: '',
@@ -361,7 +796,6 @@ export default function Demo() {
       });
     } catch (error) {
       console.log('Demo mode:', error);
-      setShowContactResponse(true);
     } finally {
       setIsSubmittingContacto(false);
       setShowContactoModal(false);
@@ -925,68 +1359,33 @@ export default function Demo() {
         </div>
       )}
 
-      {/* WhatsApp Message Modal */}
-      {showWhatsAppMessage && (
-        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center p-4 z-50">
-          <div className="bg-white rounded-2xl p-8 max-w-md w-full border border-slate-200 shadow-xl text-center">
-            <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-              <CheckCircle className="w-8 h-8 text-green-600" />
-            </div>
-            <h3 className="text-2xl font-bold text-slate-900 mb-4">{t.modal.success.appointmentTitle}</h3>
-            <p className="text-slate-600 mb-6">{t.modal.success.whatsappMessage}</p>
-            
-            <div className="bg-slate-50 rounded-xl p-4 border border-slate-200 mb-6">
-              <div className="flex items-center space-x-2 mb-3">
-                <MessageCircle className="w-5 h-5 text-green-600" />
-                <span className="text-green-600 font-semibold">+1 555 123 4567</span>
-                <span className="text-slate-500 text-xs">Now</span>
+      {/* Automation Flow Simulator */}
+      {showAutomationFlow && (
+        <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 z-50">
+          <div className="bg-white rounded-2xl p-8 max-w-4xl w-full max-h-[90vh] overflow-y-auto border border-slate-200 shadow-2xl">
+            <div className="flex justify-between items-center mb-8">
+              <div>
+                <h3 className="text-2xl font-bold text-slate-900">Automation Flow</h3>
+                <p className="text-slate-600">Watch your practice automation in action</p>
               </div>
-              <div className="bg-green-500 rounded-xl rounded-bl-sm p-3 text-left">
-                <p className="text-white text-sm leading-relaxed">
-                  {t.whatsappMessages.appointment(citaForm.nombre, selectedProvider?.name, selectedProvider?.specialty, citaForm.fecha ? new Date(citaForm.fecha + 'T00:00:00').toLocaleDateString() : '', citaForm.hora)}
-                </p>
-              </div>
+              <button
+                onClick={() => setShowAutomationFlow(false)}
+                className="p-2 text-slate-400 hover:text-slate-600 transition-colors"
+              >
+                <X className="w-6 h-6" />
+              </button>
             </div>
             
-            <button
-              onClick={() => setShowWhatsAppMessage(false)}
-              className="w-full px-6 py-3 bg-teal-600 text-white rounded-lg hover:bg-teal-700 transition-colors font-semibold"
-            >
-              {t.modal.success.continue}
-            </button>
-          </div>
-        </div>
-      )}
-
-      {/* Contact Response Modal */}
-      {showContactResponse && (
-        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center p-4 z-50">
-          <div className="bg-white rounded-2xl p-8 max-w-md w-full border border-slate-200 shadow-xl text-center">
-            <div className="w-16 h-16 bg-teal-100 rounded-full flex items-center justify-center mx-auto mb-4">
-              <CheckCircle className="w-8 h-8 text-teal-600" />
-            </div>
-            <h3 className="text-2xl font-bold text-slate-900 mb-4">{t.modal.success.contactTitle}</h3>
-            <p className="text-slate-600 mb-6">{t.modal.success.autoResponse}</p>
-            
-            <div className="bg-slate-50 rounded-xl p-4 border border-slate-200 mb-6">
-              <div className="flex items-center space-x-2 mb-3">
-                <MessageCircle className="w-5 h-5 text-green-600" />
-                <span className="text-green-600 font-semibold">+1 555 123 4567</span>
-                <span className="text-slate-500 text-xs">Now</span>
-              </div>
-              <div className="bg-green-500 rounded-xl rounded-bl-sm p-3 text-left">
-                <p className="text-white text-sm leading-relaxed">
-                  {t.whatsappMessages.contact(contactoForm.nombre)}
-                </p>
-              </div>
-            </div>
-            
-            <button
-              onClick={() => setShowContactResponse(false)}
-              className="w-full px-6 py-3 bg-teal-600 text-white rounded-lg hover:bg-teal-700 transition-colors font-semibold"
-            >
-              {t.modal.success.continue}
-            </button>
+            <AutomationFlow
+              steps={t.automation[automationFlowType].steps}
+              isActive={showAutomationFlow}
+              onComplete={() => {
+                // Auto close after showing complete state
+                setTimeout(() => setShowAutomationFlow(false), 3000);
+              }}
+              formData={automationFormData}
+              flowType={automationFlowType}
+            />
           </div>
         </div>
       )}
