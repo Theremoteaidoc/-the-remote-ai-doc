@@ -221,7 +221,7 @@ const AutoPlayingPipeline = ({ language = 'en' }) => {
 
   const t = languages[language];
   const steps = t.pipeline.steps;
-  const STEP_DURATIONS = [3500, 3500, 3500, 30000, 20000, 20000, 5000];
+  const STEP_DURATIONS = [3500, 3500, 3500, 30000, 23000, 23000, 5000];
 
   const clearTimer = useCallback(() => {
     if (timerRef.current) {
