@@ -228,40 +228,47 @@ const AutoPlayingPipeline = ({ language = 'en' }) => {
     setIsRunning(true);
   };
 
+  // Auto-start on mount
   useEffect(() => {
-    // Auto-start on component mount
     const timer = setTimeout(startPipeline, 1000);
     return () => clearTimeout(timer);
   }, []);
 
+  // Step progression
   useEffect(() => {
     if (!isRunning) return;
 
-    // Variable duration per step — WhatsApp step (3) gets 30s, others 3.5s
     const stepDurations = [3500, 3500, 3500, 30000, 20000, 20000, 5000];
     const stepDuration = stepDurations[currentStep] || 3500;
     
     if (currentStep < steps.length) {
       const timer = setTimeout(() => {
-        setCompletedSteps(prev => new Set(prev).add(currentStep));
+        setCompletedSteps(prev => {
+          const next = new Set(prev);
+          next.add(currentStep);
+          return next;
+        });
         
         if (currentStep + 1 < steps.length) {
-          setCurrentStep(currentStep + 1);
+          setCurrentStep(prev => prev + 1);
         } else {
-          // Pipeline complete
           setIsRunning(false);
           setShowWatchAgain(true);
-          
-          // Auto-restart after 5 seconds
-          setTimeout(() => {
-            startPipeline();
-          }, 5000);
         }
       }, stepDuration);
 
       return () => clearTimeout(timer);
     }
   }, [currentStep, isRunning, steps.length]);
+
+  // Auto-restart after completion (separate effect, properly cleaned up)
+  useEffect(() => {
+    if (!showWatchAgain) return;
+    const restartTimer = setTimeout(() => {
+      startPipeline();
+    }, 5000);
+    return () => clearTimeout(restartTimer);
+  }, [showWatchAgain]);
 
   const renderStepContent = (stepIndex) => {
     if (currentStep !== stepIndex) return null;
@@ -491,34 +498,51 @@ const WhatsAppPhone = ({ message, isActive }) => {
   const [isComplete, setIsComplete] = useState(false);
 
   useEffect(() => {
-    if (!isActive || !message) return;
+    // Reset everything when becoming inactive
+    if (!isActive || !message) {
+      setShowTyping(true);
+      setDisplayedText('');
+      setIsComplete(false);
+      return;
+    }
 
     setShowTyping(true);
     setDisplayedText('');
     setIsComplete(false);
 
     let typeTimerRef = null;
+    let cancelled = false;
 
     // Show typing for 1.5 seconds
     const typingTimer = setTimeout(() => {
+      if (cancelled) return;
       setShowTyping(false);
       
-      // Start typing effect - 100ms per character (slow, readable reveal)
+      // Start typing effect - 100ms per character
       let index = 0;
       typeTimerRef = setInterval(() => {
+        if (cancelled) {
+          clearInterval(typeTimerRef);
+          return;
+        }
         if (index < message.length) {
           setDisplayedText(message.substring(0, index + 1));
           index++;
         } else {
           clearInterval(typeTimerRef);
+          typeTimerRef = null;
           setIsComplete(true);
         }
       }, 100);
     }, 1500);
 
     return () => {
+      cancelled = true;
       clearTimeout(typingTimer);
-      if (typeTimerRef) clearInterval(typeTimerRef);
+      if (typeTimerRef) {
+        clearInterval(typeTimerRef);
+        typeTimerRef = null;
+      }
     };
   }, [isActive, message]);
 
