@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 import { ArrowRight, Clock, Tag } from 'lucide-react';
 import { ScrollReveal } from '../components/ScrollReveal';
 import { getAllPosts } from '../data/blogPosts';
@@ -7,7 +8,24 @@ export default function Blog() {
   const posts = getAllPosts();
 
   return (
-    <section className="relative py-32">
+    <>
+      <Helmet>
+        <title>Clinical AI Blog | The Remote AI Doc</title>
+        <meta name="description" content="Insights on clinical AI safety, healthcare automation, and remote medicine from Dr. Javier Rosas." />
+        <meta name="keywords" content="clinical AI blog, healthcare AI insights, medical AI analysis, remote medicine, clinical AI safety, healthcare automation" />
+        <link rel="canonical" href="https://theremoteaidoc.com/blog" />
+        <meta property="og:title" content="Clinical AI Blog | The Remote AI Doc" />
+        <meta property="og:description" content="Insights on clinical AI safety, healthcare automation, and remote medicine from Dr. Javier Rosas." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://theremoteaidoc.com/blog" />
+        <meta property="og:image" content="https://theremoteaidoc.com/profile.jpg" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Clinical AI Blog | The Remote AI Doc" />
+        <meta name="twitter:description" content="Insights on clinical AI safety, healthcare automation, and remote medicine from Dr. Javier Rosas." />
+        <meta name="twitter:image" content="https://theremoteaidoc.com/profile.jpg" />
+      </Helmet>
+      
+      <section className="relative py-32">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         {/* Header */}
         <div className="text-center space-y-4 mb-20">
@@ -100,5 +118,6 @@ export default function Blog() {
         </ScrollReveal>
       </div>
     </section>
+    </>
   );
 }

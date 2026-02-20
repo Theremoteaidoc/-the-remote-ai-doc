@@ -395,8 +395,19 @@ export default function Demo() {
   return (
     <>
       <Helmet>
-        <title>{t.seo.title}</title>
-        <meta name="description" content={t.seo.description} />
+        <title>AutoMed Clinical Automation Demo | The Remote AI Doc</title>
+        <meta name="description" content="Interactive demo of WhatsApp-based clinical automation for medical practices. Appointment booking, smart reminders, review collection, and lead capture." />
+        <meta name="keywords" content="clinical automation demo, WhatsApp medical automation, healthcare AI demo, appointment booking automation, medical practice automation" />
+        <link rel="canonical" href="https://theremoteaidoc.com/demo" />
+        <meta property="og:title" content="AutoMed Clinical Automation Demo | The Remote AI Doc" />
+        <meta property="og:description" content="Interactive demo of WhatsApp-based clinical automation for medical practices. Appointment booking, smart reminders, review collection, and lead capture." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://theremoteaidoc.com/demo" />
+        <meta property="og:image" content="https://theremoteaidoc.com/profile.jpg" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="AutoMed Clinical Automation Demo | The Remote AI Doc" />
+        <meta name="twitter:description" content="Interactive demo of WhatsApp-based clinical automation for medical practices. Appointment booking, smart reminders, review collection, and lead capture." />
+        <meta name="twitter:image" content="https://theremoteaidoc.com/profile.jpg" />
       </Helmet>
 
       {/* Global language toggle */}

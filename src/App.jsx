@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Routes, Route, Link, useLocation } from 'react-router-dom';
-import { HelmetProvider } from 'react-helmet-async';
+import { HelmetProvider, Helmet } from 'react-helmet-async';
 import { Star, ArrowRight, Linkedin, Twitter, Youtube, Stethoscope, Brain, Ship, BookOpen, Globe, Menu, X } from 'lucide-react';
 import { ScrollReveal } from './components/ScrollReveal';
 import Blog from './pages/Blog';
@@ -486,6 +486,22 @@ function Home({ currentLang, t }) {
 
   return (
     <>
+      <Helmet>
+        <title>Dr. Javier Rosas | Clinical AI Safety & Healthcare AI Evaluation | The Remote AI Doc</title>
+        <meta name="description" content="Senior ship physician and medical AI evaluator. Specializing in clinical AI safety, LLM accuracy testing, and healthcare automation. 6-platform AI evaluation study. Book a discovery call." />
+        <meta name="keywords" content="clinical AI safety, healthcare AI evaluation, medical AI trainer, ship physician, LLM accuracy testing, healthcare automation, remote medicine AI" />
+        <link rel="canonical" href="https://theremoteaidoc.com" />
+        <meta property="og:title" content="Dr. Javier Rosas | Clinical AI Safety & Healthcare AI Evaluation | The Remote AI Doc" />
+        <meta property="og:description" content="Senior ship physician and medical AI evaluator. Specializing in clinical AI safety, LLM accuracy testing, and healthcare automation. 6-platform AI evaluation study. Book a discovery call." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://theremoteaidoc.com" />
+        <meta property="og:image" content="https://theremoteaidoc.com/profile.jpg" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Dr. Javier Rosas | Clinical AI Safety & Healthcare AI Evaluation | The Remote AI Doc" />
+        <meta name="twitter:description" content="Senior ship physician and medical AI evaluator. Specializing in clinical AI safety, LLM accuracy testing, and healthcare automation. 6-platform AI evaluation study. Book a discovery call." />
+        <meta name="twitter:image" content="https://theremoteaidoc.com/profile.jpg" />
+      </Helmet>
+      
       {/* Hero Section */}
       <section className="relative pt-8 pb-20 lg:pt-16 lg:pb-32 bg-gradient-to-br from-white to-slate-50">
         {/* Subtle background elements */}
