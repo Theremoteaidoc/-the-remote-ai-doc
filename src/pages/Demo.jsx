@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { 
   Phone, MessageCircle, Calendar, Star, TrendingUp, Clock, Users, CheckCircle, 
@@ -213,67 +213,85 @@ const languages = {
 
 // Auto-Playing Pipeline Component
 const AutoPlayingPipeline = ({ language = 'en' }) => {
-  const [currentStep, setCurrentStep] = useState(0);
-  const [isRunning, setIsRunning] = useState(false);
+  const [currentStep, setCurrentStep] = useState(-1); // -1 = not started
+  const [completedStep, setCompletedStep] = useState(-1); // highest completed step index
   const [showWatchAgain, setShowWatchAgain] = useState(false);
-  const [completedSteps, setCompletedSteps] = useState(new Set());
+  const timerRef = useRef(null);
+  const mountedRef = useRef(true);
 
   const t = languages[language];
   const steps = t.pipeline.steps;
+  const STEP_DURATIONS = [3500, 3500, 3500, 30000, 20000, 20000, 5000];
 
-  const startPipeline = () => {
-    setCurrentStep(0);
-    setCompletedSteps(new Set());
-    setShowWatchAgain(false);
-    setIsRunning(true);
-  };
-
-  // Auto-start on mount
-  useEffect(() => {
-    const timer = setTimeout(startPipeline, 1000);
-    return () => clearTimeout(timer);
+  const clearTimer = useCallback(() => {
+    if (timerRef.current) {
+      clearTimeout(timerRef.current);
+      timerRef.current = null;
+    }
   }, []);
 
-  // Step progression
-  useEffect(() => {
-    if (!isRunning) return;
-
-    const stepDurations = [3500, 3500, 3500, 30000, 20000, 20000, 5000];
-    const stepDuration = stepDurations[currentStep] || 3500;
+  const advanceStep = useCallback((step) => {
+    if (!mountedRef.current) return;
     
-    if (currentStep < steps.length) {
-      const timer = setTimeout(() => {
-        setCompletedSteps(prev => {
-          const next = new Set(prev);
-          next.add(currentStep);
-          return next;
-        });
-        
-        if (currentStep + 1 < steps.length) {
-          setCurrentStep(prev => prev + 1);
-        } else {
-          setIsRunning(false);
-          setShowWatchAgain(true);
-        }
-      }, stepDuration);
-
-      return () => clearTimeout(timer);
+    if (step >= STEP_DURATIONS.length) {
+      // Pipeline complete
+      setShowWatchAgain(true);
+      return;
     }
-  }, [currentStep, isRunning, steps.length]);
 
-  // Auto-restart after completion (separate effect, properly cleaned up)
+    setCurrentStep(step);
+    
+    timerRef.current = setTimeout(() => {
+      if (!mountedRef.current) return;
+      setCompletedStep(step);
+      advanceStep(step + 1);
+    }, STEP_DURATIONS[step]);
+  }, []);
+
+  const startPipeline = useCallback(() => {
+    clearTimer();
+    setCurrentStep(-1);
+    setCompletedStep(-1);
+    setShowWatchAgain(false);
+    // Small delay then start step 0
+    timerRef.current = setTimeout(() => {
+      if (mountedRef.current) advanceStep(0);
+    }, 500);
+  }, [advanceStep, clearTimer]);
+
+  // Auto-start on mount, cleanup on unmount
   useEffect(() => {
-    if (!showWatchAgain) return;
-    const restartTimer = setTimeout(() => {
-      startPipeline();
-    }, 5000);
-    return () => clearTimeout(restartTimer);
-  }, [showWatchAgain]);
+    mountedRef.current = true;
+    const initTimer = setTimeout(startPipeline, 1000);
+    return () => {
+      mountedRef.current = false;
+      clearTimeout(initTimer);
+      clearTimer();
+    };
+  }, []);
 
-  const renderStepContent = (stepIndex) => {
-    if (currentStep !== stepIndex) return null;
+  // Get WhatsApp message for current step
+  const getWhatsAppMessage = (stepIndex) => {
+    if (stepIndex === 3) {
+      return t.whatsapp[language]('María', 'Dra. García', 'Lunes 24 de Febrero', '10:00');
+    }
+    if (stepIndex === 4) {
+      return language === 'es' 
+        ? "Hola María 📋 Recordatorio: Mañana Martes 25 a las 10:00 AM con Dra. García (Medicina General). No olvides tu documento de identidad.\n\n📍 Calle 10 #43A-25, El Poblado, Medellín\n\n¿Necesitas reprogramar? Responde CAMBIAR.\n— Clínica Demo | AutoMed"
+        : "Hello María 📋 Reminder: Tomorrow Tuesday 25th at 10:00 AM with Dr. García (General Medicine). Don't forget your ID.\n\n📍 123 Medical Plaza, Healthcare District\n\nNeed to reschedule? Reply CHANGE.\n— Medical Demo | AutoMed";
+    }
+    if (stepIndex === 5) {
+      return language === 'es'
+        ? "Hola María 😊 Gracias por tu visita con Dra. García en Clínica Demo. ¿Nos ayudas con una reseña? Solo 30 segundos:\n\n⭐ bit.ly/clinica-demo-review\n\nTu opinión nos ayuda a mejorar. ¡Gracias! 🙏\n— Clínica Demo | AutoMed"
+        : "Hello María 😊 Thanks for your visit with Dr. García at Medical Demo. Would you help us with a review? Just 30 seconds:\n\n⭐ bit.ly/medical-demo-review\n\nYour feedback helps us improve. Thank you! 🙏\n— Medical Demo | AutoMed";
+    }
+    return null;
+  };
 
-    switch (stepIndex) {
+  const renderStepContent = () => {
+    if (currentStep < 0) return null;
+
+    switch (currentStep) {
       case 0: // Form Received
         return (
           <div className="bg-white rounded-xl border border-slate-200 p-6 shadow-lg animate-fadeIn">
@@ -343,49 +361,30 @@ const AutoPlayingPipeline = ({ language = 'en' }) => {
         );
 
       case 3: // WhatsApp Confirmation - THE MONEY SHOT
-        return (
-          <div className="animate-fadeIn">
-            <WhatsAppPhone 
-              message={t.whatsapp[language]('María', 'Dra. García', 'Lunes 24 de Febrero', '10:00')}
-              isActive={true}
-            />
-          </div>
-        );
-
-      case 4: // Reminder Scheduled
-        return (
-          <div className="animate-fadeIn space-y-3">
-            <div className="flex items-center space-x-3 mb-2">
-              <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
-                <Clock className="w-4 h-4 text-blue-600" />
-              </div>
-              <div className="text-sm font-medium text-slate-700">24h before → patient receives:</div>
-            </div>
-            <WhatsAppPhone 
-              message={currentLang === 'es' 
-                ? "Hola María 📋 Recordatorio: Mañana Martes 25 a las 10:00 AM con Dra. García (Medicina General). No olvides tu documento de identidad.\n\n📍 Calle 10 #43A-25, El Poblado, Medellín\n\n¿Necesitas reprogramar? Responde CAMBIAR.\n— Clínica Demo | AutoMed"
-                : "Hello María 📋 Reminder: Tomorrow Tuesday 25th at 10:00 AM with Dr. García (General Medicine). Don't forget your ID.\n\n📍 123 Medical Plaza, Healthcare District\n\nNeed to reschedule? Reply CHANGE.\n— Medical Demo | AutoMed"
-              }
-              isActive={currentStep === 4} 
-            />
-          </div>
-        );
-
+      case 4: // Reminder Scheduled  
       case 5: // Review Request Queued
         return (
           <div className="animate-fadeIn space-y-3">
-            <div className="flex items-center space-x-3 mb-2">
-              <div className="w-8 h-8 bg-yellow-100 rounded-full flex items-center justify-center">
-                <Star className="w-4 h-4 text-yellow-600" />
+            {currentStep === 4 && (
+              <div className="flex items-center space-x-3 mb-2">
+                <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
+                  <Clock className="w-4 h-4 text-blue-600" />
+                </div>
+                <div className="text-sm font-medium text-slate-700">24h before → patient receives:</div>
               </div>
-              <div className="text-sm font-medium text-slate-700">2h after consultation → patient receives:</div>
-            </div>
+            )}
+            {currentStep === 5 && (
+              <div className="flex items-center space-x-3 mb-2">
+                <div className="w-8 h-8 bg-yellow-100 rounded-full flex items-center justify-center">
+                  <Star className="w-4 h-4 text-yellow-600" />
+                </div>
+                <div className="text-sm font-medium text-slate-700">2h after consultation → patient receives:</div>
+              </div>
+            )}
+            {/* Single WhatsAppPhone, keyed on step to force clean remount */}
             <WhatsAppPhone 
-              message={currentLang === 'es'
-                ? "Hola María 😊 Gracias por tu visita con Dra. García en Clínica Demo. ¿Nos ayudas con una reseña? Solo 30 segundos:\n\n⭐ bit.ly/clinica-demo-review\n\nTu opinión nos ayuda a mejorar. ¡Gracias! 🙏\n— Clínica Demo | AutoMed"
-                : "Hello María 😊 Thanks for your visit with Dr. García at Medical Demo. Would you help us with a review? Just 30 seconds:\n\n⭐ bit.ly/medical-demo-review\n\nYour feedback helps us improve. Thank you! 🙏\n— Medical Demo | AutoMed"
-              }
-              isActive={currentStep === 5} 
+              key={`wa-step-${currentStep}`}
+              message={getWhatsAppMessage(currentStep)}
             />
           </div>
         );
@@ -427,9 +426,9 @@ const AutoPlayingPipeline = ({ language = 'en' }) => {
       <div className="space-y-6">
         {steps.map((step, index) => {
           const Icon = step.icon;
-          const isActive = currentStep === index && isRunning;
-          const isCompleted = completedSteps.has(index);
-          const isPending = currentStep < index || !isRunning;
+          const isActive = currentStep === index;
+          const isCompleted = index <= completedStep;
+          const isPending = index > currentStep;
 
           return (
             <div key={index} className="flex items-start space-x-4">
@@ -477,14 +476,10 @@ const AutoPlayingPipeline = ({ language = 'en' }) => {
         })}
       </div>
 
-      {/* Right Side - Content Area */}
+      {/* Right Side - Content Area (single render, no stacking) */}
       <div className="lg:pl-8">
-        <div className="sticky top-8 space-y-6">
-          {steps.map((step, index) => (
-            <div key={index}>
-              {renderStepContent(index)}
-            </div>
-          ))}
+        <div className="sticky top-8">
+          {renderStepContent()}
         </div>
       </div>
     </div>
@@ -492,61 +487,62 @@ const AutoPlayingPipeline = ({ language = 'en' }) => {
 };
 
 // WhatsApp Phone Component
-const WhatsAppPhone = ({ message, isActive }) => {
+// WhatsAppPhone — always active when mounted. Use key= to remount cleanly between steps.
+const WhatsAppPhone = ({ message }) => {
   const [displayedText, setDisplayedText] = useState('');
   const [showTyping, setShowTyping] = useState(true);
   const [isComplete, setIsComplete] = useState(false);
+  const rafRef = useRef(null);
+  const startTimeRef = useRef(null);
+  const mountedRef = useRef(true);
 
   useEffect(() => {
-    // Reset everything when becoming inactive
-    if (!isActive || !message) {
-      setShowTyping(true);
-      setDisplayedText('');
-      setIsComplete(false);
-      return;
-    }
+    mountedRef.current = true;
+    if (!message) return;
 
-    setShowTyping(true);
-    setDisplayedText('');
-    setIsComplete(false);
+    const TYPING_DELAY = 1500; // ms before typing starts
+    const CHAR_INTERVAL = 100; // ms per character
 
-    let typeTimerRef = null;
-    let cancelled = false;
-
-    // Show typing for 1.5 seconds
-    const typingTimer = setTimeout(() => {
-      if (cancelled) return;
+    // Use requestAnimationFrame for typing — no intervals to leak
+    const animate = (timestamp) => {
+      if (!mountedRef.current) return;
+      if (!startTimeRef.current) startTimeRef.current = timestamp;
+      
+      const elapsed = timestamp - startTimeRef.current;
+      
+      if (elapsed < TYPING_DELAY) {
+        // Still showing typing dots
+        rafRef.current = requestAnimationFrame(animate);
+        return;
+      }
+      
+      // Typing phase — transition from dots to text
       setShowTyping(false);
       
-      // Start typing effect - 100ms per character
-      let index = 0;
-      typeTimerRef = setInterval(() => {
-        if (cancelled) {
-          clearInterval(typeTimerRef);
-          return;
-        }
-        if (index < message.length) {
-          setDisplayedText(message.substring(0, index + 1));
-          index++;
-        } else {
-          clearInterval(typeTimerRef);
-          typeTimerRef = null;
-          setIsComplete(true);
-        }
-      }, 100);
-    }, 1500);
+      const typingElapsed = elapsed - TYPING_DELAY;
+      const charsToShow = Math.min(Math.floor(typingElapsed / CHAR_INTERVAL), message.length);
+      
+      setDisplayedText(message.substring(0, charsToShow));
+      
+      if (charsToShow >= message.length) {
+        setIsComplete(true);
+        setShowTyping(false);
+        return; // Stop — animation complete
+      }
+      
+      rafRef.current = requestAnimationFrame(animate);
+    };
+
+    rafRef.current = requestAnimationFrame(animate);
 
     return () => {
-      cancelled = true;
-      clearTimeout(typingTimer);
-      if (typeTimerRef) {
-        clearInterval(typeTimerRef);
-        typeTimerRef = null;
+      mountedRef.current = false;
+      if (rafRef.current) {
+        cancelAnimationFrame(rafRef.current);
+        rafRef.current = null;
       }
     };
-  }, [isActive, message]);
-
-  if (!isActive) return null;
+  }, [message]); // Only depends on message — component remounts via key= for new steps
 
   return (
     <div className="max-w-xs mx-auto" style={{ perspective: '1200px' }}>
