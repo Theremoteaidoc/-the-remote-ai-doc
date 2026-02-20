@@ -23,15 +23,15 @@ const languages = {
       language: 'Español'
     },
     hero: {
-      badge: 'Your Guide to Clinical AI from the Edge of Medicine',
-      title: 'Redefining',
-      subtitle: 'the Future of',
-      highlight: 'Clinical',
-      lastWord: 'AI',
-      description: 'I practice medicine 1,000 miles from the nearest hospital — and I train the AI systems that will help the next generation of doctors do the same.',
-      emailPlaceholder: 'Enter your email',
-      subscribe: 'Subscribe',
-      joinText: 'Join 100+ healthcare professionals'
+      badge: 'Ship Physician · AI Trainer · Clinical AI Evaluator',
+      title: 'Dr. Javier',
+      subtitle: 'Rosas',
+      highlight: 'The Remote',
+      lastWord: 'AI Doc',
+      description: 'Ship physician practicing 1,000 miles from shore. I evaluate clinical AI tools, train frontier models, and help healthcare organizations implement AI safely.',
+      cta: 'Schedule a Discovery Call',
+      ctaSecondary: 'View Services',
+      joinText: 'Trusted by healthcare leaders worldwide'
     },
     stats: {
       miles: 'Miles from Shore',
@@ -92,8 +92,10 @@ const languages = {
       description: 'Follow along as I navigate the intersection of remote medicine and artificial intelligence'
     },
     cta: {
-      title: 'Ready to explore the future of clinical AI?',
-      description: 'Join my weekly newsletter for practical insights on healthcare AI, remote medicine, and the tools shaping tomorrow\'s clinical practice.',
+      title: 'Ready to implement clinical AI safely?',
+      description: 'Let\'s discuss how AI evaluation, training, and implementation can transform your healthcare organization — with the rigor it demands.',
+      button: 'Schedule a Discovery Call',
+      secondaryButton: 'Subscribe to Newsletter',
       emailPlaceholder: 'Enter your email',
       subscribe: 'Subscribe'
     },
@@ -115,15 +117,15 @@ const languages = {
       language: 'English'
     },
     hero: {
-      badge: 'Tu Guía de IA Clínica desde el Borde de la Medicina',
-      title: 'Redefiniendo',
-      subtitle: 'el Futuro de la',
-      highlight: 'IA',
-      lastWord: 'Clínica',
-      description: 'Practico medicina a 1,000 millas del hospital más cercano — y entreno los sistemas de IA que ayudarán a la próxima generación de médicos a hacer lo mismo.',
-      emailPlaceholder: 'Ingresa tu email',
-      subscribe: 'Suscribirse',
-      joinText: 'Únete a 100+ profesionales de la salud'
+      badge: 'Médico de Barco · Entrenador de IA · Evaluador de IA Clínica',
+      title: 'Dr. Javier',
+      subtitle: 'Rosas',
+      highlight: 'The Remote',
+      lastWord: 'AI Doc',
+      description: 'Médico de barco practicando a 1,000 millas de la costa. Evalúo herramientas de IA clínica, entreno modelos de frontera y ayudo a organizaciones de salud a implementar IA de forma segura.',
+      cta: 'Agendar Llamada de Descubrimiento',
+      ctaSecondary: 'Ver Servicios',
+      joinText: 'Confiado por líderes de salud a nivel mundial'
     },
     stats: {
       miles: 'Millas de la Costa',
@@ -184,8 +186,10 @@ const languages = {
       description: 'Sígueme mientras navego la intersección de medicina remota e inteligencia artificial'
     },
     cta: {
-      title: '¿Listo para explorar el futuro de la IA clínica?',
-      description: 'Únete a mi boletín semanal para conocimientos prácticos sobre IA médica, medicina remota y las herramientas que moldean la práctica clínica del mañana.',
+      title: '¿Listo para implementar IA clínica de forma segura?',
+      description: 'Hablemos de cómo la evaluación, entrenamiento e implementación de IA puede transformar tu organización de salud — con el rigor que exige.',
+      button: 'Agendar Llamada de Descubrimiento',
+      secondaryButton: 'Suscribirse al Boletín',
       emailPlaceholder: 'Ingresa tu email',
       subscribe: 'Suscribirse'
     },
@@ -431,23 +435,22 @@ function Home({ currentLang, t }) {
               </ScrollReveal>
 
               <ScrollReveal delay={300}>
-                <form onSubmit={(e) => handleSubscribe(e, email)} className="flex flex-col sm:flex-row gap-3 max-w-md">
-                  <input
-                    type="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    placeholder={t.hero.emailPlaceholder}
-                    className="flex-1 px-4 py-3 border border-slate-300 rounded-lg text-slate-900 placeholder-slate-500 focus:outline-none focus:border-teal-500 focus:ring-2 focus:ring-teal-200 transition-all duration-300"
-                  />
+                <div className="flex flex-col sm:flex-row gap-3 max-w-md">
                   <button
-                    type="submit"
-                    className="px-6 py-3 bg-teal-600 text-white rounded-lg hover:bg-teal-700 transition-all duration-300 flex items-center justify-center space-x-2 group font-medium"
+                    onClick={() => window.Calendly?.initPopupWidget({ url: 'https://calendly.com/theremoteaidoc/30min' })}
+                    className="px-8 py-4 bg-teal-600 text-white rounded-lg hover:bg-teal-700 transition-all duration-300 flex items-center justify-center space-x-2 group font-semibold text-lg shadow-lg shadow-teal-600/20"
                   >
-                    <span>{t.hero.subscribe}</span>
-                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
+                    <span>{t.hero.cta}</span>
+                    <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
                   </button>
-                </form>
-                <p className="text-sm text-slate-500 mt-3">{t.hero.joinText}</p>
+                  <Link
+                    to="/services"
+                    className="px-8 py-4 border-2 border-slate-300 text-slate-700 rounded-lg hover:border-teal-500 hover:text-teal-600 transition-all duration-300 flex items-center justify-center font-semibold text-lg"
+                  >
+                    {t.hero.ctaSecondary}
+                  </Link>
+                </div>
+                <p className="text-sm text-slate-500 mt-4">{t.hero.joinText}</p>
               </ScrollReveal>
             </div>
 
@@ -722,21 +725,21 @@ function Home({ currentLang, t }) {
                   {t.cta.description}
                 </p>
 
-                <form onSubmit={(e) => handleSubscribe(e, ctaEmail)} className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
-                  <input
-                    type="email"
-                    value={ctaEmail}
-                    onChange={(e) => setCtaEmail(e.target.value)}
-                    placeholder={t.cta.emailPlaceholder}
-                    className="flex-1 px-4 py-3 bg-white text-slate-900 rounded-lg placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-teal-300 transition-all duration-300"
-                  />
+                <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <button
-                    type="submit"
-                    className="px-6 py-3 bg-white text-teal-700 rounded-lg hover:bg-teal-50 transition-all duration-300 font-medium"
+                    onClick={() => window.Calendly?.initPopupWidget({ url: 'https://calendly.com/theremoteaidoc/30min' })}
+                    className="px-8 py-4 bg-white text-teal-700 rounded-lg hover:bg-teal-50 transition-all duration-300 font-semibold text-lg flex items-center justify-center space-x-2 group shadow-lg"
                   >
-                    {t.cta.subscribe}
+                    <span>{t.cta.button}</span>
+                    <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
                   </button>
-                </form>
+                  <button
+                    onClick={() => window.open('https://theremoteaidoc.com/blog', '_self')}
+                    className="px-8 py-4 border-2 border-white/40 text-white rounded-lg hover:bg-white/10 transition-all duration-300 font-semibold text-lg"
+                  >
+                    {t.cta.secondaryButton}
+                  </button>
+                </div>
               </div>
             </div>
           </ScrollReveal>
