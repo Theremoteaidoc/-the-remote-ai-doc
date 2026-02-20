@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Routes, Route, Link, useLocation } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import { Star, ArrowRight, Linkedin, Twitter, Youtube, Stethoscope, Brain, Ship, BookOpen, Globe, Menu, X } from 'lucide-react';
@@ -350,7 +350,13 @@ function Layout({ children }) {
 
       {/* Page Content */}
       <main className="relative">
-        {React.cloneElement(children, { currentLang, t })}
+        {typeof children === 'object' && children !== null
+          ? React.Children.map(children, child =>
+              React.isValidElement(child)
+                ? React.cloneElement(child, { currentLang, t })
+                : child
+            )
+          : children}
       </main>
 
       {/* Footer */}
