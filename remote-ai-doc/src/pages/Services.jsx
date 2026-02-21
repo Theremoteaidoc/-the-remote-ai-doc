@@ -631,15 +631,11 @@ const content = {
   }
 };
 
-export default function Services() {
-  const [currentLang, setCurrentLang] = useState('en');
+export default function Services({ currentLang = 'en', t: translations }) {
   const [openFaq, setOpenFaq] = useState(null);
   
-  const t = content[currentLang];
-
-  const toggleLanguage = () => {
-    setCurrentLang(currentLang === 'en' ? 'es' : 'en');
-  };
+  // Use translations from props if provided, otherwise fall back to content object
+  const t = translations || content[currentLang];
 
   const toggleFaq = (index) => {
     setOpenFaq(openFaq === index ? null : index);
@@ -675,7 +671,6 @@ export default function Services() {
         </script>
       </Helmet>
 
-      {/* Language Toggle */}
       {/* Hero Section */}
       <section className="relative pt-8 pb-20 lg:pt-16 lg:pb-32 bg-gradient-to-br from-white to-slate-50">
         {/* Background Elements */}

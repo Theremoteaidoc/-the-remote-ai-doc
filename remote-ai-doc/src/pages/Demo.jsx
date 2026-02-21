@@ -813,16 +813,12 @@ const useCounter = (target, duration = 2000) => {
 };
 
 // Main Demo Component
-export default function Demo() {
-  const [currentLang, setCurrentLang] = useState('en');
+export default function Demo({ currentLang = 'en', t: translations }) {
   const [showUserPipeline, setShowUserPipeline] = useState(false);
   const [userFormData, setUserFormData] = useState(null);
 
-  const t = languages[currentLang];
-
-  const toggleLanguage = () => {
-    setCurrentLang(currentLang === 'en' ? 'es' : 'en');
-  };
+  // Use translations from props if provided, otherwise fall back to languages object
+  const t = translations || languages[currentLang];
 
   const handleUserFormSubmit = (formData) => {
     setUserFormData(formData);
@@ -879,7 +875,6 @@ export default function Demo() {
         <meta name="twitter:image" content="https://theremoteaidoc.com/profile.jpg" />
       </Helmet>
 
-      {/* Language Toggle */}
       {/* Section 1: Hero + Auto-Playing Pipeline */}
       <section className="bg-white text-slate-800 py-16 lg:py-24">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">

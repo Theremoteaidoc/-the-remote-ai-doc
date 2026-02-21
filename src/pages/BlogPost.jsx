@@ -2,6 +2,43 @@ import { useParams, Link } from 'react-router-dom';
 import { ArrowLeft, Clock, Tag, Linkedin, Twitter } from 'lucide-react';
 import { getBlogPost } from '../data/blogPosts';
 
+const content = {
+  en: {
+    meta: {
+      backToBlog: 'Back to Blog',
+      by: 'Dr. Javier Rosas',
+      jobTitle: 'Ship Physician & Clinical AI Specialist',
+      bio: 'I practice medicine 1,000 miles from shore and train AI systems that will help the next generation of doctors do the same. I work with leading AI companies on medical LLM evaluation, RLHF, and clinical AI safety.',
+      newsletter: {
+        title: 'Get More Clinical AI Insights',
+        subtitle: 'Subscribe to "Clinical AI from the Edge" — weekly on LinkedIn.',
+        button: 'Subscribe on LinkedIn'
+      },
+      share: 'Share this article',
+      postNotFound: {
+        title: 'Post Not Found'
+      }
+    }
+  },
+  es: {
+    meta: {
+      backToBlog: 'Volver al Blog',
+      by: 'Dr. Javier Rosas',
+      jobTitle: 'Médico de Barco y Especialista en IA Clínica', 
+      bio: 'Practico medicina a 1,000 millas de la costa y entreno sistemas de IA que ayudarán a la próxima generación de médicos a hacer lo mismo. Trabajo con compañías líderes en IA en evaluación de LLMs médicos, RLHF y seguridad de IA clínica.',
+      newsletter: {
+        title: 'Obtén Más Perspectivas de IA Clínica',
+        subtitle: 'Suscríbete a "IA Clínica desde el Mar" — semanal en LinkedIn.',
+        button: 'Suscribirse en LinkedIn'
+      },
+      share: 'Compartir este artículo',
+      postNotFound: {
+        title: 'Artículo No Encontrado'
+      }
+    }
+  }
+};
+
 // Simple markdown-like parser for article format
 const parseMarkdown = (text) => {
   return text
@@ -12,7 +49,7 @@ const parseMarkdown = (text) => {
 };
 
 // Article format renderer
-const ArticleRenderer = ({ post }) => {
+const ArticleRenderer = ({ post, t }) => {
   const { content } = post;
   
   return (
@@ -24,7 +61,7 @@ const ArticleRenderer = ({ post }) => {
           className="inline-flex items-center gap-2 text-slate-500 hover:text-emerald-600 transition-colors mb-12"
         >
           <ArrowLeft className="w-4 h-4" />
-          Back to Blog
+          {t.meta.backToBlog}
         </Link>
 
         {/* Header */}
@@ -195,7 +232,7 @@ const ArticleRenderer = ({ post }) => {
 };
 
 // Original format renderer
-const OriginalRenderer = ({ post }) => {
+const OriginalRenderer = ({ post, t }) => {
   const { content } = post;
 
   return (
@@ -530,17 +567,20 @@ const OriginalRenderer = ({ post }) => {
   );
 };
 
-export default function BlogPost() {
+export default function BlogPost({ currentLang = 'en', t: translations }) {
   const { slug } = useParams();
   const post = getBlogPost(slug);
+  
+  // Use translations from props if provided, otherwise fall back to content object
+  const t = translations || content[currentLang];
 
   if (!post) {
     return (
       <section className="relative py-32">
         <div className="max-w-3xl mx-auto px-6 text-center">
-          <h1 className="text-4xl text-slate-900 mb-4">Post Not Found</h1>
+          <h1 className="text-4xl text-slate-900 mb-4">{t.meta.postNotFound.title}</h1>
           <Link to="/blog" className="text-emerald-600 hover:underline">
-            ← Back to Blog
+            ← {t.meta.backToBlog}
           </Link>
         </div>
       </section>
@@ -548,8 +588,8 @@ export default function BlogPost() {
   }
 
   if (post.format === 'article') {
-    return <ArticleRenderer post={post} />;
+    return <ArticleRenderer post={post} t={t} />;
   } else {
-    return <OriginalRenderer post={post} />;
+    return <OriginalRenderer post={post} t={t} />;
   }
 }

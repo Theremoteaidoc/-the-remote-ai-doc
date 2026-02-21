@@ -3,25 +3,77 @@ import { Helmet } from 'react-helmet-async';
 import { ArrowRight, Clock, BookOpen } from 'lucide-react';
 import { getAllPosts } from '../data/blogPosts';
 
-export default function Blog() {
+const content = {
+  en: {
+    seo: {
+      title: 'Clinical AI from the Edge | The Remote AI Doc',
+      description: 'Evidence-based analysis of healthcare AI from a physician practicing 1,000 miles from shore. Research reviews, clinical evaluations, and critical commentary.'
+    },
+    header: {
+      subtitle: 'The Remote AI Doc',
+      title: 'Clinical AI from the Edge',
+      description: 'Evidence-based analysis of healthcare AI — research reviews, clinical evaluations, and critical commentary from a physician practicing 1,000 miles from shore.'
+    },
+    badges: {
+      featured: 'Featured'
+    },
+    meta: {
+      by: 'Dr. Javier Rosas',
+      read: 'Read',
+      readArticle: 'Read article'
+    },
+    newsletter: {
+      text: 'New articles published weekly on LinkedIn',
+      subscribe: 'Subscribe to the newsletter'
+    }
+  },
+  es: {
+    seo: {
+      title: 'IA Clínica desde el Mar | The Remote AI Doc', 
+      description: 'Análisis basado en evidencia de IA médica desde un médico practicando a 1,000 millas de la costa. Revisiones de investigación, evaluaciones clínicas y comentarios críticos.'
+    },
+    header: {
+      subtitle: 'The Remote AI Doc',
+      title: 'IA Clínica desde el Mar',
+      description: 'Análisis basado en evidencia de IA médica — revisiones de investigación, evaluaciones clínicas y comentarios críticos desde un médico practicando a 1,000 millas de la costa.'
+    },
+    badges: {
+      featured: 'Destacado'
+    },
+    meta: {
+      by: 'Dr. Javier Rosas',
+      read: 'Leer',
+      readArticle: 'Leer artículo'
+    },
+    newsletter: {
+      text: 'Nuevos artículos publicados semanalmente en LinkedIn',
+      subscribe: 'Suscribirse al boletín'
+    }
+  }
+};
+
+export default function Blog({ currentLang = 'en', t: translations }) {
   const posts = getAllPosts();
   const featuredPost = posts.find(p => p.featured) || posts[0];
   const otherPosts = posts.filter(p => p.id !== featuredPost.id);
+  
+  // Use translations from props if provided, otherwise fall back to content object
+  const t = translations || content[currentLang];
 
   return (
     <>
       <Helmet>
-        <title>Clinical AI from the Edge | The Remote AI Doc</title>
-        <meta name="description" content="Evidence-based analysis of healthcare AI from a physician practicing 1,000 miles from shore. Research reviews, clinical evaluations, and critical commentary." />
+        <title>{t.seo.title}</title>
+        <meta name="description" content={t.seo.description} />
         <link rel="canonical" href="https://theremoteaidoc.com/blog" />
-        <meta property="og:title" content="Clinical AI from the Edge | The Remote AI Doc" />
-        <meta property="og:description" content="Evidence-based analysis of healthcare AI from a physician practicing 1,000 miles from shore." />
+        <meta property="og:title" content={t.seo.title} />
+        <meta property="og:description" content={t.seo.description} />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://theremoteaidoc.com/blog" />
         <meta property="og:image" content="https://theremoteaidoc.com/profile.jpg" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Clinical AI from the Edge | The Remote AI Doc" />
-        <meta name="twitter:description" content="Evidence-based analysis of healthcare AI from a physician practicing 1,000 miles from shore." />
+        <meta name="twitter:title" content={t.seo.title} />
+        <meta name="twitter:description" content={t.seo.description} />
         <meta name="twitter:image" content="https://theremoteaidoc.com/profile.jpg" />
       </Helmet>
       
@@ -33,14 +85,14 @@ export default function Blog() {
             <div className="flex items-center gap-3 mb-4">
               <BookOpen className="w-5 h-5 text-emerald-600" />
               <span className="text-sm font-medium tracking-widest uppercase text-emerald-600">
-                The Remote AI Doc
+                {t.header.subtitle}
               </span>
             </div>
             <h1 className="text-4xl lg:text-5xl font-serif font-bold tracking-tight text-slate-900 mb-3">
-              Clinical AI from the Edge
+              {t.header.title}
             </h1>
             <p className="text-lg text-slate-600 leading-relaxed max-w-2xl">
-              Evidence-based analysis of healthcare AI — research reviews, clinical evaluations, and critical commentary from a physician practicing 1,000 miles from shore.
+              {t.header.description}
             </p>
           </header>
 
@@ -49,7 +101,7 @@ export default function Blog() {
             <article className="pb-14 border-b border-slate-200">
               <div className="flex items-center gap-2 mb-5">
                 <span className="text-xs font-semibold tracking-widest uppercase text-emerald-700 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200">
-                  Featured
+                  {t.badges.featured}
                 </span>
                 <span className="text-xs font-semibold tracking-widest uppercase text-slate-500">
                   {featuredPost.category}
@@ -84,7 +136,7 @@ export default function Blog() {
 
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-4 text-sm text-slate-500">
-                  <span className="text-slate-700 font-medium">Dr. Javier Rosas</span>
+                  <span className="text-slate-700 font-medium">{t.meta.by}</span>
                   <span className="text-slate-300">·</span>
                   <span>{featuredPost.date}</span>
                   <span className="text-slate-300">·</span>
@@ -94,7 +146,7 @@ export default function Blog() {
                   </span>
                 </div>
                 <span className="text-emerald-600 text-sm flex items-center gap-1.5 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  Read <ArrowRight className="w-3.5 h-3.5" />
+                  {t.meta.read} <ArrowRight className="w-3.5 h-3.5" />
                 </span>
               </div>
             </article>
@@ -127,9 +179,9 @@ export default function Blog() {
                   </p>
 
                   <div className="flex items-center justify-between">
-                    <span className="text-sm text-slate-700 font-medium">Dr. Javier Rosas</span>
+                    <span className="text-sm text-slate-700 font-medium">{t.meta.by}</span>
                     <span className="text-emerald-600 text-sm flex items-center gap-1.5 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                      Read article <ArrowRight className="w-3.5 h-3.5" />
+                      {t.meta.readArticle} <ArrowRight className="w-3.5 h-3.5" />
                     </span>
                   </div>
                 </article>
@@ -140,7 +192,7 @@ export default function Blog() {
           {/* Newsletter CTA */}
           <div className="mt-16 pt-12 border-t border-slate-200 text-center">
             <p className="text-slate-500 text-sm mb-2">
-              New articles published weekly on LinkedIn
+              {t.newsletter.text}
             </p>
             <a 
               href="https://www.linkedin.com/newsletters/the-remote-ai-doc-weekly-clinical-ai-briefing-7296304837241720832/"
@@ -148,7 +200,7 @@ export default function Blog() {
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 text-emerald-600 hover:text-emerald-700 text-sm font-medium transition-colors"
             >
-              Subscribe to the newsletter <ArrowRight className="w-4 h-4" />
+              {t.newsletter.subscribe} <ArrowRight className="w-4 h-4" />
             </a>
           </div>
         </div>

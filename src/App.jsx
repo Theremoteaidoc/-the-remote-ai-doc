@@ -6,7 +6,6 @@ import { ScrollReveal } from './components/ScrollReveal';
 import Blog from './pages/Blog';
 import BlogPost from './pages/BlogPost';
 import Services from './pages/Services';
-import Servicios from './pages/Servicios';
 import Demo from './pages/Demo';
 
 // Language context for global state management
@@ -946,7 +945,7 @@ export default function App() {
         } />
         <Route path="/servicios" element={
           <Layout>
-            <Servicios />
+            <Services />
           </Layout>
         } />
         <Route path="/blog" element={
