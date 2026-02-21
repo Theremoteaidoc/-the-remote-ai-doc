@@ -190,7 +190,7 @@ const content = {
         name: 'Workflow Automation',
         price: '$497',
         period: 'one-time setup',
-        maintenance: '+ $497/yr maintenance',
+        maintenance: '+ $49.70/mo maintenance',
         badge: 'Most Popular',
         description: 'Perfect for small clinics and solo practitioners',
         features: [
@@ -203,13 +203,13 @@ const content = {
         ],
         bestFor: 'Small clinics, solo practitioners',
         cta: 'Get Started',
-        stripeLink: 'https://buy.stripe.com/test_5kQ00i6YjgeH7Zt9lN2ZO00'
+        stripeLink: 'https://buy.stripe.com/test_bJe8wOeqL7Ib7ZtbtV2ZO03'
       },
       tier2: {
         name: 'Clinical Intelligence',
         price: '$997',
         period: 'one-time setup',
-        maintenance: '+ $997/yr maintenance',
+        maintenance: '+ $99.70/mo maintenance',
         badge: 'Best Value',
         description: 'Advanced AI for multi-provider practices',
         features: [
@@ -222,13 +222,13 @@ const content = {
         ],
         bestFor: 'Multi-provider practices, specialty clinics',
         cta: 'Start Now',
-        stripeLink: 'https://buy.stripe.com/test_fZu00i0zV8Mf6Vp8hJ2ZO01'
+        stripeLink: 'https://buy.stripe.com/test_8x29AS3M71jNa7B69B2ZO04'
       },
       tier3: {
         name: 'Enterprise AI',
         price: '$2,497',
         period: 'one-time setup',
-        maintenance: '+ $2,497/yr maintenance',
+        maintenance: '+ $249.70/mo maintenance',
         badge: 'Enterprise',
         description: 'Complete AI transformation for health systems',
         features: [
@@ -241,7 +241,7 @@ const content = {
         ],
         bestFor: 'Hospital groups, health systems, maritime medical operations',
         cta: 'Get Started',
-        stripeLink: 'https://buy.stripe.com/test_aFa14mdmH1jN4NhapR2ZO02'
+        stripeLink: 'https://buy.stripe.com/test_8x2eVcgyTe6z2F9gOf2ZO05'
       }
     },
     whyUs: {
