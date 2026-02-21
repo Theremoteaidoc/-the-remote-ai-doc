@@ -631,11 +631,11 @@ const content = {
   }
 };
 
-export default function Services({ currentLang = 'en', t: translations }) {
+export default function Services({ currentLang = 'en' }) {
   const [openFaq, setOpenFaq] = useState(null);
   
-  // Use translations from props if provided, otherwise fall back to content object
-  const t = translations || content[currentLang];
+  // Always use Services-specific content object (has seo, tiers, faq, etc.)
+  const t = content[currentLang] || content.en;
 
   const toggleFaq = (index) => {
     setOpenFaq(openFaq === index ? null : index);

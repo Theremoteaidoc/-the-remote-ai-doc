@@ -52,13 +52,13 @@ const content = {
   }
 };
 
-export default function Blog({ currentLang = 'en', t: translations }) {
+export default function Blog({ currentLang = 'en' }) {
   const posts = getAllPosts();
   const featuredPost = posts.find(p => p.featured) || posts[0];
   const otherPosts = posts.filter(p => p.id !== featuredPost.id);
   
   // Use translations from props if provided, otherwise fall back to content object
-  const t = translations || content[currentLang];
+  const t = content[currentLang] || content.en;
 
   return (
     <>

@@ -813,12 +813,12 @@ const useCounter = (target, duration = 2000) => {
 };
 
 // Main Demo Component
-export default function Demo({ currentLang = 'en', t: translations }) {
+export default function Demo({ currentLang = 'en' }) {
   const [showUserPipeline, setShowUserPipeline] = useState(false);
   const [userFormData, setUserFormData] = useState(null);
 
-  // Use translations from props if provided, otherwise fall back to languages object
-  const t = translations || languages[currentLang];
+  // Always use Demo-specific languages object
+  const t = languages[currentLang] || languages.en;
 
   const handleUserFormSubmit = (formData) => {
     setUserFormData(formData);

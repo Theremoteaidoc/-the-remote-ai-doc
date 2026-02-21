@@ -567,12 +567,12 @@ const OriginalRenderer = ({ post, t }) => {
   );
 };
 
-export default function BlogPost({ currentLang = 'en', t: translations }) {
+export default function BlogPost({ currentLang = 'en' }) {
   const { slug } = useParams();
   const post = getBlogPost(slug);
   
   // Use translations from props if provided, otherwise fall back to content object
-  const t = translations || content[currentLang];
+  const t = content[currentLang] || content.en;
 
   if (!post) {
     return (
