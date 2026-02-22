@@ -2,7 +2,6 @@ import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import { ScrollReveal } from '../components/ScrollReveal';
-import { PasswordGate } from '../components/PasswordGate';
 import { SeaScopeNav } from '../components/SeaScopeNav';
 import { 
   Shield, 
@@ -433,8 +432,6 @@ function SeaScopeSafetyCaseContent() {
 
 export default function SeaScopeSafetyCase() {
   return (
-    <PasswordGate correctPassword="seascope2026">
       <SeaScopeSafetyCaseContent />
-    </PasswordGate>
   );
 }
