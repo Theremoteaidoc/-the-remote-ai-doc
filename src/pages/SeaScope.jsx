@@ -1,5 +1,6 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
+import { Link } from 'react-router-dom';
 import { ScrollReveal } from '../components/ScrollReveal';
 import { PasswordGate } from '../components/PasswordGate';
 import { 
@@ -32,6 +33,11 @@ function SeaScopeContent() {
         <meta name="description" content="AI-powered clinical decision support purpose-built for maritime and resource-constrained medicine environments." />
         <meta name="robots" content="noindex, nofollow" />
       </Helmet>
+
+      {/* Confidential Badge */}
+      <div className="fixed top-4 right-4 z-40 bg-red-600/90 text-white px-3 py-1 rounded-full text-xs font-medium backdrop-blur-sm border border-red-500/50">
+        CONFIDENTIAL — Shared under NDA
+      </div>
 
       {/* Hero Section */}
       <section className="relative pt-24 pb-20 bg-gradient-to-br from-slate-900 to-teal-900">
@@ -628,6 +634,153 @@ function SeaScopeContent() {
         </div>
       </section>
 
+      {/* Internal Navigation */}
+      <section className="py-20 bg-slate-50">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <ScrollReveal>
+              <div className="flex items-center justify-center space-x-2 text-teal-600 mb-4">
+                <Layers className="w-6 h-6" />
+                <span className="text-sm font-medium tracking-wider uppercase">Documentation</span>
+              </div>
+            </ScrollReveal>
+            <ScrollReveal delay={100}>
+              <h2 className="text-4xl lg:text-5xl font-bold text-slate-900 mb-6">
+                SeaScope CDS Documentation
+              </h2>
+            </ScrollReveal>
+            <ScrollReveal delay={200}>
+              <p className="text-lg text-slate-600 max-w-3xl mx-auto">
+                Comprehensive documentation covering clinical validation, safety architecture, 
+                regulatory compliance, and technical implementation.
+              </p>
+            </ScrollReveal>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <ScrollReveal delay={0}>
+              <Link to="/seascope/evidence" className="block group">
+                <div className="bg-white p-8 rounded-2xl border border-slate-200 hover:border-teal-300 hover:shadow-lg transition-all duration-300 h-full">
+                  <div className="w-16 h-16 bg-teal-100 rounded-xl flex items-center justify-center mb-6 group-hover:bg-teal-200 transition-colors duration-300">
+                    <FileCheck className="w-8 h-8 text-teal-600" />
+                  </div>
+                  <h3 className="text-xl font-bold text-slate-900 mb-4 group-hover:text-teal-900 transition-colors duration-300">
+                    Evidence & Validation
+                  </h3>
+                  <p className="text-slate-600 text-sm mb-4">
+                    100-case adversarial validation, temporal testing, and Maverick AI peer review results.
+                  </p>
+                  <div className="flex items-center space-x-2 text-teal-600 group-hover:text-teal-700 transition-colors duration-300">
+                    <span className="text-sm font-medium">View Evidence</span>
+                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
+                  </div>
+                </div>
+              </Link>
+            </ScrollReveal>
+
+            <ScrollReveal delay={100}>
+              <Link to="/seascope/safety-case" className="block group">
+                <div className="bg-white p-8 rounded-2xl border border-slate-200 hover:border-teal-300 hover:shadow-lg transition-all duration-300 h-full">
+                  <div className="w-16 h-16 bg-teal-100 rounded-xl flex items-center justify-center mb-6 group-hover:bg-teal-200 transition-colors duration-300">
+                    <Shield className="w-8 h-8 text-teal-600" />
+                  </div>
+                  <h3 className="text-xl font-bold text-slate-900 mb-4 group-hover:text-teal-900 transition-colors duration-300">
+                    Safety Case
+                  </h3>
+                  <p className="text-slate-600 text-sm mb-4">
+                    Detailed failure mode analysis for all seven guardrails and residual risk assessment.
+                  </p>
+                  <div className="flex items-center space-x-2 text-teal-600 group-hover:text-teal-700 transition-colors duration-300">
+                    <span className="text-sm font-medium">View Safety Case</span>
+                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
+                  </div>
+                </div>
+              </Link>
+            </ScrollReveal>
+
+            <ScrollReveal delay={200}>
+              <Link to="/seascope/data-flow" className="block group">
+                <div className="bg-white p-8 rounded-2xl border border-slate-200 hover:border-teal-300 hover:shadow-lg transition-all duration-300 h-full">
+                  <div className="w-16 h-16 bg-teal-100 rounded-xl flex items-center justify-center mb-6 group-hover:bg-teal-200 transition-colors duration-300">
+                    <Activity className="w-8 h-8 text-teal-600" />
+                  </div>
+                  <h3 className="text-xl font-bold text-slate-900 mb-4 group-hover:text-teal-900 transition-colors duration-300">
+                    Data Flow & Privacy
+                  </h3>
+                  <p className="text-slate-600 text-sm mb-4">
+                    Complete data processing architecture, privacy protection, and audit trail design.
+                  </p>
+                  <div className="flex items-center space-x-2 text-teal-600 group-hover:text-teal-700 transition-colors duration-300">
+                    <span className="text-sm font-medium">View Data Flow</span>
+                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
+                  </div>
+                </div>
+              </Link>
+            </ScrollReveal>
+
+            <ScrollReveal delay={300}>
+              <Link to="/seascope/regulatory" className="block group">
+                <div className="bg-white p-8 rounded-2xl border border-slate-200 hover:border-teal-300 hover:shadow-lg transition-all duration-300 h-full">
+                  <div className="w-16 h-16 bg-teal-100 rounded-xl flex items-center justify-center mb-6 group-hover:bg-teal-200 transition-colors duration-300">
+                    <Building className="w-8 h-8 text-teal-600" />
+                  </div>
+                  <h3 className="text-xl font-bold text-slate-900 mb-4 group-hover:text-teal-900 transition-colors duration-300">
+                    Regulatory Framework
+                  </h3>
+                  <p className="text-slate-600 text-sm mb-4">
+                    21st Century Cures Act compliance, HIPAA architecture, and clinical governance.
+                  </p>
+                  <div className="flex items-center space-x-2 text-teal-600 group-hover:text-teal-700 transition-colors duration-300">
+                    <span className="text-sm font-medium">View Framework</span>
+                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
+                  </div>
+                </div>
+              </Link>
+            </ScrollReveal>
+
+            <ScrollReveal delay={400}>
+              <Link to="/seascope/pilot" className="block group">
+                <div className="bg-white p-8 rounded-2xl border border-slate-200 hover:border-teal-300 hover:shadow-lg transition-all duration-300 h-full">
+                  <div className="w-16 h-16 bg-teal-100 rounded-xl flex items-center justify-center mb-6 group-hover:bg-teal-200 transition-colors duration-300">
+                    <Users className="w-8 h-8 text-teal-600" />
+                  </div>
+                  <h3 className="text-xl font-bold text-slate-900 mb-4 group-hover:text-teal-900 transition-colors duration-300">
+                    Pilot Program
+                  </h3>
+                  <p className="text-slate-600 text-sm mb-4">
+                    30-day shadow study design, participant requirements, and success metrics.
+                  </p>
+                  <div className="flex items-center space-x-2 text-teal-600 group-hover:text-teal-700 transition-colors duration-300">
+                    <span className="text-sm font-medium">View Pilot</span>
+                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
+                  </div>
+                </div>
+              </Link>
+            </ScrollReveal>
+
+            <ScrollReveal delay={500}>
+              <Link to="/seascope/safety" className="block group">
+                <div className="bg-white p-8 rounded-2xl border border-slate-200 hover:border-teal-300 hover:shadow-lg transition-all duration-300 h-full">
+                  <div className="w-16 h-16 bg-teal-100 rounded-xl flex items-center justify-center mb-6 group-hover:bg-teal-200 transition-colors duration-300">
+                    <Lock className="w-8 h-8 text-teal-600" />
+                  </div>
+                  <h3 className="text-xl font-bold text-slate-900 mb-4 group-hover:text-teal-900 transition-colors duration-300">
+                    Safety Architecture
+                  </h3>
+                  <p className="text-slate-600 text-sm mb-4">
+                    Seven code-enforced guardrails with detailed validation testing and performance.
+                  </p>
+                  <div className="flex items-center space-x-2 text-teal-600 group-hover:text-teal-700 transition-colors duration-300">
+                    <span className="text-sm font-medium">View Safety</span>
+                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
+                  </div>
+                </div>
+              </Link>
+            </ScrollReveal>
+          </div>
+        </div>
+      </section>
+
       {/* Contact Section */}
       <section className="py-20 bg-gradient-to-br from-teal-600 to-teal-800 text-white">
         <div className="max-w-4xl mx-auto px-6 lg:px-8 text-center">
@@ -669,6 +822,15 @@ function SeaScopeContent() {
               </button>
             </div>
           </ScrollReveal>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <section className="py-8 bg-slate-50 border-t border-slate-200">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8 text-center">
+          <p className="text-slate-500 text-sm">
+            Last Updated: February 2026
+          </p>
         </div>
       </section>
     </>

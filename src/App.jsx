@@ -10,6 +10,10 @@ import Demo from './pages/Demo';
 import SeaScope from './pages/SeaScope';
 import SeaScopeSafety from './pages/SeaScopeSafety';
 import SeaScopePilot from './pages/SeaScopePilot';
+import SeaScopeEvidence from './pages/SeaScopeEvidence';
+import SeaScopeSafetyCase from './pages/SeaScopeSafetyCase';
+import SeaScopeDataFlow from './pages/SeaScopeDataFlow';
+import SeaScopeRegulatory from './pages/SeaScopeRegulatory';
 
 // Language context for global state management
 const languages = {
@@ -969,6 +973,10 @@ export default function App() {
         <Route path="/seascope" element={<SeaScope />} />
         <Route path="/seascope/safety" element={<SeaScopeSafety />} />
         <Route path="/seascope/pilot" element={<SeaScopePilot />} />
+        <Route path="/seascope/evidence" element={<SeaScopeEvidence />} />
+        <Route path="/seascope/safety-case" element={<SeaScopeSafetyCase />} />
+        <Route path="/seascope/data-flow" element={<SeaScopeDataFlow />} />
+        <Route path="/seascope/regulatory" element={<SeaScopeRegulatory />} />
       </Routes>
     </HelmetProvider>
   );
