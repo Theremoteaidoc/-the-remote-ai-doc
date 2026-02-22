@@ -381,9 +381,9 @@ function SeaScopeContent() {
                 <div className="bg-slate-50 p-8 rounded-2xl border border-slate-200 hover:border-teal-300 transition-all duration-300">
                   <div className="flex items-start space-x-4">
                     <div className="flex-shrink-0">
-                      <div className="w-16 h-16 bg-teal-100 rounded-xl flex items-center justify-center">
-                        <span className="text-2xl font-bold text-teal-600">
-                          {differentiator.value.split(' ')[0]}
+                      <div className="w-16 h-16 bg-teal-100 rounded-xl flex items-center justify-center overflow-hidden">
+                        <span className="text-xs font-bold text-teal-600 text-center leading-tight px-1">
+                          {differentiator.value.split('/')[0].trim()}
                         </span>
                       </div>
                     </div>
