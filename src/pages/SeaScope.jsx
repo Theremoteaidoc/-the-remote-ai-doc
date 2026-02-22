@@ -407,7 +407,9 @@ function SeaScopeContent() {
       </section>
 
       {/* EHR Integration Roadmap */}
-      <section className="py-20 bg-slate-50">
+      <section className="py-20 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 relative overflow-hidden">
+        {/* Ambient glow */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-teal-500/5 rounded-full blur-3xl pointer-events-none"></div>
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="text-center mb-16">
             <ScrollReveal>
@@ -417,15 +419,20 @@ function SeaScopeContent() {
               </div>
             </ScrollReveal>
             <ScrollReveal delay={100}>
-              <h2 className="text-4xl lg:text-5xl font-bold text-slate-900 mb-6">
+              <h2 className="text-4xl lg:text-5xl font-bold text-white mb-6">
                 EHR Integration Pathway
               </h2>
             </ScrollReveal>
             <ScrollReveal delay={200}>
-              <p className="text-lg text-slate-600 max-w-3xl mx-auto">
+              <p className="text-lg text-slate-400 max-w-3xl mx-auto">
                 Four-phase integration approach with SeaCare and Tritan EHR systems.
               </p>
             </ScrollReveal>
+          </div>
+
+          {/* Connecting line */}
+          <div className="hidden lg:block relative mb-8">
+            <div className="absolute top-1/2 left-[12.5%] right-[12.5%] h-0.5 bg-gradient-to-r from-teal-400 via-teal-300 to-slate-300 transform -translate-y-1/2 opacity-40"></div>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -434,43 +441,86 @@ function SeaScopeContent() {
                 phase: "Phase 1",
                 title: "Standalone Operation",
                 description: "Independent CDS system with manual data entry and recommendations export.",
-                status: "Current Focus"
+                status: "Current Focus",
+                active: true
               },
               {
                 phase: "Phase 2", 
                 title: "Read-Only Integration",
                 description: "Direct EHR data access for patient history, allergies, and current medications.",
-                status: "Development"
+                status: "Development",
+                active: false
               },
               {
                 phase: "Phase 3",
                 title: "Bidirectional Integration",
                 description: "Full read/write capabilities with recommendation implementation in EHR.",
-                status: "Planned"
+                status: "Planned",
+                active: false
               },
               {
                 phase: "Phase 4",
                 title: "Embedded SeaCare/Tritan",
                 description: "Native integration within existing EHR workflows and interfaces.",
-                status: "Future"
+                status: "Future",
+                active: false
               }
             ].map((phase, index) => (
-              <ScrollReveal key={index} delay={index * 100}>
-                <div className="bg-white p-6 rounded-2xl border border-slate-200 hover:border-teal-300 transition-all duration-300">
-                  <div className="text-center">
-                    <div className="w-12 h-12 bg-teal-100 rounded-lg flex items-center justify-center mx-auto mb-4">
-                      <span className="text-lg font-bold text-teal-600">{index + 1}</span>
-                    </div>
-                    <div className="text-teal-600 font-medium text-sm mb-2">{phase.phase}</div>
-                    <h3 className="font-bold text-slate-900 mb-3">{phase.title}</h3>
-                    <p className="text-slate-600 text-sm mb-3">{phase.description}</p>
-                    <div className={`inline-block px-3 py-1 rounded-full text-xs font-medium ${
-                      phase.status === 'Current Focus' ? 'bg-teal-100 text-teal-800' :
-                      phase.status === 'Development' ? 'bg-blue-100 text-blue-800' :
-                      phase.status === 'Planned' ? 'bg-orange-100 text-orange-800' :
-                      'bg-slate-100 text-slate-600'
-                    }`}>
-                      {phase.status}
+              <ScrollReveal key={index} delay={index * 150}>
+                <div className={`group relative p-[1px] rounded-2xl transition-all duration-500 hover:scale-[1.03] ${
+                  phase.active 
+                    ? 'bg-gradient-to-br from-teal-400 via-teal-500 to-emerald-400 shadow-lg shadow-teal-500/20' 
+                    : 'bg-gradient-to-br from-white/60 to-white/20'
+                }`}>
+                  <div className={`relative rounded-2xl p-6 backdrop-blur-xl border transition-all duration-500 ${
+                    phase.active
+                      ? 'bg-slate-900/80 border-teal-400/30'
+                      : 'bg-white/10 backdrop-blur-xl border-white/20 bg-gradient-to-br from-slate-800/90 to-slate-900/90 hover:border-teal-400/30'
+                  }`} style={{ backdropFilter: 'blur(20px)' }}>
+                    {/* Glow effect for active */}
+                    {phase.active && (
+                      <div className="absolute inset-0 rounded-2xl bg-teal-400/5 animate-pulse"></div>
+                    )}
+                    
+                    <div className="relative text-center">
+                      {/* Number badge */}
+                      <div className={`w-14 h-14 rounded-xl flex items-center justify-center mx-auto mb-4 transition-all duration-500 ${
+                        phase.active
+                          ? 'bg-teal-400/20 border border-teal-400/40 shadow-lg shadow-teal-400/20'
+                          : 'bg-white/10 border border-white/10 group-hover:bg-teal-400/10 group-hover:border-teal-400/20'
+                      }`}>
+                        <span className={`text-xl font-bold transition-colors duration-500 ${
+                          phase.active ? 'text-teal-300' : 'text-slate-400 group-hover:text-teal-400'
+                        }`}>{index + 1}</span>
+                      </div>
+                      
+                      <div className={`font-medium text-sm mb-2 transition-colors duration-500 ${
+                        phase.active ? 'text-teal-300' : 'text-slate-500 group-hover:text-teal-400'
+                      }`}>{phase.phase}</div>
+                      
+                      <h3 className={`font-bold mb-3 transition-colors duration-500 ${
+                        phase.active ? 'text-white' : 'text-slate-200'
+                      }`}>{phase.title}</h3>
+                      
+                      <p className={`text-sm mb-4 transition-colors duration-500 ${
+                        phase.active ? 'text-slate-300' : 'text-slate-400'
+                      }`}>{phase.description}</p>
+                      
+                      {/* Status badge */}
+                      <div className={`inline-flex items-center space-x-1.5 px-3 py-1.5 rounded-full text-xs font-semibold transition-all duration-500 ${
+                        phase.status === 'Current Focus' 
+                          ? 'bg-teal-400/20 text-teal-300 border border-teal-400/30 shadow-sm shadow-teal-400/10' 
+                          : phase.status === 'Development' 
+                          ? 'bg-blue-400/10 text-blue-300 border border-blue-400/20' 
+                          : phase.status === 'Planned' 
+                          ? 'bg-amber-400/10 text-amber-300 border border-amber-400/20' 
+                          : 'bg-white/5 text-slate-400 border border-white/10'
+                      }`}>
+                        {phase.active && (
+                          <span className="w-1.5 h-1.5 rounded-full bg-teal-400 animate-pulse"></span>
+                        )}
+                        <span>{phase.status}</span>
+                      </div>
                     </div>
                   </div>
                 </div>
