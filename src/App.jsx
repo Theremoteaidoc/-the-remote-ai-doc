@@ -7,6 +7,9 @@ import Blog from './pages/Blog';
 import BlogPost from './pages/BlogPost';
 import Services from './pages/Services';
 import Demo from './pages/Demo';
+import SeaScope from './pages/SeaScope';
+import SeaScopeSafety from './pages/SeaScopeSafety';
+import SeaScopePilot from './pages/SeaScopePilot';
 
 // Language context for global state management
 const languages = {
@@ -963,6 +966,9 @@ export default function App() {
             <Demo />
           </Layout>
         } />
+        <Route path="/seascope" element={<SeaScope />} />
+        <Route path="/seascope/safety" element={<SeaScopeSafety />} />
+        <Route path="/seascope/pilot" element={<SeaScopePilot />} />
       </Routes>
     </HelmetProvider>
   );
