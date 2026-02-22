@@ -9,6 +9,7 @@ const navItems = [
   { label: "Regulatory", path: "/seascope/regulatory" },
   { label: "Safety", path: "/seascope/safety" },
   { label: "Pilot", path: "/seascope/pilot" },
+  { label: "Eval v2", path: "/seascope/eval" },
 ];
 
 export function SeaScopeNav() {

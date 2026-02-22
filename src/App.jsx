@@ -14,6 +14,7 @@ import SeaScopeEvidence from './pages/SeaScopeEvidence';
 import SeaScopeSafetyCase from './pages/SeaScopeSafetyCase';
 import SeaScopeDataFlow from './pages/SeaScopeDataFlow';
 import SeaScopeRegulatory from './pages/SeaScopeRegulatory';
+import EvalTracker from './pages/SeaScopeEvalTracker';
 
 // Language context for global state management
 const languages = {
@@ -977,6 +978,7 @@ export default function App() {
         <Route path="/seascope/safety-case" element={<SeaScopeSafetyCase />} />
         <Route path="/seascope/data-flow" element={<SeaScopeDataFlow />} />
         <Route path="/seascope/regulatory" element={<SeaScopeRegulatory />} />
+        <Route path="/seascope/eval" element={<EvalTracker />} />
       </Routes>
     </HelmetProvider>
   );
