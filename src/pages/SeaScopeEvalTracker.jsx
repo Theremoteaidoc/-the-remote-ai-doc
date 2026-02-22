@@ -1,20 +1,7 @@
 import { useState, useEffect } from "react";
-
-const SCORES = {
-  gemini: { name: "Gemini Pro 3", total: 62.5, verdict: "YES", color: "#059669",
-    sections: { clinical: 10, safety: 9, operational: 9, regulatory: 8, integration: 9, business: 8, team: 9.5 }},
-  grok: { name: "Grok 4.1 Fast", total: 62, verdict: "YES", color: "#059669",
-    sections: { clinical: 9, safety: 10, operational: 9, regulatory: 8, integration: 9, business: 8, team: 9 }},
-  gpt: { name: "GPT 5.2 (Thinking)", total: 47, verdict: "YES*", color: "#B45309",
-    sections: { clinical: 8, safety: 7, operational: 7, regulatory: 6, integration: 6, business: 6, team: 7 }},
-  opus: { name: "Opus 4.6", total: "~56", verdict: "YES", color: "#059669",
-    sections: { clinical: null, safety: 9.5, operational: 9, regulatory: 8, integration: null, business: null, team: null }},
-};
-
+const SCORES = { gemini: { name: "Gemini Pro 3", total: 62.5, verdict: "YES", color: "#059669", sections: { clinical: 10, safety: 9, operational: 9, regulatory: 8, integration: 9, business: 8, team: 9.5 }}, grok: { name: "Grok 4.1 Fast", total: 62, verdict: "YES", color: "#059669", sections: { clinical: 9, safety: 10, operational: 9, regulatory: 8, integration: 9, business: 8, team: 9 }}, gpt: { name: "GPT 5.2 (Thinking)", total: 47, verdict: "YES*", color: "#B45309", sections: { clinical: 8, safety: 7, operational: 7, regulatory: 6, integration: 6, business: 6, team: 7 }}, opus: { name: "Opus 4.6", total: "~56", verdict: "YES", color: "#059669", sections: { clinical: null, safety: 9.5, operational: 9, regulatory: 8, integration: null, business: null, team: null }}, };
 const V1_SCORES = { gemini: 48, grok: 52, gpt: 39, opus: 49 };
-
 const ITEMS = [
-  // ALREADY ADDRESSED
   { id: "A1", finding: "Safety flag accuracy target should be 99-100%, not 95%", models: ["gemini"], category: "safety", priority: "HIGH", status: "ADDRESSED", resolution: "Update O8 endpoint target from >95% to >99% for allergy/interaction flags. Recommendation accuracy stays >90%.", phase: "Phase 1", effort: "5 min", doc: "O8" },
   { id: "A2", finding: "Safety case document needed: known hazards, mitigations, residual risk", models: ["gpt", "opus"], category: "safety", priority: "CRITICAL", status: "ADDRESSED", resolution: "S2 Failure Mode Safety Case completed this session. 7 guardrails mapped, system-level failures, Maverick review, defense-in-depth.", phase: "Phase 1", effort: "Done", doc: "S2" },
   { id: "A3", finding: "Interaction screener not specified — which database, severity classification", models: ["gpt", "grok"], category: "safety", priority: "HIGH", status: "ADDRESSED", resolution: "S3 Interaction Severity Grading v1 completed this session. HARD STOP / WARNING / INFO tiers, QTc stacking, 21 flagship pairs.", phase: "Phase 2", effort: "Done", doc: "S3" },
@@ -26,14 +13,12 @@ const ITEMS = [
   { id: "A9", finding: "Maverick independence questionable if same provider", models: ["opus"], category: "safety", priority: "MEDIUM", status: "ADDRESSED", resolution: "Cross-provider review (non-Anthropic model) documented on Phase 3 roadmap in OnePager v4. Current: different model family (Opus vs Sonnet), adversarial prompts.", phase: "Phase 3", effort: "Done", doc: "OnePager v4" },
   { id: "A10", finding: "Confidence calibration and net benefit metrics needed", models: ["grok", "gpt"], category: "business", priority: "HIGH", status: "ADDRESSED", resolution: "Validation Metrics Queue created: confidence calibration rate, net clinical benefit, temporal validation split. Queued for O8 v2 and OnePager v5.", phase: "Phase 2", effort: "Done", doc: "Metrics Queue" },
   { id: "A11", finding: "Contractual data retention unclear", models: ["opus"], category: "regulatory", priority: "HIGH", status: "ADDRESSED", resolution: "OnePager v4: 'Contractual 7-day auto-deletion, zero training on SeaScope data.' O7 v5: full data protection strip.", phase: "Phase 1", effort: "Done", doc: "OnePager v4" },
-
-  // NEW — ACTIONABLE
   { id: "N1", finding: "Confabulation definition too narrow — must include invented diagnoses and guideline citations, not just lab values", models: ["gpt"], category: "safety", priority: "HIGH", status: "ADDRESSED", resolution: "5-type confabulation taxonomy added to S2 v2 (full-page table) and OnePager v5 (pilot metrics + safety pipeline). Types: fabricated labs, phantom drugs, invented diagnoses, hallucinated guidelines, fabricated clinical details. Each tracked independently with detection method specified.", phase: "Phase 1", effort: "Done", doc: "S2 v2 + OnePager v5" },
-  { id: "N2", finding: "Product 'Indications / Contraindications / Not For Use' section needed", models: ["gpt"], category: "regulatory", priority: "HIGH", status: "TODO", resolution: "Create clear boundary statement: what SeaScope supports (top 20 protocols) and explicitly does not support (neonatal, ventilator mgmt, complex tox, pregnancy). Add to OnePager v5 or appendix.", phase: "Phase 2", effort: "1 hr", doc: "New: Intended Use doc" },
+  { id: "N2", finding: "Product 'Indications / Contraindications / Not For Use' section needed", models: ["gpt"], category: "regulatory", priority: "HIGH", status: "ADDRESSED", resolution: "N2 Intended Use Boundaries v1.2: 16 supported domains (added Tropical & Travel Medicine), 9 excluded domains (added mass casualty, telehealth integration), 9 safety boundaries (added home med interactions, unrecorded medications). Maritime-adapted sepsis bundle. REFUSES/LIMITS framework scored 10/10 by simulated CMO.", phase: "Phase 2", effort: "Done", doc: "N2 v1.2" },
   { id: "N3", finding: "Case vignettes showing actual outputs needed", models: ["gpt", "opus"], category: "clinical", priority: "HIGH", status: "BLOCKED", resolution: "Blocked by 100-case pipeline completion. When ready: select 3-5 flagship cases showing output, safety catches, and a trapped hallucination being blocked.", phase: "Phase 2", effort: "2 hr", doc: "Appendix / Demo Packet" },
   { id: "N4", finding: "Which clinical practice guidelines underpin protocols?", models: ["grok", "gpt"], category: "clinical", priority: "MEDIUM", status: "ADDRESSED", resolution: "16 CPG sources added to OnePager v5 (AHA, APA, IDSA, WHO, GINA, SSC, WMS, IMO, ABMM, AGS Beers, FDA/DailyMed, Lexicomp). 7 explicit exclusions documented (neonatal, ventilator, complex tox, obstetric, complex anticoag, radiation, dental). Full table ready for CDS Development Process doc.", phase: "Phase 2", effort: "Done", doc: "OnePager v5 + QuickWins doc" },
   { id: "N5", finding: "Pricing / ROI model missing", models: ["grok", "gpt"], category: "business", priority: "MEDIUM", status: "DEFER", resolution: "Pricing exists in Post-Gionis Action Plan ($1K-1.5K/ship/month). Not appropriate for pre-pilot one-pager. Prepare for Tarling call as verbal talking point, not written commitment.", phase: "Post-pilot", effort: "N/A", doc: "Verbal prep" },
-  { id: "N6", finding: "Device/bandwidth minimum specifications", models: ["grok", "gpt"], category: "operational", priority: "MEDIUM", status: "TODO", resolution: "Document: any modern browser (Chrome/Safari/Edge), any device (iPad/laptop/desktop), minimum bandwidth for online mode (est. 50kbps), PWA offline capability.", phase: "Phase 2", effort: "20 min", doc: "P3.1 Technical Hardening" },
+  { id: "N6", finding: "Device/bandwidth minimum specifications", models: ["grok", "gpt"], category: "operational", priority: "MEDIUM", status: "ADDRESSED", resolution: "Pilot Proposal v1 includes full Technical Requirements section: device specs (iPad/laptop/desktop), browser support (Chrome 90+/Safari 15+/Edge 90+), minimum 50kbps bandwidth, PWA offline caching ~50MB, ship IT requirements (firewall whitelist only), 3 connectivity modes documented.", phase: "Phase 2", effort: "Done", doc: "Pilot Proposal v1" },
   { id: "N7", finding: "GDPR / EU data residency for European passengers", models: ["opus", "gpt"], category: "regulatory", priority: "MEDIUM", status: "DEFER", resolution: "Phase 1 pilot uses de-identified data only = GDPR not triggered. For fleet deployment: EU-hosted option via Bedrock eu-west region. Add to P3.1.", phase: "Phase 3", effort: "Legal", doc: "P3.1" },
   { id: "N8", finding: "Security posture: SOC2, pen testing, encryption standards", models: ["gpt"], category: "operational", priority: "MEDIUM", status: "DEFER", resolution: "Pre-pilot: not expected for shadow mode. Pre-fleet: SOC2 Type I target. Add to P3.1 Technical Hardening roadmap. Encryption: TLS 1.3 in transit, AES-256 at rest.", phase: "Phase 3", effort: "$$", doc: "P3.1" },
   { id: "N9", finding: "Deployment/support model: who supports 90 ships across time zones?", models: ["gpt"], category: "operational", priority: "LOW", status: "DEFER", resolution: "Not relevant for 1-2 ship shadow pilot. Fleet support model designed in Phase 4. Acknowledge in roadmap.", phase: "Phase 4", effort: "Future", doc: "P4.1" },
@@ -41,47 +26,45 @@ const ITEMS = [
   { id: "N11", finding: "Maverick disagreement rate from testing", models: ["opus"], category: "safety", priority: "MEDIUM", status: "BLOCKED", resolution: "Blocked by 100-case pipeline. Report: disagreement rate, severity distribution, resolution outcomes. Add to validation report.", phase: "Phase 2", effort: "1 hr", doc: "Validation report" },
   { id: "N12", finding: "Absolutes are dangerous: 'designed to prevent' → 'designed to reduce risk by flagging'", models: ["gpt"], category: "clinical", priority: "MEDIUM", status: "ADDRESSED", resolution: "6 language changes applied to OnePager v5: 3x 'designed to prevent' → 'flag and significantly reduce the risk of', safety flag >95% → >99%, confabulation metric expanded, 50+ languages specified with WHO INN ontology.", phase: "Phase 1", effort: "Done", doc: "OnePager v5" },
   { id: "N13", finding: "'50+ languages' allergy detection needs ontology/validation detail", models: ["gpt", "opus"], category: "safety", priority: "MEDIUM", status: "ADDRESSED", resolution: "OnePager v5 updated: 'Alias-mapped drug name ontology supporting 50+ languages, validated against WHO INN nomenclature and regional brand name databases.' Applied in N12 language audit.", phase: "Phase 2", effort: "Done", doc: "OnePager v5" },
-  { id: "N14", finding: "Pilot governance: who reviews outputs, how updates frozen during pilot", models: ["gpt"], category: "operational", priority: "HIGH", status: "TODO", resolution: "Add pilot governance section to pilot proposal: Dr. Rosas reviews all cases, system version frozen during pilot (no updates), disagreements reviewed by advisory board.", phase: "Phase 2", effort: "1 hr", doc: "Pilot Proposal (new)" },
-  { id: "N15", finding: "Data deletion procedures upon contract termination", models: ["opus"], category: "regulatory", priority: "LOW", status: "DEFER", resolution: "Add to SLA/pilot agreement template. Standard clause: all data deleted within 30 days of termination, certificate of destruction provided.", phase: "Phase 2", effort: "Legal", doc: "Pilot Agreement" },
-  { id: "N16", finding: "Incident response plan for data breaches", models: ["opus"], category: "regulatory", priority: "LOW", status: "DEFER", resolution: "Phase 1 handles de-identified data only = breach impact minimal. Pre-fleet: formal incident response plan. Add to P3.1.", phase: "Phase 3", effort: "Legal", doc: "P3.1" },
-  { id: "N17", finding: "Shadow pilot: data entry during shift vs after? Memory bias vs workflow disruption", models: ["gemini"], category: "operational", priority: "MEDIUM", status: "TODO", resolution: "Design decision: recommend 'during shift, after clinical decision' — physician treats patient, makes decision, then enters case while fresh. Not retrospective end-of-shift. Document in pilot protocol.", phase: "Phase 2", effort: "30 min", doc: "Pilot Proposal" },
+  { id: "N14", finding: "Pilot governance: who reviews outputs, how updates frozen during pilot", models: ["gpt"], category: "operational", priority: "HIGH", status: "ADDRESSED", resolution: "Pilot Proposal v1 includes full governance section: oversight structure (PI, advisory, physicians, fleet sponsor), version freeze during pilot, 5 halt criteria with severity-graded triggers and actions.", phase: "Phase 2", effort: "Done", doc: "Pilot Proposal v1" },
+  { id: "N15", finding: "Data deletion procedures upon contract termination", models: ["opus"], category: "regulatory", priority: "LOW", status: "ADDRESSED", resolution: "Data Protection Addendum §3: 24-month max retention, Client can request deletion anytime, 30-day completion + Certificate of Destruction, aggregated metrics survive for regulatory use.", phase: "Phase 2", effort: "Done", doc: "DPA" },
+  { id: "N16", finding: "Incident response plan for data breaches", models: ["opus"], category: "regulatory", priority: "LOW", status: "ADDRESSED", resolution: "Data Protection Addendum §5: breach definition, 24-hour notification to DPO, triggers Halt #6, root cause analysis, regulatory cooperation. Liability Acknowledgment §4: subpoena/discovery protection + QI privilege framing.", phase: "Phase 3", effort: "Done", doc: "DPA + Liability" },
+  { id: "N17", finding: "Shadow pilot: data entry during shift vs after? Memory bias vs workflow disruption", models: ["gemini"], category: "operational", priority: "MEDIUM", status: "ADDRESSED", resolution: "Pilot Proposal v1: data entry occurs during shift, after clinical decision (not retrospective). Pros/cons table documents rationale. 4-step entry workflow defined with timing (3-5 min total per encounter). Memory bias mitigated by immediate entry; workflow burden mitigated by S1 auto-populate design.", phase: "Phase 2", effort: "Done", doc: "Pilot Proposal v1" },
   { id: "N18", finding: "Formulary management workflow and governance for fleet variation", models: ["gpt", "grok"], category: "integration", priority: "MEDIUM", status: "DEFER", resolution: "Phase 1: single validated formulary. Phase 4: per-ship formulary profiles with change-control workflow. Already on roadmap.", phase: "Phase 4", effort: "Future", doc: "P4.1" },
+  { id: "T1", finding: "Data Protection Addendum: de-ID methodology, data ownership, retention, deletion, breach notification", models: ["opus"], category: "regulatory", priority: "CRITICAL", status: "ADDRESSED", resolution: "DPA v1.0 built: HIPAA Safe Harbor de-ID, 18-identifier table, 24-month retention, Client deletion rights + Certificate of Destruction, PHI exclusion architecture, 24-hour breach notification, automated PHI scanning. Florida governing law. Dual signature blocks.", phase: "Pre-pilot", effort: "Done", doc: "DPA" },
+  { id: "T2", finding: "Liability Acknowledgment: no treatment decisions, indemnification, termination without cause", models: ["opus"], category: "regulatory", priority: "CRITICAL", status: "ADDRESSED", resolution: "One-page template built: shadow mode confirmation, unconscious influence clause, Provider indemnification (platform defects + data protection), Client absolute termination right, subpoena/QI privilege protection, liability cap (amount needs counsel). Flagged for lawyer review.", phase: "Pre-pilot", effort: "Done (needs lawyer)", doc: "Liability Ack" },
+  { id: "T3", finding: "Case Selection Protocol: which encounters to enter, acuity threshold", models: ["opus"], category: "operational", priority: "HIGH", status: "ADDRESSED", resolution: "Pilot v2 Addendum: ENTER (medication cases, clinical decisions, interesting cases) / SKIP (refills, seasickness, sunburn, admin) / PHYSICIAN DISCRETION (borderline). Domain coverage target ≥8/16, no single domain >30%. Day 15 midpoint check.", phase: "Pre-pilot", effort: "Done", doc: "Pilot v2 Addendum" },
+  { id: "T4", finding: "Halt Criterion #6: Data Privacy Breach", models: ["opus"], category: "safety", priority: "CRITICAL", status: "ADDRESSED", resolution: "Added to Pilot v2 Addendum: PHI found anywhere = immediate halt. DPO notified 24hr. Records suppressed. Root cause analysis. Resume only after DPO audit + written Client approval.", phase: "Pre-pilot", effort: "Done", doc: "Pilot v2 Addendum" },
+  { id: "T5", finding: "Physician selection: range of experience, nationalities, tech comfort, no self-selection", models: ["opus"], category: "operational", priority: "HIGH", status: "DEFER", resolution: "Client action item. Criteria documented in Pilot v2 Addendum §P1: range of experience/nationality/tech comfort, no self-selection, include skeptics. Client selects in consultation with PI.", phase: "Pre-pilot", effort: "Client action", doc: "Pilot v2 Addendum" },
+  { id: "T6", finding: "Post-Pilot Decision Framework: define success/retest/decline thresholds before Day 1", models: ["opus"], category: "business", priority: "CRITICAL", status: "ADDRESSED", resolution: "Three-outcome framework with concrete thresholds: Fleet Deploy (≥75% agreement + ≥99% safety + 0% confab + ≥7 NPS + 0 halts + ≥50 cases + ≥8 domains, ALL met), Second Pilot (60-74% agreement OR other partial metrics, ANY triggers), Decline (<60% agreement OR <95% safety OR any confab OR critical halt OR NPS<5, ANY triggers).", phase: "Pre-pilot", effort: "Done", doc: "Pilot v2 Addendum" },
+  { id: "T7", finding: "Publication rights: Carnival credited, review rights before submission, non-negotiable", models: ["opus"], category: "regulatory", priority: "HIGH", status: "ADDRESSED", resolution: "DPA §6: Client credited by name, 30-day review period, ICMJE authorship (CMO offered co-authorship), no marketing use without written consent. Publication cannot be unreasonably withheld for scientifically accurate findings.", phase: "Pre-pilot", effort: "Done", doc: "DPA §6" },
 ];
-
 const CATEGORIES = ["All", "safety", "clinical", "operational", "regulatory", "business", "integration"];
 const STATUSES = ["All", "TODO", "ADDRESSED", "BLOCKED", "DEFER"];
 const PRIORITIES = ["All", "CRITICAL", "HIGH", "MEDIUM", "LOW"];
-
 export default function EvalTracker() {
   const [catFilter, setCatFilter] = useState("All");
   const [statFilter, setStatFilter] = useState("All");
   const [prioFilter, setPrioFilter] = useState("All");
   const [expandedId, setExpandedId] = useState(null);
   const [tab, setTab] = useState("items");
-
   const filtered = ITEMS.filter(i =>
     (catFilter === "All" || i.category === catFilter) &&
     (statFilter === "All" || i.status === statFilter) &&
     (prioFilter === "All" || i.priority === prioFilter)
   );
-
   const counts = { TODO: 0, ADDRESSED: 0, BLOCKED: 0, DEFER: 0 };
   ITEMS.forEach(i => counts[i.status]++);
-
   const modelKeys = ["gemini", "grok", "gpt", "opus"];
   const sectionLabels = { clinical: "Clinical Credibility", safety: "Patient Safety", operational: "Operational Reality", regulatory: "Regulatory & Liability", integration: "Integration & Scalability", business: "Business Case", team: "Team & Trust" };
   const sectionKeys = Object.keys(sectionLabels);
-
   const statusColors = { TODO: "#DC2626", ADDRESSED: "#059669", BLOCKED: "#B45309", DEFER: "#6366F1" };
   const statusBg = { TODO: "#FEE2E2", ADDRESSED: "#D1FAE5", BLOCKED: "#FEF3C7", DEFER: "#EDE9FE" };
   const prioColors = { CRITICAL: "#DC2626", HIGH: "#EA580C", MEDIUM: "#B45309", LOW: "#6366F1" };
-
   const catIcons = { safety: "\u{1F6E1}", clinical: "\u{1FA7A}", operational: "\u2699\uFE0F", regulatory: "\u2696\uFE0F", business: "\u{1F4B0}", integration: "\u{1F517}" };
-
   return (
     <div style={{ fontFamily: "'DM Sans', 'Segoe UI', sans-serif", background: "#0B1120", minHeight: "100vh", color: "#E2E8F0", padding: "24px" }}>
       <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-
       {/* Header */}
       <div style={{ background: "linear-gradient(135deg, #0D9488 0%, #0F766E 50%, #134E4A 100%)", borderRadius: "16px", padding: "28px 32px", marginBottom: "24px", boxShadow: "0 8px 32px rgba(13,148,136,0.3)" }}>
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", flexWrap: "wrap", gap: "16px" }}>
@@ -107,19 +90,17 @@ export default function EvalTracker() {
         <div style={{ marginTop: "16px", display: "flex", gap: "16px", alignItems: "center" }}>
           <span style={{ fontSize: "12px", color: "#99F6E4" }}>v1 avg: 47.0</span>
           <div style={{ flex: 1, height: "6px", borderRadius: "3px", background: "rgba(255,255,255,0.15)", position: "relative" }}>
-            <div style={{ position: "absolute", left: 0, top: 0, height: "6px", borderRadius: "3px", background: "linear-gradient(90deg, #6EE7B7, #2DD4BF)", width: `${((58.4 / 70) * 100)}%`, transition: "width 1s" }} />
+            <div style={{ position: "absolute", left: 0, top: 0, height: "6px", borderRadius: "3px", background: "linear-gradient(90deg, #6EE7B7, #2DD4BF, #14B8A6)", width: `${((64 / 70) * 100)}%`, transition: "width 1s" }} />
           </div>
-          <span style={{ fontSize: "12px", color: "#6EE7B7", fontWeight: 600 }}>v2 avg: 58.4 (+11.4)</span>
+          <span style={{ fontSize: "12px", color: "#6EE7B7", fontWeight: 600 }}>v3: 64/70 (+17 from v1)</span>
         </div>
       </div>
-
       {/* Tabs */}
       <div style={{ display: "flex", gap: "4px", marginBottom: "20px" }}>
         {[["items", "Action Items"], ["scores", "Score Matrix"], ["summary", "Key Insights"]].map(([key, label]) => (
           <button key={key} onClick={() => setTab(key)} style={{ padding: "10px 20px", borderRadius: "8px", border: "none", cursor: "pointer", fontSize: "13px", fontWeight: 600, background: tab === key ? "#0D9488" : "rgba(255,255,255,0.05)", color: tab === key ? "white" : "#94A3B8", transition: "all 0.2s" }}>{label}</button>
         ))}
       </div>
-
       {/* STATUS SUMMARY CARDS */}
       {tab === "items" && (
         <>
@@ -131,7 +112,6 @@ export default function EvalTracker() {
               </div>
             ))}
           </div>
-
           {/* FILTERS */}
           <div style={{ display: "flex", gap: "8px", marginBottom: "16px", flexWrap: "wrap" }}>
             <span style={{ fontSize: "12px", color: "#64748B", alignSelf: "center", marginRight: "4px" }}>Filter:</span>
@@ -147,7 +127,6 @@ export default function EvalTracker() {
               </button>
             ))}
           </div>
-
           {/* ITEMS LIST */}
           <div style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
             {filtered.map(item => {
@@ -206,7 +185,6 @@ export default function EvalTracker() {
           </div>
         </>
       )}
-
       {/* SCORE MATRIX TAB */}
       {tab === "scores" && (
         <div style={{ background: "rgba(255,255,255,0.03)", borderRadius: "12px", border: "1px solid rgba(255,255,255,0.08)", overflow: "hidden" }}>
@@ -245,28 +223,31 @@ export default function EvalTracker() {
                 {modelKeys.map(k => (
                   <td key={k} style={{ padding: "12px 8px", textAlign: "center", color: "white", fontWeight: 700, fontSize: "16px", fontFamily: "'JetBrains Mono', monospace" }}>{SCORES[k].total}</td>
                 ))}
-                <td style={{ padding: "12px 8px", textAlign: "center", color: "#6EE7B7", fontWeight: 700, fontSize: "16px", fontFamily: "'JetBrains Mono', monospace" }}>58.4</td>
+                <td style={{ padding: "12px 8px", textAlign: "center", color: "#6EE7B7", fontWeight: 700, fontSize: "16px", fontFamily: "'JetBrains Mono', monospace" }}>58.4 → 64</td>
               </tr>
             </tbody>
           </table>
         </div>
       )}
-
       {/* KEY INSIGHTS TAB */}
       {tab === "summary" && (
         <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
           {/* Unanimous strengths */}
           <div style={{ background: "rgba(5,150,105,0.08)", border: "1px solid rgba(5,150,105,0.2)", borderRadius: "12px", padding: "20px" }}>
-            <h3 style={{ margin: "0 0 12px", color: "#6EE7B7", fontSize: "14px", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.5px" }}>Unanimous Strengths (All 4 Models)</h3>
+            <h3 style={{ margin: "0 0 12px", color: "#6EE7B7", fontSize: "14px", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.5px" }}>Strengths — v2 Unanimous + v3 Additions</h3>
             <div style={{ display: "flex", flexDirection: "column", gap: "8px", fontSize: "13px", color: "#CBD5E1" }}>
               {[
                 '"Safety is architectural, not probabilistic" — cited by all 4 as the strongest single line',
                 '"Your physicians are already using ChatGPT at 3 AM" — universally praised as the killer narrative',
                 "Shadow pilot design eliminates operational risk — all 4 would approve the pilot",
-                "SeaCare/Tritan integration roadmap — previously the biggest gap, now a strength",
-                "Offline mode with zero cloud processing — the single most important capability",
                 "7 deterministic guardrails architecture — universally credible",
                 "Data flow diagram (O7) — Opus called it 'the document I was waiting for'",
+                "REFUSES/LIMITS framework (N2) — scored 10/10: 'the most important section in the entire document'",
+                "5-type confabulation taxonomy — closes GPT's 'definition game' concern",
+                "Maritime-adapted sepsis bundle — 'shows exactly why generic AI fails and SeaScope doesn't'",
+                "16 clinical domains with traceable CPG sources — now includes tropical medicine",
+                "Pilot governance with version freeze — 'scientific integrity applied to product evaluation'",
+                "Post-pilot decision framework — concrete thresholds prevent retroactive goalpost adjustment",
               ].map((s, i) => (
                 <div key={i} style={{ display: "flex", gap: "8px", alignItems: "flex-start" }}>
                   <span style={{ color: "#059669", flexShrink: 0 }}>✓</span>
@@ -275,18 +256,17 @@ export default function EvalTracker() {
               ))}
             </div>
           </div>
-
           {/* Remaining gaps */}
           <div style={{ background: "rgba(220,38,38,0.06)", border: "1px solid rgba(220,38,38,0.15)", borderRadius: "12px", padding: "20px" }}>
-            <h3 style={{ margin: "0 0 12px", color: "#F87171", fontSize: "14px", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.5px" }}>Remaining Gaps (What Keeps GPT 5.2 at 47)</h3>
+            <h3 style={{ margin: "0 0 12px", color: "#F87171", fontSize: "14px", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.5px" }}>Remaining Gaps (6 Points to 70/70)</h3>
             <div style={{ display: "flex", flexDirection: "column", gap: "8px", fontSize: "13px", color: "#CBD5E1" }}>
               {[
-                "GPT wants proof behind every claim — methodology, not just numbers. '114 tests' means nothing without test design.",
-                "No live product demo yet — all 4 want to see it work, not read about it working.",
-                "Regulatory still weakest category (avg 7.5) — O1/O2 (lawyer) remain existential blockers.",
-                "Pricing/ROI absent — acceptable for pre-pilot, but needed before any contract discussion.",
-                "Security posture undefined — not needed for shadow pilot, critical for fleet.",
-                "Confabulation definition too narrow — needs to cover invented diagnoses and guidelines, not just labs.",
+                "No live product demo yet — all evaluators want to see it work, not read about it working",
+                "Liability framework needs lawyer review — template built, T2 flagged for counsel sign-off",
+                "100-case pipeline results pending — case vignettes, latency budget, Maverick disagreement rate all blocked",
+                "Pricing/ROI absent — acceptable for pre-pilot, needed before any contract discussion",
+                "GDPR/EU data residency — not triggered for de-identified Phase 1, needed for fleet deployment",
+                "Security posture (SOC2, pen testing) — not needed for shadow pilot, critical before fleet",
               ].map((s, i) => (
                 <div key={i} style={{ display: "flex", gap: "8px", alignItems: "flex-start" }}>
                   <span style={{ color: "#DC2626", flexShrink: 0 }}>!</span>
@@ -295,10 +275,9 @@ export default function EvalTracker() {
               ))}
             </div>
           </div>
-
           {/* Score movement */}
           <div style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: "12px", padding: "20px" }}>
-            <h3 style={{ margin: "0 0 12px", color: "#2DD4BF", fontSize: "14px", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.5px" }}>Score Movement v1 → v2</h3>
+            <h3 style={{ margin: "0 0 12px", color: "#2DD4BF", fontSize: "14px", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.5px" }}>Score Movement v1 → v2 → v3</h3>
             <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "12px" }}>
               {modelKeys.map(k => {
                 const delta = typeof SCORES[k].total === "number" ? SCORES[k].total - V1_SCORES[k] : "~7";
@@ -316,22 +295,49 @@ export default function EvalTracker() {
               })}
             </div>
             <div style={{ marginTop: "16px", padding: "12px", background: "rgba(13,148,136,0.1)", borderRadius: "8px", textAlign: "center" }}>
-              <span style={{ fontSize: "13px", color: "#94A3B8" }}>Average improvement: </span>
-              <span style={{ fontSize: "18px", color: "#6EE7B7", fontWeight: 700 }}>+11.4 points</span>
-              <span style={{ fontSize: "13px", color: "#94A3B8" }}> • All 4 models now say </span>
-              <span style={{ fontSize: "14px", color: "#6EE7B7", fontWeight: 700 }}>YES to the Zoom call</span>
+              <span style={{ fontSize: "13px", color: "#94A3B8" }}>v3 (post N2 + Pilot Proposal feedback): </span>
+              <span style={{ fontSize: "18px", color: "#6EE7B7", fontWeight: 700 }}>64/70</span>
+              <span style={{ fontSize: "13px", color: "#94A3B8" }}> • Pilot approved in principle • </span>
+              <span style={{ fontSize: "14px", color: "#6EE7B7", fontWeight: 700 }}>"Send me the calendar link"</span>
             </div>
           </div>
-
-          {/* Next actions */}
+          {/* Tarling Pre-Pilot Conditions */}
           <div style={{ background: "rgba(13,148,136,0.08)", border: "1px solid rgba(13,148,136,0.2)", borderRadius: "12px", padding: "20px" }}>
-            <h3 style={{ margin: "0 0 12px", color: "#2DD4BF", fontSize: "14px", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.5px" }}>Highest-Priority Actions (Can Do Now)</h3>
+            <h3 style={{ margin: "0 0 12px", color: "#2DD4BF", fontSize: "14px", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.5px" }}>Tarling Pre-Pilot Conditions (7 Required Before Day 1)</h3>
             <div style={{ display: "flex", flexDirection: "column", gap: "8px", fontSize: "13px", color: "#CBD5E1" }}>
               {[
-                { id: "N14", text: "Pilot governance section for pilot proposal (1 hr)", effort: "1 hr" },
-                { id: "N2", text: "Product Intended Use / Not For Use boundaries (1 hr)", effort: "1 hr" },
-                { id: "N17", text: "Shadow pilot data entry timing decision (30 min)", effort: "30 min" },
-                { id: "N6", text: "Device/bandwidth minimum specifications (20 min)", effort: "20 min" },
+                { id: "T1", text: "Data Protection Addendum", status: "DONE", color: "#6EE7B7" },
+                { id: "T2", text: "Liability Acknowledgment (needs lawyer review)", status: "DONE*", color: "#FBBF24" },
+                { id: "T3", text: "Case Selection Protocol", status: "DONE", color: "#6EE7B7" },
+                { id: "T4", text: "Halt #6: Data Privacy Breach", status: "DONE", color: "#6EE7B7" },
+                { id: "T5", text: "Physician Selection (Client action)", status: "CLIENT", color: "#94A3B8" },
+                { id: "T6", text: "Post-Pilot Decision Framework", status: "DONE", color: "#6EE7B7" },
+                { id: "T7", text: "Publication Rights", status: "DONE", color: "#6EE7B7" },
+              ].map((a, i) => (
+                <div key={i} style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+                  <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "11px", color: "#0D9488", width: "28px" }}>{a.id}</span>
+                  <span style={{ flex: 1 }}>{a.text}</span>
+                  <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "11px", color: a.color, fontWeight: 700 }}>{a.status}</span>
+                </div>
+              ))}
+            </div>
+            <div style={{ marginTop: "12px", padding: "8px 12px", background: "rgba(16,185,129,0.1)", borderRadius: "6px", fontSize: "12px", color: "#6EE7B7" }}>
+              6/7 conditions built. T5 (physician selection) is Tarling's action item. T2 flagged for lawyer review.
+            </div>
+          </div>
+          {/* Remaining */}
+          <div style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: "12px", padding: "20px" }}>
+            <h3 style={{ margin: "0 0 12px", color: "#2DD4BF", fontSize: "14px", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.5px" }}>Remaining — Blocked or Deferred</h3>
+            <div style={{ display: "flex", flexDirection: "column", gap: "8px", fontSize: "13px", color: "#CBD5E1" }}>
+              {[
+                { id: "N3", text: "Case vignettes showing actual outputs (BLOCKED — 100-case pipeline)", effort: "Blocked" },
+                { id: "N10", text: "Latency budget breakdown by stage (BLOCKED — 100-case pipeline)", effort: "Blocked" },
+                { id: "N11", text: "Maverick disagreement rate (BLOCKED — 100-case pipeline)", effort: "Blocked" },
+                { id: "N5", text: "Pricing / ROI model (DEFERRED — post-pilot)", effort: "Deferred" },
+                { id: "N7", text: "GDPR / EU data residency (DEFERRED — Phase 3)", effort: "Deferred" },
+                { id: "N8", text: "Security posture: SOC2, pen testing (DEFERRED — Phase 3)", effort: "Deferred" },
+                { id: "N9", text: "Fleet support model (DEFERRED — Phase 4)", effort: "Deferred" },
+                { id: "N18", text: "Formulary management governance (DEFERRED — Phase 4)", effort: "Deferred" },
               ].map((a, i) => (
                 <div key={i} style={{ display: "flex", gap: "8px", alignItems: "center" }}>
                   <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "11px", color: "#64748B", minWidth: "28px" }}>{a.id}</span>
@@ -343,7 +349,6 @@ export default function EvalTracker() {
           </div>
         </div>
       )}
-
       {/* Footer */}
       <div style={{ marginTop: "24px", padding: "16px 0", borderTop: "1px solid rgba(255,255,255,0.06)", textAlign: "center", fontSize: "11px", color: "#475569" }}>
         SeaScope CDS • Adversarial Evaluation v2 • 4 Models • {ITEMS.length} Action Items • February 22, 2026
