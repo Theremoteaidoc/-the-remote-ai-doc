@@ -3,6 +3,7 @@ import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import { ScrollReveal } from '../components/ScrollReveal';
 import { PasswordGate } from '../components/PasswordGate';
+import { SeaScopeNav } from '../components/SeaScopeNav';
 import { 
   Shield, 
   AlertTriangle, 
@@ -152,6 +153,8 @@ function SeaScopeSafetyCaseContent() {
       <div className="fixed top-4 right-4 z-40 bg-red-600/90 text-white px-3 py-1 rounded-full text-xs font-medium backdrop-blur-sm border border-red-500/50">
         CONFIDENTIAL — Shared under NDA
       </div>
+
+      <SeaScopeNav />
 
       {/* Header */}
       <section className="relative pt-24 pb-16 bg-gradient-to-br from-slate-900 to-teal-900">

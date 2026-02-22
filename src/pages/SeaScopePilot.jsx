@@ -3,6 +3,7 @@ import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import { ScrollReveal } from '../components/ScrollReveal';
 import { PasswordGate } from '../components/PasswordGate';
+import { SeaScopeNav } from '../components/SeaScopeNav';
 import { 
   Calendar, 
   Users, 
