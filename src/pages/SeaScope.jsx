@@ -38,12 +38,8 @@ function SeaScopeContent() {
       <SeaScopeNav />
 
       {/* Hero Section */}
-      <section className="relative pt-24 pb-20 bg-gradient-to-br from-slate-900 to-teal-900 overflow-hidden">
-        {/* Background image */}
-        <div className="absolute inset-0">
-          <img src="/images/seascope/hero-ship.jpg" alt="" className="w-full h-full object-cover opacity-20" />
-        </div>
-        <div className="absolute inset-0 bg-gradient-to-br from-slate-900/85 via-slate-900/80 to-teal-900/85" />
+      <section className="relative pt-24 pb-20 bg-gradient-to-br from-slate-900 to-teal-900">
+        <div className="absolute inset-0 bg-gradient-to-br from-slate-900/90 to-teal-900/90" />
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-teal-500/10 rounded-full blur-3xl" />
           <div className="absolute bottom-1/4 left-1/4 w-80 h-80 bg-teal-600/10 rounded-full blur-3xl" />
@@ -108,34 +104,33 @@ function SeaScopeContent() {
             </ScrollReveal>
             
             <ScrollReveal delay={200}>
-              <div className="relative rounded-2xl overflow-hidden">
-                <img src="/images/seascope/ship-bridge.jpg" alt="Ship bridge at night" className="w-full h-full object-cover absolute inset-0" />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/80 to-slate-900/40" />
-                <div className="relative text-white p-8">
-                  <h3 className="text-2xl font-bold mb-6 text-teal-400">Current Reality</h3>
+              <div className="bg-slate-900 text-white p-8 rounded-2xl relative overflow-hidden">
+                <div className="absolute top-0 right-0 w-32 h-32 bg-teal-500/10 rounded-full blur-2xl" />
+                <div className="relative">
+                  <h3 className="text-2xl font-bold mb-4 text-teal-400">Current Reality</h3>
                   <div className="space-y-4">
                     <div className="flex items-center space-x-3">
-                      <div className="w-2 h-2 bg-red-500 rounded-full flex-shrink-0" />
+                      <div className="w-2 h-2 bg-red-500 rounded-full" />
                       <span>No specialist backup available</span>
                     </div>
                     <div className="flex items-center space-x-3">
-                      <div className="w-2 h-2 bg-red-500 rounded-full flex-shrink-0" />
+                      <div className="w-2 h-2 bg-red-500 rounded-full" />
                       <span>Limited to ~180 medications (vs 4,000+ in hospitals)</span>
                     </div>
                     <div className="flex items-center space-x-3">
-                      <div className="w-2 h-2 bg-red-500 rounded-full flex-shrink-0" />
+                      <div className="w-2 h-2 bg-red-500 rounded-full" />
                       <span>Intermittent satellite connectivity</span>
                     </div>
                     <div className="flex items-center space-x-3">
-                      <div className="w-2 h-2 bg-red-500 rounded-full flex-shrink-0" />
+                      <div className="w-2 h-2 bg-red-500 rounded-full" />
                       <span>Medevac: 8+ hours when available</span>
                     </div>
                     <div className="flex items-center space-x-3">
-                      <div className="w-2 h-2 bg-red-500 rounded-full flex-shrink-0" />
+                      <div className="w-2 h-2 bg-red-500 rounded-full" />
                       <span>Populations up to 6,000 with no hospital nearby</span>
                     </div>
                     <div className="flex items-center space-x-3">
-                      <div className="w-2 h-2 bg-red-500 rounded-full flex-shrink-0" />
+                      <div className="w-2 h-2 bg-red-500 rounded-full" />
                       <span>Generic AI tools lack clinical safety validation</span>
                     </div>
                   </div>
@@ -557,43 +552,39 @@ function SeaScopeContent() {
             </ScrollReveal>
             
             <ScrollReveal delay={200}>
-              <div className="relative rounded-2xl overflow-hidden">
-                <img src="/images/seascope/medical-pro.jpg" alt="Medical professional" className="w-full h-full object-cover absolute inset-0" />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/85 to-slate-900/60" />
-                <div className="relative p-8">
-                <h3 className="text-2xl font-bold text-white mb-6">Study Parameters</h3>
+              <div className="bg-slate-50 p-8 rounded-2xl">
+                <h3 className="text-2xl font-bold text-slate-900 mb-6">Study Parameters</h3>
                 <div className="space-y-4">
                   <div className="flex items-start space-x-3">
-                    <div className="w-2 h-2 bg-teal-400 rounded-full mt-2 flex-shrink-0" />
+                    <div className="w-2 h-2 bg-teal-500 rounded-full mt-2" />
                     <div>
-                      <div className="font-semibold text-white">Duration</div>
-                      <div className="text-slate-300">30-day shadow deployment</div>
+                      <div className="font-semibold text-slate-900">Duration</div>
+                      <div className="text-slate-600">30-day shadow deployment</div>
                     </div>
                   </div>
                   <div className="flex items-start space-x-3">
-                    <div className="w-2 h-2 bg-teal-400 rounded-full mt-2 flex-shrink-0" />
+                    <div className="w-2 h-2 bg-teal-500 rounded-full mt-2" />
                     <div>
-                      <div className="font-semibold text-white">Encounters</div>
-                      <div className="text-slate-300">50-100 patient encounters</div>
+                      <div className="font-semibold text-slate-900">Encounters</div>
+                      <div className="text-slate-600">50-100 patient encounters</div>
                     </div>
                   </div>
                   <div className="flex items-start space-x-3">
-                    <div className="w-2 h-2 bg-teal-400 rounded-full mt-2 flex-shrink-0" />
+                    <div className="w-2 h-2 bg-teal-500 rounded-full mt-2" />
                     <div>
-                      <div className="font-semibold text-white">Participants</div>
-                      <div className="text-slate-300">3-5 ship physicians</div>
+                      <div className="font-semibold text-slate-900">Participants</div>
+                      <div className="text-slate-600">3-5 ship physicians</div>
                     </div>
                   </div>
                   <div className="flex items-start space-x-3">
-                    <div className="w-2 h-2 bg-teal-400 rounded-full mt-2 flex-shrink-0" />
+                    <div className="w-2 h-2 bg-teal-500 rounded-full mt-2" />
                     <div>
-                      <div className="font-semibold text-white">Endpoints</div>
-                      <div className="text-slate-300">Pre-defined safety and efficacy metrics</div>
+                      <div className="font-semibold text-slate-900">Endpoints</div>
+                      <div className="text-slate-600">Pre-defined safety and efficacy metrics</div>
                     </div>
                   </div>
                 </div>
                 </div>
-              </div>
             </ScrollReveal>
           </div>
         </div>
@@ -843,10 +834,8 @@ function SeaScopeContent() {
       </section>
 
       {/* Contact Section */}
-      <section className="py-20 relative overflow-hidden text-white">
-        <img src="/images/seascope/ocean-aerial.jpg" alt="" className="absolute inset-0 w-full h-full object-cover" />
-        <div className="absolute inset-0 bg-gradient-to-br from-teal-900/90 via-teal-800/85 to-slate-900/90"></div>
-        <div className="max-w-4xl mx-auto px-6 lg:px-8 text-center relative">
+      <section className="py-20 bg-gradient-to-br from-teal-600 to-teal-800 text-white">
+        <div className="max-w-4xl mx-auto px-6 lg:px-8 text-center">
           <ScrollReveal>
             <div className="flex items-center justify-center space-x-2 text-teal-200 mb-6">
               <Mail className="w-6 h-6" />
