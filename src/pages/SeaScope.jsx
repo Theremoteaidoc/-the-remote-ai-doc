@@ -874,9 +874,15 @@ function SeaScopeContent() {
       </section>
 
       {/* Footer */}
-      <section className="py-8 bg-slate-50 border-t border-slate-200">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8 text-center">
-          <p className="text-slate-500 text-sm">
+      <section className="py-8 bg-slate-900 border-t border-white/10">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8 text-center space-y-2">
+          <p className="text-slate-400 text-sm font-medium">
+            SeaScope CDS — A product of Remote AiD Medical, Corp.
+          </p>
+          <p className="text-slate-500 text-xs">
+            © {new Date().getFullYear()} Remote AiD Medical, Corp. All rights reserved. | Delaware C-Corp | Miami, FL
+          </p>
+          <p className="text-slate-600 text-xs">
             Last Updated: February 2026
           </p>
         </div>
