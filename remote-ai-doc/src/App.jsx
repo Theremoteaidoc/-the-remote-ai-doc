@@ -7,6 +7,15 @@ import Blog from './pages/Blog';
 import BlogPost from './pages/BlogPost';
 import Services from './pages/Services';
 import Demo from './pages/Demo';
+import SeaScope from './pages/SeaScope';
+import SeaScopeSafety from './pages/SeaScopeSafety';
+import SeaScopePilot from './pages/SeaScopePilot';
+import SeaScopeEvidence from './pages/SeaScopeEvidence';
+import SeaScopeSafetyCase from './pages/SeaScopeSafetyCase';
+import SeaScopeDataFlow from './pages/SeaScopeDataFlow';
+import SeaScopeRegulatory from './pages/SeaScopeRegulatory';
+import EvalTracker from './pages/SeaScopeEvalTracker';
+import Bridge from './pages/Bridge';
 
 // Language context for global state management
 const languages = {
@@ -963,6 +972,15 @@ export default function App() {
             <Demo />
           </Layout>
         } />
+        <Route path="/seascope" element={<SeaScope />} />
+        <Route path="/seascope/safety" element={<SeaScopeSafety />} />
+        <Route path="/seascope/pilot" element={<SeaScopePilot />} />
+        <Route path="/seascope/evidence" element={<SeaScopeEvidence />} />
+        <Route path="/seascope/safety-case" element={<SeaScopeSafetyCase />} />
+        <Route path="/seascope/data-flow" element={<SeaScopeDataFlow />} />
+        <Route path="/seascope/regulatory" element={<SeaScopeRegulatory />} />
+        <Route path="/seascope/eval" element={<EvalTracker />} />
+        <Route path="/bridge" element={<Bridge />} />
       </Routes>
     </HelmetProvider>
   );
