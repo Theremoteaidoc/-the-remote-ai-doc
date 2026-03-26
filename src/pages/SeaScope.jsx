@@ -1,17 +1,15 @@
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { Link } from 'react-router-dom';
 import { ScrollReveal } from '../components/ScrollReveal';
-import { PasswordGate } from '../components/PasswordGate';
 import { SeaScopeNav } from '../components/SeaScopeNav';
-import { 
-  Shield, 
-  Activity, 
-  Globe, 
-  Database, 
-  CheckCircle, 
-  AlertTriangle, 
-  Users, 
+import {
+  Shield,
+  Activity,
+  Globe,
+  Database,
+  CheckCircle,
+  AlertTriangle,
+  Users,
   Mail,
   Building,
   Stethoscope,
@@ -23,8 +21,65 @@ import {
   ArrowRight,
   Calendar,
   FileCheck,
-  Layers
+  Layers,
+  Map,
+  Pill,
+  Heart,
+  Monitor,
+  Wifi,
+  WifiOff,
+  ExternalLink,
+  Crosshair,
+  Play
 } from 'lucide-react';
+
+/* ── Animated counter hook ── */
+function useCountUp(end, duration = 2000, startOnView = true) {
+  const [count, setCount] = useState(0);
+  const [started, setStarted] = useState(false);
+  const ref = useRef(null);
+
+  useEffect(() => {
+    if (!startOnView) { setStarted(true); return; }
+    const obs = new IntersectionObserver(([e]) => {
+      if (e.isIntersecting) { setStarted(true); obs.disconnect(); }
+    }, { threshold: 0.3 });
+    if (ref.current) obs.observe(ref.current);
+    return () => obs.disconnect();
+  }, [startOnView]);
+
+  useEffect(() => {
+    if (!started) return;
+    let frame;
+    const start = performance.now();
+    const step = (now) => {
+      const p = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - p, 3);
+      setCount(Math.floor(eased * end));
+      if (p < 1) frame = requestAnimationFrame(step);
+    };
+    frame = requestAnimationFrame(step);
+    return () => cancelAnimationFrame(frame);
+  }, [started, end, duration]);
+
+  return { count, ref };
+}
+
+/* ── Stat counter component ── */
+function StatCounter({ value, suffix = '', label, icon: Icon }) {
+  const { count, ref } = useCountUp(value, 1800);
+  return (
+    <div ref={ref} className="text-center group">
+      <div className="w-12 h-12 mx-auto mb-3 bg-teal-500/10 rounded-xl flex items-center justify-center group-hover:bg-teal-500/20 group-hover:scale-110 transition-all duration-500">
+        <Icon className="w-6 h-6 text-teal-400" />
+      </div>
+      <div className="text-4xl lg:text-5xl font-bold text-white mb-1 tabular-nums">
+        {count}{suffix}
+      </div>
+      <div className="text-sm text-teal-200/70 tracking-wide uppercase">{label}</div>
+    </div>
+  );
+}
 
 function SeaScopeContent() {
   return (
@@ -37,40 +92,132 @@ function SeaScopeContent() {
 
       <SeaScopeNav />
 
+      {/* ── Inline keyframes for animations ── */}
+      <style>{`
+        @keyframes heroGradient {
+          0%, 100% { background-position: 0% 50%; }
+          50% { background-position: 100% 50%; }
+        }
+        @keyframes float {
+          0%, 100% { transform: translateY(0px); }
+          50% { transform: translateY(-20px); }
+        }
+        @keyframes floatSlow {
+          0%, 100% { transform: translateY(0px) rotate(0deg); }
+          50% { transform: translateY(-12px) rotate(3deg); }
+        }
+        @keyframes pulse-ring {
+          0% { transform: scale(0.8); opacity: 0.8; }
+          50% { transform: scale(1.2); opacity: 0; }
+          100% { transform: scale(0.8); opacity: 0; }
+        }
+        @keyframes shimmer {
+          0% { background-position: -200% 0; }
+          100% { background-position: 200% 0; }
+        }
+        @keyframes scan-line {
+          0% { top: -2px; }
+          100% { top: 100%; }
+        }
+        @keyframes glow-pulse {
+          0%, 100% { box-shadow: 0 0 20px rgba(20, 184, 166, 0.15); }
+          50% { box-shadow: 0 0 40px rgba(20, 184, 166, 0.3); }
+        }
+        .hero-animated-bg {
+          background: linear-gradient(-45deg, #0f172a, #134e4a, #0f172a, #1e3a5f);
+          background-size: 400% 400%;
+          animation: heroGradient 15s ease infinite;
+        }
+        .shimmer-text {
+          background: linear-gradient(90deg, #fff 0%, #5eead4 50%, #fff 100%);
+          background-size: 200% auto;
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          animation: shimmer 3s linear infinite;
+        }
+        .device-frame {
+          animation: glow-pulse 3s ease-in-out infinite;
+        }
+        .feature-card-hover:hover {
+          transform: translateY(-4px);
+          box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+      `}</style>
+
       {/* Hero Section */}
-      <section className="relative pt-24 pb-20 bg-gradient-to-br from-slate-900 to-teal-900">
-        <div className="absolute inset-0 bg-gradient-to-br from-slate-900/90 to-teal-900/90" />
-        <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-teal-500/10 rounded-full blur-3xl" />
-          <div className="absolute bottom-1/4 left-1/4 w-80 h-80 bg-teal-600/10 rounded-full blur-3xl" />
+      <section className="hero-animated-bg relative pt-24 pb-24 overflow-hidden">
+        {/* Animated background orbs */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-teal-500/10 rounded-full blur-3xl" style={{ animation: 'float 8s ease-in-out infinite' }} />
+          <div className="absolute bottom-1/4 left-1/4 w-80 h-80 bg-teal-600/10 rounded-full blur-3xl" style={{ animation: 'float 10s ease-in-out infinite 2s' }} />
+          <div className="absolute top-1/2 left-1/2 w-64 h-64 bg-cyan-500/5 rounded-full blur-3xl" style={{ animation: 'float 12s ease-in-out infinite 4s' }} />
+          {/* Grid pattern overlay */}
+          <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: 'linear-gradient(rgba(255,255,255,.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.1) 1px, transparent 1px)', backgroundSize: '60px 60px' }} />
         </div>
-        
+
         <div className="max-w-7xl mx-auto px-6 lg:px-8 relative">
           <div className="text-center max-w-4xl mx-auto">
             <ScrollReveal>
-              <div className="flex items-center justify-center space-x-2 text-teal-400 mb-6">
-                <Ship className="w-6 h-6" />
+              <div className="inline-flex items-center space-x-2 text-teal-400 mb-6 px-4 py-2 rounded-full bg-teal-500/10 border border-teal-500/20 backdrop-blur-sm">
+                <Ship className="w-5 h-5" />
                 <span className="text-sm font-medium tracking-wider uppercase">Remote AiD Medical</span>
+                <span className="w-2 h-2 bg-teal-400 rounded-full" style={{ animation: 'pulse-ring 2s ease-in-out infinite' }} />
               </div>
             </ScrollReveal>
-            
+
             <ScrollReveal delay={100}>
-              <h1 className="text-5xl lg:text-7xl font-bold text-white mb-6 leading-tight">
-                SeaScope CDS
+              <h1 className="text-5xl lg:text-8xl font-bold text-white mb-6 leading-tight tracking-tight">
+                <span className="shimmer-text">SeaScope</span> CDS
               </h1>
             </ScrollReveal>
-            
+
             <ScrollReveal delay={200}>
-              <p className="text-2xl lg:text-3xl text-teal-200 mb-8 font-light">
-                Clinical Decision Support for Resource-Constrained Medicine
+              <p className="text-2xl lg:text-3xl text-teal-200 mb-4 font-light">
+                Safety-First Clinical AI for Maritime and Remote Medicine
               </p>
             </ScrollReveal>
-            
+
             <ScrollReveal delay={300}>
-              <p className="text-lg text-white/80 max-w-3xl mx-auto leading-relaxed">
-                AI-powered clinical decision support purpose-built for maritime and resource-constrained medicine environments where traditional healthcare infrastructure is unavailable.
+              <p className="text-lg text-white/70 max-w-3xl mx-auto leading-relaxed mb-10">
+                SeaScope CDS now combines rapid-intake workflow UX, severity-first decision surfaces,
+                expanded protocol/guideline coverage, and auditable safety guardrails built for ships,
+                remote clinics, and disconnected tactical settings.
               </p>
             </ScrollReveal>
+
+            <ScrollReveal delay={400}>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <a
+                  href="https://app.seascope.tech"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group inline-flex items-center justify-center space-x-2 px-8 py-4 bg-teal-500 hover:bg-teal-400 text-slate-900 rounded-xl font-semibold text-lg transition-all duration-300 shadow-lg shadow-teal-500/25 hover:shadow-teal-400/40 hover:scale-105"
+                >
+                  <span>Launch App</span>
+                  <ExternalLink className="w-5 h-5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                </a>
+                <button
+                  onClick={() => window.open('https://calendar.app.google/wp1bE9Q9yo3UKB1x7', '_blank')}
+                  className="group inline-flex items-center justify-center space-x-2 px-8 py-4 border-2 border-white/20 text-white rounded-xl font-semibold text-lg hover:bg-white/5 hover:border-white/40 transition-all duration-300"
+                >
+                  <Calendar className="w-5 h-5" />
+                  <span>Book a Demo</span>
+                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                </button>
+              </div>
+            </ScrollReveal>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Animated Stats Bar ── */}
+      <section className="relative -mt-8 z-10 max-w-5xl mx-auto px-6">
+        <div className="bg-slate-900/95 backdrop-blur-xl border border-teal-500/20 rounded-2xl p-8 shadow-2xl shadow-black/50">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            <StatCounter value={50} label="Clinical Protocols" icon={Layers} />
+            <StatCounter value={15} suffix="+" label="Guideline Families" icon={FileCheck} />
+            <StatCounter value={21} label="Clinical Calculators" icon={Heart} />
+            <StatCounter value={7} label="Safety Guardrails" icon={Shield} />
           </div>
         </div>
       </section>
@@ -141,693 +288,659 @@ function SeaScopeContent() {
         </div>
       </section>
 
-      {/* What It Is Section */}
-      <section className="py-20 bg-slate-50">
+      {/* The Solution */}
+      <section className="py-20 bg-gradient-to-br from-slate-900 to-teal-900 text-white">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="text-center mb-16">
             <ScrollReveal>
-              <h2 className="text-4xl lg:text-5xl font-bold text-slate-900 mb-6">
-                What is SeaScope CDS?
-              </h2>
-            </ScrollReveal>
-            <ScrollReveal delay={100}>
-              <p className="text-lg text-slate-600 max-w-3xl mx-auto">
-                SeaScope CDS is the first AI-powered clinical decision support system specifically engineered for resource-constrained medical environments.
-              </p>
-            </ScrollReveal>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            <ScrollReveal delay={0}>
-              <div className="bg-white p-8 rounded-2xl border border-slate-200 hover:border-teal-300 transition-all duration-300">
-                <div className="w-16 h-16 bg-teal-100 rounded-xl flex items-center justify-center mb-6">
-                  <Brain className="w-8 h-8 text-teal-600" />
-                </div>
-                <h3 className="text-xl font-bold text-slate-900 mb-4">AI-Powered Decisions</h3>
-                <p className="text-slate-600">
-                  Advanced clinical AI with maritime medicine expertise, trained on resource-limited scenarios and validated safety protocols.
-                </p>
-              </div>
-            </ScrollReveal>
-
-            <ScrollReveal delay={100}>
-              <div className="bg-white p-8 rounded-2xl border border-slate-200 hover:border-teal-300 transition-all duration-300">
-                <div className="w-16 h-16 bg-teal-100 rounded-xl flex items-center justify-center mb-6">
-                  <Shield className="w-8 h-8 text-teal-600" />
-                </div>
-                <h3 className="text-xl font-bold text-slate-900 mb-4">Safety-First Architecture</h3>
-                <p className="text-slate-600">
-                  Seven code-enforced guardrails ensure clinical safety, from allergy screening to drug interaction checking.
-                </p>
-              </div>
-            </ScrollReveal>
-
-            <ScrollReveal delay={200}>
-              <div className="bg-white p-8 rounded-2xl border border-slate-200 hover:border-teal-300 transition-all duration-300">
-                <div className="w-16 h-16 bg-teal-100 rounded-xl flex items-center justify-center mb-6">
-                  <Ship className="w-8 h-8 text-teal-600" />
-                </div>
-                <h3 className="text-xl font-bold text-slate-900 mb-4">Built for Isolation</h3>
-                <p className="text-slate-600">
-                  Designed specifically for maritime and remote environments where traditional medical infrastructure is unavailable.
-                </p>
-              </div>
-            </ScrollReveal>
-          </div>
-        </div>
-      </section>
-
-      {/* Safety Architecture Section */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <ScrollReveal>
-              <div className="flex items-center justify-center space-x-2 text-teal-600 mb-4">
+              <div className="flex items-center justify-center space-x-2 text-teal-400 mb-4">
                 <Shield className="w-6 h-6" />
-                <span className="text-sm font-medium tracking-wider uppercase">Safety Architecture</span>
+                <span className="text-sm font-medium tracking-wider uppercase">The Solution</span>
               </div>
             </ScrollReveal>
             <ScrollReveal delay={100}>
-              <h2 className="text-4xl lg:text-5xl font-bold text-slate-900 mb-6">
-                Seven Code-Enforced Guardrails
-              </h2>
-            </ScrollReveal>
-            <ScrollReveal delay={200}>
-              <p className="text-lg text-slate-600 max-w-3xl mx-auto">
-                Every clinical recommendation passes through multiple safety layers before reaching the physician.
-              </p>
-            </ScrollReveal>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            {[
-              { icon: AlertTriangle, title: "Allergy Gate", desc: "Cross-references patient allergies against all recommendations" },
-              { icon: Lock, title: "Formulary Lock", desc: "Restricts recommendations to available onboard medications" },
-              { icon: Activity, title: "Lab Validator", desc: "Validates recommendations against current lab values" },
-              { icon: Shield, title: "BBW Enforcer", desc: "Enforces FDA black box warnings and contraindications" },
-              { icon: Target, title: "Dosing Checker", desc: "Validates dosages against patient parameters" },
-              { icon: Brain, title: "Confabulation Detector", desc: "Identifies and prevents AI hallucinations in medical advice" },
-              { icon: Zap, title: "Interaction Screener", desc: "Screens for dangerous drug-drug interactions" }
-            ].map((guardrail, index) => (
-              <ScrollReveal key={index} delay={index * 50}>
-                <div className="bg-slate-50 p-6 rounded-xl border border-slate-200 hover:border-teal-300 transition-all duration-300">
-                  <div className="w-12 h-12 bg-teal-100 rounded-lg flex items-center justify-center mb-4">
-                    <guardrail.icon className="w-6 h-6 text-teal-600" />
-                  </div>
-                  <h3 className="font-bold text-slate-900 mb-2">{guardrail.title}</h3>
-                  <p className="text-sm text-slate-600">{guardrail.desc}</p>
-                </div>
-              </ScrollReveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* How It Works Section */}
-      <section className="py-20 bg-slate-900 text-white">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <ScrollReveal>
               <h2 className="text-4xl lg:text-5xl font-bold mb-6">
-                How It Works
+                Safer Than Unguarded ChatGPT
               </h2>
             </ScrollReveal>
-            <ScrollReveal delay={100}>
-              <p className="text-lg text-teal-200 max-w-3xl mx-auto">
-                Three operational modes designed to work in any connectivity scenario.
-              </p>
-            </ScrollReveal>
-          </div>
-
-          <div className="grid lg:grid-cols-3 gap-8">
-            <ScrollReveal delay={0}>
-              <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8">
-                <div className="w-16 h-16 bg-teal-500/20 rounded-xl flex items-center justify-center mb-6">
-                  <Globe className="w-8 h-8 text-teal-400" />
-                </div>
-                <h3 className="text-2xl font-bold mb-4 text-white">Online Mode</h3>
-                <p className="text-white/80 mb-4">
-                  Full functionality with Claude API integration. Real-time medical knowledge updates and comprehensive clinical reasoning.
-                </p>
-                <div className="space-y-2">
-                  <div className="flex items-center space-x-2 text-teal-400">
-                    <CheckCircle className="w-4 h-4" />
-                    <span className="text-sm">Latest medical knowledge</span>
-                  </div>
-                  <div className="flex items-center space-x-2 text-teal-400">
-                    <CheckCircle className="w-4 h-4" />
-                    <span className="text-sm">Advanced reasoning capabilities</span>
-                  </div>
-                  <div className="flex items-center space-x-2 text-teal-400">
-                    <CheckCircle className="w-4 h-4" />
-                    <span className="text-sm">Full safety guardrail suite</span>
-                  </div>
-                </div>
-              </div>
-            </ScrollReveal>
-
-            <ScrollReveal delay={100}>
-              <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8">
-                <div className="w-16 h-16 bg-teal-500/20 rounded-xl flex items-center justify-center mb-6">
-                  <Database className="w-8 h-8 text-teal-400" />
-                </div>
-                <h3 className="text-2xl font-bold mb-4 text-white">Offline Mode</h3>
-                <p className="text-white/80 mb-4">
-                  Fully local AI processing with pre-loaded medical knowledge base. Complete functionality without internet connectivity.
-                </p>
-                <div className="space-y-2">
-                  <div className="flex items-center space-x-2 text-teal-400">
-                    <CheckCircle className="w-4 h-4" />
-                    <span className="text-sm">Zero connectivity required</span>
-                  </div>
-                  <div className="flex items-center space-x-2 text-teal-400">
-                    <CheckCircle className="w-4 h-4" />
-                    <span className="text-sm">Local medical knowledge base</span>
-                  </div>
-                  <div className="flex items-center space-x-2 text-teal-400">
-                    <CheckCircle className="w-4 h-4" />
-                    <span className="text-sm">Essential safety checks</span>
-                  </div>
-                </div>
-              </div>
-            </ScrollReveal>
-
             <ScrollReveal delay={200}>
-              <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8">
-                <div className="w-16 h-16 bg-teal-500/20 rounded-xl flex items-center justify-center mb-6">
-                  <Activity className="w-8 h-8 text-teal-400" />
-                </div>
-                <h3 className="text-2xl font-bold mb-4 text-white">Degraded Mode</h3>
-                <p className="text-white/80 mb-4">
-                  Limited connectivity operation. Core safety functions with cached medical protocols and emergency procedures.
-                </p>
-                <div className="space-y-2">
-                  <div className="flex items-center space-x-2 text-teal-400">
-                    <CheckCircle className="w-4 h-4" />
-                    <span className="text-sm">Emergency protocols</span>
-                  </div>
-                  <div className="flex items-center space-x-2 text-teal-400">
-                    <CheckCircle className="w-4 h-4" />
-                    <span className="text-sm">Critical safety guardrails</span>
-                  </div>
-                  <div className="flex items-center space-x-2 text-teal-400">
-                    <CheckCircle className="w-4 h-4" />
-                    <span className="text-sm">Low bandwidth operation</span>
-                  </div>
-                </div>
-              </div>
-            </ScrollReveal>
-          </div>
-        </div>
-      </section>
-
-      {/* Key Differentiators Section */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <ScrollReveal>
-              <h2 className="text-4xl lg:text-5xl font-bold text-slate-900 mb-6">
-                Key Differentiators
-              </h2>
-            </ScrollReveal>
-            <ScrollReveal delay={100}>
-              <p className="text-lg text-slate-600 max-w-3xl mx-auto">
-                Built specifically for resource-constrained medicine with unique capabilities not found in generic AI tools.
+              <p className="text-lg text-teal-100 max-w-3xl mx-auto">
+                Your physicians are already using ChatGPT at 3 AM. SeaScope gives them a purpose-built
+                alternative with safety guardrails, formulary awareness, and clinical audit trails.
               </p>
             </ScrollReveal>
           </div>
 
           <div className="grid md:grid-cols-2 gap-8">
-            {[
-              {
-                title: "Formulary Awareness",
-                value: "173 medications",
-                description: "Complete awareness of maritime formularies with substitution recommendations when preferred drugs aren't available."
-              },
-              {
-                title: "Multilingual Allergy Gate",
-                value: "50+ languages",
-                description: "Patient allergy screening in multiple languages for international crews and passengers."
-              },
-              {
-                title: "Validated Safety Pipeline",
-                value: "100 cases / 28 traps",
-                description: "Extensively tested safety pipeline with documented performance on edge cases and potential failure modes."
-              },
-              {
-                title: "Complete Audit Trail",
-                value: "13-table database",
-                description: "Comprehensive logging and audit capabilities for regulatory compliance and quality improvement."
-              },
-              {
-                title: "Maverick AI Peer Review",
-                value: "Independent validation",
-                description: "Secondary AI system provides independent review of primary recommendations to catch errors."
-              }
-            ].map((differentiator, index) => (
-              <ScrollReveal key={index} delay={index * 100}>
-                <div className="bg-slate-50 p-8 rounded-2xl border border-slate-200 hover:border-teal-300 transition-all duration-300">
-                  <div className="flex items-start space-x-4">
-                    <div className="flex-shrink-0">
-                      <div className="w-16 h-16 bg-teal-100 rounded-xl flex items-center justify-center overflow-hidden">
-                        <span className="text-xs font-bold text-teal-600 text-center leading-tight px-1">
-                          {differentiator.value.split('/')[0].trim()}
-                        </span>
-                      </div>
-                    </div>
-                    <div className="flex-grow">
-                      <h3 className="text-xl font-bold text-slate-900 mb-2">{differentiator.title}</h3>
-                      <div className="text-teal-600 font-medium text-sm mb-2">{differentiator.value}</div>
-                      <p className="text-slate-600">{differentiator.description}</p>
-                    </div>
-                  </div>
+            <ScrollReveal delay={0}>
+              <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8">
+                <div className="w-14 h-14 bg-teal-500/20 rounded-xl flex items-center justify-center mb-6">
+                  <Brain className="w-7 h-7 text-teal-400" />
                 </div>
-              </ScrollReveal>
-            ))}
+                <h3 className="text-xl font-bold mb-3">Reduces Cognitive Load</h3>
+                <p className="text-white/70 leading-relaxed">
+                  At 3 AM when a physician is alone with a complex case, SeaScope provides structured
+                  clinical reasoning—drug selection, dosing, interactions—so they can focus on the patient.
+                </p>
+              </div>
+            </ScrollReveal>
+
+            <ScrollReveal delay={100}>
+              <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8">
+                <div className="w-14 h-14 bg-teal-500/20 rounded-xl flex items-center justify-center mb-6">
+                  <Shield className="w-7 h-7 text-teal-400" />
+                </div>
+                <h3 className="text-xl font-bold mb-3">Prevents Medication Errors</h3>
+                <p className="text-white/70 leading-relaxed">
+                  Formulary verification ensures only onboard medications are recommended. Allergy
+                  cross-checking, interaction screening, and dose validation catch errors before they reach the patient.
+                </p>
+              </div>
+            </ScrollReveal>
+
+            <ScrollReveal delay={200}>
+              <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8">
+                <div className="w-14 h-14 bg-teal-500/20 rounded-xl flex items-center justify-center mb-6">
+                  <Database className="w-7 h-7 text-teal-400" />
+                </div>
+                <h3 className="text-xl font-bold mb-3">Auditable Decision Trails</h3>
+                <p className="text-white/70 leading-relaxed">
+                  Every recommendation, safety check, and physician action is logged in a comprehensive audit
+                  database—creating complete medicolegal documentation for every encounter.
+                </p>
+              </div>
+            </ScrollReveal>
+
+            <ScrollReveal delay={300}>
+              <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8">
+                <div className="w-14 h-14 bg-teal-500/20 rounded-xl flex items-center justify-center mb-6">
+                  <Users className="w-7 h-7 text-teal-400" />
+                </div>
+                <h3 className="text-xl font-bold mb-3">Standardizes Care Quality</h3>
+                <p className="text-white/70 leading-relaxed">
+                  Whether a physician has 2 years or 20 years of maritime experience, SeaScope ensures
+                  consistent, evidence-based recommendations across every ship and every shift.
+                </p>
+              </div>
+            </ScrollReveal>
           </div>
+
+          <ScrollReveal delay={400}>
+            <div className="mt-12 bg-white/5 backdrop-blur-sm border border-teal-400/30 rounded-2xl p-8 text-center">
+              <p className="text-lg text-teal-100 max-w-3xl mx-auto">
+                <span className="font-semibold text-white">Every recommendation</span> undergoes multiple
+                independent safety checks before presentation to clinicians. Safety is architectural, not probabilistic.
+              </p>
+            </div>
+          </ScrollReveal>
         </div>
       </section>
 
-      {/* EHR Integration Roadmap */}
-      <section className="py-20 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 relative overflow-hidden">
-        {/* Ambient glow */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-teal-500/5 rounded-full blur-3xl pointer-events-none"></div>
+      {/* ══════════════════════════════════════════════════════════
+          PRODUCT SHOWCASE — Animated Feature Displays
+         ══════════════════════════════════════════════════════════ */}
+      <section className="py-24 bg-slate-950 overflow-hidden">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="text-center mb-16">
             <ScrollReveal>
-              <div className="flex items-center justify-center space-x-2 text-teal-600 mb-4">
-                <Layers className="w-6 h-6" />
-                <span className="text-sm font-medium tracking-wider uppercase">Integration Roadmap</span>
+              <div className="inline-flex items-center space-x-2 text-teal-400 mb-4 px-3 py-1 rounded-full bg-teal-500/10 border border-teal-500/20">
+                <Monitor className="w-4 h-4" />
+                <span className="text-xs font-medium tracking-wider uppercase">Product Showcase</span>
               </div>
             </ScrollReveal>
             <ScrollReveal delay={100}>
               <h2 className="text-4xl lg:text-5xl font-bold text-white mb-6">
-                EHR Integration Pathway
+                Built for Real Clinical Workflows
               </h2>
             </ScrollReveal>
             <ScrollReveal delay={200}>
               <p className="text-lg text-slate-400 max-w-3xl mx-auto">
-                Four-phase integration approach with SeaCare and Tritan EHR systems.
+                Every feature designed by a practicing ship physician. See SeaScope CDS in action.
               </p>
             </ScrollReveal>
           </div>
 
-          {/* Connecting line */}
-          <div className="hidden lg:block relative mb-8">
-            <div className="absolute top-1/2 left-[12.5%] right-[12.5%] h-0.5 bg-gradient-to-r from-teal-400 via-teal-300 to-slate-300 transform -translate-y-1/2 opacity-40"></div>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {[
-              {
-                phase: "Phase 1",
-                title: "Standalone Operation",
-                description: "Independent CDS system with manual data entry and recommendations export.",
-                status: "Current Focus",
-                active: true
-              },
-              {
-                phase: "Phase 2", 
-                title: "Read-Only Integration",
-                description: "Direct EHR data access for patient history, allergies, and current medications.",
-                status: "Development",
-                active: false
-              },
-              {
-                phase: "Phase 3",
-                title: "Bidirectional Integration",
-                description: "Full read/write capabilities with recommendation implementation in EHR.",
-                status: "Planned",
-                active: false
-              },
-              {
-                phase: "Phase 4",
-                title: "Embedded SeaCare/Tritan",
-                description: "Native integration within existing EHR workflows and interfaces.",
-                status: "Future",
-                active: false
-              }
-            ].map((phase, index) => (
-              <ScrollReveal key={index} delay={index * 150}>
-                <div className={`group relative p-[1px] rounded-2xl transition-all duration-500 hover:scale-[1.03] ${
-                  phase.active 
-                    ? 'bg-gradient-to-br from-teal-400 via-teal-500 to-emerald-400 shadow-lg shadow-teal-500/20' 
-                    : 'bg-gradient-to-br from-white/60 to-white/20'
-                }`}>
-                  <div className={`relative rounded-2xl p-6 backdrop-blur-xl border transition-all duration-500 ${
-                    phase.active
-                      ? 'bg-slate-900/80 border-teal-400/30'
-                      : 'bg-white/10 backdrop-blur-xl border-white/20 bg-gradient-to-br from-slate-800/90 to-slate-900/90 hover:border-teal-400/30'
-                  }`} style={{ backdropFilter: 'blur(20px)' }}>
-                    {/* Glow effect for active */}
-                    {phase.active && (
-                      <div className="absolute inset-0 rounded-2xl bg-teal-400/5 animate-pulse"></div>
-                    )}
-                    
-                    <div className="relative text-center">
-                      {/* Number badge */}
-                      <div className={`w-14 h-14 rounded-xl flex items-center justify-center mx-auto mb-4 transition-all duration-500 ${
-                        phase.active
-                          ? 'bg-teal-400/20 border border-teal-400/40 shadow-lg shadow-teal-400/20'
-                          : 'bg-white/10 border border-white/10 group-hover:bg-teal-400/10 group-hover:border-teal-400/20'
-                      }`}>
-                        <span className={`text-xl font-bold transition-colors duration-500 ${
-                          phase.active ? 'text-teal-300' : 'text-slate-400 group-hover:text-teal-400'
-                        }`}>{index + 1}</span>
-                      </div>
-                      
-                      <div className={`font-medium text-sm mb-2 transition-colors duration-500 ${
-                        phase.active ? 'text-teal-300' : 'text-slate-500 group-hover:text-teal-400'
-                      }`}>{phase.phase}</div>
-                      
-                      <h3 className={`font-bold mb-3 transition-colors duration-500 ${
-                        phase.active ? 'text-white' : 'text-slate-200'
-                      }`}>{phase.title}</h3>
-                      
-                      <p className={`text-sm mb-4 transition-colors duration-500 ${
-                        phase.active ? 'text-slate-300' : 'text-slate-400'
-                      }`}>{phase.description}</p>
-                      
-                      {/* Status badge */}
-                      <div className={`inline-flex items-center space-x-1.5 px-3 py-1.5 rounded-full text-xs font-semibold transition-all duration-500 ${
-                        phase.status === 'Current Focus' 
-                          ? 'bg-teal-400/20 text-teal-300 border border-teal-400/30 shadow-sm shadow-teal-400/10' 
-                          : phase.status === 'Development' 
-                          ? 'bg-blue-400/10 text-blue-300 border border-blue-400/20' 
-                          : phase.status === 'Planned' 
-                          ? 'bg-amber-400/10 text-amber-300 border border-amber-400/20' 
-                          : 'bg-white/5 text-slate-400 border border-white/10'
-                      }`}>
-                        {phase.active && (
-                          <span className="w-1.5 h-1.5 rounded-full bg-teal-400 animate-pulse"></span>
-                        )}
-                        <span>{phase.status}</span>
-                      </div>
+          {/* ── Live Walkthrough Video ── */}
+          <ScrollReveal delay={300}>
+            <div className="mb-20">
+              <div className="flex items-center justify-center space-x-2 text-teal-400 mb-6">
+                <Play className="w-5 h-5" />
+                <span className="text-sm font-medium tracking-wider uppercase">Live Walkthrough — Acute STEMI Case</span>
+              </div>
+              <div className="device-frame relative rounded-2xl overflow-hidden border border-teal-500/20 bg-slate-900 max-w-5xl mx-auto">
+                <div className="flex items-center space-x-2 px-4 py-3 bg-slate-800 border-b border-slate-700">
+                  <div className="flex space-x-1.5">
+                    <div className="w-3 h-3 rounded-full bg-red-500/80" />
+                    <div className="w-3 h-3 rounded-full bg-yellow-500/80" />
+                    <div className="w-3 h-3 rounded-full bg-green-500/80" />
+                  </div>
+                  <div className="flex-1 mx-4">
+                    <div className="bg-slate-700 rounded-md px-3 py-1 text-xs text-slate-400 font-mono">
+                      app.seascope.tech — Live Clinical Assessment
                     </div>
                   </div>
                 </div>
-              </ScrollReveal>
-            ))}
+                <div style={{ position: 'relative', paddingBottom: '56.25%', height: 0 }}>
+                  <iframe
+                    src="https://www.loom.com/embed/7209e8813f08437b8b162f3e705214ea?hide_owner=true&hide_share=true&hide_title=true&hideEmbedTopBar=true"
+                    frameBorder="0"
+                    allowFullScreen
+                    style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}
+                    title="SeaScope CDS Live Walkthrough - Acute Inferior STEMI Case"
+                  />
+                </div>
+              </div>
+              <p className="text-center text-sm text-slate-500 mt-4">
+                62-year-old male with acute inferior STEMI on Voyager of the Seas near New Caledonia. Watch the full clinical decision support workflow including AI analysis, port diversion recommendation, and safety guardrail demonstration.
+              </p>
+            </div>
+          </ScrollReveal>
+
+          {/* ── Feature 1: 3D Satellite Maps ── */}
+          <div className="grid lg:grid-cols-2 gap-12 items-center mb-24">
+            <ScrollReveal>
+              <div className="space-y-6">
+                <div className="inline-flex items-center space-x-2 text-teal-400 px-3 py-1 rounded-full bg-teal-500/10 border border-teal-500/20">
+                  <Map className="w-4 h-4" />
+                  <span className="text-xs font-medium tracking-wider uppercase">3D Satellite Maps</span>
+                </div>
+                <h3 className="text-3xl lg:text-4xl font-bold text-white leading-tight">
+                  Real-Time Maritime Situational Awareness
+                </h3>
+                <p className="text-lg text-slate-400 leading-relaxed">
+                  Full 3D globe visualization with satellite imagery, terrain elevation,
+                  and real-time vessel tracking. See nearest ports with medical levels, helicopter
+                  range circles, and medevac routing overlays.
+                </p>
+                <div className="space-y-3">
+                  {['GPS vessel position with AIS ship tracking', '3D terrain with ocean topography', 'Nearest ports with medical capability levels', 'Helicopter medevac feasibility overlay'].map((item, i) => (
+                    <div key={i} className="flex items-center space-x-3">
+                      <CheckCircle className="w-5 h-5 text-teal-500 flex-shrink-0" />
+                      <span className="text-slate-300">{item}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </ScrollReveal>
+
+            <ScrollReveal delay={200}>
+              <div className="device-frame relative rounded-2xl overflow-hidden border border-teal-500/20 bg-slate-900">
+                {/* Browser chrome */}
+                <div className="flex items-center space-x-2 px-4 py-3 bg-slate-800 border-b border-slate-700">
+                  <div className="flex space-x-1.5">
+                    <div className="w-3 h-3 rounded-full bg-red-500/80" />
+                    <div className="w-3 h-3 rounded-full bg-yellow-500/80" />
+                    <div className="w-3 h-3 rounded-full bg-green-500/80" />
+                  </div>
+                  <div className="flex-1 mx-4">
+                    <div className="bg-slate-700 rounded-md px-3 py-1 text-xs text-slate-400 font-mono">
+                      app.seascope.tech
+                    </div>
+                  </div>
+                </div>
+                <img
+                  src="/images/seascope/seascope-maritime.png"
+                  alt="SeaScope CDS maritime mode — Voyager of the Seas near New Caledonia with satellite telemetry, AIS ship tracking, sea conditions, and patient assessment panel"
+                  className="w-full"
+                  loading="lazy"
+                />
+              </div>
+            </ScrollReveal>
+          </div>
+
+          {/* ── Feature 2: Renewed Decision Surface UX ── */}
+          <div className="grid lg:grid-cols-2 gap-12 items-center mb-24">
+            <ScrollReveal delay={200} className="order-2 lg:order-1">
+              <div className="device-frame relative rounded-2xl overflow-hidden border border-teal-500/20 bg-slate-900">
+                <div className="flex items-center space-x-2 px-4 py-3 bg-slate-800 border-b border-slate-700">
+                  <div className="flex space-x-1.5">
+                    <div className="w-3 h-3 rounded-full bg-red-500/80" />
+                    <div className="w-3 h-3 rounded-full bg-yellow-500/80" />
+                    <div className="w-3 h-3 rounded-full bg-green-500/80" />
+                  </div>
+                  <div className="flex-1 mx-4">
+                    <div className="bg-slate-700 rounded-md px-3 py-1 text-xs text-slate-400 font-mono">
+                      app.seascope.tech — Workflow Decision Surface
+                    </div>
+                  </div>
+                </div>
+                <div className="p-6 space-y-3">
+                  {/* Simulated workflow surfaces */}
+                  {[
+                    { name: 'Rapid Intake', score: 'Ready', severity: 'Urgent-first dataset captured', color: '#22C55E' },
+                    { name: 'Severity Signals', score: 'NEWS 18', severity: 'High clinical risk surfaced early', color: '#EF4444' },
+                    { name: 'Transfer Decision', score: 'Evacuate', severity: 'Unified recommendation module', color: '#F59E0B' },
+                    { name: 'Monitoring Plan', score: 'Structured', severity: 'Target / alarm / action format', color: '#60A5FA' },
+                    { name: 'Evidence Panel', score: 'Linked', severity: 'Guideline + source traceability', color: '#A78BFA' },
+                  ].map((surface, i) => (
+                    <div key={i} className="flex items-center justify-between p-3 bg-slate-800/50 rounded-lg border border-slate-700/50 hover:border-teal-500/30 transition-all duration-300" style={{ animationDelay: `${i * 100}ms` }}>
+                      <div className="flex items-center space-x-3">
+                        <Monitor className="w-4 h-4 text-teal-400" />
+                        <span className="text-sm text-white font-medium">{surface.name}</span>
+                      </div>
+                      <div className="flex items-center space-x-3">
+                        <span className="text-sm font-mono text-slate-300">{surface.score}</span>
+                        <span className="text-[10px] font-bold px-2 py-0.5 rounded-full" style={{ background: `${surface.color}20`, color: surface.color, border: `1px solid ${surface.color}40` }}>
+                          {surface.severity}
+                        </span>
+                      </div>
+                    </div>
+                  ))}
+                  <div className="text-center pt-2">
+                    <span className="text-xs text-slate-500">Redesigned UI/UX mirrors real onboard decision workflow</span>
+                  </div>
+                </div>
+              </div>
+            </ScrollReveal>
+
+            <ScrollReveal className="order-1 lg:order-2">
+              <div className="space-y-6">
+                <div className="inline-flex items-center space-x-2 text-teal-400 px-3 py-1 rounded-full bg-teal-500/10 border border-teal-500/20">
+                  <Monitor className="w-4 h-4" />
+                  <span className="text-xs font-medium tracking-wider uppercase">Renewed UX</span>
+                </div>
+                <h3 className="text-3xl lg:text-4xl font-bold text-white leading-tight">
+                  Decision Surfaces Built for Clinical Action
+                </h3>
+                <p className="text-lg text-slate-400 leading-relaxed">
+                  SeaScope's latest interface prioritizes what matters under pressure: rapid intake completion,
+                  severity signals near key findings, unified transfer logic, structured monitoring, and evidence
+                  visibility without forcing clinicians to hunt through long narrative output.
+                </p>
+                <div className="space-y-3">
+                  {[
+                    'Rapid intake shell with compact KPI readiness indicators',
+                    'Severity calculators surfaced at the top of results for fast triage',
+                    'Transfer decision merged into one coherent evacuation module',
+                    'Monitoring cards structured by target, alarm threshold, and response action',
+                    'Evidence and guideline citations kept visible for regulatory confidence',
+                  ].map((item, i) => (
+                    <div key={i} className="flex items-center space-x-3">
+                      <CheckCircle className="w-5 h-5 text-teal-500 flex-shrink-0" />
+                      <span className="text-slate-300">{item}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </ScrollReveal>
+          </div>
+
+          {/* ── Feature 3: Offline + Safety ── */}
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <ScrollReveal>
+              <div className="space-y-6">
+                <div className="inline-flex items-center space-x-2 text-teal-400 px-3 py-1 rounded-full bg-teal-500/10 border border-teal-500/20">
+                  <WifiOff className="w-4 h-4" />
+                  <span className="text-xs font-medium tracking-wider uppercase">Offline-First PWA</span>
+                </div>
+                <h3 className="text-3xl lg:text-4xl font-bold text-white leading-tight">
+                  Safety Never Depends on Connectivity
+                </h3>
+                <p className="text-lg text-slate-400 leading-relaxed">
+                  Full formulary, clinical guidelines, and protocol engine cached locally via
+                  Progressive Web App technology. When satellite goes down mid-ocean,
+                  SeaScope keeps working.
+                </p>
+                <div className="space-y-3">
+                  {['Complete offline functionality via PWA', 'Persistent local data storage', 'Full medication formulary cached locally', 'Automatic sync when connectivity returns'].map((item, i) => (
+                    <div key={i} className="flex items-center space-x-3">
+                      <CheckCircle className="w-5 h-5 text-teal-500 flex-shrink-0" />
+                      <span className="text-slate-300">{item}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </ScrollReveal>
+
+            <ScrollReveal delay={200}>
+              <div className="device-frame relative rounded-2xl overflow-hidden border border-teal-500/20 bg-slate-900">
+                <div className="flex items-center space-x-2 px-4 py-3 bg-slate-800 border-b border-slate-700">
+                  <div className="flex space-x-1.5">
+                    <div className="w-3 h-3 rounded-full bg-red-500/80" />
+                    <div className="w-3 h-3 rounded-full bg-yellow-500/80" />
+                    <div className="w-3 h-3 rounded-full bg-green-500/80" />
+                  </div>
+                  <div className="flex-1 mx-4">
+                    <div className="bg-slate-700 rounded-md px-3 py-1 text-xs text-slate-400 font-mono">
+                      app.seascope.tech — Safety Pipeline
+                    </div>
+                  </div>
+                </div>
+                <div className="p-6 space-y-4">
+                  {/* Safety pipeline visualization */}
+                  {[
+                    { label: 'Allergy Cross-Check', icon: Shield, status: 'PASS', color: '#22C55E' },
+                    { label: 'Drug Interactions', icon: AlertTriangle, status: 'PASS', color: '#22C55E' },
+                    { label: 'Dose Ceiling Check', icon: Lock, status: 'PASS', color: '#22C55E' },
+                    { label: 'Formulary Verification', icon: Database, status: 'PASS', color: '#22C55E' },
+                    { label: 'Indication-Efficacy', icon: Target, status: 'PASS', color: '#22C55E' },
+                    { label: 'Renal Dosing', icon: Activity, status: 'PASS', color: '#22C55E' },
+                    { label: 'Pregnancy Safety', icon: Heart, status: 'PASS', color: '#22C55E' },
+                  ].map((check, i) => (
+                    <div key={i} className="flex items-center justify-between p-2.5 rounded-lg bg-slate-800/50 border border-slate-700/50">
+                      <div className="flex items-center space-x-3">
+                        <check.icon className="w-4 h-4 text-teal-400" />
+                        <span className="text-sm text-slate-300">{check.label}</span>
+                      </div>
+                      <span className="text-[10px] font-bold px-2 py-0.5 rounded-full" style={{ background: `${check.color}15`, color: check.color, border: `1px solid ${check.color}30` }}>
+                        {check.status}
+                      </span>
+                    </div>
+                  ))}
+                  <div className="text-center pt-1 text-[10px] text-green-400/70 font-mono">
+                    ALL 7 GUARDRAILS PASSED — RECOMMENDATION CLEARED
+                  </div>
+                </div>
+              </div>
+            </ScrollReveal>
+          </div>
+
+          {/* ── Feature 4: Tactical / Military Mode ── */}
+          <div className="grid lg:grid-cols-2 gap-12 items-center mt-24">
+            <ScrollReveal delay={200} className="order-2 lg:order-1">
+              <div className="device-frame relative rounded-2xl overflow-hidden border border-teal-500/20 bg-slate-900">
+                <div className="flex items-center space-x-2 px-4 py-3 bg-slate-800 border-b border-slate-700">
+                  <div className="flex space-x-1.5">
+                    <div className="w-3 h-3 rounded-full bg-red-500/80" />
+                    <div className="w-3 h-3 rounded-full bg-yellow-500/80" />
+                    <div className="w-3 h-3 rounded-full bg-green-500/80" />
+                  </div>
+                  <div className="flex-1 mx-4">
+                    <div className="bg-slate-700 rounded-md px-3 py-1 text-xs text-slate-400 font-mono">
+                      app.seascope.tech — ROLE 1 BAS / TCCC
+                    </div>
+                  </div>
+                </div>
+                <img
+                  src="/images/seascope/seascope-tactical.png"
+                  alt="SeaScope CDS tactical military mode — TCCC casualty assessment with GSW case, tactical medical map near Darwin Australia, MEDEVAC status, and triage priority system"
+                  className="w-full"
+                  loading="lazy"
+                />
+              </div>
+            </ScrollReveal>
+
+            <ScrollReveal className="order-1 lg:order-2">
+              <div className="space-y-6">
+                <div className="inline-flex items-center space-x-2 text-teal-400 px-3 py-1 rounded-full bg-teal-500/10 border border-teal-500/20">
+                  <Crosshair className="w-4 h-4" />
+                  <span className="text-xs font-medium tracking-wider uppercase">Tactical Medicine</span>
+                </div>
+                <h3 className="text-3xl lg:text-4xl font-bold text-white leading-tight">
+                  From Cruise Ships to Forward Operating Bases
+                </h3>
+                <p className="text-lg text-slate-400 leading-relaxed">
+                  The same clinical decision engine adapts to austere military environments.
+                  TCCC-aligned casualty assessment, tactical medical maps, MEDEVAC coordination,
+                  and offline-first architecture for disconnected operations.
+                </p>
+                <div className="space-y-3">
+                  {['TCCC casualty assessment with triage priority', 'Tactical medical map with FOB and Role 1-3 facilities', 'MEDEVAC status with helicopter feasibility', 'Full offline capability for disconnected operations'].map((item, i) => (
+                    <div key={i} className="flex items-center space-x-3">
+                      <CheckCircle className="w-5 h-5 text-teal-500 flex-shrink-0" />
+                      <span className="text-slate-300">{item}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </ScrollReveal>
+          </div>
+
+          {/* ── Protocol + Guideline Expansion Proof ── */}
+          <div className="mt-24 rounded-3xl border border-teal-500/20 bg-slate-900/70 backdrop-blur-sm p-8 lg:p-10">
+            <div className="text-center mb-8">
+              <div className="inline-flex items-center space-x-2 text-teal-400 mb-3 px-3 py-1 rounded-full bg-teal-500/10 border border-teal-500/20">
+                <FileCheck className="w-4 h-4" />
+                <span className="text-xs font-medium tracking-wider uppercase">Clinical Coverage Expansion</span>
+              </div>
+              <h3 className="text-3xl lg:text-4xl font-bold text-white mb-4">
+                Protocol Library Expanded and Safety-Validated
+              </h3>
+              <p className="text-slate-400 max-w-3xl mx-auto">
+                SeaScope CDS v2.0 expanded from 20 to 50 protocols with stronger guideline
+                coverage and a clean safety record where it matters most in clinical deployment.
+              </p>
+            </div>
+
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
+              {[
+                { label: 'Clinical Protocols', value: '50', note: 'Expanded from 20 (+150%)' },
+                { label: 'Guideline Families', value: '15+', note: '2024-2026 evidence coverage' },
+                { label: 'Drug Guidance Rules', value: '222', note: 'Validated recommendation knowledge' },
+                { label: 'Safety Guardrails', value: '7', note: 'Layered checks before recommendation' },
+                { label: 'Care Domains', value: '5+', note: 'Sepsis, cardiac, respiratory, neuro, endocrine' },
+                { label: 'Critical Safety Failures', value: '0', note: 'Production-readiness milestone' },
+              ].map((item) => (
+                <div key={item.label} className="rounded-xl border border-slate-700 bg-slate-800/70 p-4">
+                  <div className="text-xs uppercase tracking-wide text-slate-400">{item.label}</div>
+                  <div className="text-3xl font-bold text-teal-300 mt-1">{item.value}</div>
+                  <div className="text-xs text-slate-400 mt-1">{item.note}</div>
+                </div>
+              ))}
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-4 text-sm text-slate-300">
+              <div className="rounded-xl border border-slate-700 bg-slate-800/50 p-4">
+                <div className="font-semibold text-white mb-2">What Changed Recently</div>
+                <ul className="space-y-1.5">
+                  <li>• Protocol library scaled for broader maritime and remote scenarios</li>
+                  <li>• Guideline mapping refreshed to current evidence windows</li>
+                  <li>• Results UX rebuilt around high-signal decision surfaces</li>
+                </ul>
+              </div>
+              <div className="rounded-xl border border-slate-700 bg-slate-800/50 p-4">
+                <div className="font-semibold text-white mb-2">Why It Matters Clinically</div>
+                <ul className="space-y-1.5">
+                  <li>• Faster triage decisions under time and bandwidth constraints</li>
+                  <li>• Better recommendation traceability for safety and audit</li>
+                  <li>• More consistent care quality across distributed clinicians</li>
+                </ul>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Proposed Pilot Section */}
+      {/* Documentation CTA */}
+      <section className="py-20 bg-slate-50">
+        <div className="max-w-4xl mx-auto px-6 lg:px-8 text-center">
+          <ScrollReveal>
+            <div className="flex items-center justify-center space-x-2 text-teal-600 mb-4">
+              <Layers className="w-6 h-6" />
+              <span className="text-sm font-medium tracking-wider uppercase">Documentation</span>
+            </div>
+          </ScrollReveal>
+          <ScrollReveal delay={100}>
+            <h2 className="text-4xl lg:text-5xl font-bold text-slate-900 mb-6">
+              Detailed Documentation Available
+            </h2>
+          </ScrollReveal>
+          <ScrollReveal delay={200}>
+            <p className="text-lg text-slate-600 max-w-3xl mx-auto mb-8">
+              Comprehensive technical documentation covering clinical validation, safety architecture,
+              regulatory compliance, and implementation details is available under NDA.
+            </p>
+          </ScrollReveal>
+          <ScrollReveal delay={300}>
+            <div className="bg-white p-8 rounded-2xl border border-slate-200 max-w-2xl mx-auto">
+              <div className="grid sm:grid-cols-3 gap-6 mb-8">
+                <div className="text-center">
+                  <div className="w-12 h-12 bg-teal-100 rounded-lg flex items-center justify-center mx-auto mb-3">
+                    <FileCheck className="w-6 h-6 text-teal-600" />
+                  </div>
+                  <div className="font-semibold text-slate-900 text-sm">Evidence & Validation</div>
+                </div>
+                <div className="text-center">
+                  <div className="w-12 h-12 bg-teal-100 rounded-lg flex items-center justify-center mx-auto mb-3">
+                    <Shield className="w-6 h-6 text-teal-600" />
+                  </div>
+                  <div className="font-semibold text-slate-900 text-sm">Safety & Regulatory</div>
+                </div>
+                <div className="text-center">
+                  <div className="w-12 h-12 bg-teal-100 rounded-lg flex items-center justify-center mx-auto mb-3">
+                    <Database className="w-6 h-6 text-teal-600" />
+                  </div>
+                  <div className="font-semibold text-slate-900 text-sm">Technical Architecture</div>
+                </div>
+              </div>
+              <a
+                href="mailto:javier@theremoteaidoc.com?subject=SeaScope%20CDS%20Documentation%20Request"
+                className="inline-flex items-center space-x-2 px-8 py-4 bg-teal-600 text-white rounded-lg hover:bg-teal-700 transition-all duration-300 font-semibold group"
+              >
+                <Mail className="w-5 h-5" />
+                <span>Request Documentation</span>
+                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
+              </a>
+            </div>
+          </ScrollReveal>
+        </div>
+      </section>
+
+      {/* Credibility Section */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <ScrollReveal>
               <div className="space-y-6">
-                <div className="flex items-center space-x-2 text-teal-600 mb-4">
-                  <Calendar className="w-6 h-6" />
-                  <span className="text-sm font-medium tracking-wider uppercase">Proposed Pilot</span>
+                <div className="flex items-center space-x-2 text-teal-600 mb-2">
+                  <Stethoscope className="w-6 h-6" />
+                  <span className="text-sm font-medium tracking-wider uppercase">Built by a Practicing Ship Physician</span>
                 </div>
                 <h2 className="text-4xl lg:text-5xl font-bold text-slate-900 leading-tight">
-                  30-Day Shadow Study
+                  Dr. Javier Rosas
                 </h2>
                 <p className="text-lg text-slate-600 leading-relaxed">
-                  Comprehensive pilot program designed to validate SeaScope CDS in real-world maritime medical environments.
+                  SeaScope CDS was created by a physician who lives this reality daily—not by
+                  engineers guessing what clinicians need from a Silicon Valley office.
                 </p>
+                <div className="space-y-3">
+                  <div className="flex items-center space-x-3">
+                    <CheckCircle className="w-5 h-5 text-teal-600 flex-shrink-0" />
+                    <span className="text-slate-700">Senior Ship Physician, Royal Caribbean International</span>
+                  </div>
+                  <div className="flex items-center space-x-3">
+                    <CheckCircle className="w-5 h-5 text-teal-600 flex-shrink-0" />
+                    <span className="text-slate-700">Chair, AI Committee — American Board of Maritime Medicine</span>
+                  </div>
+                  <div className="flex items-center space-x-3">
+                    <CheckCircle className="w-5 h-5 text-teal-600 flex-shrink-0" />
+                    <span className="text-slate-700">Author, "AI Literacy for Clinicians" (Amazon, March 2026)</span>
+                  </div>
+                  <div className="flex items-center space-x-3">
+                    <CheckCircle className="w-5 h-5 text-teal-600 flex-shrink-0" />
+                    <span className="text-slate-700">RLHF Trainer across 4 frontier AI companies</span>
+                  </div>
+                  <div className="flex items-center space-x-3">
+                    <CheckCircle className="w-5 h-5 text-teal-600 flex-shrink-0" />
+                    <span className="text-slate-700">10+ Years Emergency & Maritime Medicine</span>
+                  </div>
+                </div>
               </div>
             </ScrollReveal>
-            
+
             <ScrollReveal delay={200}>
-              <div className="bg-slate-50 p-8 rounded-2xl">
-                <h3 className="text-2xl font-bold text-slate-900 mb-6">Study Parameters</h3>
-                <div className="space-y-4">
-                  <div className="flex items-start space-x-3">
-                    <div className="w-2 h-2 bg-teal-500 rounded-full mt-2" />
-                    <div>
-                      <div className="font-semibold text-slate-900">Duration</div>
-                      <div className="text-slate-600">30-day shadow deployment</div>
-                    </div>
+              <div className="space-y-6">
+                <div className="bg-slate-50 border border-slate-200 rounded-2xl p-8">
+                  <h3 className="text-xl font-bold text-slate-900 mb-4">Clinical Adoption Program</h3>
+                  <p className="text-slate-600 mb-4">
+                    SeaScope CDS is being rolled out with practicing maritime clinicians to strengthen
+                    decision quality in high-pressure, resource-constrained settings.
+                  </p>
+                  <div className="bg-teal-50 border border-teal-200 rounded-lg p-4">
+                    <div className="text-sm text-teal-800 font-medium">Deployment Focus</div>
+                    <div className="text-sm font-semibold text-teal-900 mt-1">Safety, consistency, and operational speed across distributed clinical teams</div>
                   </div>
-                  <div className="flex items-start space-x-3">
-                    <div className="w-2 h-2 bg-teal-500 rounded-full mt-2" />
-                    <div>
-                      <div className="font-semibold text-slate-900">Encounters</div>
-                      <div className="text-slate-600">50-100 patient encounters</div>
+                </div>
+
+                <div className="bg-slate-50 border border-slate-200 rounded-2xl p-8">
+                  <h3 className="text-xl font-bold text-slate-900 mb-4">Safety Commitment</h3>
+                  <div className="space-y-3 text-sm text-slate-600">
+                    <div className="flex justify-between">
+                      <span>Critical safety failures</span>
+                      <span className="font-semibold text-slate-900">0 in milestone validation</span>
                     </div>
-                  </div>
-                  <div className="flex items-start space-x-3">
-                    <div className="w-2 h-2 bg-teal-500 rounded-full mt-2" />
-                    <div>
-                      <div className="font-semibold text-slate-900">Participants</div>
-                      <div className="text-slate-600">3-5 ship physicians</div>
+                    <div className="flex justify-between">
+                      <span>Guardrails before recommendations</span>
+                      <span className="font-semibold text-slate-900">7 layered safety checks</span>
                     </div>
-                  </div>
-                  <div className="flex items-start space-x-3">
-                    <div className="w-2 h-2 bg-teal-500 rounded-full mt-2" />
-                    <div>
-                      <div className="font-semibold text-slate-900">Endpoints</div>
-                      <div className="text-slate-600">Pre-defined safety and efficacy metrics</div>
+                    <div className="flex justify-between">
+                      <span>Clinical protocol coverage</span>
+                      <span className="font-semibold text-slate-900">50 protocols</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span>Guideline families represented</span>
+                      <span className="font-semibold text-slate-900">15+ major standards</span>
                     </div>
                   </div>
                 </div>
-                </div>
+              </div>
             </ScrollReveal>
           </div>
         </div>
       </section>
 
-      {/* Team Section */}
+      {/* Integration & Roadmap */}
       <section className="py-20 bg-slate-50">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="text-center mb-16">
             <ScrollReveal>
               <div className="flex items-center justify-center space-x-2 text-teal-600 mb-4">
-                <Users className="w-6 h-6" />
-                <span className="text-sm font-medium tracking-wider uppercase">Team</span>
+                <Globe className="w-6 h-6" />
+                <span className="text-sm font-medium tracking-wider uppercase">Integration & Roadmap</span>
               </div>
             </ScrollReveal>
             <ScrollReveal delay={100}>
               <h2 className="text-4xl lg:text-5xl font-bold text-slate-900 mb-6">
-                Leadership Team
-              </h2>
-            </ScrollReveal>
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            <ScrollReveal delay={0}>
-              <div className="bg-white p-8 rounded-2xl border border-slate-200">
-                <div className="text-center">
-                  <div className="w-24 h-24 bg-teal-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                    <Stethoscope className="w-12 h-12 text-teal-600" />
-                  </div>
-                  <h3 className="text-2xl font-bold text-slate-900 mb-2">Dr. Javier Rosas</h3>
-                  <div className="text-teal-600 font-medium mb-4">Founder & Chief Medical Officer</div>
-                  <p className="text-slate-600 leading-relaxed">
-                    Senior ship physician with 10+ years in emergency and maritime medicine. Clinical AI evaluator and trainer 
-                    for leading platforms including Mercor AI, Micro1, and Pareto. Specializes in AI safety validation and 
-                    resource-constrained medical decision-making.
-                  </p>
-                </div>
-              </div>
-            </ScrollReveal>
-
-            <ScrollReveal delay={100}>
-              <div className="bg-white p-8 rounded-2xl border border-slate-200">
-                <div className="text-center">
-                  <div className="w-24 h-24 bg-teal-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                    <Users className="w-12 h-12 text-teal-600" />
-                  </div>
-                  <h3 className="text-2xl font-bold text-slate-900 mb-2">Dr. Thomas Gionis</h3>
-                  <div className="text-teal-600 font-medium mb-4">Advisory Board</div>
-                  <p className="text-slate-600 leading-relaxed">
-                    Providing strategic guidance on clinical AI implementation, regulatory compliance, and healthcare 
-                    technology integration. Extensive experience in medical technology development and clinical validation.
-                  </p>
-                </div>
-              </div>
-            </ScrollReveal>
-          </div>
-        </div>
-      </section>
-
-      {/* Company Section */}
-      <section className="py-20 bg-white">
-        <div className="max-w-4xl mx-auto px-6 lg:px-8 text-center">
-          <ScrollReveal>
-            <div className="flex items-center justify-center space-x-2 text-teal-600 mb-6">
-              <Building className="w-6 h-6" />
-              <span className="text-sm font-medium tracking-wider uppercase">Company</span>
-            </div>
-          </ScrollReveal>
-          
-          <ScrollReveal delay={100}>
-            <h2 className="text-4xl lg:text-5xl font-bold text-slate-900 mb-8">
-              Remote AiD Medical, Corp.
-            </h2>
-          </ScrollReveal>
-          
-          <ScrollReveal delay={200}>
-            <div className="bg-slate-50 p-8 rounded-2xl border border-slate-200 max-w-2xl mx-auto">
-              <div className="space-y-4">
-                <div className="grid grid-cols-2 gap-4 text-left">
-                  <div>
-                    <div className="font-semibold text-slate-900">Entity Type</div>
-                    <div className="text-slate-600">Delaware C-Corporation</div>
-                  </div>
-                  <div>
-                    <div className="font-semibold text-slate-900">Headquarters</div>
-                    <div className="text-slate-600">Miami, Florida</div>
-                  </div>
-                </div>
-                <div className="pt-4 border-t border-slate-200">
-                  <div className="font-semibold text-slate-900 mb-2">Mission</div>
-                  <p className="text-slate-600 text-left">
-                    Advancing clinical AI safety and effectiveness in resource-constrained medical environments 
-                    through purpose-built decision support systems.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </ScrollReveal>
-        </div>
-      </section>
-
-      {/* Internal Navigation */}
-      <section className="py-20 bg-slate-50">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <ScrollReveal>
-              <div className="flex items-center justify-center space-x-2 text-teal-600 mb-4">
-                <Layers className="w-6 h-6" />
-                <span className="text-sm font-medium tracking-wider uppercase">Documentation</span>
-              </div>
-            </ScrollReveal>
-            <ScrollReveal delay={100}>
-              <h2 className="text-4xl lg:text-5xl font-bold text-slate-900 mb-6">
-                SeaScope CDS Documentation
+                Designed to Complement, Not Replace
               </h2>
             </ScrollReveal>
             <ScrollReveal delay={200}>
               <p className="text-lg text-slate-600 max-w-3xl mx-auto">
-                Comprehensive documentation covering clinical validation, safety architecture, 
-                regulatory compliance, and technical implementation.
+                SeaScope integrates alongside current clinical workflows. Physicians make their normal
+                clinical decisions while SeaScope provides parallel recommendations for comparison and validation.
               </p>
             </ScrollReveal>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             <ScrollReveal delay={0}>
-              <Link to="/seascope/evidence" className="block group">
-                <div className="bg-white p-8 rounded-2xl border border-slate-200 hover:border-teal-300 hover:shadow-lg transition-all duration-300 h-full">
-                  <div className="w-16 h-16 bg-teal-100 rounded-xl flex items-center justify-center mb-6 group-hover:bg-teal-200 transition-colors duration-300">
-                    <FileCheck className="w-8 h-8 text-teal-600" />
-                  </div>
-                  <h3 className="text-xl font-bold text-slate-900 mb-4 group-hover:text-teal-900 transition-colors duration-300">
-                    Evidence & Validation
-                  </h3>
-                  <p className="text-slate-600 text-sm mb-4">
-                    100-case adversarial validation, temporal testing, and Maverick AI peer review results.
-                  </p>
-                  <div className="flex items-center space-x-2 text-teal-600 group-hover:text-teal-700 transition-colors duration-300">
-                    <span className="text-sm font-medium">View Evidence</span>
-                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
-                  </div>
+              <div className="bg-white p-6 rounded-xl border border-slate-200 text-center">
+                <div className="w-12 h-12 bg-teal-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+                  <Layers className="w-6 h-6 text-teal-600" />
                 </div>
-              </Link>
+                <h3 className="font-bold text-slate-900 mb-2">50-Protocol Library</h3>
+                <p className="text-sm text-slate-600">Expanded coverage for maritime and remote medicine pathways</p>
+              </div>
             </ScrollReveal>
 
             <ScrollReveal delay={100}>
-              <Link to="/seascope/safety-case" className="block group">
-                <div className="bg-white p-8 rounded-2xl border border-slate-200 hover:border-teal-300 hover:shadow-lg transition-all duration-300 h-full">
-                  <div className="w-16 h-16 bg-teal-100 rounded-xl flex items-center justify-center mb-6 group-hover:bg-teal-200 transition-colors duration-300">
-                    <Shield className="w-8 h-8 text-teal-600" />
-                  </div>
-                  <h3 className="text-xl font-bold text-slate-900 mb-4 group-hover:text-teal-900 transition-colors duration-300">
-                    Safety Case
-                  </h3>
-                  <p className="text-slate-600 text-sm mb-4">
-                    Detailed failure mode analysis for all seven guardrails and residual risk assessment.
-                  </p>
-                  <div className="flex items-center space-x-2 text-teal-600 group-hover:text-teal-700 transition-colors duration-300">
-                    <span className="text-sm font-medium">View Safety Case</span>
-                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
-                  </div>
+              <div className="bg-white p-6 rounded-xl border border-slate-200 text-center">
+                <div className="w-12 h-12 bg-teal-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+                  <FileCheck className="w-6 h-6 text-teal-600" />
                 </div>
-              </Link>
+                <h3 className="font-bold text-slate-900 mb-2">15+ Guideline Families</h3>
+                <p className="text-sm text-slate-600">Mapped to current evidence standards with citation traceability</p>
+              </div>
             </ScrollReveal>
 
             <ScrollReveal delay={200}>
-              <Link to="/seascope/data-flow" className="block group">
-                <div className="bg-white p-8 rounded-2xl border border-slate-200 hover:border-teal-300 hover:shadow-lg transition-all duration-300 h-full">
-                  <div className="w-16 h-16 bg-teal-100 rounded-xl flex items-center justify-center mb-6 group-hover:bg-teal-200 transition-colors duration-300">
-                    <Activity className="w-8 h-8 text-teal-600" />
-                  </div>
-                  <h3 className="text-xl font-bold text-slate-900 mb-4 group-hover:text-teal-900 transition-colors duration-300">
-                    Data Flow & Privacy
-                  </h3>
-                  <p className="text-slate-600 text-sm mb-4">
-                    Complete data processing architecture, privacy protection, and audit trail design.
-                  </p>
-                  <div className="flex items-center space-x-2 text-teal-600 group-hover:text-teal-700 transition-colors duration-300">
-                    <span className="text-sm font-medium">View Data Flow</span>
-                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
-                  </div>
+              <div className="bg-white p-6 rounded-xl border border-slate-200 text-center">
+                <div className="w-12 h-12 bg-teal-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+                  <Database className="w-6 h-6 text-teal-600" />
                 </div>
-              </Link>
+                <h3 className="font-bold text-slate-900 mb-2">222 Drug Guidance Rules</h3>
+                <p className="text-sm text-slate-600">Validated dosing, interaction, contraindication, and safety logic</p>
+              </div>
             </ScrollReveal>
 
             <ScrollReveal delay={300}>
-              <Link to="/seascope/regulatory" className="block group">
-                <div className="bg-white p-8 rounded-2xl border border-slate-200 hover:border-teal-300 hover:shadow-lg transition-all duration-300 h-full">
-                  <div className="w-16 h-16 bg-teal-100 rounded-xl flex items-center justify-center mb-6 group-hover:bg-teal-200 transition-colors duration-300">
-                    <Building className="w-8 h-8 text-teal-600" />
-                  </div>
-                  <h3 className="text-xl font-bold text-slate-900 mb-4 group-hover:text-teal-900 transition-colors duration-300">
-                    Regulatory Framework
-                  </h3>
-                  <p className="text-slate-600 text-sm mb-4">
-                    21st Century Cures Act compliance, HIPAA architecture, and clinical governance.
-                  </p>
-                  <div className="flex items-center space-x-2 text-teal-600 group-hover:text-teal-700 transition-colors duration-300">
-                    <span className="text-sm font-medium">View Framework</span>
-                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
-                  </div>
+              <div className="bg-white p-6 rounded-xl border border-slate-200 text-center">
+                <div className="w-12 h-12 bg-teal-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+                  <Shield className="w-6 h-6 text-teal-600" />
                 </div>
-              </Link>
-            </ScrollReveal>
-
-            <ScrollReveal delay={400}>
-              <Link to="/seascope/pilot" className="block group">
-                <div className="bg-white p-8 rounded-2xl border border-slate-200 hover:border-teal-300 hover:shadow-lg transition-all duration-300 h-full">
-                  <div className="w-16 h-16 bg-teal-100 rounded-xl flex items-center justify-center mb-6 group-hover:bg-teal-200 transition-colors duration-300">
-                    <Users className="w-8 h-8 text-teal-600" />
-                  </div>
-                  <h3 className="text-xl font-bold text-slate-900 mb-4 group-hover:text-teal-900 transition-colors duration-300">
-                    Pilot Program
-                  </h3>
-                  <p className="text-slate-600 text-sm mb-4">
-                    30-day shadow study design, participant requirements, and success metrics.
-                  </p>
-                  <div className="flex items-center space-x-2 text-teal-600 group-hover:text-teal-700 transition-colors duration-300">
-                    <span className="text-sm font-medium">View Pilot</span>
-                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
-                  </div>
-                </div>
-              </Link>
-            </ScrollReveal>
-
-            <ScrollReveal delay={500}>
-              <Link to="/seascope/safety" className="block group">
-                <div className="bg-white p-8 rounded-2xl border border-slate-200 hover:border-teal-300 hover:shadow-lg transition-all duration-300 h-full">
-                  <div className="w-16 h-16 bg-teal-100 rounded-xl flex items-center justify-center mb-6 group-hover:bg-teal-200 transition-colors duration-300">
-                    <Lock className="w-8 h-8 text-teal-600" />
-                  </div>
-                  <h3 className="text-xl font-bold text-slate-900 mb-4 group-hover:text-teal-900 transition-colors duration-300">
-                    Safety Architecture
-                  </h3>
-                  <p className="text-slate-600 text-sm mb-4">
-                    Seven code-enforced guardrails with detailed validation testing and performance.
-                  </p>
-                  <div className="flex items-center space-x-2 text-teal-600 group-hover:text-teal-700 transition-colors duration-300">
-                    <span className="text-sm font-medium">View Safety</span>
-                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
-                  </div>
-                </div>
-              </Link>
+                <h3 className="font-bold text-slate-900 mb-2">Offline Protocols</h3>
+                <p className="text-sm text-slate-600">Embedded protocol engine for satellite-down scenarios — safety never depends on connectivity</p>
+              </div>
             </ScrollReveal>
           </div>
         </div>
@@ -865,7 +978,7 @@ function SeaScopeContent() {
                 <span>javier@theremoteaidoc.com</span>
               </a>
               <button
-                onClick={() => window.Calendly?.initPopupWidget({ url: 'https://calendly.com/theremoteaidoc/30min' })}
+                onClick={() => window.open('https://calendar.app.google/wp1bE9Q9yo3UKB1x7', '_blank')}
                 className="px-8 py-4 border-2 border-white/40 text-white rounded-lg hover:bg-white/10 transition-all duration-300 font-semibold text-lg flex items-center justify-center space-x-2 group"
               >
                 <Calendar className="w-5 h-5" />
@@ -887,7 +1000,7 @@ function SeaScopeContent() {
             © {new Date().getFullYear()} Remote AiD Medical, Corp. All rights reserved. | Delaware C-Corp | Miami, FL
           </p>
           <p className="text-slate-600 text-xs">
-            Last Updated: February 2026
+            Last Updated: March 2026
           </p>
         </div>
       </section>
@@ -896,9 +1009,5 @@ function SeaScopeContent() {
 }
 
 export default function SeaScope() {
-  return (
-    <PasswordGate correctPassword="seascope2026">
-      <SeaScopeContent />
-    </PasswordGate>
-  );
+  return <SeaScopeContent />;
 }
