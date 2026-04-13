@@ -214,10 +214,10 @@ function SeaScopeContent() {
       <section className="relative -mt-8 z-10 max-w-5xl mx-auto px-6">
         <div className="bg-slate-900/95 backdrop-blur-xl border border-teal-500/20 rounded-2xl p-8 shadow-2xl shadow-black/50">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            <StatCounter value={50} label="Clinical Protocols" icon={Layers} />
-            <StatCounter value={15} suffix="+" label="Guideline Families" icon={FileCheck} />
-            <StatCounter value={21} label="Clinical Calculators" icon={Heart} />
-            <StatCounter value={7} label="Safety Guardrails" icon={Shield} />
+            <StatCounter value={52} label="Clinical Protocols" icon={Layers} />
+            <StatCounter value={78} label="Vessels Tracked" icon={Ship} />
+            <StatCounter value={171} label="Medical Ports" icon={Map} />
+            <StatCounter value={200} suffix="+" label="Formulary Drugs" icon={Pill} />
           </div>
         </div>
       </section>
@@ -697,16 +697,16 @@ function SeaScopeContent() {
                 Protocol Library Expanded and Safety-Validated
               </h3>
               <p className="text-slate-400 max-w-3xl mx-auto">
-                SeaScope CDS v2.0 expanded from 20 to 50 protocols with stronger guideline
+                SeaScope CDS v2.0 expanded from 20 to 52 protocols with stronger guideline
                 coverage and a clean safety record where it matters most in clinical deployment.
               </p>
             </div>
 
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
               {[
-                { label: 'Clinical Protocols', value: '50', note: 'Expanded from 20 (+150%)' },
-                { label: 'Guideline Families', value: '15+', note: '2024-2026 evidence coverage' },
-                { label: 'Drug Guidance Rules', value: '222', note: 'Validated recommendation knowledge' },
+                { label: 'Clinical Protocols', value: '52', note: 'Expanded from 20 (+160%)' },
+                { label: 'Vessels Tracked', value: '78', note: '13 cruise lines, AIS real-time' },
+                { label: 'Medical Ports', value: '171', note: 'Global coverage incl. polar regions' },
                 { label: 'Safety Guardrails', value: '7', note: 'Layered checks before recommendation' },
                 { label: 'Care Domains', value: '5+', note: 'Sepsis, cardiac, respiratory, neuro, endocrine' },
                 { label: 'Critical Safety Failures', value: '0', note: 'Production-readiness milestone' },
@@ -865,7 +865,7 @@ function SeaScopeContent() {
                     </div>
                     <div className="flex justify-between">
                       <span>Clinical protocol coverage</span>
-                      <span className="font-semibold text-slate-900">50 protocols</span>
+                      <span className="font-semibold text-slate-900">52 protocols</span>
                     </div>
                     <div className="flex justify-between">
                       <span>Guideline families represented</span>
