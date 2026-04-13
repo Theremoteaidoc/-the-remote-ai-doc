@@ -972,13 +972,6 @@ export default function App() {
           </Layout>
         } />
         <Route path="/seascope" element={<SeaScope />} />
-        <Route path="/seascope/safety" element={<SeaScopeSafety />} />
-        <Route path="/seascope/pilot" element={<SeaScopePilot />} />
-        <Route path="/seascope/evidence" element={<SeaScopeEvidence />} />
-        <Route path="/seascope/safety-case" element={<SeaScopeSafetyCase />} />
-        <Route path="/seascope/data-flow" element={<SeaScopeDataFlow />} />
-        <Route path="/seascope/regulatory" element={<SeaScopeRegulatory />} />
-        <Route path="/seascope/eval" element={<EvalTracker />} />
       </Routes>
     </HelmetProvider>
   );
