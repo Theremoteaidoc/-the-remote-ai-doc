@@ -270,11 +270,11 @@ export default function Home() {
               The SeaScope <span className="accent-sea">*</span> Solutions family is growing.
             </h2>
             <p className="mt-6 text-base leading-relaxed text-ink-50/70">
-              Each future sibling deploys SeaScope CDS into a new operator context.
+              Each future release extends SeaScope into new operator contexts or adjacent medical workflows.
               Same engine. Same safety architecture. Different segment-specific workflows.
             </p>
           </div>
-          <div className="mx-auto mt-16 grid max-w-5xl gap-6 md:grid-cols-3">
+          <div className="mx-auto mt-16 grid max-w-6xl gap-6 md:grid-cols-2 lg:grid-cols-3">
             {[
               {
                 name: 'SeaScope Expedition Solutions',
@@ -287,6 +287,18 @@ export default function Home() {
               {
                 name: 'SeaScope Rural Solutions',
                 description: 'For remote clinics, mining sites, and humanitarian operations far from referral networks.',
+              },
+              {
+                name: 'SeaScope PEME Platform',
+                description: 'Digital pre-employment medical exams — fit-to-sail assessments, document workflow, and expiry tracking that syncs directly into the case engine.',
+              },
+              {
+                name: 'SeaScope Crew Wellness',
+                description: 'Longitudinal crew health — preventive care, chronic condition management, and mental-health check-ins between ports.',
+              },
+              {
+                name: 'SeaScope Smart Inventory',
+                description: 'Medicine-chest intelligence — stock tracking, expiry alerts, and restock recommendations tied to your fleet\'s case history.',
               },
             ].map((sibling) => (
               <div
