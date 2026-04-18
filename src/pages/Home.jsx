@@ -75,18 +75,19 @@ export default function Home() {
           <div className="editorial-card flex flex-col">
             <div className="eyebrow mb-3">FOR FLEET OPERATORS</div>
             <h3 className="font-display text-3xl font-medium leading-tight text-ink-50 sm:text-4xl">
-              <em className="not-italic">Officer triage. Doctor decision. One audited case.</em>
+              <em className="not-italic">Every crew emergency — handled by a doctor, logged for inspection.</em>
             </h3>
             <p className="mt-5 text-base leading-relaxed text-ink-50/70">
-              SeaScope Cargo Solutions structures every medical case from the moment your officer
-              captures it onboard to the moment your shore physician approves the response.
-              MLC-grade documentation built in.
+              When a crew member gets sick or hurt at sea, SeaScope turns the call into a structured
+              medical case. Your officer captures it onboard. A shore doctor reviews it with AI
+              support and sends back the treatment plan. You get a signed, inspector-ready record
+              every time — no more paper logs or phone-tag gaps.
             </p>
             <ul className="mt-6 space-y-3">
               {[
-                'Officer triage app on the bridge — structured capture, no clinical AI',
-                'AI-augmented physician hub on shore — drafts the recommendation, doctor approves',
-                'MLC-grade documentation — inspector-ready PDF on demand',
+                'Officer onboard uses a guided app — no more free-text radio notes',
+                'Shore doctor reviews with AI support and approves the plan in minutes',
+                'Every case becomes a PDF ready for port-state inspections',
               ].map((item, i) => (
                 <li key={i} className="flex items-start gap-3 text-sm text-ink-50/85">
                   <Check className="mt-0.5 h-4 w-4 flex-shrink-0 text-sea-500" />
@@ -103,7 +104,7 @@ export default function Home() {
               <ArrowRight className="h-4 w-4" />
             </Link>
             <p className="mt-3 text-xs text-ink-50/50">
-              Volume pricing, physician-seat licensing, and pilot terms shared in a 30-minute call.
+              For shipping, cruise, and offshore operators. Pricing and pilot terms in a 30-minute call.
             </p>
           </div>
 
@@ -111,18 +112,18 @@ export default function Home() {
           <div className="editorial-card flex flex-col">
             <div className="eyebrow mb-3">FOR PHYSICIANS</div>
             <h3 className="font-display text-3xl font-medium leading-tight text-ink-50 sm:text-4xl">
-              <em className="not-italic">Formulary-aware AI for the doctor on the bridge at 3 AM.</em>
+              <em className="not-italic">An AI second opinion that knows what's in your medicine chest.</em>
             </h3>
             <p className="mt-5 text-base leading-relaxed text-ink-50/70">
-              SeaScope CDS is the clinical reasoning engine you can carry in your scrubs pocket.
-              Formulary-locked, evidence-cited, audit-trailed — built for the cases that arrive at
-              2 AM with no specialist backup.
+              Enter the case, get an evidence-cited treatment plan in seconds — using only the
+              drugs and equipment you actually have onboard. Thirteen safety checks run before you
+              see the answer. Every case becomes a PDF you can defend.
             </p>
             <ul className="mt-6 space-y-3">
               {[
-                'Formulary-aware — only recommends drugs you actually carry',
-                '13 deterministic safety guardrails — caught before you see them',
-                'Audit-trailed — PDF documentation for every encounter',
+                "Only suggests drugs you actually carry — no 'we don't have that'",
+                '13 safety checks — interactions, contraindications, dosing — before you see the answer',
+                'One-click PDF of every case for your records',
               ].map((item, i) => (
                 <li key={i} className="flex items-start gap-3 text-sm text-ink-50/85">
                   <Check className="mt-0.5 h-4 w-4 flex-shrink-0 text-sea-500" />
@@ -140,7 +141,7 @@ export default function Home() {
               <ArrowRight className="h-4 w-4" />
             </Link>
             <p className="mt-3 text-xs text-ink-50/50">
-              No credit card. Onboard in under 2 minutes.
+              No credit card. Full access for 14 days. Cancel anytime.
             </p>
           </div>
         </div>
