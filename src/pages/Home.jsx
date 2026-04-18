@@ -233,7 +233,7 @@ export default function Home() {
       {/* ─────────────── KILLER CASE ─────────────── */}
       <section className="py-24 sm:py-32">
         <div className="mx-auto max-w-4xl px-6 lg:px-8">
-          <div className="eyebrow mb-6 text-center">REAL CASE — VOYAGER OF THE SEAS, OFF BRISBANE</div>
+          <div className="eyebrow mb-6 text-center">REAL CASE — ANONYMIZED</div>
           <blockquote className="text-center font-display text-2xl font-light italic leading-relaxed text-ink-50 sm:text-3xl">
             "A 78-year-old male presented with rising troponin and acute kidney injury. SeaScope
             produced a structured treatment plan in 49 seconds, executing 7 retrieval and verification
@@ -255,7 +255,7 @@ export default function Home() {
             ))}
           </div>
           <p className="mt-8 text-center text-xs text-ink-50/40">
-            From a real ship physician's case file. Used with patient consent.
+            Anonymized case from physician validation testing. Vessel, location, and identifiers redacted. Named testimonials with full attribution coming soon.
           </p>
         </div>
       </section>

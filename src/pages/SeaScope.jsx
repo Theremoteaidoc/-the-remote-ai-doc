@@ -431,7 +431,7 @@ function SeaScopeContent() {
                 </div>
               </div>
               <p className="text-center text-sm text-slate-500 mt-4">
-                62-year-old male with acute inferior STEMI on Voyager of the Seas near New Caledonia. Watch the full clinical decision support workflow including AI analysis, port diversion recommendation, and safety guardrail demonstration.
+                62-year-old male with acute inferior STEMI, mid-ocean. Watch the full clinical decision support workflow including AI analysis, port diversion recommendation, and safety guardrail demonstration.
               </p>
             </div>
           </ScrollReveal>
@@ -480,7 +480,7 @@ function SeaScopeContent() {
                 </div>
                 <img
                   src="/images/seascope/seascope-maritime.png"
-                  alt="SeaScope CDS maritime mode — Voyager of the Seas near New Caledonia with satellite telemetry, AIS ship tracking, sea conditions, and patient assessment panel"
+                  alt="SeaScope CDS maritime mode — cruise vessel mid-ocean with satellite telemetry, AIS ship tracking, sea conditions, and patient assessment panel"
                   className="w-full"
                   loading="lazy"
                 />

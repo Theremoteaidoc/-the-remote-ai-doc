@@ -43,7 +43,7 @@ export default function SeaScopeCDS() {
                 </a>
               </div>
               <p className="mt-6 text-xs text-ink-50/50">
-                Trusted by ship physicians on Royal Caribbean and beyond. ABMM-aligned. HIPAA-shaped.
+                Built by ship physicians, for ship physicians. ABMM-aligned. HIPAA-shaped.
               </p>
             </div>
 
