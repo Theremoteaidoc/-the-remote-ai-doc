@@ -51,12 +51,12 @@ export default function CargoSolutions() {
               <div className="absolute -inset-4 rounded-3xl bg-sea-500/10 blur-2xl" aria-hidden="true" />
               <div className="relative overflow-hidden rounded-2xl border border-ink-700/60 shadow-2xl shadow-ink-900/50 ring-1 ring-sea-500/20">
                 <img
-                  src="/cargo-feature.jpg"
-                  alt="A medical evacuation helicopter approaches a cruise ship at sea at sunset. When the nearest hospital is 8 hours away — every clinical decision at sea carries weight no algorithm alone can shoulder."
+                  src="https://images.unsplash.com/photo-1583857671904-a716bf4ee5d8?q=80&w=880&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                  alt="Cargo ship at sea — when the nearest hospital is 8 hours away, every clinical decision carries weight no algorithm alone can shoulder."
                   className="h-full w-full object-cover"
                   loading="eager"
-                  width="1024"
-                  height="1024"
+                  width="880"
+                  height="880"
                 />
               </div>
             </div>
