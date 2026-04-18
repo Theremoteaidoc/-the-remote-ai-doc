@@ -50,12 +50,12 @@ export default function Press() {
       {/* PROOF POINT */}
       <section className="border-t border-ink-700/40 bg-ink-800/20 py-20">
         <div className="mx-auto max-w-4xl px-6 lg:px-8">
-          <div className="eyebrow mb-4">REAL CASE — VOYAGER OF THE SEAS, OFF BRISBANE</div>
+          <div className="eyebrow mb-4">REAL CASE — ANONYMIZED</div>
           <p className="text-lg leading-relaxed text-ink-50/85">
-            A 78-year-old male presented with rising troponin and acute kidney injury aboard{' '}
-            <em>Voyager of the Seas</em> in international waters near Brisbane. SeaScope CDS
-            produced a structured treatment plan in <strong className="text-sea-300">49 seconds</strong> at
-            a query cost of <strong className="text-sea-300">$0.06</strong>, executing{' '}
+            A 78-year-old male presented with rising troponin and acute kidney injury aboard a
+            cruise vessel in international waters. SeaScope CDS produced a structured treatment
+            plan in <strong className="text-sea-300">49 seconds</strong> at a query cost of{' '}
+            <strong className="text-sea-300">$0.06</strong>, executing{' '}
             <strong className="text-sea-300">7 retrieval and verification tools</strong> against the
             ship's actual formulary. The recommendation{' '}
             <strong className="text-sea-300">stopped three medications</strong> that would have
