@@ -6,7 +6,7 @@ import { ArrowRight, Check } from 'lucide-react';
  * /cargo-solutions — operator product page.
  * Voice register: operations-credible. Copy from /root/marketing/copy/cargo-solutions-v1.md.
  * Hero photo: TODO — recommend reuse helicopter brand asset; placeholder gradient for now.
- * Pricing: GATED per IA amendment 2 — only "Starting from $75/vessel/month" is public.
+ * Pricing: FULLY GATED — no public number. Quote shared on the 30-minute call.
  */
 export default function CargoSolutions() {
   return (
@@ -15,7 +15,7 @@ export default function CargoSolutions() {
         <title>SeaScope Cargo Solutions — Officer triage. Doctor decision. One audited case.</title>
         <meta
           name="description"
-          content="Structured medical case workflow for cargo fleets. Officer triage onboard, AI-augmented physician hub on shore. MLC-grade documentation built in. Starting from $75/vessel/month."
+          content="Structured medical case workflow for cargo fleets. Officer triage onboard, AI-augmented physician hub on shore. MLC-grade documentation built in."
         />
         <link rel="canonical" href="https://seascope.tech/cargo-solutions" />
       </Helmet>
@@ -134,7 +134,7 @@ export default function CargoSolutions() {
         <div className="mx-auto max-w-3xl px-6 text-center lg:px-8">
           <div className="eyebrow mb-4">PRICING</div>
           <h2 className="font-display text-5xl font-normal leading-tight text-ink-50 sm:text-6xl">
-            Starting from $75 / vessel / month<span className="accent-sea">.</span>
+            Priced per fleet<span className="accent-sea">.</span>
           </h2>
           <p className="mt-8 text-base leading-relaxed text-ink-50/70">
             Volume pricing, physician-seat licensing, and pilot terms vary by fleet size, vessel

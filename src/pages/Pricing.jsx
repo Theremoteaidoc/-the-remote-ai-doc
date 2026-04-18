@@ -14,7 +14,7 @@ export default function Pricing() {
         <title>Pricing — SeaScope CDS & SeaScope Cargo Solutions</title>
         <meta
           name="description"
-          content="SeaScope CDS for individual physicians: $29.99/month. SeaScope Cargo Solutions for fleet operators: starting from $75/vessel/month. Two products, one engine, asymmetric pricing."
+          content="SeaScope CDS for individual physicians: $29.99/month. SeaScope Cargo Solutions for fleet operators: quoted per fleet on a 30-minute call. Two products, one engine, asymmetric pricing."
         />
         <link rel="canonical" href="https://seascope.tech/pricing" />
       </Helmet>
@@ -127,7 +127,7 @@ export default function Pricing() {
               <tbody className="divide-y divide-ink-700/60">
                 {[
                   ['Audience', 'Individual physicians', 'Fleet operators'],
-                  ['Pricing', '$29.99 / month', 'Starting from $75 / vessel / month'],
+                  ['Pricing', '$29.99 / month', 'Quoted per fleet · shared on call'],
                   ['Trial', '14-day free trial · no credit card', '30-day pilot · terms shared on call'],
                   ['Sales motion', 'Self-serve · sign up online', 'Consultative · book a demo'],
                   ['Onboarding', 'Instant — log into the app', '1–2 weeks per fleet'],
@@ -158,7 +158,7 @@ export default function Pricing() {
             {[
               {
                 q: "Why isn't Cargo Solutions pricing fully public?",
-                a: "Cargo deployments vary by fleet size, vessel type, and integration scope. We share the full pricing structure — including volume discounts and pilot terms — in a 30-minute consultative call so we can match the commercial structure to your operation. The starting rate is $75/vessel/month and we don't gate the conversation behind a sales cycle.",
+                a: "Cargo deployments vary by fleet size, vessel type, and integration scope. We share the full pricing structure — including volume discounts and pilot terms — in a 30-minute consultative call so we can match the commercial structure to your operation. We don't gate the conversation behind a sales cycle.",
               },
               {
                 q: 'Can I cancel SeaScope CDS anytime?',
