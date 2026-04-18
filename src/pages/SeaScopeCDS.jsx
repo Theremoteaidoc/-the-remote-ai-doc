@@ -19,30 +19,48 @@ export default function SeaScopeCDS() {
         <link rel="canonical" href="https://seascope.tech/seascope-cds" />
       </Helmet>
 
-      {/* ─────────────── HERO ─────────────── */}
+      {/* ─────────────── HERO (two-column: copy left, brand piece right) ─────────────── */}
       <section className="relative isolate overflow-hidden bg-gradient-to-br from-ink-900 via-ink-800 to-ink-900">
-        <div className="mx-auto max-w-7xl px-6 pt-32 pb-24 lg:px-8 lg:pt-40 lg:pb-32">
-          <div className="max-w-3xl">
-            <div className="eyebrow mb-6">SEASCOPE CDS — FOR PHYSICIANS</div>
-            <h1 className="font-display text-5xl font-normal leading-[1.05] text-ink-50 sm:text-6xl lg:text-7xl">
-              Formulary-aware AI for the doctor on the bridge at 3&nbsp;AM<span className="accent-sea">.</span>
-            </h1>
-            <p className="mt-8 max-w-2xl text-lg leading-relaxed text-ink-50/80 sm:text-xl">
-              The clinical reasoning engine you can carry in your scrubs pocket. Built for the
-              cases that arrive at 2 AM with no specialist backup.
-            </p>
-            <div className="mt-10 flex flex-col gap-3 sm:flex-row">
-              <a href="https://app.seascope.tech/signup" className="btn-primary">
-                Start 14-Day Free Trial — No Credit Card
-                <ArrowRight className="h-4 w-4" />
-              </a>
-              <a href="#walkthrough" className="text-sm text-sea-300 underline self-center">
-                See how it works ↓
-              </a>
+        <div className="mx-auto max-w-7xl px-6 pt-32 pb-20 lg:px-8 lg:pt-40 lg:pb-28">
+          <div className="grid items-center gap-12 lg:grid-cols-[1.1fr_1fr] lg:gap-16">
+            {/* Left: copy */}
+            <div>
+              <div className="eyebrow mb-6">SEASCOPE CDS — FOR PHYSICIANS</div>
+              <h1 className="font-display text-5xl font-normal leading-[1.05] text-ink-50 sm:text-6xl">
+                Formulary-aware AI for the doctor on the bridge at 3&nbsp;AM<span className="accent-sea">.</span>
+              </h1>
+              <p className="mt-8 max-w-xl text-lg leading-relaxed text-ink-50/80">
+                The clinical reasoning engine you can carry in your scrubs pocket. Built for the
+                cases that arrive at 2 AM with no specialist backup.
+              </p>
+              <div className="mt-10 flex flex-col gap-3 sm:flex-row">
+                <a href="https://app.seascope.tech/signup" className="btn-primary">
+                  Start 14-Day Free Trial — No Credit Card
+                  <ArrowRight className="h-4 w-4" />
+                </a>
+                <a href="#walkthrough" className="self-center text-sm text-sea-300 underline">
+                  See how it works ↓
+                </a>
+              </div>
+              <p className="mt-6 text-xs text-ink-50/50">
+                Trusted by ship physicians on Royal Caribbean and beyond. ABMM-aligned. HIPAA-shaped.
+              </p>
             </div>
-            <p className="mt-6 text-xs text-ink-50/50">
-              Trusted by ship physicians on Royal Caribbean and beyond. ABMM-aligned. HIPAA-shaped.
-            </p>
+
+            {/* Right: brand piece (porthole composition with embedded "Where Medicine Meets the Sea." typography) */}
+            <div className="relative">
+              <div className="absolute -inset-4 rounded-3xl bg-sea-500/10 blur-2xl" aria-hidden="true" />
+              <div className="relative overflow-hidden rounded-2xl border border-ink-700/60 shadow-2xl shadow-ink-900/50 ring-1 ring-sea-500/20">
+                <img
+                  src="/cds-feature.jpg"
+                  alt="A tablet displaying SeaScope CDS at a ship's desk beside a brass lamp and porthole. Where medicine meets the sea — AI clinical decision support designed for the constraints of maritime medicine."
+                  className="h-full w-full object-cover"
+                  loading="eager"
+                  width="1024"
+                  height="1024"
+                />
+              </div>
+            </div>
           </div>
         </div>
       </section>
