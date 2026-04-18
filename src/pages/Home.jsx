@@ -94,9 +94,6 @@ export default function Home() {
                 </li>
               ))}
             </ul>
-            <div className="mt-8 inline-flex items-center self-start rounded-lg border border-sea-500 px-4 py-2 text-sm font-medium text-sea-300">
-              Starting from $75 / vessel / month
-            </div>
             <div className="mt-6 flex-1" />
             <Link
               to="/cargo-solutions"
