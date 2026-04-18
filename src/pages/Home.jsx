@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { ArrowRight, Check } from 'lucide-react';
@@ -7,6 +8,48 @@ import { ArrowRight, Check } from 'lucide-react';
  * Copy locked in /root/marketing/copy/home-v3.md (Apr 19 2026).
  * Hero image: /home-hero.jpg (Unsplash 1496347326319-2935d381b307).
  */
+
+// Count-up animation triggered once when the element scrolls into view.
+// Uses ease-out cubic so the figure lands crisply instead of drifting.
+function CountUp({ value, suffix = '', duration = 1800 }) {
+  const [display, setDisplay] = useState(0);
+  const ref = useRef(null);
+  const hasRun = useRef(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    if (typeof window !== 'undefined' &&
+        window.matchMedia?.('(prefers-reduced-motion: reduce)').matches) {
+      setDisplay(value);
+      return;
+    }
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting && !hasRun.current) {
+          hasRun.current = true;
+          const start = performance.now();
+          const step = (now) => {
+            const t = Math.min((now - start) / duration, 1);
+            const eased = 1 - Math.pow(1 - t, 3);
+            setDisplay(Math.round(value * eased));
+            if (t < 1) requestAnimationFrame(step);
+          };
+          requestAnimationFrame(step);
+        }
+      });
+    }, { threshold: 0.4 });
+    io.observe(el);
+    return () => io.disconnect();
+  }, [value, duration]);
+
+  return (
+    <span ref={ref}>
+      {display.toLocaleString()}{suffix}
+    </span>
+  );
+}
+
 export default function Home() {
   return (
     <>
@@ -148,8 +191,17 @@ export default function Home() {
       </section>
 
       {/* ─────────────── ENGINE CREDIBILITY ─────────────── */}
-      <section className="border-t border-ink-700/40 bg-ink-800/20 py-24 sm:py-32">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+      <section className="relative overflow-hidden border-t border-ink-700/40 bg-ink-800/20 py-24 sm:py-32">
+        {/* iOS-style aurora: three blurred orbs, slow opacity drift.
+            Respects prefers-reduced-motion via motion-reduce:animate-none. */}
+        <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
+          <div className="absolute left-[8%] top-[15%] h-[420px] w-[420px] rounded-full bg-sea-500/25 blur-3xl motion-reduce:animate-none animate-pulse [animation-duration:9s]" />
+          <div className="absolute right-[6%] top-[8%] h-[520px] w-[520px] rounded-full bg-violet-500/20 blur-3xl motion-reduce:animate-none animate-pulse [animation-duration:13s] [animation-delay:2s]" />
+          <div className="absolute bottom-[12%] left-[35%] h-[460px] w-[460px] rounded-full bg-amber-500/10 blur-3xl motion-reduce:animate-none animate-pulse [animation-duration:11s] [animation-delay:4s]" />
+          <div className="absolute -bottom-[10%] right-[20%] h-[380px] w-[380px] rounded-full bg-sea-300/15 blur-3xl motion-reduce:animate-none animate-pulse [animation-duration:15s] [animation-delay:1s]" />
+        </div>
+
+        <div className="relative mx-auto max-w-7xl px-6 lg:px-8">
           <div className="mx-auto max-w-3xl text-center">
             <div className="eyebrow mb-4">THE ENGINE</div>
             <h2 className="font-display text-4xl font-normal leading-tight text-ink-50 sm:text-5xl">
@@ -158,16 +210,16 @@ export default function Home() {
           </div>
           <div className="mx-auto mt-16 grid max-w-5xl grid-cols-2 gap-x-8 gap-y-12 text-center md:grid-cols-3 lg:grid-cols-6">
             {[
-              { figure: '52', label: 'Clinical protocols' },
-              { figure: '222', label: 'Drug-guidance rules' },
-              { figure: '13', label: 'Safety guardrails' },
-              { figure: '0', label: 'Critical safety failures' },
-              { figure: '1,899+', label: 'Validated encounters' },
-              { figure: '4', label: 'Languages' },
+              { value: 52,   suffix: '',  label: 'Clinical protocols' },
+              { value: 222,  suffix: '',  label: 'Drug-guidance rules' },
+              { value: 13,   suffix: '',  label: 'Safety guardrails' },
+              { value: 0,    suffix: '',  label: 'Critical safety failures' },
+              { value: 1899, suffix: '+', label: 'Validated encounters' },
+              { value: 4,    suffix: '',  label: 'Languages' },
             ].map((stat) => (
               <div key={stat.label}>
-                <div className="font-display text-4xl font-medium text-sea-300 sm:text-5xl">
-                  {stat.figure}
+                <div className="font-display text-4xl font-medium text-sea-300 sm:text-5xl tabular-nums">
+                  <CountUp value={stat.value} suffix={stat.suffix} />
                 </div>
                 <div className="mt-2 text-xs uppercase tracking-eyebrow text-ink-50/60">
                   {stat.label}
