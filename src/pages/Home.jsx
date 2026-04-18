@@ -241,15 +241,16 @@ export default function Home() {
             that would have interacted dangerously, and triggered a structured medical evacuation
             handoff. The patient was transferred stable."
           </blockquote>
-          <div className="mt-12 grid grid-cols-2 gap-6 sm:grid-cols-4">
+          <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-3">
             {[
-              { figure: '49s', label: 'Time to treatment plan' },
-              { figure: '$0.06', label: 'Cost per query' },
-              { figure: '7', label: 'Tools executed' },
-              { figure: '3', label: 'Meds stopped (would have caused harm)' },
+              { value: 49, suffix: 's', label: 'Time to treatment plan' },
+              { value: 7,  suffix: '',  label: 'Tools executed' },
+              { value: 3,  suffix: '',  label: 'Meds stopped (would have caused harm)' },
             ].map((stat) => (
               <div key={stat.label} className="text-center">
-                <div className="font-display text-3xl font-medium text-sea-300">{stat.figure}</div>
+                <div className="font-display text-3xl font-medium text-sea-300 tabular-nums">
+                  <CountUp value={stat.value} suffix={stat.suffix} />
+                </div>
                 <div className="mt-2 text-xs text-ink-50/60">{stat.label}</div>
               </div>
             ))}
