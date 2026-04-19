@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { ArrowRight, Check } from 'lucide-react';
+import StripeBuyButton from '../components/StripeBuyButton';
 
 /**
  * /pricing — side-by-side. Asymmetric pricing display.
@@ -44,7 +45,7 @@ export default function Pricing() {
             <div className="mt-6 font-display text-5xl font-medium text-sea-300">$29.99</div>
             <div className="text-sm text-ink-50/60">per month · cancel anytime</div>
             <div className="mt-2 inline-block rounded-md bg-sea-500/10 px-2 py-0.5 text-xs text-sea-300">
-              14-day free trial · no credit card
+              14-day free trial · card required, no charge until day 15
             </div>
 
             <ul className="mt-8 space-y-3 text-sm">
@@ -65,20 +66,17 @@ export default function Pricing() {
               ))}
             </ul>
 
-            <a href="https://app.seascope.tech/signup" className="btn-primary mt-10 w-full">
-              Start Free Trial
-              <ArrowRight className="h-4 w-4" />
-            </a>
+            <StripeBuyButton className="mt-10 flex justify-center" />
           </div>
 
           {/* SeaScope Cargo Solutions — gated, consultative */}
           <div className="editorial-card border-sea-500/40">
             <div className="eyebrow mb-3">FOR FLEET OPERATORS</div>
             <h2 className="font-display text-3xl font-medium text-ink-50">SeaScope Cargo Solutions</h2>
-            <div className="mt-6 font-display text-3xl font-medium text-sea-300">
-              Starting from <span className="text-5xl">$75</span>
+            <div className="mt-6 font-display text-5xl font-medium text-sea-300">
+              Quoted per fleet
             </div>
-            <div className="text-sm text-ink-50/60">per vessel · per month</div>
+            <div className="text-sm text-ink-50/60">consultative call · pricing shared on request</div>
             <div className="mt-2 inline-block rounded-md border border-sea-500/40 px-2 py-0.5 text-xs text-sea-300">
               Volume + seat pricing on call · 30-day pilot available
             </div>
@@ -193,13 +191,13 @@ export default function Pricing() {
             Pick the deployment that fits how you work.
           </h2>
           <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
-            <a
-              href="https://app.seascope.tech/signup"
+            <Link
+              to="/seascope-cds"
               className="inline-flex items-center justify-center gap-2 rounded-lg bg-ink-900 px-6 py-3 text-sm font-medium text-ink-50 transition hover:bg-ink-800"
             >
               Start Free — Solo physician
               <ArrowRight className="h-4 w-4" />
-            </a>
+            </Link>
             <Link
               to="/cargo-solutions#demo"
               className="inline-flex items-center justify-center gap-2 rounded-lg border border-ink-900 px-6 py-3 text-sm font-medium text-ink-900 transition hover:bg-ink-900/10"

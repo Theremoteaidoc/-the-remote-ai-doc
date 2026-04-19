@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { ArrowRight, Check } from 'lucide-react';
+import StripeBuyButton from '../components/StripeBuyButton';
 
 /**
  * /seascope-cds — direct-to-MD product page.
@@ -33,15 +34,15 @@ export default function SeaScopeCDS() {
                 The clinical reasoning engine you can carry in your scrubs pocket. Built for the
                 cases that arrive at 2 AM with no specialist backup.
               </p>
-              <div className="mt-10 flex flex-col gap-3 sm:flex-row">
-                <a href="https://app.seascope.tech/signup" className="btn-primary">
-                  Start 14-Day Free Trial — No Credit Card
-                  <ArrowRight className="h-4 w-4" />
-                </a>
-                <a href="#walkthrough" className="self-center text-sm text-sea-300 underline">
+              <div className="mt-10 flex flex-col items-start gap-4 sm:flex-row sm:items-center">
+                <StripeBuyButton />
+                <a href="#walkthrough" className="text-sm text-sea-300 underline">
                   See how it works ↓
                 </a>
               </div>
+              <p className="mt-3 text-xs text-ink-50/50">
+                14 days free. Card required, first charge on day 15. Cancel anytime.
+              </p>
               <p className="mt-6 text-xs text-ink-50/50">
                 Built by ship physicians, for ship physicians. ABMM-aligned. HIPAA-shaped.
               </p>
@@ -153,11 +154,10 @@ export default function SeaScopeCDS() {
                 </li>
               ))}
             </ul>
-            <a href="https://app.seascope.tech/signup" className="btn-primary mt-8 w-full">
-              Start 14-Day Free Trial
-              <ArrowRight className="h-4 w-4" />
-            </a>
-            <p className="mt-3 text-xs text-ink-50/50">No credit card required.</p>
+            <StripeBuyButton className="mt-8 flex justify-center" />
+            <p className="mt-3 text-center text-xs text-ink-50/50">
+              Card required. First charge on day 15. Cancel anytime.
+            </p>
           </div>
           <p className="mx-auto mt-8 max-w-2xl text-center text-sm text-ink-50/60">
             Backed by a practicing ship physician. Built around the FDA §520(o)(1)(E) Clinical
@@ -190,15 +190,9 @@ export default function SeaScopeCDS() {
             Start practicing with the tool you wish existed.
           </h2>
           <p className="mt-6 text-base text-ink-900/80">
-            14 days free. No credit card. Cancel anytime. Onboard in under two minutes.
+            14 days free. Card required, first charge on day 15. Cancel anytime.
           </p>
-          <a
-            href="https://app.seascope.tech/signup"
-            className="mt-10 inline-flex items-center justify-center gap-2 rounded-lg bg-ink-900 px-8 py-4 text-base font-medium text-ink-50 transition hover:bg-ink-800"
-          >
-            Start Free Trial
-            <ArrowRight className="h-4 w-4" />
-          </a>
+          <StripeBuyButton className="mt-10 flex justify-center" />
           <p className="mt-6 text-sm text-ink-900/70">
             Already have an account?{' '}
             <a href="https://app.seascope.tech" className="underline">Sign in →</a>
