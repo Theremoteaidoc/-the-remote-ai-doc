@@ -32,8 +32,9 @@ export default function SeaScopeCDS() {
                 Formulary-aware AI for the doctor on the bridge at 3&nbsp;AM<span className="accent-sea">.</span>
               </h1>
               <p className="mt-8 max-w-xl text-lg leading-relaxed text-ink-50/80">
-                The clinical reasoning engine you can carry in your scrubs pocket. Built for the
-                cases that arrive at 2 AM with no specialist backup.
+                Evidence-based medicine, engineered for the edge. Grounded in the drugs
+                you actually carry, backed by the clinical guideline behind every call,
+                saved as a defensible record for every case.
               </p>
               <div className="mt-10 flex flex-col gap-3 sm:flex-row">
                 <a

@@ -164,14 +164,17 @@ export default function CargoSolutions() {
               Powered by SeaScope CDS — the trademark engine.
             </h2>
             <p className="mt-6 text-base text-ink-50/70">
-              SeaScope Cargo Solutions runs on SeaScope CDS, the clinical reasoning engine
-              architected under the FDA §520(o)(1)(E) Clinical Decision Support exemption.
+              SeaScope Cargo Solutions runs on SeaScope CDS — evidence-based medicine
+              engineered for the edge. Every recommendation is grounded in the vessel's
+              actual formulary, traceable to the clinical guideline behind it, and saved
+              as a defensible case record. Architected under the FDA §520(o)(1)(E)
+              Clinical Decision Support exemption.
             </p>
           </div>
           <div className="mx-auto mt-12 grid max-w-5xl grid-cols-2 gap-x-8 gap-y-8 text-center md:grid-cols-3 lg:grid-cols-6">
             {[
               { figure: '52+', label: 'Protocols' },
-              { figure: '222+', label: 'Drug rules' },
+              { figure: '222+', label: 'Clinical guidelines' },
               { figure: '13', label: 'Guardrails' },
               { figure: '0', label: 'Critical failures' },
               { figure: '1,899+', label: 'Encounters' },

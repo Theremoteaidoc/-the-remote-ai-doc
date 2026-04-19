@@ -117,15 +117,16 @@ export default function Home() {
               <em className="not-italic">An AI second opinion that knows what's in your medicine chest.</em>
             </h3>
             <p className="mt-5 text-base leading-relaxed text-ink-50/70">
-              Enter the case, get an evidence-cited treatment plan in seconds — using only the
-              drugs and equipment you actually have onboard. Thirteen safety checks run before you
-              see the answer. Every case becomes a PDF you can defend.
+              Evidence-based medicine, engineered for the edge. Every recommendation is
+              grounded in the drugs and equipment you actually have onboard, traceable to
+              the clinical guideline it came from, and saved as a defensible case record.
             </p>
             <ul className="mt-6 space-y-3">
               {[
-                "Only suggests drugs you actually carry — no 'we don't have that'",
+                "Only suggests drugs you actually carry — grounded in your ship's formulary",
+                'Every recommendation cites the guideline behind it — AHA, ACEP, IDSA, WHO, and more',
                 '13 safety checks — interactions, contraindications, dosing — before you see the answer',
-                'One-click PDF of every case for your records',
+                'One-click defensible PDF for every case — inspector-ready, medico-legal-ready',
               ].map((item, i) => (
                 <li key={i} className="flex items-start gap-3 text-sm text-ink-50/85">
                   <Check className="mt-0.5 h-4 w-4 flex-shrink-0 text-sea-500" />
@@ -145,6 +146,53 @@ export default function Home() {
             <p className="mt-3 text-xs text-ink-50/50">
               14 days free. No credit card. Cancel anytime.
             </p>
+          </div>
+        </div>
+      </section>
+
+      {/* ─────────────── THREE PILLARS — EBM POSITIONING ─────────────── */}
+      <section className="border-t border-ink-700/40 py-20 sm:py-24">
+        <div className="mx-auto max-w-5xl px-6 lg:px-8">
+          <div className="mx-auto max-w-3xl text-center">
+            <div className="eyebrow mb-4">HOW WE THINK</div>
+            <h2 className="font-display text-3xl font-normal leading-tight text-ink-50 sm:text-4xl">
+              Evidence-based medicine, engineered for the edge.
+            </h2>
+            <p className="mt-6 text-base leading-relaxed text-ink-50/70">
+              Every SeaScope recommendation stands on three pillars — so when a port-state
+              inspector, a medico-legal review, or a peer physician asks <em>why</em>, the
+              answer is already on the page.
+            </p>
+          </div>
+          <div className="mx-auto mt-14 grid max-w-5xl gap-6 md:grid-cols-3">
+            {[
+              {
+                eyebrow: 'GROUNDED',
+                title: 'Only recommends what you actually carry.',
+                body: 'The engine reads your ship\'s medicine chest before it thinks. No recommendation ever lists a drug you don\'t have — no workaround, no "if only."',
+              },
+              {
+                eyebrow: 'GUIDELINE-BACKED',
+                title: 'Every answer cites the guideline behind it.',
+                body: 'AHA, ACEP, IDSA, WHO, SSC, GINA, AGS Beers, and more. Inline citations on every medication, dose, and decision — traceable to the authority.',
+              },
+              {
+                eyebrow: 'DEFENSIBLE',
+                title: 'Built for the record, not just the moment.',
+                body: 'Full audit trail per case. One-click PDF with reasoning, sources, and timestamps. Inspector-ready, peer-review-ready, medico-legal-ready.',
+              },
+            ].map((pillar) => (
+              <div
+                key={pillar.eyebrow}
+                className="rounded-2xl border border-sea-500/30 bg-ink-800/30 p-6"
+              >
+                <div className="eyebrow mb-3 text-sea-300">{pillar.eyebrow}</div>
+                <h3 className="font-display text-xl font-medium leading-snug text-ink-50">
+                  {pillar.title}
+                </h3>
+                <p className="mt-3 text-sm leading-relaxed text-ink-50/70">{pillar.body}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -170,7 +218,7 @@ export default function Home() {
           <div className="mx-auto mt-16 grid max-w-5xl grid-cols-2 gap-x-8 gap-y-12 text-center md:grid-cols-3 lg:grid-cols-6">
             {[
               { value: 52,   suffix: '+', label: 'Clinical protocols' },
-              { value: 222,  suffix: '+', label: 'Drug-guidance rules' },
+              { value: 222,  suffix: '+', label: 'Clinical guidelines' },
               { value: 13,   suffix: '',  label: 'Safety guardrails' },
               { value: 0,    suffix: '',  label: 'Critical safety failures' },
               { value: 1899, suffix: '+', label: 'Validated encounters' },
