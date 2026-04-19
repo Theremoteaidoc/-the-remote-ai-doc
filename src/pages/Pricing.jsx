@@ -1,7 +1,8 @@
 import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { ArrowRight, Check } from 'lucide-react';
-import StripeBuyButton from '../components/StripeBuyButton';
+
+const STRIPE_CDS_CHECKOUT = 'https://buy.stripe.com/5kQ00i6YjgeH7Zt9lN2ZO00';
 
 /**
  * /pricing — side-by-side. Asymmetric pricing display.
@@ -45,7 +46,7 @@ export default function Pricing() {
             <div className="mt-6 font-display text-5xl font-medium text-sea-300">$29.99</div>
             <div className="text-sm text-ink-50/60">per month · cancel anytime</div>
             <div className="mt-2 inline-block rounded-md bg-sea-500/10 px-2 py-0.5 text-xs text-sea-300">
-              14-day free trial · card required, no charge until day 15
+              14-day free trial · no credit card
             </div>
 
             <ul className="mt-8 space-y-3 text-sm">
@@ -66,7 +67,15 @@ export default function Pricing() {
               ))}
             </ul>
 
-            <StripeBuyButton className="mt-10 flex justify-center" />
+            <a
+              href={STRIPE_CDS_CHECKOUT}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-primary mt-10 w-full"
+            >
+              Start Free Trial
+              <ArrowRight className="h-4 w-4" />
+            </a>
           </div>
 
           {/* SeaScope Cargo Solutions — gated, consultative */}
