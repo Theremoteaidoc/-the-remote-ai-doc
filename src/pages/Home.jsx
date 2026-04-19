@@ -169,12 +169,12 @@ export default function Home() {
           </div>
           <div className="mx-auto mt-16 grid max-w-5xl grid-cols-2 gap-x-8 gap-y-12 text-center md:grid-cols-3 lg:grid-cols-6">
             {[
-              { value: 52,   suffix: '',  label: 'Clinical protocols' },
-              { value: 222,  suffix: '',  label: 'Drug-guidance rules' },
+              { value: 52,   suffix: '+', label: 'Clinical protocols' },
+              { value: 222,  suffix: '+', label: 'Drug-guidance rules' },
               { value: 13,   suffix: '',  label: 'Safety guardrails' },
               { value: 0,    suffix: '',  label: 'Critical safety failures' },
               { value: 1899, suffix: '+', label: 'Validated encounters' },
-              { value: 4,    suffix: '',  label: 'Languages' },
+              { value: 4,    suffix: '+', label: 'Languages' },
             ].map((stat) => (
               <div key={stat.label}>
                 <div className="font-display text-4xl font-medium text-sea-300 sm:text-5xl tabular-nums">
@@ -186,6 +186,9 @@ export default function Home() {
               </div>
             ))}
           </div>
+          <p className="mt-12 text-center text-xs uppercase tracking-eyebrow text-ink-50/50">
+            Expanding every release — 2026 Q2 snapshot, numbers grow monthly
+          </p>
         </div>
       </section>
 

@@ -704,10 +704,10 @@ function SeaScopeContent() {
 
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
               {[
-                { label: 'Clinical Protocols', value: '52', note: 'Expanded from 20 (+160%)' },
-                { label: 'Vessels Tracked', value: '78', note: '13 cruise lines, AIS real-time' },
-                { label: 'Medical Ports', value: '171', note: 'Global coverage incl. polar regions' },
-                { label: 'Safety Guardrails', value: '7', note: 'Layered checks before recommendation' },
+                { label: 'Clinical Protocols', value: '52+', note: 'Expanded from 20 · growing every release' },
+                { label: 'Vessels Tracked', value: '78+', note: '13 cruise lines, AIS real-time' },
+                { label: 'Medical Ports', value: '171+', note: 'Global coverage incl. polar regions' },
+                { label: 'Safety Guardrails', value: '13', note: 'Deterministic checks before recommendation' },
                 { label: 'Care Domains', value: '5+', note: 'Sepsis, cardiac, respiratory, neuro, endocrine' },
                 { label: 'Critical Safety Failures', value: '0', note: 'Production-readiness milestone' },
               ].map((item) => (

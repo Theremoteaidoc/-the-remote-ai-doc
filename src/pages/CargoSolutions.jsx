@@ -170,12 +170,12 @@ export default function CargoSolutions() {
           </div>
           <div className="mx-auto mt-12 grid max-w-5xl grid-cols-2 gap-x-8 gap-y-8 text-center md:grid-cols-3 lg:grid-cols-6">
             {[
-              { figure: '52', label: 'Protocols' },
-              { figure: '222', label: 'Drug rules' },
+              { figure: '52+', label: 'Protocols' },
+              { figure: '222+', label: 'Drug rules' },
               { figure: '13', label: 'Guardrails' },
               { figure: '0', label: 'Critical failures' },
               { figure: '1,899+', label: 'Encounters' },
-              { figure: '4', label: 'Languages' },
+              { figure: '4+', label: 'Languages' },
             ].map((stat) => (
               <div key={stat.label}>
                 <div className="font-display text-3xl font-medium text-sea-300">{stat.figure}</div>
@@ -183,7 +183,10 @@ export default function CargoSolutions() {
               </div>
             ))}
           </div>
-          <div className="mt-10 text-center">
+          <p className="mt-10 text-center text-xs uppercase tracking-eyebrow text-ink-50/50">
+            Expanding every release — 2026 Q2 snapshot, numbers grow monthly
+          </p>
+          <div className="mt-6 text-center">
             <Link to="/evidence" className="text-sm text-sea-300 underline">
               See the full evidence and validation record →
             </Link>
