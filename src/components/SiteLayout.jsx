@@ -81,10 +81,15 @@ export default function SiteLayout({ children }) {
             >
               Sign in
             </a>
-            <Link to="/seascope-cds" className="btn-primary text-sm">
+            <a
+              href="https://buy.stripe.com/5kQ00i6YjgeH7Zt9lN2ZO00"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-primary text-sm"
+            >
               Start Free Trial
               <ArrowRight className="h-4 w-4" />
-            </Link>
+            </a>
           </div>
 
           {/* Mobile menu button */}
@@ -115,7 +120,14 @@ export default function SiteLayout({ children }) {
               <Link to="/about" className="block py-3 text-ink-50/90">About</Link>
               <Link to="/blog" className="block py-3 text-ink-50/90">Blog</Link>
               <a href="https://app.seascope.tech" className="block py-3 text-ink-50/90">Sign in</a>
-              <Link to="/seascope-cds" className="btn-primary mt-3 w-full">Start Free Trial</Link>
+              <a
+                href="https://buy.stripe.com/5kQ00i6YjgeH7Zt9lN2ZO00"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-primary mt-3 w-full"
+              >
+                Start Free Trial
+              </a>
             </div>
           </div>
         )}
