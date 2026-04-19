@@ -40,8 +40,11 @@ export default function CargoSolutions() {
                   Book a Demo
                   <ArrowRight className="h-4 w-4" />
                 </a>
-                <a href="mailto:javier@theremoteaidoc.com" className="btn-secondary">
-                  Talk to Javier directly
+                <a
+                  href="mailto:hello@seascope.tech?subject=Cargo%20Solutions%20Sales%20Inquiry"
+                  className="btn-secondary"
+                >
+                  Contact Sales
                 </a>
               </div>
             </div>
@@ -232,10 +235,10 @@ export default function CargoSolutions() {
               <ArrowRight className="h-4 w-4" />
             </a>
             <a
-              href="mailto:javier@theremoteaidoc.com"
+              href="mailto:hello@seascope.tech?subject=Cargo%20Solutions%20Sales%20Inquiry"
               className="text-sm text-ink-900 underline"
             >
-              Or email Javier directly →
+              Or contact sales directly →
             </a>
           </div>
         </div>
