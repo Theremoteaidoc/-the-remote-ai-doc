@@ -1,6 +1,8 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { ArrowRight, Check } from 'lucide-react';
+import BookDemoModal from '../components/BookDemoModal';
 
 const STRIPE_CDS_CHECKOUT = 'https://buy.stripe.com/5kQ00i6YjgeH7Zt9lN2ZO00';
 
@@ -10,8 +12,10 @@ const STRIPE_CDS_CHECKOUT = 'https://buy.stripe.com/5kQ00i6YjgeH7Zt9lN2ZO00';
  * GATED per IA amendment 2: Cargo column never shows physician-seat / volume tiers / pilot rate.
  */
 export default function Pricing() {
+  const [demoOpen, setDemoOpen] = useState(false);
   return (
     <>
+      <BookDemoModal open={demoOpen} onClose={() => setDemoOpen(false)} source="pricing" />
       <Helmet>
         <title>Pricing — SeaScope CDS & SeaScope Cargo Solutions</title>
         <meta
@@ -108,10 +112,10 @@ export default function Pricing() {
               ))}
             </ul>
 
-            <Link to="/cargo-solutions#demo" className="btn-secondary mt-10 w-full">
+            <button type="button" onClick={() => setDemoOpen(true)} className="btn-secondary mt-10 w-full">
               Book a Demo
               <ArrowRight className="h-4 w-4" />
-            </Link>
+            </button>
           </div>
         </div>
       </section>
@@ -207,13 +211,14 @@ export default function Pricing() {
               Start Free — Solo physician
               <ArrowRight className="h-4 w-4" />
             </Link>
-            <Link
-              to="/cargo-solutions#demo"
+            <button
+              type="button"
+              onClick={() => setDemoOpen(true)}
               className="inline-flex items-center justify-center gap-2 rounded-lg border border-ink-900 px-6 py-3 text-sm font-medium text-ink-900 transition hover:bg-ink-900/10"
             >
               Book a Demo — Fleet operator
               <ArrowRight className="h-4 w-4" />
-            </Link>
+            </button>
           </div>
           <p className="mt-6 text-sm text-ink-900/70">
             Not sure which fits? Email{' '}

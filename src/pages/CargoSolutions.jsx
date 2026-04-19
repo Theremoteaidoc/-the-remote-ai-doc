@@ -1,6 +1,8 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { ArrowRight, Check } from 'lucide-react';
+import BookDemoModal from '../components/BookDemoModal';
 
 /**
  * /cargo-solutions — operator product page.
@@ -9,8 +11,11 @@ import { ArrowRight, Check } from 'lucide-react';
  * Pricing: FULLY GATED — no public number. Quote shared on the 30-minute call.
  */
 export default function CargoSolutions() {
+  const [demoOpen, setDemoOpen] = useState(false);
+  const openDemo = () => setDemoOpen(true);
   return (
     <>
+      <BookDemoModal open={demoOpen} onClose={() => setDemoOpen(false)} source="cargo-solutions" />
       <Helmet>
         <title>SeaScope Cargo Solutions — Officer triage. Doctor decision. One audited case.</title>
         <meta
@@ -36,10 +41,10 @@ export default function CargoSolutions() {
                 MLC-grade documentation built in.
               </p>
               <div className="mt-10 flex flex-col gap-3 sm:flex-row">
-                <a href="#demo" className="btn-primary">
+                <button type="button" onClick={openDemo} className="btn-primary">
                   Book a Demo
                   <ArrowRight className="h-4 w-4" />
-                </a>
+                </button>
                 <a
                   href="mailto:hello@seascope.tech?subject=Cargo%20Solutions%20Sales%20Inquiry"
                   className="btn-secondary"
@@ -144,10 +149,10 @@ export default function CargoSolutions() {
             type, and integration scope. We walk you through the full structure — including pilot
             conversion economics — in a 30-minute consultative call.
           </p>
-          <a href="#demo" className="btn-primary mt-10">
+          <button type="button" onClick={openDemo} className="btn-primary mt-10">
             Book a Demo
             <ArrowRight className="h-4 w-4" />
-          </a>
+          </button>
           <p className="mt-6 text-xs text-ink-50/50">
             Pilot programs available for fleets evaluating SeaScope before a multi-year deployment.
             100% of pilot fees credit against Year 1 on conversion.
@@ -233,13 +238,14 @@ export default function CargoSolutions() {
             and the pilot economics tuned to your fleet size.
           </p>
           <div className="mt-10 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
-            <a
-              href="mailto:hello@seascope.tech?subject=Cargo%20Solutions%20Demo%20Request"
+            <button
+              type="button"
+              onClick={openDemo}
               className="inline-flex items-center justify-center gap-2 rounded-lg bg-ink-900 px-8 py-4 text-base font-medium text-ink-50 transition hover:bg-ink-800"
             >
               Book a Demo
               <ArrowRight className="h-4 w-4" />
-            </a>
+            </button>
             <a
               href="mailto:hello@seascope.tech?subject=Cargo%20Solutions%20Sales%20Inquiry"
               className="text-sm text-ink-900 underline"

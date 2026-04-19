@@ -1,7 +1,9 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { ArrowRight, Check } from 'lucide-react';
 import CountUp from '../components/CountUp';
+import BookDemoModal from '../components/BookDemoModal';
 
 /**
  * SeaScope family home — replaces the prior Javier personal landing.
@@ -10,8 +12,10 @@ import CountUp from '../components/CountUp';
  */
 
 export default function Home() {
+  const [demoOpen, setDemoOpen] = useState(false);
   return (
     <>
+      <BookDemoModal open={demoOpen} onClose={() => setDemoOpen(false)} source="home/fleet-operators-card" />
       <Helmet>
         <title>SeaScope — Clinical care for places medicine wasn't built for.</title>
         <meta
@@ -98,13 +102,14 @@ export default function Home() {
               ))}
             </ul>
             <div className="mt-6 flex-1" />
-            <Link
-              to="/cargo-solutions"
+            <button
+              type="button"
+              onClick={() => setDemoOpen(true)}
               className="mt-8 inline-flex w-full items-center justify-center gap-2 rounded-lg border border-sea-500 px-6 py-3 text-sm font-medium text-sea-300 transition hover:bg-sea-500/10"
             >
               Book a Demo
               <ArrowRight className="h-4 w-4" />
-            </Link>
+            </button>
             <p className="mt-3 text-xs text-ink-50/50">
               For shipping, cruise, and offshore operators. Pricing and pilot terms in a 30-minute call.
             </p>

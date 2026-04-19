@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { ScrollReveal } from '../components/ScrollReveal';
 import { SeaScopeNav } from '../components/SeaScopeNav';
+import BookDemoModal from '../components/BookDemoModal';
 import {
   Shield,
   Activity,
@@ -82,8 +83,11 @@ function StatCounter({ value, suffix = '', label, icon: Icon }) {
 }
 
 function SeaScopeContent() {
+  const [demoOpen, setDemoOpen] = useState(false);
+  const openDemo = () => setDemoOpen(true);
   return (
     <>
+      <BookDemoModal open={demoOpen} onClose={() => setDemoOpen(false)} source="seascope-product" />
       <Helmet>
         <title>SeaScope CDS - Clinical Decision Support for Resource-Constrained Medicine</title>
         <meta name="description" content="AI-powered clinical decision support purpose-built for maritime and resource-constrained medicine environments." />
@@ -197,7 +201,7 @@ function SeaScopeContent() {
                   <ExternalLink className="w-5 h-5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                 </a>
                 <button
-                  onClick={() => window.open('https://calendar.app.google/wp1bE9Q9yo3UKB1x7', '_blank')}
+                  onClick={openDemo}
                   className="group inline-flex items-center justify-center space-x-2 px-8 py-4 border-2 border-white/20 text-white rounded-xl font-semibold text-lg hover:bg-white/5 hover:border-white/40 transition-all duration-300"
                 >
                   <Calendar className="w-5 h-5" />
@@ -978,7 +982,7 @@ function SeaScopeContent() {
                 <span>javier@theremoteaidoc.com</span>
               </a>
               <button
-                onClick={() => window.open('https://calendar.app.google/wp1bE9Q9yo3UKB1x7', '_blank')}
+                onClick={openDemo}
                 className="px-8 py-4 border-2 border-white/40 text-white rounded-lg hover:bg-white/10 transition-all duration-300 font-semibold text-lg flex items-center justify-center space-x-2 group"
               >
                 <Calendar className="w-5 h-5" />
