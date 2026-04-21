@@ -14,8 +14,21 @@ export default function SiteLayout({ children }) {
   useEffect(() => {
     setMobileMenuOpen(false);
     setProductsMenuOpen(false);
-    window.scrollTo(0, 0);
-  }, [location.pathname]);
+    // Honor anchor links (e.g. /seascope-cds#testimonials) on nav.
+    // When no hash, default scroll-to-top. When hash is present, let
+    // the browser land on the target — tiny delay gives React time
+    // to render the destination section before we scroll.
+    if (location.hash) {
+      const id = location.hash.slice(1);
+      setTimeout(() => {
+        const el = document.getElementById(id);
+        if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        else window.scrollTo(0, 0);
+      }, 50);
+    } else {
+      window.scrollTo(0, 0);
+    }
+  }, [location.pathname, location.hash]);
 
   return (
     <div className="min-h-screen bg-ink-900 text-ink-50 antialiased">
@@ -64,6 +77,9 @@ export default function SiteLayout({ children }) {
             </Link>
             <Link to="/evidence" className="text-sm text-ink-50/80 transition hover:text-sea-300">
               Evidence
+            </Link>
+            <Link to="/seascope-cds#testimonials" className="text-sm text-ink-50/80 transition hover:text-sea-300">
+              Testimonials
             </Link>
             <Link to="/about" className="text-sm text-ink-50/80 transition hover:text-sea-300">
               About
@@ -117,6 +133,7 @@ export default function SiteLayout({ children }) {
               </div>
               <Link to="/pricing" className="block py-3 text-ink-50/90">Pricing</Link>
               <Link to="/evidence" className="block py-3 text-ink-50/90">Evidence</Link>
+              <Link to="/seascope-cds#testimonials" className="block py-3 text-ink-50/90">Testimonials</Link>
               <Link to="/about" className="block py-3 text-ink-50/90">About</Link>
               <Link to="/blog" className="block py-3 text-ink-50/90">Blog</Link>
               <a href="https://app.seascope.tech" className="block py-3 text-ink-50/90">Sign in</a>
