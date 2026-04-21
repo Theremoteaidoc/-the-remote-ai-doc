@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { ArrowRight, Check } from 'lucide-react';
+import Testimonials from '../components/Testimonials';
 
 const STRIPE_CDS_CHECKOUT = 'https://buy.stripe.com/5kQ00i6YjgeH7Zt9lN2ZO00';
 
@@ -195,6 +196,9 @@ export default function SeaScopeCDS() {
           </Link>
         </div>
       </section>
+
+      {/* ─────────────── PEER TESTIMONIALS ─────────────── */}
+      <Testimonials />
 
       {/* ─────────────── FINAL CTA ─────────────── */}
       <section className="bg-sea-gradient py-20 sm:py-28">
