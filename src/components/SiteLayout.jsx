@@ -93,6 +93,8 @@ export default function SiteLayout({ children }) {
           <div className="hidden items-center gap-4 md:flex">
             <a
               href="https://app.seascope.tech"
+              target="_blank"
+              rel="noopener noreferrer"
               className="text-sm text-ink-50/80 transition hover:text-sea-300"
             >
               Sign in
@@ -136,7 +138,14 @@ export default function SiteLayout({ children }) {
               <Link to="/seascope-cds#testimonials" className="block py-3 text-ink-50/90">Testimonials</Link>
               <Link to="/about" className="block py-3 text-ink-50/90">About</Link>
               <Link to="/blog" className="block py-3 text-ink-50/90">Blog</Link>
-              <a href="https://app.seascope.tech" className="block py-3 text-ink-50/90">Sign in</a>
+              <a
+                href="https://app.seascope.tech"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block py-3 text-ink-50/90"
+              >
+                Sign in
+              </a>
               <a
                 href="https://buy.stripe.com/5kQ00i6YjgeH7Zt9lN2ZO00"
                 target="_blank"
