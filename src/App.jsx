@@ -9,6 +9,7 @@ import Pricing from './pages/Pricing';
 import About from './pages/About';
 import Press from './pages/Press';
 import Evidence from './pages/Evidence';
+import TrialStarted from './pages/TrialStarted';
 
 // Existing pages preserved during migration
 import Blog from './pages/Blog';
@@ -34,6 +35,7 @@ export default function App() {
         <Route path="/press" element={wrap(Press)} />
         <Route path="/blog" element={wrap(Blog)} />
         <Route path="/blog/:slug" element={wrap(BlogPost)} />
+        <Route path="/trial-started" element={wrap(TrialStarted)} />
 
         {/* 301-style client-side redirects per IA migration table */}
         {/* AutoMed kill */}
