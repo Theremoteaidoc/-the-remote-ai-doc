@@ -188,13 +188,14 @@ function SeaScopeContent() {
             <ScrollReveal delay={400}>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <a
-                  href="https://app.seascope.tech"
+                  href="https://buy.stripe.com/5kQ00i6YjgeH7Zt9lN2ZO00"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="group inline-flex items-center justify-center space-x-2 px-8 py-4 bg-teal-500 hover:bg-teal-400 text-slate-900 rounded-xl font-semibold text-lg transition-all duration-300 shadow-lg shadow-teal-500/25 hover:shadow-teal-400/40 hover:scale-105"
                 >
-                  <span>Launch App</span>
-                  <ExternalLink className="w-5 h-5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                  <Zap className="w-5 h-5" />
+                  <span>Start 14-day free trial</span>
+                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                 </a>
                 <button
                   onClick={() => window.open('https://calendar.app.google/wp1bE9Q9yo3UKB1x7', '_blank')}
@@ -204,6 +205,19 @@ function SeaScopeContent() {
                   <span>Book a Demo</span>
                   <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                 </button>
+              </div>
+              <div className="mt-4 flex flex-col sm:flex-row items-center justify-center gap-3 text-sm text-white/60">
+                <span>No credit card required to start · Cancel anytime</span>
+                <span className="hidden sm:inline text-white/30">·</span>
+                <a
+                  href="https://app.seascope.tech"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1 text-teal-300 hover:text-teal-200 transition-colors"
+                >
+                  Already have an account? Sign in
+                  <ExternalLink className="w-3.5 h-3.5" />
+                </a>
               </div>
             </ScrollReveal>
           </div>
@@ -964,18 +978,21 @@ function SeaScopeContent() {
           
           <ScrollReveal delay={200}>
             <p className="text-xl text-teal-100 mb-8 max-w-3xl mx-auto">
-              Connect with our team to learn more about SeaScope CDS implementation, pilot programs, or partnership opportunities.
+              Try SeaScope CDS free for 14 days, or talk to our team about pilot programs and partnerships.
             </p>
           </ScrollReveal>
-          
+
           <ScrollReveal delay={300}>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a 
-                href="mailto:javier@theremoteaidoc.com"
+              <a
+                href="https://buy.stripe.com/5kQ00i6YjgeH7Zt9lN2ZO00"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="px-8 py-4 bg-white text-teal-700 rounded-lg hover:bg-teal-50 transition-all duration-300 font-semibold text-lg flex items-center justify-center space-x-2 group"
               >
-                <Mail className="w-5 h-5" />
-                <span>javier@theremoteaidoc.com</span>
+                <Zap className="w-5 h-5" />
+                <span>Start 14-day free trial</span>
+                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
               </a>
               <button
                 onClick={() => window.open('https://calendar.app.google/wp1bE9Q9yo3UKB1x7', '_blank')}
@@ -986,6 +1003,9 @@ function SeaScopeContent() {
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
               </button>
             </div>
+            <p className="mt-5 text-sm text-teal-200/70">
+              Prefer email? <a href="mailto:javier@theremoteaidoc.com" className="text-white underline underline-offset-2 hover:text-teal-200">javier@theremoteaidoc.com</a>
+            </p>
           </ScrollReveal>
         </div>
       </section>
