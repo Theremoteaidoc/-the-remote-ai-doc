@@ -8,6 +8,7 @@ import BlogPost from './pages/BlogPost';
 import Services from './pages/Services';
 import Demo from './pages/Demo';
 import SeaScope from './pages/SeaScope';
+import TrialStarted from './pages/TrialStarted';
 import SeaScopeSafety from './pages/SeaScopeSafety';
 import SeaScopePilot from './pages/SeaScopePilot';
 import SeaScopeEvidence from './pages/SeaScopeEvidence';
@@ -972,6 +973,7 @@ export default function App() {
           </Layout>
         } />
         <Route path="/seascope" element={<SeaScope />} />
+        <Route path="/trial-started" element={<TrialStarted />} />
       </Routes>
     </HelmetProvider>
   );
