@@ -90,7 +90,16 @@ export default function SiteLayout({ children }) {
           </div>
 
           {/* Right CTAs */}
-          <div className="hidden items-center gap-4 md:flex">
+          <div className="hidden items-center gap-3 md:flex">
+            <a
+              href="https://app.seascope.tech/seascope-demo"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 rounded-md border border-sea-500/40 px-3.5 py-2 text-sm font-medium text-sea-200 transition-colors hover:border-sea-400 hover:bg-sea-500/10 hover:text-sea-100"
+            >
+              Try Demo
+              <ArrowRight className="h-3.5 w-3.5" />
+            </a>
             <a
               href="https://app.seascope.tech"
               target="_blank"
@@ -124,6 +133,17 @@ export default function SiteLayout({ children }) {
         {mobileMenuOpen && (
           <div className="border-t border-ink-700/60 bg-ink-900 md:hidden">
             <div className="space-y-1 px-6 py-4">
+              {/* Demo CTA pinned above everything else — phone visitors
+                  should see "try it" before any product browsing. */}
+              <a
+                href="https://app.seascope.tech/seascope-demo"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mb-3 flex items-center justify-between rounded-md border border-sea-500/40 bg-sea-500/5 px-4 py-3 text-sm font-medium text-sea-200"
+              >
+                Try Demo · free, no signup
+                <ArrowRight className="h-4 w-4" />
+              </a>
               <div className="border-b border-ink-700/40 pb-3">
                 <div className="eyebrow mb-2">Products</div>
                 <Link to="/cargo-solutions" className="block py-2 text-ink-50/90">
