@@ -301,7 +301,7 @@ export default function SeaScopeCDS() {
             </div>
           </div>
           <p className="mx-auto mt-8 max-w-2xl text-center text-sm text-ink-50/60">
-            Patient transferred stable via boat-to-boat. Engine cost on the case: $0.06.
+            Patient transferred stable via boat-to-boat.
           </p>
         </div>
       </section>
