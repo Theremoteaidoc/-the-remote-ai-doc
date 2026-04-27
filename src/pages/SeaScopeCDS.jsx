@@ -63,7 +63,7 @@ export default function SeaScopeCDS() {
                 </a>
               </p>
               <p className="mt-6 text-xs text-ink-50/50">
-                Built by ship physicians, for ship physicians. ABMM-aligned. HIPAA-shaped.
+                Built by ship physicians, for ship physicians. ABMM-aligned. GDPR-compliant. BAA available.
               </p>
             </div>
 
@@ -129,7 +129,7 @@ export default function SeaScopeCDS() {
           </div>
           <div className="mx-auto mt-16 grid max-w-6xl gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {[
-              { title: 'Agentic clinical reasoning', body: 'Multi-step pipeline: triage → reason → critique → verify. Not a single LLM call. The reasoning shows its work.' },
+              { title: 'Agentic clinical reasoning', body: 'Multi-stage pipeline with deterministic critique gates. Not a single LLM call. Each step is auditable.' },
               { title: '13 deterministic safety guardrails', body: 'Allergy cross-check, drug interactions, dose ceilings, formulary verification, indication-efficacy, renal dosing, pregnancy safety. All rule-based, none AI-trusted.' },
               { title: 'Formulary lock', body: 'Recommendations constrained to your environment\'s actual drug list. 5 environments built in (cruise ship, expedition, military FOB, 2× rural clinic).' },
               { title: 'Evidence retrieval', body: 'Live citations from PubMed, OpenFDA, RxNorm, DailyMed, ClinicalTrials.gov, FAERS — every recommendation has its receipts.' },
@@ -234,8 +234,8 @@ export default function SeaScopeCDS() {
           <div className="mx-auto grid max-w-5xl gap-5 md:grid-cols-2">
             {[
               {
-                t: 'Vessel-aware formulary',
-                b: 'Recommendations are checked against what is actually onboard. The reasoning engine knows the cruise-ship medical chest at the drug-strength-and-form level, not just the molecule.',
+                t: 'Formulary-locked recommendations',
+                b: 'Every recommendation is checked against what is actually onboard. The reasoning engine knows the cruise-ship medical chest at the drug-strength-and-form level, not just the molecule.',
               },
               {
                 t: 'Maritime evacuation context',
@@ -267,6 +267,41 @@ export default function SeaScopeCDS() {
 
           <p className="mx-auto mt-12 max-w-3xl text-center text-sm text-ink-50/50">
             This is a complement to general medical AI, not a replacement. If you want a polymath assistant, those tools are excellent. If you are the only physician between a patient and the open ocean, SeaScope is built for that hour.
+          </p>
+        </div>
+      </section>
+
+      {/* ─────────────── REAL-CASE PROOF POINT ─────────────── */}
+      {/* The killer credibility moment. Same case lives in the brand guide
+          and the founder pitch. Lands here so the abstract "different from
+          general medical AI" pivots immediately into "and here's a real
+          patient where it mattered." */}
+      <section className="border-y border-ink-700/40 bg-ink-900 py-16 sm:py-20">
+        <div className="mx-auto max-w-4xl px-6 lg:px-8">
+          <div className="eyebrow mb-4 text-center">
+            Real case · Voyager of the Seas, near Brisbane
+          </div>
+          <p className="font-display text-2xl text-ink-50 leading-snug text-center sm:text-3xl">
+            78-year-old male. Rising troponin. Failing kidneys. 1,000 nautical miles from a cardiologist.
+          </p>
+          <div className="mx-auto mt-10 grid max-w-3xl grid-cols-3 gap-6 text-center">
+            <div>
+              <div className="font-display text-4xl font-medium text-sea-300 sm:text-5xl">
+                49<span className="text-2xl text-sea-300/70">s</span>
+              </div>
+              <div className="mt-2 text-xs uppercase tracking-wider text-ink-50/60">to treatment plan</div>
+            </div>
+            <div>
+              <div className="font-display text-4xl font-medium text-sea-300 sm:text-5xl">7</div>
+              <div className="mt-2 text-xs uppercase tracking-wider text-ink-50/60">tools executed</div>
+            </div>
+            <div>
+              <div className="font-display text-4xl font-medium text-sea-300 sm:text-5xl">3</div>
+              <div className="mt-2 text-xs uppercase tracking-wider text-ink-50/60">harmful medications stopped</div>
+            </div>
+          </div>
+          <p className="mx-auto mt-8 max-w-2xl text-center text-sm text-ink-50/60">
+            Patient transferred stable via boat-to-boat. Engine cost on the case: $0.06.
           </p>
         </div>
       </section>
@@ -357,15 +392,26 @@ export default function SeaScopeCDS() {
           <p className="mt-6 text-base text-ink-900/80">
             14 days free. No credit card required. Cancel anytime.
           </p>
-          <a
-            href={STRIPE_CDS_CHECKOUT}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="mt-10 inline-flex items-center justify-center gap-2 rounded-lg bg-ink-900 px-8 py-4 text-base font-medium text-ink-50 transition hover:bg-ink-800"
-          >
-            Start Free Trial
-            <ArrowRight className="h-4 w-4" />
-          </a>
+          <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
+            <a
+              href={STRIPE_CDS_CHECKOUT}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-2 rounded-lg bg-ink-900 px-8 py-4 text-base font-medium text-ink-50 transition hover:bg-ink-800"
+            >
+              Start Free Trial
+              <ArrowRight className="h-4 w-4" />
+            </a>
+            <a
+              href="https://app.seascope.tech/seascope-demo"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-2 rounded-lg border border-ink-900/40 px-8 py-4 text-base font-medium text-ink-900 transition hover:bg-ink-900/10"
+            >
+              Or try the demo first
+              <ArrowRight className="h-4 w-4" />
+            </a>
+          </div>
           <p className="mt-6 text-sm text-ink-900/70">
             Already have an account?{' '}
             <a href="https://app.seascope.tech" className="underline">Sign in →</a>
