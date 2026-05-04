@@ -21,7 +21,7 @@ const TESTIMONIALS = [
     full:
       'SeaScope CDS has really impressed me with the accuracy and clinical relevance of its recommendations, even in complex cases. The built-in safety checks and guardrails feel robust and practical.',
     author: 'Dr. Cameron',
-    affiliation: 'Physician · Royal Caribbean Group',
+    affiliation: 'Maritime Physician',
   },
   {
     pull:
@@ -29,7 +29,7 @@ const TESTIMONIALS = [
     full:
       'SeaScope CDS provides valuable clinical support by assisting in diagnostic assessment and treatment guidance, particularly in remote or resource-limited settings. I recommend the use of this AI diagnostic and clinical decision-support tool.',
     author: 'Dr. Jaramillo',
-    affiliation: 'Physician · Royal Caribbean Group',
+    affiliation: 'Maritime Physician',
   },
   {
     pull:
@@ -37,7 +37,7 @@ const TESTIMONIALS = [
     full:
       'SeaScope is a helpful AI tool in critical scenarios. It allows the physician to analyse the situation and take the best decision for the patient — interventions come with explanations of the reasoning behind every recommendation.',
     author: 'Dra. Arrieta',
-    affiliation: 'Physician · Royal Caribbean Group',
+    affiliation: 'Maritime Physician',
   },
 ];
 
@@ -55,7 +55,7 @@ export default function Testimonials() {
             <span className="accent-sea">physicians.</span>
           </h2>
           <p className="mt-6 text-base text-ink-50/70">
-            Royal Caribbean Group physicians evaluating SeaScope CDS in
+            Practicing maritime physicians evaluating SeaScope CDS in
             live clinical settings.
           </p>
         </div>
@@ -90,9 +90,11 @@ export default function Testimonials() {
         </div>
 
         <p className="mx-auto mt-12 max-w-2xl text-center text-xs leading-relaxed text-ink-50/40">
-          Practicing physicians evaluating SeaScope CDS in live clinical
-          settings at Royal Caribbean Group. Published with consent.
-          Individual experiences may vary.
+          Practicing maritime physicians evaluating SeaScope CDS in live
+          clinical settings. Published with each individual physician&rsquo;s
+          consent. Institutional affiliations are listed for identification
+          only; no employer or professional organization has endorsed
+          SeaScope. Individual experiences may vary.
         </p>
       </div>
     </section>

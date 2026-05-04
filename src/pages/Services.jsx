@@ -203,7 +203,7 @@ const content = {
         ],
         bestFor: 'Small clinics, solo practitioners',
         cta: 'Get Started',
-        stripeLink: 'https://buy.stripe.com/test_bJe8wOeqL7Ib7ZtbtV2ZO03'
+        stripeLink: 'mailto:contact@seascope.tech?subject=RemoteAid%20Workflow%20Automation%20Inquiry'
       },
       tier2: {
         name: 'Clinical Intelligence',
@@ -222,7 +222,7 @@ const content = {
         ],
         bestFor: 'Multi-provider practices, specialty clinics',
         cta: 'Start Now',
-        stripeLink: 'https://buy.stripe.com/test_8x29AS3M71jNa7B69B2ZO04'
+        stripeLink: 'mailto:contact@seascope.tech?subject=RemoteAid%20Clinical%20Intelligence%20Inquiry'
       },
       tier3: {
         name: 'Enterprise AI',
@@ -241,7 +241,7 @@ const content = {
         ],
         bestFor: 'Hospital groups, health systems, maritime medical operations',
         cta: 'Get Started',
-        stripeLink: 'https://buy.stripe.com/test_8x2eVcgyTe6z2F9gOf2ZO05'
+        stripeLink: 'mailto:contact@seascope.tech?subject=RemoteAid%20Enterprise%20AI%20Inquiry'
       }
     },
     whyUs: {
@@ -306,7 +306,7 @@ const content = {
       subtitle: 'Everything you need to know about healthcare AI automation',
       questions: [
         {
-          question: 'Is this HIPAA compliant?',
+          question: 'Is this HIPAA-aligned?',
           answer: 'SeaScope is designed to support HIPAA-aligned deployments where applicable. Data handling, retention, and BAA terms are governed by the applicable customer agreement.'
         },
         {

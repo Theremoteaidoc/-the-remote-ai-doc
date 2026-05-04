@@ -17,7 +17,7 @@ export default function SeaScopeCDS() {
         <title>SeaScope CDS — Formulary-aware AI for the doctor on the bridge at 3 AM.</title>
         <meta
           name="description"
-          content="The clinical reasoning engine you can carry in your scrubs pocket. Formulary-locked, evidence-cited, audit-trailed. $29.99/month, 14-day free trial."
+          content="Physician-gated clinical decision support for maritime medicine. Formulary-locked, evidence-cited, audit-trailed. SeaScope drafts and structures recommendations for clinician review; it does not diagnose, prescribe, or replace professional judgment. Currently in physician evaluation."
         />
         <link rel="canonical" href="https://seascope.tech/seascope-cds" />
       </Helmet>
