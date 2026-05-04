@@ -860,8 +860,8 @@ function SeaScopeContent() {
                   <h3 className="text-xl font-bold text-slate-900 mb-4">Safety Commitment</h3>
                   <div className="space-y-3 text-sm text-slate-600">
                     <div className="flex justify-between">
-                      <span>Critical safety failures</span>
-                      <span className="font-semibold text-slate-900">0 in milestone validation</span>
+                      <span>Detected critical failures (across 229+ tests)</span>
+                      <span className="font-semibold text-slate-900">0 detected</span>
                     </div>
                     <div className="flex justify-between">
                       <span>Guardrails before recommendations</span>

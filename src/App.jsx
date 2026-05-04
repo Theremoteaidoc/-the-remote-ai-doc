@@ -10,6 +10,9 @@ import About from './pages/About';
 import Press from './pages/Press';
 import Evidence from './pages/Evidence';
 import TrialStarted from './pages/TrialStarted';
+import Privacy from './pages/Privacy';
+import Terms from './pages/Terms';
+import Security from './pages/Security';
 
 // Existing pages preserved during migration
 import Blog from './pages/Blog';
@@ -33,6 +36,9 @@ export default function App() {
         <Route path="/evidence" element={wrap(Evidence)} />
         <Route path="/about" element={wrap(About)} />
         <Route path="/press" element={wrap(Press)} />
+        <Route path="/privacy" element={wrap(Privacy)} />
+        <Route path="/terms" element={wrap(Terms)} />
+        <Route path="/security" element={wrap(Security)} />
         <Route path="/blog" element={wrap(Blog)} />
         <Route path="/blog/:slug" element={wrap(BlogPost)} />
         <Route path="/trial-started" element={wrap(TrialStarted)} />

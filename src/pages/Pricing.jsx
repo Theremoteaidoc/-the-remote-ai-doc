@@ -4,7 +4,7 @@ import { Helmet } from 'react-helmet-async';
 import { ArrowRight, Check } from 'lucide-react';
 import BookDemoModal from '../components/BookDemoModal';
 
-const STRIPE_CDS_CHECKOUT = 'https://buy.stripe.com/5kQ00i6YjgeH7Zt9lN2ZO00';
+const EARLY_ACCESS_MAILTO = 'mailto:contact@seascope.tech?subject=SeaScope%20Early%20Access%20Request';
 
 /**
  * /pricing — side-by-side. Asymmetric pricing display.
@@ -53,14 +53,17 @@ export default function Pricing() {
               14-day free trial · no credit card
             </div>
 
-            <ul className="mt-8 space-y-3 text-sm">
+            <p className="mt-6 text-xs italic text-ink-50/50">
+              Physician-gated clinical decision support. SeaScope drafts, structures, and documents recommendations for clinician review; it does not diagnose, prescribe, or replace professional judgment.
+            </p>
+            <ul className="mt-6 space-y-3 text-sm">
               {[
                 'Full agentic clinical reasoning engine',
                 'All 5 environments (cruise, expedition, FOB, 2× rural)',
                 '13 deterministic safety guardrails',
                 'Live evidence retrieval (PubMed, OpenFDA, RxNorm, ClinicalTrials.gov)',
                 'Offline PWA — works satellite-down',
-                'Audit trail kept for 7 years',
+                'Audit trail retention configurable; default 7 years where customer agreement requires',
                 'PDF export for every encounter',
                 'Cancel anytime — no annual commitment',
               ].map((item) => (
@@ -72,12 +75,10 @@ export default function Pricing() {
             </ul>
 
             <a
-              href={STRIPE_CDS_CHECKOUT}
-              target="_blank"
-              rel="noopener noreferrer"
+              href={EARLY_ACCESS_MAILTO}
               className="btn-primary mt-10 w-full"
             >
-              Start Free Trial
+              Request Early Access
               <ArrowRight className="h-4 w-4" />
             </a>
           </div>
@@ -99,7 +100,7 @@ export default function Pricing() {
                 'SeaScope Officer Mode — bridge-computer triage app',
                 'SeaScope Hub — shore physician dashboard with case queue',
                 'AI-drafted recommendations constrained to your vessel formularies',
-                'MLC 2026 documentation — auto-generated, inspector-ready PDF',
+                'MLC 2026 documentation — auto-generated structured PDF designed to support maritime medical recordkeeping and inspection workflows',
                 'Fleet-wide map and analytics dashboard',
                 'Per-tenant white-label theming',
                 'Integration support — PEME data, chest inventory, evacuation handoff',

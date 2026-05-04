@@ -1,45 +1,69 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://theremoteaidoc.com/</loc>
-    <lastmod>2026-02-20</lastmod>
+    <loc>https://seascope.tech/</loc>
+    <lastmod>2026-05-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://theremoteaidoc.com/services</loc>
-    <lastmod>2026-02-20</lastmod>
+    <loc>https://seascope.tech/seascope-cds</loc>
+    <lastmod>2026-05-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://seascope.tech/cargo-solutions</loc>
+    <lastmod>2026-05-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://theremoteaidoc.com/servicios</loc>
-    <lastmod>2026-02-20</lastmod>
+    <loc>https://seascope.tech/pricing</loc>
+    <lastmod>2026-05-05</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://theremoteaidoc.com/demo</loc>
-    <lastmod>2026-02-20</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://theremoteaidoc.com/blog</loc>
-    <lastmod>2026-02-20</lastmod>
-    <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://theremoteaidoc.com/blog/ai-chatbots-empathy-meta-analysis</loc>
-    <lastmod>2026-02-16</lastmod>
+    <loc>https://seascope.tech/evidence</loc>
+    <lastmod>2026-05-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://seascope.tech/about</loc>
+    <lastmod>2026-05-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://theremoteaidoc.com/blog/clinical-ai-evaluation-6-platforms</loc>
-    <lastmod>2026-02-12</lastmod>
+    <loc>https://seascope.tech/press</loc>
+    <lastmod>2026-05-05</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://seascope.tech/blog</loc>
+    <lastmod>2026-05-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://seascope.tech/privacy</loc>
+    <lastmod>2026-05-05</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://seascope.tech/terms</loc>
+    <lastmod>2026-05-05</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://seascope.tech/security</loc>
+    <lastmod>2026-05-05</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
   </url>
 </urlset>

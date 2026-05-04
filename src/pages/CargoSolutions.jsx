@@ -123,7 +123,7 @@ export default function CargoSolutions() {
           </div>
           <div className="mx-auto mt-16 grid max-w-5xl gap-6 md:grid-cols-2">
             {[
-              { title: 'MLC 2026 documentation', body: 'Every case auto-meets MLC 2006 documentation requirements. Inspector-ready PDF on demand, per vessel, date-ranged. No after-the-fact reconstruction.' },
+              { title: 'MLC 2026 documentation', body: 'Every case produces a structured PDF designed to support MLC 2006 documentation requirements. Available on demand, per vessel, date-ranged. No after-the-fact reconstruction.' },
               { title: 'Faster decisions, fewer evacuations', body: 'Voice triage averages 25–45 minutes. Structured cases close in 3–12. Faster decisions mean fewer "evacuate to be safe" defaults — and the cases that genuinely need evacuation get there sooner.' },
               { title: 'Lower P&I exposure', body: 'Documented clinical decision trail, citation-backed, physician-signed. The kind of record that reduces malpractice risk and the premium that comes with it.' },
               { title: 'Fleet-wide visibility', body: 'One physician seat can manage 100+ vessels with confidence. The Hub queue surfaces the urgent cases first, the routine ones get the time they deserve, and the medical director sees fleet-wide trends in real time.' },
@@ -182,7 +182,7 @@ export default function CargoSolutions() {
               { figure: '222+', label: 'Clinical guidelines' },
               { figure: '13', label: 'Guardrails' },
               { figure: '0', label: 'Critical failures' },
-              { figure: '1,899+', label: 'Encounters' },
+              { figure: '1,899+', label: 'Evaluation runs' },
               { figure: '4+', label: 'Languages' },
             ].map((stat) => (
               <div key={stat.label}>

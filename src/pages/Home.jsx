@@ -51,6 +51,9 @@ export default function Home() {
               The clinical reasoning engine for medicine practiced at the edge.
               A personal tool for physicians. An operator platform for fleets.
             </p>
+            <p className="mt-3 max-w-2xl text-xs italic text-ink-50/50">
+              Physician-gated clinical decision support. SeaScope drafts, structures, and documents recommendations for clinician review; it does not diagnose, prescribe, or replace professional judgment.
+            </p>
             <div className="mt-10 flex flex-col gap-3 sm:flex-row">
               <Link to="/seascope-cds" className="btn-primary">
                 For Physicians
@@ -86,8 +89,7 @@ export default function Home() {
             <p className="mt-5 text-base leading-relaxed text-ink-50/70">
               When a crew member gets sick or hurt at sea, SeaScope turns the call into a structured
               medical case. Your officer captures it onboard. A shore doctor reviews it with AI
-              support and sends back the treatment plan. You get a signed, inspector-ready record
-              every time — no more paper logs or phone-tag gaps.
+              support and sends back the treatment plan. You get a structured PDF designed to support maritime medical recordkeeping and inspection workflows — no more paper logs or phone-tag gaps.
             </p>
             <ul className="mt-6 space-y-3">
               {[
@@ -131,7 +133,7 @@ export default function Home() {
                 "Only suggests drugs you actually carry — grounded in your ship's formulary",
                 'Every recommendation cites the guideline behind it — AHA, ACEP, IDSA, WHO, and more',
                 '13 safety checks — interactions, contraindications, dosing — before you see the answer',
-                'One-click defensible PDF for every case — inspector-ready, medico-legal-ready',
+                'One-click defensible PDF for every case — structured for medical recordkeeping and review',
               ].map((item, i) => (
                 <li key={i} className="flex items-start gap-3 text-sm text-ink-50/85">
                   <Check className="mt-0.5 h-4 w-4 flex-shrink-0 text-sea-500" />
@@ -184,7 +186,7 @@ export default function Home() {
               {
                 eyebrow: 'DEFENSIBLE',
                 title: 'Built for the record, not just the moment.',
-                body: 'Full audit trail per case. One-click PDF with reasoning, sources, and timestamps. Inspector-ready, peer-review-ready, medico-legal-ready.',
+                body: 'Full audit trail per case. One-click PDF with reasoning, sources, and timestamps. Structured for medical recordkeeping, peer review, and medico-legal review.',
               },
             ].map((pillar) => (
               <div
@@ -225,8 +227,8 @@ export default function Home() {
               { value: 52,   suffix: '+', label: 'Clinical protocols' },
               { value: 222,  suffix: '+', label: 'Clinical guidelines' },
               { value: 13,   suffix: '',  label: 'Safety guardrails' },
-              { value: 0,    suffix: '',  label: 'Critical safety failures' },
-              { value: 1899, suffix: '+', label: 'Validated encounters' },
+              { value: 0,    suffix: '',  label: 'Detected critical failures (across 229+ tests)' },
+              { value: 1899, suffix: '+', label: 'Evaluation runs' },
               { value: 4,    suffix: '+', label: 'Languages' },
             ].map((stat) => (
               <div key={stat.label}>

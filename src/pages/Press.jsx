@@ -36,9 +36,9 @@ export default function Press() {
           <div className="eyebrow mb-4">THE FOUNDER PITCH (COPYABLE)</div>
           <blockquote className="rounded-2xl border border-ink-700 bg-ink-800/40 p-8 font-display text-xl italic leading-relaxed text-ink-50">
             "I'm a ship physician who practices medicine 1,000 miles from shore — no specialists,
-            no imaging, no backup. Two weeks ago I used a clinical AI tool I built on a real
-            patient at sea: 78-year-old, climbing troponin, failing kidneys. It stopped three
-            medications that would have caused harm and recommended evacuation. The tool is
+            no imaging, no backup. In a de-identified maritime case review, SeaScope generated a
+            structured draft plan in 49 seconds. It identified three medications that would have
+            interacted dangerously and triggered a structured evacuation handoff. The tool is
             pre-seed, live, and I think it's a different story than the clinical AI you usually
             cover — would you want it as an exclusive before I go wider?"
           </blockquote>
@@ -78,8 +78,7 @@ export default function Press() {
             ))}
           </div>
           <p className="mt-8 text-xs text-ink-50/40">
-            Case details published with patient consent. Available for press use with attribution
-            to Dr. Javier Rosas, RemoteAid Medical Solutions.
+            In a de-identified maritime case review, SeaScope generated a structured draft plan in 49 seconds. Full details available under NDA after privacy review.
           </p>
         </div>
       </section>
@@ -95,11 +94,9 @@ export default function Press() {
             <div className="text-base leading-relaxed text-ink-50/75">
               <h3 className="mb-4 font-display text-2xl text-ink-50">Short bio (~50 words)</h3>
               <p>
-                Dr. Javier Rosas, MD is a Senior Ship Physician at Royal Caribbean International,
-                Founder & CEO of RemoteAid Medical Solutions, Chair of the AI Committee at the
-                American Board of Maritime Medicine, and author of <em>AI Literacy for Clinicians</em> (2026).
-                He practices emergency medicine 1,000+ miles from the nearest hospital and trains
-                AI systems for four leading AI companies.
+                Dr. Javier Rosas is a maritime physician and founder of RemoteAid Medical Solutions.
+                Institutional affiliations are listed for identification only; no employer or
+                professional organization has endorsed SeaScope.
               </p>
             </div>
           </div>

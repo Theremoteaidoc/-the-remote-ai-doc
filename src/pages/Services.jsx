@@ -237,7 +237,7 @@ const content = {
           'AI-powered clinical knowledge bases',
           'Multi-location workflow orchestration',
           'Dedicated support + monthly strategy calls',
-          'HIPAA compliance consulting & audit'
+          'HIPAA-aligned deployment consulting'
         ],
         bestFor: 'Hospital groups, health systems, maritime medical operations',
         cta: 'Get Started',
@@ -266,7 +266,7 @@ const content = {
         },
         {
           title: 'Security-Obsessed',
-          description: 'HIPAA compliance isn\'t optional — it\'s built into every workflow from day one.',
+          description: 'SeaScope is designed to support HIPAA-aligned deployments where applicable.',
           icon: 'shield'
         }
       ]
@@ -307,7 +307,7 @@ const content = {
       questions: [
         {
           question: 'Is this HIPAA compliant?',
-          answer: 'Absolutely. All workflows are designed with HIPAA compliance as a fundamental requirement. We use encrypted communications, secure data handling, and comprehensive audit trails. Our Enterprise tier includes dedicated HIPAA compliance consulting.'
+          answer: 'SeaScope is designed to support HIPAA-aligned deployments where applicable. Data handling, retention, and BAA terms are governed by the applicable customer agreement.'
         },
         {
           question: 'How long does implementation take?',

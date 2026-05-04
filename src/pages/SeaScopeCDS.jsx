@@ -3,7 +3,7 @@ import { Helmet } from 'react-helmet-async';
 import { ArrowRight, Check, Play } from 'lucide-react';
 import Testimonials from '../components/Testimonials';
 
-const STRIPE_CDS_CHECKOUT = 'https://buy.stripe.com/5kQ00i6YjgeH7Zt9lN2ZO00';
+const EARLY_ACCESS_MAILTO = 'mailto:contact@seascope.tech?subject=SeaScope%20Early%20Access%20Request';
 
 /**
  * /seascope-cds — direct-to-MD product page.
@@ -39,12 +39,12 @@ export default function SeaScopeCDS() {
               </p>
               <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
                 <a
-                  href={STRIPE_CDS_CHECKOUT}
+                  href={EARLY_ACCESS_MAILTO}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="btn-primary"
                 >
-                  Start 14-Day Free Trial — No Credit Card
+                  Request Early Access
                   <ArrowRight className="h-4 w-4" />
                 </a>
                 <a
@@ -127,14 +127,17 @@ export default function SeaScopeCDS() {
               Engineered around the constraints you actually work in.
             </h2>
           </div>
-          <div className="mx-auto mt-16 grid max-w-6xl gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <p className="mx-auto mt-4 max-w-3xl text-center text-xs italic text-ink-50/50">
+            Physician-gated clinical decision support. SeaScope drafts, structures, and documents recommendations for clinician review; it does not diagnose, prescribe, or replace professional judgment.
+          </p>
+          <div className="mx-auto mt-12 grid max-w-6xl gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {[
               { title: 'Agentic clinical reasoning', body: 'Multi-stage pipeline with deterministic critique gates. Not a single LLM call. Each step is auditable.' },
               { title: '13 deterministic safety guardrails', body: 'Allergy cross-check, drug interactions, dose ceilings, formulary verification, indication-efficacy, renal dosing, pregnancy safety. All rule-based, none AI-trusted.' },
               { title: 'Formulary lock', body: 'Recommendations constrained to your environment\'s actual drug list. 5 environments built in (cruise ship, expedition, military FOB, 2× rural clinic).' },
               { title: 'Evidence retrieval', body: 'Live citations from PubMed, OpenFDA, RxNorm, DailyMed, ClinicalTrials.gov, FAERS — every recommendation has its receipts.' },
               { title: 'Offline PWA', body: 'Full formulary, protocols, and reasoning engine cached locally. When the satellite drops, SeaScope keeps working.' },
-              { title: 'Audit trail with PDF export', body: 'Every encounter exports as a single PDF — case data, recommendations, safety checks, your overrides, citations. Inspector-ready, lawyer-ready.' },
+              { title: 'Audit trail with PDF export', body: 'Every encounter exports as a single PDF — case data, recommendations, safety checks, your overrides, citations. Structured for medical recordkeeping and review.' },
             ].map((feat) => (
               <div key={feat.title} className="editorial-card">
                 <h3 className="font-display text-lg font-medium text-ink-50">{feat.title}</h3>
@@ -322,6 +325,9 @@ export default function SeaScopeCDS() {
           <Link to="/about" className="mt-4 inline-block text-sm text-sea-300 underline">
             Read more about Javier →
           </Link>
+          <p className="mt-4 text-xs italic text-ink-50/40">
+            Institutional affiliations are listed for identification only; no employer or professional organization has endorsed SeaScope.
+          </p>
         </div>
       </section>
 
@@ -357,12 +363,12 @@ export default function SeaScopeCDS() {
               ))}
             </ul>
             <a
-              href={STRIPE_CDS_CHECKOUT}
+              href={EARLY_ACCESS_MAILTO}
               target="_blank"
               rel="noopener noreferrer"
               className="btn-primary mt-8 w-full"
             >
-              Start 14-Day Free Trial
+              Request Early Access
               <ArrowRight className="h-4 w-4" />
             </a>
             <p className="mt-3 text-xs text-ink-50/50">No credit card required. Cancel anytime.</p>
@@ -394,12 +400,12 @@ export default function SeaScopeCDS() {
           </p>
           <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <a
-              href={STRIPE_CDS_CHECKOUT}
+              href={EARLY_ACCESS_MAILTO}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center gap-2 rounded-lg bg-ink-900 px-8 py-4 text-base font-medium text-ink-50 transition hover:bg-ink-800"
             >
-              Start Free Trial
+              Request Early Access
               <ArrowRight className="h-4 w-4" />
             </a>
             <a

@@ -132,6 +132,9 @@ export default function About() {
                   LinkedIn
                 </a>
               </div>
+              <p className="mt-6 text-xs italic text-ink-50/40">
+                Institutional affiliations are listed for identification only; no employer or professional organization has endorsed SeaScope.
+              </p>
             </div>
           </div>
         </div>

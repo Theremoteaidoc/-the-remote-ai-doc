@@ -12,7 +12,7 @@ export default function Evidence() {
     <>
       <Helmet>
         <title>Evidence & Validation — SeaScope CDS</title>
-        <meta name="description" content="13 deterministic safety guardrails. 1,899+ validated clinical encounters. 0 critical safety failures. FDA §520(o)(1)(E) Clinical Decision Support architected. MLC 2006 aligned." />
+        <meta name="description" content="13 deterministic safety guardrails. 1,899+ evaluation, demo, synthetic, and shadow-pilot runs. 0 detected critical failures across 229+ automated safety tests. Not a clinical outcomes study. FDA §520(o)(1)(E) Clinical Decision Support architected. MLC 2006 aligned." />
         <link rel="canonical" href="https://seascope.tech/evidence" />
       </Helmet>
 
@@ -66,8 +66,8 @@ export default function Evidence() {
             ))}
           </div>
           <div className="mt-12 rounded-2xl border-2 border-sea-500 bg-sea-500/5 p-6 text-center">
-            <p className="font-display text-2xl text-sea-300">0 critical safety failures</p>
-            <p className="mt-2 text-sm text-ink-50/70">across 1,899+ validated clinical encounters. Every guardrail logs every trigger.</p>
+            <p className="font-display text-2xl text-sea-300">0 detected critical failures</p>
+            <p className="mt-2 text-sm text-ink-50/70">across 229+ automated safety tests and 1,899+ evaluation, demo, synthetic, and shadow-pilot runs. No reported shadow-pilot physician unsafe-recommendation overrides to date. Not a clinical outcomes study. Every guardrail logs every trigger.</p>
           </div>
         </div>
       </section>
@@ -85,8 +85,7 @@ export default function Evidence() {
               <p className="mt-3 text-sm leading-relaxed text-ink-50/75">
                 SeaScope CDS is architected as a Clinical Decision Support tool under the FDA
                 §520(o)(1)(E) Criterion exemption. Every recommendation is reviewed and approved
-                by the licensed clinician. Architecture designed in consultation with FDA counsel
-                at Epstein Becker & Green.
+                by the licensed clinician. SeaScope has had exploratory discussions with specialized FDA regulatory counsel and intends to engage FDA counsel before commercial deployment.
               </p>
             </div>
             <div className="editorial-card">
@@ -94,7 +93,7 @@ export default function Evidence() {
               <p className="mt-3 text-sm leading-relaxed text-ink-50/75">
                 SeaScope Cargo Solutions produces audit-ready documentation aligned with Maritime
                 Labour Convention 2006 requirements. Per-vessel, date-ranged exports available on
-                demand. Inspector-ready PDF format.
+                demand. Structured PDF designed to support maritime medical recordkeeping and inspection workflows.
               </p>
             </div>
             <div className="editorial-card">
@@ -114,7 +113,7 @@ export default function Evidence() {
         <div className="mx-auto max-w-5xl px-6 lg:px-8">
           <div className="eyebrow mb-4">VALIDATION METHODOLOGY</div>
           <h2 className="font-display text-4xl font-normal text-ink-50 sm:text-5xl">
-            1,899+ validated clinical encounters. Zero critical safety failures.
+            1,899+ evaluation, demo, synthetic, and shadow-pilot runs. 0 detected critical failures across 229+ automated safety tests. Not a clinical outcomes study.
           </h2>
           <p className="mt-6 text-base leading-relaxed text-ink-50/75">
             SeaScope CDS validation runs across a structured panel of clinical scenarios calibrated
@@ -123,7 +122,7 @@ export default function Evidence() {
           </p>
           <div className="mt-12 grid grid-cols-2 gap-6 md:grid-cols-3 lg:grid-cols-6">
             {[
-              { figure: '1,899+', label: 'Encounters' },
+              { figure: '1,899+', label: 'Evaluation runs' },
               { figure: '0', label: 'Critical failures' },
               { figure: '5', label: 'Environments' },
               { figure: '15+', label: 'Specialties' },

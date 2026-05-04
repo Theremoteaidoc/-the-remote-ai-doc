@@ -109,12 +109,10 @@ export default function SiteLayout({ children }) {
               Sign in
             </a>
             <a
-              href="https://buy.stripe.com/5kQ00i6YjgeH7Zt9lN2ZO00"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="mailto:contact@seascope.tech?subject=SeaScope%20Early%20Access%20Request"
               className="btn-primary text-sm"
             >
-              Start Free Trial
+              Request Early Access
               <ArrowRight className="h-4 w-4" />
             </a>
           </div>
@@ -167,12 +165,10 @@ export default function SiteLayout({ children }) {
                 Sign in
               </a>
               <a
-                href="https://buy.stripe.com/5kQ00i6YjgeH7Zt9lN2ZO00"
-                target="_blank"
-                rel="noopener noreferrer"
+                href="mailto:contact@seascope.tech?subject=SeaScope%20Early%20Access%20Request"
                 className="btn-primary mt-3 w-full"
               >
-                Start Free Trial
+                Request Early Access
               </a>
             </div>
           </div>
@@ -255,18 +251,18 @@ export default function SiteLayout({ children }) {
               <div className="eyebrow mb-4">Legal</div>
               <ul className="space-y-3 text-sm">
                 <li>
-                  <a href="#privacy" className="text-ink-50/70 transition hover:text-sea-300">
+                  <Link to="/privacy" className="text-ink-50/70 transition hover:text-sea-300">
                     Privacy
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="#terms" className="text-ink-50/70 transition hover:text-sea-300">
+                  <Link to="/terms" className="text-ink-50/70 transition hover:text-sea-300">
                     Terms
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <Link to="/evidence#regulatory" className="text-ink-50/70 transition hover:text-sea-300">
-                    Security & HIPAA
+                  <Link to="/security" className="text-ink-50/70 transition hover:text-sea-300">
+                    Security
                   </Link>
                 </li>
               </ul>

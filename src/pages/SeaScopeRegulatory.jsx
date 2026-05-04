@@ -58,7 +58,7 @@ function SeaScopeRegulatoryContent() {
     {
       title: "Secure API Integration",
       icon: Lock,
-      description: "HIPAA-compliant pathway through AWS Bedrock for future EHR integration",
+      description: "HIPAA-aligned pathway through AWS Bedrock for future EHR integration",
       details: [
         "Business Associate Agreement (BAA) with AWS",
         "SOC 2 Type II compliance certification",
@@ -268,12 +268,12 @@ function SeaScopeRegulatoryContent() {
           <div className="text-center mb-16">
             <ScrollReveal>
               <h2 className="text-4xl lg:text-5xl font-bold text-slate-900 mb-6">
-                HIPAA Compliance Architecture
+                HIPAA-Aligned Architecture
               </h2>
             </ScrollReveal>
             <ScrollReveal delay={100}>
               <p className="text-lg text-slate-600 max-w-3xl mx-auto">
-                Privacy-by-design architecture ensuring HIPAA compliance for current and future integrations.
+                Privacy-by-design architecture supporting HIPAA-aligned deployments for current and future integrations.
               </p>
             </ScrollReveal>
           </div>
@@ -311,7 +311,7 @@ function SeaScopeRegulatoryContent() {
                 <h3 className="text-xl font-bold text-slate-900 mb-4">Future EHR Integration Path</h3>
                 <p className="text-slate-600 max-w-3xl mx-auto mb-6">
                   Current standalone architecture is designed to seamlessly integrate with EHR systems 
-                  through HIPAA-compliant AWS Bedrock pathway when ready for production deployment.
+                  through HIPAA-aligned AWS Bedrock pathway when ready for production deployment.
                 </p>
                 <div className="grid md:grid-cols-3 gap-4">
                   <div className="bg-white rounded-lg p-4 border border-teal-200">
@@ -320,7 +320,7 @@ function SeaScopeRegulatoryContent() {
                   </div>
                   <div className="bg-white rounded-lg p-4 border border-teal-200">
                     <h4 className="font-semibold text-slate-900 mb-2">Phase 2: Read Integration</h4>
-                    <p className="text-sm text-slate-600">EHR data access via HIPAA-compliant API</p>
+                    <p className="text-sm text-slate-600">EHR data access via HIPAA-aligned API</p>
                   </div>
                   <div className="bg-white rounded-lg p-4 border border-teal-200">
                     <h4 className="font-semibold text-slate-900 mb-2">Phase 3: Full Integration</h4>
