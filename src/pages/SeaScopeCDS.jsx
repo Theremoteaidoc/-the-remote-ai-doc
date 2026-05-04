@@ -3,7 +3,7 @@ import { Helmet } from 'react-helmet-async';
 import { ArrowRight, Check, Play } from 'lucide-react';
 import Testimonials from '../components/Testimonials';
 
-const EARLY_ACCESS_MAILTO = 'mailto:contact@seascope.tech?subject=SeaScope%20Early%20Access%20Request';
+const STRIPE_CDS_CHECKOUT = 'https://buy.stripe.com/5kQ00i6YjgeH7Zt9lN2ZO00';
 
 /**
  * /seascope-cds — direct-to-MD product page.
@@ -17,7 +17,7 @@ export default function SeaScopeCDS() {
         <title>SeaScope CDS — Formulary-aware AI for the doctor on the bridge at 3 AM.</title>
         <meta
           name="description"
-          content="Physician-gated clinical decision support for maritime medicine. Formulary-locked, evidence-cited, audit-trailed. SeaScope drafts and structures recommendations for clinician review; it does not diagnose, prescribe, or replace professional judgment. Currently in physician evaluation."
+          content="The clinical reasoning engine you can carry in your scrubs pocket. Formulary-locked, evidence-cited, audit-trailed. $29.99/month, 14-day free trial."
         />
         <link rel="canonical" href="https://seascope.tech/seascope-cds" />
       </Helmet>
@@ -39,12 +39,12 @@ export default function SeaScopeCDS() {
               </p>
               <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
                 <a
-                  href={EARLY_ACCESS_MAILTO}
+                  href={STRIPE_CDS_CHECKOUT}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="btn-primary"
                 >
-                  Request Early Access
+                  Start Free Trial
                   <ArrowRight className="h-4 w-4" />
                 </a>
                 <a
@@ -363,12 +363,12 @@ export default function SeaScopeCDS() {
               ))}
             </ul>
             <a
-              href={EARLY_ACCESS_MAILTO}
+              href={STRIPE_CDS_CHECKOUT}
               target="_blank"
               rel="noopener noreferrer"
               className="btn-primary mt-8 w-full"
             >
-              Request Early Access
+              Start Free Trial
               <ArrowRight className="h-4 w-4" />
             </a>
             <p className="mt-3 text-xs text-ink-50/50">No credit card required. Cancel anytime.</p>
@@ -400,12 +400,12 @@ export default function SeaScopeCDS() {
           </p>
           <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <a
-              href={EARLY_ACCESS_MAILTO}
+              href={STRIPE_CDS_CHECKOUT}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center gap-2 rounded-lg bg-ink-900 px-8 py-4 text-base font-medium text-ink-50 transition hover:bg-ink-800"
             >
-              Request Early Access
+              Start Free Trial
               <ArrowRight className="h-4 w-4" />
             </a>
             <a

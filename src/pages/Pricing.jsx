@@ -4,7 +4,7 @@ import { Helmet } from 'react-helmet-async';
 import { ArrowRight, Check } from 'lucide-react';
 import BookDemoModal from '../components/BookDemoModal';
 
-const EARLY_ACCESS_MAILTO = 'mailto:contact@seascope.tech?subject=SeaScope%20Early%20Access%20Request';
+const STRIPE_CDS_CHECKOUT = 'https://buy.stripe.com/5kQ00i6YjgeH7Zt9lN2ZO00';
 
 /**
  * /pricing — side-by-side. Asymmetric pricing display.
@@ -75,10 +75,12 @@ export default function Pricing() {
             </ul>
 
             <a
-              href={EARLY_ACCESS_MAILTO}
+              href={STRIPE_CDS_CHECKOUT}
+              target="_blank"
+              rel="noopener noreferrer"
               className="btn-primary mt-10 w-full"
             >
-              Request Early Access
+              Start Free Trial
               <ArrowRight className="h-4 w-4" />
             </a>
           </div>

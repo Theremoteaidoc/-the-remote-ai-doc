@@ -109,10 +109,12 @@ export default function SiteLayout({ children }) {
               Sign in
             </a>
             <a
-              href="mailto:contact@seascope.tech?subject=SeaScope%20Early%20Access%20Request"
+              href="https://buy.stripe.com/5kQ00i6YjgeH7Zt9lN2ZO00"
+              target="_blank"
+              rel="noopener noreferrer"
               className="btn-primary text-sm"
             >
-              Request Early Access
+              Start Free Trial
               <ArrowRight className="h-4 w-4" />
             </a>
           </div>
@@ -165,10 +167,12 @@ export default function SiteLayout({ children }) {
                 Sign in
               </a>
               <a
-                href="mailto:contact@seascope.tech?subject=SeaScope%20Early%20Access%20Request"
+                href="https://buy.stripe.com/5kQ00i6YjgeH7Zt9lN2ZO00"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="btn-primary mt-3 w-full"
               >
-                Request Early Access
+                Start Free Trial
               </a>
             </div>
           </div>

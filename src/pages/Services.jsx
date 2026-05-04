@@ -203,7 +203,7 @@ const content = {
         ],
         bestFor: 'Small clinics, solo practitioners',
         cta: 'Get Started',
-        stripeLink: 'mailto:contact@seascope.tech?subject=RemoteAid%20Workflow%20Automation%20Inquiry'
+        stripeLink: 'https://buy.stripe.com/test_bJe8wOeqL7Ib7ZtbtV2ZO03'
       },
       tier2: {
         name: 'Clinical Intelligence',
@@ -222,7 +222,7 @@ const content = {
         ],
         bestFor: 'Multi-provider practices, specialty clinics',
         cta: 'Start Now',
-        stripeLink: 'mailto:contact@seascope.tech?subject=RemoteAid%20Clinical%20Intelligence%20Inquiry'
+        stripeLink: 'https://buy.stripe.com/test_8x29AS3M71jNa7B69B2ZO04'
       },
       tier3: {
         name: 'Enterprise AI',
@@ -241,7 +241,7 @@ const content = {
         ],
         bestFor: 'Hospital groups, health systems, maritime medical operations',
         cta: 'Get Started',
-        stripeLink: 'mailto:contact@seascope.tech?subject=RemoteAid%20Enterprise%20AI%20Inquiry'
+        stripeLink: 'https://buy.stripe.com/test_8x2eVcgyTe6z2F9gOf2ZO05'
       }
     },
     whyUs: {
