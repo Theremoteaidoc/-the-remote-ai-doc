@@ -396,7 +396,7 @@ export default function SeaScopeCDS() {
             Start practicing with the tool you wish existed.
           </h2>
           <p className="mt-6 text-base text-ink-900/80">
-            14 days free. No credit card required. Cancel anytime.
+            14 days free. Credit card required to start &mdash; $0 charged for 14 days. Cancel anytime in one click.
           </p>
           <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <a

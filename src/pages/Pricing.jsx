@@ -50,7 +50,7 @@ export default function Pricing() {
             <div className="mt-6 font-display text-5xl font-medium text-sea-300">$29.99</div>
             <div className="text-sm text-ink-50/60">per month · cancel anytime</div>
             <div className="mt-2 inline-block rounded-md bg-sea-500/10 px-2 py-0.5 text-xs text-sea-300">
-              14-day free trial · no credit card
+              14-day free trial · credit card required · $0 charged for 14 days
             </div>
 
             <p className="mt-6 text-xs italic text-ink-50/50">
@@ -142,7 +142,7 @@ export default function Pricing() {
                 {[
                   ['Audience', 'Individual physicians', 'Fleet operators'],
                   ['Pricing', '$29.99 / month', 'Quoted per fleet · shared on call'],
-                  ['Trial', '14-day free trial · no credit card', '30-day pilot · terms shared on call'],
+                  ['Trial', '14-day free trial · credit card required · cancel anytime', '30-day pilot · terms shared on call'],
                   ['Sales motion', 'Self-serve · sign up online', 'Consultative · book a demo'],
                   ['Onboarding', 'Instant — log into the app', '1–2 weeks per fleet'],
                   ['Sample use case', 'Ship physician at 2 AM with no specialist backup', 'OneCare-style operator with 100+ vessels and shore-based physicians'],

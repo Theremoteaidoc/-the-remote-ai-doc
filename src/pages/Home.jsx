@@ -151,7 +151,7 @@ export default function Home() {
               <ArrowRight className="h-4 w-4" />
             </Link>
             <p className="mt-3 text-xs text-ink-50/50">
-              14 days free. No credit card. Cancel anytime.
+              14 days free. Credit card required &mdash; $0 charged for 14 days. Cancel anytime.
             </p>
           </div>
         </div>
