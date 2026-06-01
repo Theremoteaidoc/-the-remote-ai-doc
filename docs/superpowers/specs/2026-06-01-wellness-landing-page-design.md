@@ -13,16 +13,17 @@ A single **hidden** landing page at `/wellness` that explains the SeaScope Crew 
 - **Primary CTA:** "Request a demo / pilot" reusing the existing `BookDemoModal`. Crew install = "coming soon" (PWA not built yet).
 
 ## Architecture / where it fits
-- New single page component `src/pages/Wellness.jsx`, following the site's one-file-per-page convention (mirrors `SeaScopeCDS.jsx`).
-- Route `/wellness` registered in `src/App.jsx` via the existing `wrap(Component)` helper (gives it `SiteLayout` + `SeaScopeNav`).
-- Reuse existing components: `SiteLayout`, `SeaScopeNav`, `ScrollReveal`, `BookDemoModal`. No new infrastructure, no new dependencies.
+- New single page component `src/pages/Wellness.jsx`, **structurally mirroring `src/pages/SeaScopeCDS.jsx`** (the canonical live, routed page).
+- Route `/wellness` registered in `src/App.jsx` via the existing `wrap(Component)` helper. `wrap()` wraps the page in `SiteLayout`, which renders the site nav + footer itself — so `Wellness.jsx` renders ONLY page content (no nav/footer of its own).
+- Reuse existing components: `SiteLayout` (applied by `wrap()`, default export), `ScrollReveal` (named export), `BookDemoModal` (default export). **Do NOT use `SeaScopeNav`** — that is the legacy nav used by orphaned, un-routed pages (`SeaScope*.jsx`); putting it inside a `wrap()`-routed page produces a double nav. No new infrastructure, no new dependencies.
+- `BookDemoModal` wiring (same as `CargoSolutions.jsx`): local `useState(false)` for open state, a button calling `setDemoOpen(true)`, and `<BookDemoModal open={demoOpen} onClose={() => setDemoOpen(false)} source="wellness" />`. The `source="wellness"` value attributes demo leads to this page.
 - Tailwind + the existing brand visual system; match the look of current product pages.
 
-## Hidden mechanism (four layers, matching existing private pages e.g. `SeaScopePilot.jsx`)
-1. `react-helmet-async` `<Helmet><meta name="robots" content="noindex, nofollow" /></Helmet>` + page `<title>`.
-2. NOT added to `SeaScopeNav` or the footer — no link anywhere on the site.
+## Hidden mechanism (four layers)
+1. **Primary:** `react-helmet-async` `<Helmet><meta name="robots" content="noindex, nofollow" /></Helmet>` + page `<title>`. (Copy ONLY this `<Helmet>` snippet from `SeaScopePilot.jsx:28-32` — that page is otherwise legacy/un-routed; do not copy its structure or `SeaScopeNav` usage.)
+2. NOT added to the `SiteLayout` nav or the hard-coded `SiteLayout` footer columns (Products/Company/Legal) — no link anywhere on the site.
 3. NOT added to `public/sitemap.xml`.
-4. Add `Disallow: /wellness` to `public/robots.txt` (crawl block, belt-and-suspenders).
+4. **Secondary:** append `Disallow: /wellness` to the existing `User-agent: *` block in `public/robots.txt`. Note: the page-level `noindex` meta (layer 1) is the real guarantee; robots `Disallow` is belt-and-suspenders. (Minor trade-off: a `Disallow` can stop a crawler from fetching the page and thus from *seeing* the `noindex` meta — but since the page is also unlinked and absent from the sitemap, discovery is already prevented; keep both.)
 
 ## Page content outline
 **Top — buyer pitch** (fleet managers / manning agents / P&I / COOs):
