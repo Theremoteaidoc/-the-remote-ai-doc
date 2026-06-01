@@ -17,6 +17,7 @@ import Security from './pages/Security';
 // Existing pages preserved during migration
 import Blog from './pages/Blog';
 import BlogPost from './pages/BlogPost';
+import Wellness from './pages/Wellness';
 
 const wrap = (PageComponent) => (
   <SiteLayout>
@@ -42,6 +43,9 @@ export default function App() {
         <Route path="/blog" element={wrap(Blog)} />
         <Route path="/blog/:slug" element={wrap(BlogPost)} />
         <Route path="/trial-started" element={wrap(TrialStarted)} />
+
+        {/* Hidden wellness landing — noindex, not in nav/sitemap */}
+        <Route path="/wellness" element={wrap(Wellness)} />
 
         {/* 301-style client-side redirects per IA migration table */}
         {/* AutoMed kill */}
