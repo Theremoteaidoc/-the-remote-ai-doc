@@ -19,6 +19,17 @@ A single **hidden** landing page at `/wellness` that explains the SeaScope Crew 
 - `BookDemoModal` wiring (same as `CargoSolutions.jsx`): local `useState(false)` for open state, a button calling `setDemoOpen(true)`, and `<BookDemoModal open={demoOpen} onClose={() => setDemoOpen(false)} source="wellness" />`. The `source="wellness"` value attributes demo leads to this page.
 - Tailwind + the existing brand visual system; match the look of current product pages.
 
+## Theme / visual consistency (hard requirement)
+- The page MUST inherit the exact core-site theme: same `tailwind.config.js` tokens, same fonts, same color palette, same `SiteLayout` chrome (nav/footer), same section rhythm and component styling as `SeaScopeCDS.jsx` / `CargoSolutions.jsx`. No bespoke fonts, colors, or layout primitives — reuse what's there so `/wellness` is visually indistinguishable in style from the rest of `seascope.tech`.
+- Reuse existing patterns (hero band, `ScrollReveal` sections, card grids, CTA band) rather than inventing new ones.
+
+## Visuals / screenshots
+- **Source reality:** there are NO screenshots of the shipped wellness app (its UI isn't built — later step). The only wellness-app visual asset is the **approved concept mockup** `/home/seascope-cds/demos/concept_crew_wellness_app_demo.html` (served at `app.seascope.tech/app-demo`), which renders the 8 phone screens (enroll/login/home/bp/glucose/sync/edu/appts + shore panel).
+- **Approach:** render that mockup with Playwright (available at `/home/seascope-cds/frontend/node_modules`) + `google-chrome`, and capture the key phone screens as images — at minimum: **Home (personal record), BP log, Glucose log, Trends/Sync**, plus one hero device composite. Model the capture on the existing `video/seascope-brand-kit/capture-screenshots.js` pattern.
+- **Output:** export optimized PNG/WebP into `public/images/wellness/` in the website repo; reference them from `Wellness.jsx`.
+- **Use on page:** a hero device shot in the crew section + a small 3–4 screen gallery. Captioned as the product/app UI.
+- **Disclosure:** these depict the approved concept design; the shipped app UI is in build and may refine. Acceptable for a hidden pre-launch buyer page. (If the founder prefers, swap to a neutral placeholder until real-app shots exist — founder's call, defaulting to mockup shots.)
+
 ## Hidden mechanism (four layers)
 1. **Primary:** `react-helmet-async` `<Helmet><meta name="robots" content="noindex, nofollow" /></Helmet>` + page `<title>`. (Copy ONLY this `<Helmet>` snippet from `SeaScopePilot.jsx:28-32` — that page is otherwise legacy/un-routed; do not copy its structure or `SeaScopeNav` usage.)
 2. NOT added to the `SiteLayout` nav or the hard-coded `SiteLayout` footer columns (Products/Company/Legal) — no link anywhere on the site.
