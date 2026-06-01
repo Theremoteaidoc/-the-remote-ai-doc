@@ -15,13 +15,13 @@ A single **hidden** landing page at `/wellness` that explains the SeaScope Crew 
 ## Architecture / where it fits
 - New single page component `src/pages/Wellness.jsx`, **structurally mirroring `src/pages/SeaScopeCDS.jsx`** (the canonical live, routed page).
 - Route `/wellness` registered in `src/App.jsx` via the existing `wrap(Component)` helper. `wrap()` wraps the page in `SiteLayout`, which renders the site nav + footer itself — so `Wellness.jsx` renders ONLY page content (no nav/footer of its own).
-- Reuse existing components: `SiteLayout` (applied by `wrap()`, default export), `ScrollReveal` (named export), `BookDemoModal` (default export). **Do NOT use `SeaScopeNav`** — that is the legacy nav used by orphaned, un-routed pages (`SeaScope*.jsx`); putting it inside a `wrap()`-routed page produces a double nav. No new infrastructure, no new dependencies.
+- Reuse existing components: `SiteLayout` (applied by `wrap()`, default export) + `BookDemoModal` (default export) + lucide-react icons. **Do NOT use `SeaScopeNav` or `ScrollReveal`** — both belong to the orphaned, un-routed legacy `SeaScope*.jsx` pages; the live routed pages (`SeaScopeCDS.jsx`, `CargoSolutions.jsx`) use neither. Match THEIR pattern: plain `<section className="py-24 sm:py-32 ...">` bands with the existing `ink-*`/`sea-gradient` Tailwind tokens. No new infrastructure, no new dependencies.
 - `BookDemoModal` wiring (same as `CargoSolutions.jsx`): local `useState(false)` for open state, a button calling `setDemoOpen(true)`, and `<BookDemoModal open={demoOpen} onClose={() => setDemoOpen(false)} source="wellness" />`. The `source="wellness"` value attributes demo leads to this page.
 - Tailwind + the existing brand visual system; match the look of current product pages.
 
 ## Theme / visual consistency (hard requirement)
 - The page MUST inherit the exact core-site theme: same `tailwind.config.js` tokens, same fonts, same color palette, same `SiteLayout` chrome (nav/footer), same section rhythm and component styling as `SeaScopeCDS.jsx` / `CargoSolutions.jsx`. No bespoke fonts, colors, or layout primitives — reuse what's there so `/wellness` is visually indistinguishable in style from the rest of `seascope.tech`.
-- Reuse existing patterns (hero band, `ScrollReveal` sections, card grids, CTA band) rather than inventing new ones.
+- Reuse existing patterns (hero band, plain section bands, card grids, CTA band) from `CargoSolutions.jsx`/`SeaScopeCDS.jsx` rather than inventing new ones.
 
 ## Visuals / screenshots
 - **Source reality:** there are NO screenshots of the shipped wellness app (its UI isn't built — later step). The only wellness-app visual asset is the **approved concept mockup** `/home/seascope-cds/demos/concept_crew_wellness_app_demo.html` (served at `app.seascope.tech/app-demo`), which renders the 8 phone screens (enroll/login/home/bp/glucose/sync/edu/appts + shore panel).

@@ -53,6 +53,11 @@ const browser = await chromium.launch({ executablePath: '/usr/bin/google-chrome'
 const page = await browser.newPage({ deviceScaleFactor: 2, viewport: { width: 1040, height: 900 } });
 await page.goto(MOCKUP, { waitUntil: 'networkidle' });
 
+// FAIL LOUD: if showScreen isn't a global, every capture would silently be the
+// default (enroll) screen → four identical useless shots. Assert it exists.
+const hasShowScreen = await page.evaluate(() => typeof window.showScreen === 'function');
+if (!hasShowScreen) throw new Error('window.showScreen not found — mockup changed; fix the capture script before trusting output');
+
 // Identify the phone-frame element to clip. The mockup's device frame is the
 // element sized with --device-w (375px). Discover its selector at runtime:
 const frameSel = await page.evaluate(() => {
@@ -69,8 +74,8 @@ const frameSel = await page.evaluate(() => {
 });
 
 for (const id of SCREENS) {
-  await page.evaluate((s) => window.showScreen && window.showScreen(s), id);
-  await page.waitForTimeout(500); // let the screen settle (CSS transition ~320ms)
+  await page.evaluate((s) => window.showScreen(s), id);
+  await page.waitForTimeout(600); // let the screen settle (CSS transition ~320ms + margin)
   const el = await page.$(frameSel);
   await el.screenshot({ path: `${OUT}/${id}.png` });
   console.log('captured', id);
@@ -146,7 +151,7 @@ cd /home/theremoteaidoc && git add docs/superpowers/specs/wellness-copy.md && gi
 - Modify: `/home/theremoteaidoc/src/App.jsx` (add route)
 - Modify: `/home/theremoteaidoc/public/robots.txt`
 
-This task is for the **frontend-engineer agent**. It must FIRST read `src/pages/SeaScopeCDS.jsx` and `src/pages/CargoSolutions.jsx` to copy the exact structural + styling patterns (hero band, `ScrollReveal` sections, card grids, CTA band, `BookDemoModal` wiring), and `src/components/SiteLayout.jsx` to confirm the nav/footer come from the wrapper (do NOT render `SeaScopeNav`).
+This task is for the **frontend-engineer agent**. It must FIRST read `src/pages/SeaScopeCDS.jsx` and `src/pages/CargoSolutions.jsx` to copy the exact structural + styling patterns: plain `<section className="py-24 sm:py-32 ...">` bands using the existing `ink-*` / `sea-gradient` Tailwind tokens + lucide-react icons + card grids + a CTA band + the `BookDemoModal` wiring. (Do NOT use `ScrollReveal` — verified: the live routed pages don't use it; it belongs to the orphaned legacy `SeaScope*.jsx` pages. Using it would cause the theme drift this plan warns about.) Read `src/components/SiteLayout.jsx` to confirm the nav/footer come from the `wrap()` wrapper (do NOT render `SeaScopeNav`).
 
 - [ ] **Step 1: Create `Wellness.jsx`** — a single page component that:
   - Opens with `<Helmet><title>...</title><meta name="robots" content="noindex, nofollow" /></Helmet>` (copy ONLY this snippet pattern from `SeaScopePilot.jsx:28-32`).
