@@ -50,6 +50,7 @@ export default function Home() {
             <p className="mt-8 max-w-2xl text-lg leading-relaxed text-ink-50/80 sm:text-xl">
               The clinical reasoning engine for medicine practiced at the edge.
               A personal tool for physicians. An operator platform for fleets.
+              A crew health layer between ports. A PEME pipeline that closes the documentation gap.
             </p>
             <p className="mt-3 max-w-2xl text-xs italic text-ink-50/50">
               Physician-gated clinical decision support. SeaScope drafts, structures, and documents recommendations for clinician review; it does not diagnose, prescribe, or replace professional judgment.
@@ -63,6 +64,13 @@ export default function Home() {
                 For Fleet Operators
                 <ArrowRight className="h-4 w-4" />
               </Link>
+              <a
+                href="#platform"
+                className="inline-flex items-center justify-center gap-2 rounded-lg border border-ink-50/30 px-6 py-3 text-sm font-medium text-ink-50/90 transition hover:border-ink-50/60 hover:text-ink-50"
+              >
+                See the full platform
+                <ArrowRight className="h-4 w-4" />
+              </a>
             </div>
           </div>
         </div>
@@ -72,7 +80,7 @@ export default function Home() {
       <section className="border-y border-ink-700/40 bg-ink-800/30 py-16">
         <div className="mx-auto max-w-7xl px-6 text-center lg:px-8">
           <p className="font-display text-2xl italic text-ink-50/80 sm:text-3xl">
-            One clinical reasoning engine. Two ways to deploy it.
+            One clinical reasoning engine. A platform of solutions built on it.
           </p>
         </div>
       </section>
@@ -157,6 +165,57 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ─────────────── ALSO ON THE PLATFORM ─────────────── */}
+      {/* Compact strip surfacing the two other live modules (PEME + Crew
+          Wellness) below the primary For-Physicians / For-Fleet-Operators
+          cards. Surfaces platform depth without forcing a third card into
+          the binary CTA above. */}
+      <section className="border-t border-ink-700/40 py-16 sm:py-20">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <div className="eyebrow mb-8 text-center">ALSO ON THE PLATFORM</div>
+          <div className="mx-auto grid max-w-5xl gap-6 md:grid-cols-2">
+            {/* PEME Platform */}
+            <div className="rounded-2xl border border-ink-700/60 bg-ink-800/30 p-6">
+              <div className="mb-2 inline-block rounded-md border border-emerald-500/50 bg-emerald-500/15 px-2 py-0.5 text-xs uppercase tracking-eyebrow text-emerald-300">
+                Live
+              </div>
+              <h3 className="font-display text-xl font-medium text-ink-50">SeaScope PEME Platform</h3>
+              <p className="mt-2 text-sm leading-relaxed text-ink-50/70">
+                Pre-employment medical exams, structured and documented. OCR ingestion,
+                rules-based fitness logic, and a PDF record that travels with the seafarer —
+                not the paper file.
+              </p>
+              <button
+                type="button"
+                onClick={() => setDemoOpen(true)}
+                className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-sea-300 transition hover:text-sea-500"
+              >
+                Book a Demo
+                <ArrowRight className="h-3.5 w-3.5" />
+              </button>
+            </div>
+            {/* Crew Wellness */}
+            <div className="rounded-2xl border border-ink-700/60 bg-ink-800/30 p-6">
+              <div className="mb-2 inline-block rounded-md border border-emerald-500/50 bg-emerald-500/15 px-2 py-0.5 text-xs uppercase tracking-eyebrow text-emerald-300">
+                Live
+              </div>
+              <h3 className="font-display text-xl font-medium text-ink-50">SeaScope Crew Wellness</h3>
+              <p className="mt-2 text-sm leading-relaxed text-ink-50/70">
+                Crew self-log BP and glucose between ports. Clinicians see the trend before
+                the next exam. Supports your duty-of-care record under MLC.
+              </p>
+              <Link
+                to="/wellness"
+                className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-sea-300 transition hover:text-sea-500"
+              >
+                Learn more
+                <ArrowRight className="h-3.5 w-3.5" />
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* ─────────────── THREE PILLARS — EBM POSITIONING ─────────────── */}
       <section className="border-t border-ink-700/40 py-20 sm:py-24">
         <div className="mx-auto max-w-5xl px-6 lg:px-8">
@@ -222,13 +281,14 @@ export default function Home() {
               Built where medicine is hardest. Deployed where it's needed.
             </h2>
           </div>
-          <div className="mx-auto mt-16 grid max-w-5xl grid-cols-2 gap-x-8 gap-y-12 text-center md:grid-cols-3 lg:grid-cols-6">
+          <div className="mx-auto mt-16 grid max-w-6xl grid-cols-2 gap-x-8 gap-y-12 text-center md:grid-cols-3 lg:grid-cols-7">
             {[
               { value: 52,   suffix: '+', label: 'Clinical protocols' },
               { value: 222,  suffix: '+', label: 'Clinical guidelines' },
               { value: 13,   suffix: '',  label: 'Safety guardrails' },
               { value: 0,    suffix: '',  label: 'Detected critical failures (across 1,500+ tests)' },
               { value: 3500, suffix: '+', label: 'Evaluation runs' },
+              { value: 5,    suffix: '',  label: 'Care environments' },
               { value: 4,    suffix: '+', label: 'Languages' },
             ].map((stat) => (
               <div key={stat.label}>
@@ -278,17 +338,20 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ─────────────── FUTURE FAMILY ─────────────── */}
-      <section className="border-t border-ink-700/40 py-24 sm:py-32">
+      {/* ─────────────── THE PLATFORM ─────────────── */}
+      {/* Anchored from the hero "See the full platform" CTA. Was "FUTURE
+          FAMILY / COMING" — relabeled because four of the six cards below
+          now carry the LIVE badge. The family IS the platform, today. */}
+      <section id="platform" className="scroll-mt-16 border-t border-ink-700/40 py-24 sm:py-32">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="mx-auto max-w-3xl text-center">
-            <div className="eyebrow mb-4">COMING</div>
+            <div className="eyebrow mb-4">THE PLATFORM</div>
             <h2 className="font-display text-4xl font-normal leading-tight text-ink-50 sm:text-5xl">
-              The SeaScope <span className="accent-sea">*</span> Solutions family is growing.
+              SeaScope ships as a suite, not a single tool<span className="accent-sea">.</span>
             </h2>
             <p className="mt-6 text-base leading-relaxed text-ink-50/70">
-              Each future release extends SeaScope into new operator contexts or adjacent medical workflows.
-              Same engine. Same safety architecture. Different segment-specific workflows.
+              Each solution runs on the same clinical reasoning engine with the same safety architecture.
+              Different workflows, same standard of care.
             </p>
           </div>
           <div className="mx-auto mt-16 grid max-w-6xl gap-6 md:grid-cols-2 lg:grid-cols-3">
@@ -377,6 +440,13 @@ export default function Home() {
               I run a fleet
               <ArrowRight className="h-4 w-4" />
             </Link>
+            <a
+              href="mailto:hello@seascope.tech?subject=PEME%20or%20Crew%20Wellness%20Inquiry"
+              className="inline-flex items-center justify-center gap-2 rounded-lg border border-ink-900 px-6 py-3 text-sm font-medium text-ink-900 transition hover:bg-ink-900/10"
+            >
+              I need PEME or crew health
+              <ArrowRight className="h-4 w-4" />
+            </a>
           </div>
         </div>
       </section>
