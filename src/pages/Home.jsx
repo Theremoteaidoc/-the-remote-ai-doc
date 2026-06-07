@@ -85,11 +85,12 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ─────────────── SEE IT IN ACTION (walkthrough video) ─────────────── */}
-      {/* 56-second walkthrough showing the end-to-end SeaScope flow. Was on
-          previous versions of the site; founder asked to bring it back
-          2026-06-07. Source: backend/video/seascope-walkthrough/out/
-          seascope-walkthrough-v2.mp4 (9.3 MB, 1920×1080, demo data only). */}
+      {/* ─────────────── SEE IT IN ACTION (Loom walkthrough) ─────────────── */}
+      {/* Loom embed — the walkthrough that was on previous versions of the
+          site; founder asked to bring it back 2026-06-07. Same URL the
+          legacy SeaScope.jsx already carries (lines 427-435 of that file).
+          Embed flags: hide_owner, hide_share, hide_title, hideEmbedTopBar
+          so the player chrome stays minimal and on-brand. */}
       <section className="border-b border-ink-700/40 bg-ink-900 py-16 sm:py-24">
         <div className="mx-auto max-w-5xl px-6 lg:px-8">
           <div className="mx-auto max-w-3xl text-center">
@@ -98,23 +99,21 @@ export default function Home() {
               A demo case, end to end<span className="accent-sea">.</span>
             </h2>
             <p className="mt-4 text-base leading-relaxed text-ink-50/70">
-              A short walkthrough of the SeaScope flow — from chief-complaint capture, through
-              the engine, to a structured recommendation. Demo data only.
+              A walkthrough of a demo STEMI case running through SeaScope — chief-complaint
+              capture, AI analysis, port-diversion recommendation, and safety-guardrail
+              demonstration. Demo data only.
             </p>
           </div>
           <div className="relative mt-10 overflow-hidden rounded-2xl border border-ink-700/60 shadow-2xl shadow-ink-900/60 ring-1 ring-sea-500/20">
-            <video
-              src="/videos/seascope-walkthrough-v2.mp4"
-              poster="/videos/seascope-walkthrough-v2-poster.jpg"
-              controls
-              autoPlay
-              muted
-              loop
-              playsInline
-              preload="metadata"
-              className="block w-full"
-              aria-label="SeaScope demo walkthrough — 56 seconds, demo data only"
-            />
+            <div className="relative" style={{ paddingBottom: '56.25%' }}>
+              <iframe
+                src="https://www.loom.com/embed/7209e8813f08437b8b162f3e705214ea?hide_owner=true&hide_share=true&hide_title=true&hideEmbedTopBar=true"
+                title="SeaScope CDS walkthrough — demo case, end to end"
+                allowFullScreen
+                className="absolute left-0 top-0 h-full w-full"
+                style={{ border: 0 }}
+              />
+            </div>
           </div>
         </div>
       </section>
