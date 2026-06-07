@@ -12,7 +12,7 @@ export default function Evidence() {
     <>
       <Helmet>
         <title>Evidence & Validation — SeaScope CDS</title>
-        <meta name="description" content="13 deterministic safety guardrails. 1,899+ evaluation, demo, synthetic, and shadow-pilot runs. 0 detected critical failures across 229+ automated safety tests. Not a clinical outcomes study. FDA §520(o)(1)(E) Clinical Decision Support architected. MLC 2006 aligned." />
+        <meta name="description" content="13 deterministic safety guardrails. 3,500+ evaluation, demo, synthetic, and shadow-pilot runs. 0 detected critical failures across 1,500+ automated safety tests. Not a clinical outcomes study. FDA §520(o)(1)(E) Clinical Decision Support architected. MLC 2006 aligned." />
         <link rel="canonical" href="https://seascope.tech/evidence" />
       </Helmet>
 
@@ -67,7 +67,7 @@ export default function Evidence() {
           </div>
           <div className="mt-12 rounded-2xl border-2 border-sea-500 bg-sea-500/5 p-6 text-center">
             <p className="font-display text-2xl text-sea-300">0 detected critical failures</p>
-            <p className="mt-2 text-sm text-ink-50/70">across 229+ automated safety tests and 1,899+ evaluation, demo, synthetic, and shadow-pilot runs. No reported shadow-pilot physician unsafe-recommendation overrides to date. Not a clinical outcomes study. Every guardrail logs every trigger.</p>
+            <p className="mt-2 text-sm text-ink-50/70">across 1,500+ automated safety tests and 3,500+ evaluation, demo, synthetic, and shadow-pilot runs. No reported shadow-pilot physician unsafe-recommendation overrides to date. Not a clinical outcomes study. Every guardrail logs every trigger.</p>
           </div>
         </div>
       </section>
@@ -113,7 +113,7 @@ export default function Evidence() {
         <div className="mx-auto max-w-5xl px-6 lg:px-8">
           <div className="eyebrow mb-4">VALIDATION METHODOLOGY</div>
           <h2 className="font-display text-4xl font-normal text-ink-50 sm:text-5xl">
-            1,899+ evaluation, demo, synthetic, and shadow-pilot runs. 0 detected critical failures across 229+ automated safety tests. Not a clinical outcomes study.
+            3,500+ evaluation, demo, synthetic, and shadow-pilot runs. 0 detected critical failures across 1,500+ automated safety tests. Not a clinical outcomes study.
           </h2>
           <p className="mt-6 text-base leading-relaxed text-ink-50/75">
             SeaScope CDS validation runs across a structured panel of clinical scenarios calibrated
@@ -122,7 +122,7 @@ export default function Evidence() {
           </p>
           <div className="mt-12 grid grid-cols-2 gap-6 md:grid-cols-3 lg:grid-cols-6">
             {[
-              { figure: '1,899+', label: 'Evaluation runs' },
+              { figure: '3,500+', label: 'Evaluation runs' },
               { figure: '0', label: 'Critical failures' },
               { figure: '5', label: 'Environments' },
               { figure: '15+', label: 'Specialties' },

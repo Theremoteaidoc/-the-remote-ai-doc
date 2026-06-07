@@ -276,7 +276,7 @@ export default function SiteLayout({ children }) {
           {/* Bottom bar */}
           <div className="hairline-top mt-12 flex flex-col gap-4 pt-6 text-xs text-ink-50/50 md:flex-row md:items-center md:justify-between">
             <div className="uppercase tracking-eyebrow">
-              REMOTE AID MEDICAL, CORP. · Delaware C-Corp · Miami, FL
+              REMOTEAID MEDICAL SOLUTIONS · Delaware C-Corp · Miami, FL
             </div>
             <div className="flex items-center gap-4">
               <span>© 2026 RemoteAid Medical Solutions</span>

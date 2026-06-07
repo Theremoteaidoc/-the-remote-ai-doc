@@ -11,7 +11,10 @@
     <meta name="description" content="The clinical reasoning engine for medicine practiced at the edge. SeaScope CDS for physicians ($29.99/mo). SeaScope Cargo Solutions for fleet operators." />
     <meta name="keywords" content="clinical decision support, maritime medicine, ship physician, cargo vessel medical, formulary-aware AI, clinical AI safety, MLC 2006, telemedicine" />
     <meta name="author" content="RemoteAid Medical Solutions" />
-    <meta name="robots" content="index, follow" />
+    <!-- No static robots meta: absence = index,follow by default for public pages.
+         Per-page robots is controlled via react-helmet-async so noindex pages
+         (e.g. /wellness) aren't fighting a static index,follow tag (which would
+         leave two conflicting robots metas in the DOM). -->
     <link rel="canonical" href="https://seascope.tech/" />
 
     <!-- Fonts: Fraunces (editorial serif) + IBM Plex Sans (body) + IBM Plex Mono -->

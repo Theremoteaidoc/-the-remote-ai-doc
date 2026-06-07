@@ -227,8 +227,8 @@ export default function Home() {
               { value: 52,   suffix: '+', label: 'Clinical protocols' },
               { value: 222,  suffix: '+', label: 'Clinical guidelines' },
               { value: 13,   suffix: '',  label: 'Safety guardrails' },
-              { value: 0,    suffix: '',  label: 'Detected critical failures (across 229+ tests)' },
-              { value: 1899, suffix: '+', label: 'Evaluation runs' },
+              { value: 0,    suffix: '',  label: 'Detected critical failures (across 1,500+ tests)' },
+              { value: 3500, suffix: '+', label: 'Evaluation runs' },
               { value: 4,    suffix: '+', label: 'Languages' },
             ].map((stat) => (
               <div key={stat.label}>
@@ -294,41 +294,60 @@ export default function Home() {
           <div className="mx-auto mt-16 grid max-w-6xl gap-6 md:grid-cols-2 lg:grid-cols-3">
             {[
               {
-                name: 'SeaScope Expedition Solutions',
-                description: 'For polar, scientific, and adventure expedition vessels operating in the most isolated waters.',
-              },
-              {
-                name: 'SeaScope Military Solutions',
-                description: 'For Role 1 BAS, FOBs, and tactical medical operations in disconnected austere environments.',
-              },
-              {
-                name: 'SeaScope Rural Solutions',
-                description: 'For remote clinics, mining sites, and humanitarian operations far from referral networks.',
-              },
-              {
                 name: 'SeaScope PEME Platform',
                 description: 'Digital pre-employment medical exams — fit-to-sail assessments, document workflow, and expiry tracking that syncs directly into the case engine.',
+                status: 'live',
               },
               {
                 name: 'SeaScope Crew Wellness',
                 description: 'Longitudinal crew health — preventive care, chronic condition management, and mental-health check-ins between ports.',
+                status: 'live',
+              },
+              {
+                name: 'SeaScope Expedition Solutions',
+                description: 'For polar, scientific, and adventure expedition vessels operating in the most isolated waters.',
+                status: 'in_development',
+              },
+              {
+                name: 'SeaScope Military Solutions',
+                description: 'For Role 1 BAS, FOBs, and tactical medical operations in disconnected austere environments.',
+                status: 'in_development',
+              },
+              {
+                name: 'SeaScope Rural Solutions',
+                description: 'For remote clinics, mining sites, and humanitarian operations far from referral networks.',
+                status: 'in_development',
               },
               {
                 name: 'SeaScope Smart Inventory',
                 description: 'Medicine-chest intelligence — stock tracking, expiry alerts, and restock recommendations tied to your fleet\'s case history.',
+                status: 'in_development',
               },
-            ].map((sibling) => (
-              <div
-                key={sibling.name}
-                className="rounded-2xl border border-ink-700/60 bg-ink-800/30 p-6 opacity-70"
-              >
-                <div className="mb-3 inline-block rounded-md border border-sea-500/40 bg-sea-500/10 px-2 py-0.5 text-xs uppercase tracking-eyebrow text-sea-300">
-                  In Development
+            ].map((sibling) => {
+              const isLive = sibling.status === 'live';
+              return (
+                <div
+                  key={sibling.name}
+                  className={
+                    isLive
+                      ? 'rounded-2xl border border-emerald-500/40 bg-ink-800/40 p-6'
+                      : 'rounded-2xl border border-ink-700/60 bg-ink-800/30 p-6 opacity-70'
+                  }
+                >
+                  <div
+                    className={
+                      isLive
+                        ? 'mb-3 inline-block rounded-md border border-emerald-500/50 bg-emerald-500/15 px-2 py-0.5 text-xs uppercase tracking-eyebrow text-emerald-300'
+                        : 'mb-3 inline-block rounded-md border border-sea-500/40 bg-sea-500/10 px-2 py-0.5 text-xs uppercase tracking-eyebrow text-sea-300'
+                    }
+                  >
+                    {isLive ? 'Live' : 'In Development'}
+                  </div>
+                  <h3 className="font-display text-lg font-medium text-ink-50">{sibling.name}</h3>
+                  <p className="mt-2 text-sm text-ink-50/60">{sibling.description}</p>
                 </div>
-                <h3 className="font-display text-lg font-medium text-ink-50">{sibling.name}</h3>
-                <p className="mt-2 text-sm text-ink-50/60">{sibling.description}</p>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>

@@ -182,7 +182,7 @@ export default function CargoSolutions() {
               { figure: '222+', label: 'Clinical guidelines' },
               { figure: '13', label: 'Guardrails' },
               { figure: '0', label: 'Critical failures' },
-              { figure: '1,899+', label: 'Evaluation runs' },
+              { figure: '3,500+', label: 'Evaluation runs' },
               { figure: '4+', label: 'Languages' },
             ].map((stat) => (
               <div key={stat.label}>
