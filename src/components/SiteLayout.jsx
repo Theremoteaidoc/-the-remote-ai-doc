@@ -68,6 +68,20 @@ export default function SiteLayout({ children }) {
                       <div className="text-sm font-medium text-ink-50">SeaScope CDS</div>
                       <div className="mt-0.5 text-xs text-ink-50/60">For physicians · $29.99/mo</div>
                     </Link>
+                    <Link
+                      to="/peme"
+                      className="block rounded-lg px-4 py-3 transition hover:bg-ink-700/50"
+                    >
+                      <div className="text-sm font-medium text-ink-50">SeaScope PEME Platform</div>
+                      <div className="mt-0.5 text-xs text-ink-50/60">Pre-employment exams</div>
+                    </Link>
+                    <Link
+                      to="/wellness"
+                      className="block rounded-lg px-4 py-3 transition hover:bg-ink-700/50"
+                    >
+                      <div className="text-sm font-medium text-ink-50">SeaScope Crew Wellness</div>
+                      <div className="mt-0.5 text-xs text-ink-50/60">Between-port crew health</div>
+                    </Link>
                   </div>
                 </div>
               )}
@@ -152,6 +166,12 @@ export default function SiteLayout({ children }) {
                 <Link to="/seascope-cds" className="block py-2 text-ink-50/90">
                   SeaScope CDS · $29.99/mo
                 </Link>
+                <Link to="/peme" className="block py-2 text-ink-50/90">
+                  SeaScope PEME Platform
+                </Link>
+                <Link to="/wellness" className="block py-2 text-ink-50/90">
+                  SeaScope Crew Wellness
+                </Link>
               </div>
               <Link to="/pricing" className="block py-3 text-ink-50/90">Pricing</Link>
               <Link to="/evidence" className="block py-3 text-ink-50/90">Evidence</Link>
@@ -208,6 +228,16 @@ export default function SiteLayout({ children }) {
                 <li>
                   <Link to="/cargo-solutions" className="text-ink-50/70 transition hover:text-sea-300">
                     Cargo Solutions
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/peme" className="text-ink-50/70 transition hover:text-sea-300">
+                    PEME Platform
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/wellness" className="text-ink-50/70 transition hover:text-sea-300">
+                    Crew Wellness
                   </Link>
                 </li>
                 <li>

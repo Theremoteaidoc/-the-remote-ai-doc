@@ -341,9 +341,24 @@ export default function Home() {
       {/* ─────────────── THE PLATFORM ─────────────── */}
       {/* Anchored from the hero "See the full platform" CTA. Was "FUTURE
           FAMILY / COMING" — relabeled because four of the six cards below
-          now carry the LIVE badge. The family IS the platform, today. */}
-      <section id="platform" className="scroll-mt-16 border-t border-ink-700/40 py-24 sm:py-32">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          now carry the LIVE badge. The family IS the platform, today.
+          Backdrop image generated 2026-06-07 via gemini-2.5-flash-image
+          under the brand-voice "abstract / schematic" exemption — purely
+          textural, no foreground composition, sits behind text overlay. */}
+      <section
+        id="platform"
+        className="relative isolate scroll-mt-16 overflow-hidden border-t border-ink-700/40 py-24 sm:py-32"
+      >
+        {/* Subtle textural backdrop */}
+        <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
+          <img
+            src="/images/home/platform-backdrop.png"
+            alt=""
+            className="h-full w-full object-cover opacity-40"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-ink-900/40 via-ink-900/30 to-ink-900/80" />
+        </div>
+        <div className="relative mx-auto max-w-7xl px-6 lg:px-8">
           <div className="mx-auto max-w-3xl text-center">
             <div className="eyebrow mb-4">THE PLATFORM</div>
             <h2 className="font-display text-4xl font-normal leading-tight text-ink-50 sm:text-5xl">
