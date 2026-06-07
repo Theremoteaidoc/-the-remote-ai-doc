@@ -5,6 +5,7 @@ import SiteLayout from './components/SiteLayout';
 import Home from './pages/Home';
 import SeaScopeCDS from './pages/SeaScopeCDS';
 import CargoSolutions from './pages/CargoSolutions';
+import Peme from './pages/Peme';
 import Pricing from './pages/Pricing';
 import About from './pages/About';
 import Press from './pages/Press';
@@ -33,6 +34,7 @@ export default function App() {
         <Route path="/" element={wrap(Home)} />
         <Route path="/seascope-cds" element={wrap(SeaScopeCDS)} />
         <Route path="/cargo-solutions" element={wrap(CargoSolutions)} />
+        <Route path="/peme" element={wrap(Peme)} />
         <Route path="/pricing" element={wrap(Pricing)} />
         <Route path="/evidence" element={wrap(Evidence)} />
         <Route path="/about" element={wrap(About)} />
@@ -44,7 +46,7 @@ export default function App() {
         <Route path="/blog/:slug" element={wrap(BlogPost)} />
         <Route path="/trial-started" element={wrap(TrialStarted)} />
 
-        {/* Hidden wellness landing — noindex, not in nav/sitemap */}
+        {/* Crew Wellness landing (published 2026-06-07 in Week 1 reframe) */}
         <Route path="/wellness" element={wrap(Wellness)} />
 
         {/* 301-style client-side redirects per IA migration table */}
