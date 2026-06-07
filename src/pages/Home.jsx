@@ -354,8 +354,18 @@ export default function Home() {
               Different workflows, same standard of care.
             </p>
           </div>
-          <div className="mx-auto mt-16 grid max-w-6xl gap-6 md:grid-cols-2 lg:grid-cols-3">
+          <div className="mx-auto mt-16 grid max-w-7xl gap-6 md:grid-cols-2 lg:grid-cols-4">
             {[
+              {
+                name: 'SeaScope CDS',
+                description: 'Physician-side emergency assessment tool. Cites every guideline, knows your ship\'s formulary, and produces a defensible case record on every recommendation.',
+                status: 'live',
+              },
+              {
+                name: 'SeaScope Cargo Solutions',
+                description: 'Two-way officer-to-shore case workflow. Officer captures the case onboard. Shore doctor reviews with AI support and approves. Every case becomes an auditable PDF record.',
+                status: 'live',
+              },
               {
                 name: 'SeaScope PEME Platform',
                 description: 'Digital pre-employment medical exams — fit-to-sail assessments, document workflow, and expiry tracking that syncs directly into the case engine.',
@@ -363,7 +373,7 @@ export default function Home() {
               },
               {
                 name: 'SeaScope Crew Wellness',
-                description: 'Longitudinal crew health — preventive care, chronic condition management, and mental-health check-ins between ports.',
+                description: 'Crew-facing app for self-logging BP and glucose between ports. Clinicians see the trend before the next exam. Supports duty-of-care under MLC.',
                 status: 'live',
               },
               {
