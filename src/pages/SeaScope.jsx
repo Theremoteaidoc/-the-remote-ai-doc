@@ -860,7 +860,7 @@ function SeaScopeContent() {
                   <h3 className="text-xl font-bold text-slate-900 mb-4">Safety Commitment</h3>
                   <div className="space-y-3 text-sm text-slate-600">
                     <div className="flex justify-between">
-                      <span>Detected critical failures (across 229+ tests)</span>
+                      <span>Detected critical failures (across 1,500+ tests)</span>
                       <span className="font-semibold text-slate-900">0 detected</span>
                     </div>
                     <div className="flex justify-between">

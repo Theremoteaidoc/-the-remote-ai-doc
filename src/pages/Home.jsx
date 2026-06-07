@@ -227,8 +227,8 @@ export default function Home() {
               { value: 52,   suffix: '+', label: 'Clinical protocols' },
               { value: 222,  suffix: '+', label: 'Clinical guidelines' },
               { value: 13,   suffix: '',  label: 'Safety guardrails' },
-              { value: 0,    suffix: '',  label: 'Detected critical failures (across 229+ tests)' },
-              { value: 1899, suffix: '+', label: 'Evaluation runs' },
+              { value: 0,    suffix: '',  label: 'Detected critical failures (across 1,500+ tests)' },
+              { value: 3500, suffix: '+', label: 'Evaluation runs' },
               { value: 4,    suffix: '+', label: 'Languages' },
             ].map((stat) => (
               <div key={stat.label}>
