@@ -4,8 +4,9 @@ import { ArrowRight, TrendingDown, Users, FileCheck, Clock } from 'lucide-react'
 import BookDemoModal from '../components/BookDemoModal';
 
 /**
- * /wellness — Hidden crew-wellness landing page.
- * noindex, nofollow — not in sitemap, not in nav.
+ * /wellness — SeaScope Crew Wellness landing page.
+ * Published (was hidden until 2026-06-07 per founder decision in the
+ * ecosystem-reframe Week 1 plan; product is live in prod at app.seascope.tech/crew/).
  * Audience: fleet operators (Part A) + crew members (Part B).
  * Copy source: docs/superpowers/specs/wellness-copy.md (founder-approved 2026-06-01).
  */
@@ -46,7 +47,6 @@ export default function Wellness() {
           name="description"
           content="SeaScope Crew Wellness gives shore-side care teams continuous visibility into crew health between periodic medical exams, helping catch the silent progression of hypertension, diabetes, and high cholesterol before they become fit-for-duty failures."
         />
-        <meta name="robots" content="noindex, nofollow" />
       </Helmet>
 
       {/* ─────────────── HERO ─────────────── */}
