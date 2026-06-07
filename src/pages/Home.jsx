@@ -85,6 +85,40 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ─────────────── SEE IT IN ACTION (walkthrough video) ─────────────── */}
+      {/* 56-second walkthrough showing the end-to-end SeaScope flow. Was on
+          previous versions of the site; founder asked to bring it back
+          2026-06-07. Source: backend/video/seascope-walkthrough/out/
+          seascope-walkthrough-v2.mp4 (9.3 MB, 1920×1080, demo data only). */}
+      <section className="border-b border-ink-700/40 bg-ink-900 py-16 sm:py-24">
+        <div className="mx-auto max-w-5xl px-6 lg:px-8">
+          <div className="mx-auto max-w-3xl text-center">
+            <div className="eyebrow mb-4">SEE IT IN ACTION</div>
+            <h2 className="font-display text-3xl font-normal leading-tight text-ink-50 sm:text-4xl">
+              A demo case, end to end<span className="accent-sea">.</span>
+            </h2>
+            <p className="mt-4 text-base leading-relaxed text-ink-50/70">
+              A short walkthrough of the SeaScope flow — from chief-complaint capture, through
+              the engine, to a structured recommendation. Demo data only.
+            </p>
+          </div>
+          <div className="relative mt-10 overflow-hidden rounded-2xl border border-ink-700/60 shadow-2xl shadow-ink-900/60 ring-1 ring-sea-500/20">
+            <video
+              src="/videos/seascope-walkthrough-v2.mp4"
+              poster="/videos/seascope-walkthrough-v2-poster.jpg"
+              controls
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="metadata"
+              className="block w-full"
+              aria-label="SeaScope demo walkthrough — 56 seconds, demo data only"
+            />
+          </div>
+        </div>
+      </section>
+
       {/* ─────────────── PRODUCT CARDS (Variant B: Cargo first) ─────────────── */}
       <section className="py-24 sm:py-32">
         <div className="mx-auto grid max-w-7xl gap-8 px-6 lg:grid-cols-2 lg:px-8">
@@ -194,23 +228,42 @@ export default function Home() {
                 <ArrowRight className="h-3.5 w-3.5" />
               </button>
             </div>
-            {/* Crew Wellness */}
+            {/* Crew Wellness — with real app-screenshot thumbnail (founder pref:
+                use real product UI, not AI-generated, where we have it) */}
             <div className="rounded-2xl border border-ink-700/60 bg-ink-800/30 p-6">
-              <div className="mb-2 inline-block rounded-md border border-emerald-500/50 bg-emerald-500/15 px-2 py-0.5 text-xs uppercase tracking-eyebrow text-emerald-300">
-                Live
+              <div className="flex gap-5">
+                <div className="min-w-0 flex-1">
+                  <div className="mb-2 inline-block rounded-md border border-emerald-500/50 bg-emerald-500/15 px-2 py-0.5 text-xs uppercase tracking-eyebrow text-emerald-300">
+                    Live
+                  </div>
+                  <h3 className="font-display text-xl font-medium text-ink-50">SeaScope Crew Wellness</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-ink-50/70">
+                    Crew self-log BP and glucose between ports. Clinicians see the trend before
+                    the next exam. Supports your duty-of-care record under MLC.
+                  </p>
+                  <Link
+                    to="/wellness"
+                    className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-sea-300 transition hover:text-sea-500"
+                  >
+                    Learn more
+                    <ArrowRight className="h-3.5 w-3.5" />
+                  </Link>
+                </div>
+                {/* Phone screenshot — real product UI */}
+                <div className="relative hidden flex-shrink-0 sm:block">
+                  <div className="absolute -inset-2 rounded-2xl bg-sea-500/10 blur-xl" aria-hidden="true" />
+                  <div className="relative w-20 overflow-hidden rounded-xl border border-ink-700/60 ring-1 ring-sea-500/20 sm:w-24">
+                    <img
+                      src="/images/wellness/home.png"
+                      alt="SeaScope Crew Wellness app home screen showing a seafarer's BP and glucose trend summary."
+                      className="w-full object-cover"
+                      loading="lazy"
+                      width="752"
+                      height="1524"
+                    />
+                  </div>
+                </div>
               </div>
-              <h3 className="font-display text-xl font-medium text-ink-50">SeaScope Crew Wellness</h3>
-              <p className="mt-2 text-sm leading-relaxed text-ink-50/70">
-                Crew self-log BP and glucose between ports. Clinicians see the trend before
-                the next exam. Supports your duty-of-care record under MLC.
-              </p>
-              <Link
-                to="/wellness"
-                className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-sea-300 transition hover:text-sea-500"
-              >
-                Learn more
-                <ArrowRight className="h-3.5 w-3.5" />
-              </Link>
             </div>
           </div>
         </div>
