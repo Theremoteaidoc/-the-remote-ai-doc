@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, ArrowRight } from 'lucide-react';
+import BookDemoModal from './BookDemoModal';
 
 /**
  * SeaScope site layout — top nav + footer.
@@ -9,6 +10,7 @@ import { Menu, X, ArrowRight } from 'lucide-react';
 export default function SiteLayout({ children }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [productsMenuOpen, setProductsMenuOpen] = useState(false);
+  const [demoOpen, setDemoOpen] = useState(false);
   const location = useLocation();
 
   useEffect(() => {
@@ -66,7 +68,7 @@ export default function SiteLayout({ children }) {
                       className="block rounded-lg px-4 py-3 transition hover:bg-ink-700/50"
                     >
                       <div className="text-sm font-medium text-ink-50">SeaScope CDS</div>
-                      <div className="mt-0.5 text-xs text-ink-50/60">For physicians · $29.99/mo</div>
+                      <div className="mt-0.5 text-xs text-ink-50/60">For individual physicians</div>
                     </Link>
                     <Link
                       to="/peme"
@@ -91,9 +93,6 @@ export default function SiteLayout({ children }) {
             </Link>
             <Link to="/evidence" className="text-sm text-ink-50/80 transition hover:text-sea-300">
               Evidence
-            </Link>
-            <Link to="/seascope-cds#testimonials" className="text-sm text-ink-50/80 transition hover:text-sea-300">
-              Testimonials
             </Link>
             <Link to="/about" className="text-sm text-ink-50/80 transition hover:text-sea-300">
               About
@@ -122,15 +121,14 @@ export default function SiteLayout({ children }) {
             >
               Sign in
             </a>
-            <a
-              href="https://buy.stripe.com/5kQ00i6YjgeH7Zt9lN2ZO00"
-              target="_blank"
-              rel="noopener noreferrer"
+            <button
+              type="button"
+              onClick={() => setDemoOpen(true)}
               className="btn-primary text-sm"
             >
-              Start Free Trial
+              Book a Demo
               <ArrowRight className="h-4 w-4" />
-            </a>
+            </button>
           </div>
 
           {/* Mobile menu button */}
@@ -164,7 +162,7 @@ export default function SiteLayout({ children }) {
                   SeaScope Cargo Solutions
                 </Link>
                 <Link to="/seascope-cds" className="block py-2 text-ink-50/90">
-                  SeaScope CDS · $29.99/mo
+                  SeaScope CDS · For individual physicians
                 </Link>
                 <Link to="/peme" className="block py-2 text-ink-50/90">
                   SeaScope PEME Platform
@@ -175,7 +173,6 @@ export default function SiteLayout({ children }) {
               </div>
               <Link to="/pricing" className="block py-3 text-ink-50/90">Pricing</Link>
               <Link to="/evidence" className="block py-3 text-ink-50/90">Evidence</Link>
-              <Link to="/seascope-cds#testimonials" className="block py-3 text-ink-50/90">Testimonials</Link>
               <Link to="/about" className="block py-3 text-ink-50/90">About</Link>
               <Link to="/blog" className="block py-3 text-ink-50/90">Blog</Link>
               <a
@@ -186,18 +183,19 @@ export default function SiteLayout({ children }) {
               >
                 Sign in
               </a>
-              <a
-                href="https://buy.stripe.com/5kQ00i6YjgeH7Zt9lN2ZO00"
-                target="_blank"
-                rel="noopener noreferrer"
+              <button
+                type="button"
+                onClick={() => { setMobileMenuOpen(false); setDemoOpen(true); }}
                 className="btn-primary mt-3 w-full"
               >
-                Start Free Trial
-              </a>
+                Book a Demo
+              </button>
             </div>
           </div>
         )}
       </nav>
+
+      <BookDemoModal open={demoOpen} onClose={() => setDemoOpen(false)} source="nav" />
 
       {/* ───── Page content ───── */}
       <main>{children}</main>

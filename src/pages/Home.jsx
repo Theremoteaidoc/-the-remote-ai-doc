@@ -13,14 +13,19 @@ import BookDemoModal from '../components/BookDemoModal';
 
 export default function Home() {
   const [demoOpen, setDemoOpen] = useState(false);
+  const [demoSource, setDemoSource] = useState('home/fleet-operators-card');
+  const openDemo = (source) => {
+    setDemoSource(source);
+    setDemoOpen(true);
+  };
   return (
     <>
-      <BookDemoModal open={demoOpen} onClose={() => setDemoOpen(false)} source="home/fleet-operators-card" />
+      <BookDemoModal open={demoOpen} onClose={() => setDemoOpen(false)} source={demoSource} />
       <Helmet>
         <title>SeaScope — Clinical care for places medicine wasn't built for.</title>
         <meta
           name="description"
-          content="The clinical reasoning engine for medicine practiced at the edge. SeaScope CDS for physicians ($29.99/mo). SeaScope Cargo Solutions for fleet operators."
+          content="Physician-built clinical technology for maritime operators, P&I clubs, cruise and expedition lines, and medical providers. Decision support, PEME, telemedicine, and crew health, with deterministic safety built in."
         />
         <link rel="canonical" href="https://seascope.tech/" />
       </Helmet>
@@ -48,22 +53,26 @@ export default function Home() {
               Clinical care for places medicine wasn't built for<span className="accent-sea">.</span>
             </h1>
             <p className="mt-8 max-w-2xl text-lg leading-relaxed text-ink-50/80 sm:text-xl">
-              The clinical reasoning engine for medicine practiced at the edge.
-              A personal tool for physicians. An operator platform for fleets.
-              A crew health layer between ports. A PEME pipeline that closes the documentation gap.
+              The clinical technology layer for medicine at sea. Decision support, pre-employment
+              medicals, ship-to-shore telemedicine, and crew health, on one engine with safety
+              enforced in code. Built by physicians who practice where it is used.
             </p>
             <p className="mt-3 max-w-2xl text-xs italic text-ink-50/50">
               Physician-gated clinical decision support. SeaScope drafts, structures, and documents recommendations for clinician review; it does not diagnose, prescribe, or replace professional judgment.
             </p>
             <div className="mt-10 flex flex-col gap-3 sm:flex-row">
-              <Link to="/seascope-cds" className="btn-primary">
-                For Physicians
+              <button
+                type="button"
+                onClick={() => openDemo('home/hero')}
+                className="btn-primary"
+              >
+                Book a Demo
                 <ArrowRight className="h-4 w-4" />
-              </Link>
-              <Link to="/cargo-solutions" className="btn-secondary">
-                For Fleet Operators
+              </button>
+              <a href="#different" className="btn-secondary">
+                See how we are different
                 <ArrowRight className="h-4 w-4" />
-              </Link>
+              </a>
               <a
                 href="#platform"
                 className="inline-flex items-center justify-center gap-2 rounded-lg border border-ink-50/30 px-6 py-3 text-sm font-medium text-ink-50/90 transition hover:border-ink-50/60 hover:text-ink-50"
@@ -72,6 +81,13 @@ export default function Home() {
                 <ArrowRight className="h-4 w-4" />
               </a>
             </div>
+            <Link
+              to="/seascope-cds"
+              className="mt-6 inline-flex items-center gap-1.5 text-sm text-ink-50/50 transition hover:text-ink-50/80"
+            >
+              Individual physician? Explore SeaScope CDS
+              <ArrowRight className="h-3.5 w-3.5" />
+            </Link>
           </div>
         </div>
       </section>
@@ -85,35 +101,129 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ─────────────── SEE IT IN ACTION (Loom walkthrough) ─────────────── */}
-      {/* Loom embed — the walkthrough that was on previous versions of the
-          site; founder asked to bring it back 2026-06-07. Same URL the
-          legacy SeaScope.jsx already carries (lines 427-435 of that file).
-          Embed flags: hide_owner, hide_share, hide_title, hideEmbedTopBar
-          so the player chrome stays minimal and on-brand. */}
+      {/* ─────────────── WHY SEASCOPE, NOT ANOTHER MEDICAL SAAS ─────────────── */}
+      <section id="different" className="scroll-mt-16 border-b border-ink-700/40 bg-ink-900 py-24 sm:py-32">
+        <div className="mx-auto max-w-6xl px-6 lg:px-8">
+          <div className="mx-auto max-w-3xl text-center">
+            <div className="eyebrow mb-4">WHY SEASCOPE, NOT ANOTHER MEDICAL SAAS</div>
+            <h2 className="font-display text-3xl font-normal leading-tight text-ink-50 sm:text-4xl">
+              The difference is in what happens when it matters.
+            </h2>
+          </div>
+          <div className="mx-auto mt-14 grid max-w-6xl gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {[
+              {
+                title: 'Built by practicing maritime physicians',
+                body: 'Not a health-tech vendor adapting a clinic product. Designed by doctors who work where it is used: one clinician, no specialist, hours from shore.',
+              },
+              {
+                title: 'Deterministic safety, not a chatbot',
+                body: 'The guardrails are enforced in code, not hoped for from a model. It will not recommend a drug your ship does not carry, and its safety limits cannot be talked around.',
+              },
+              {
+                title: 'Chest-aware and maritime-native',
+                body: 'Every recommendation is locked to the formulary and stock actually aboard that specific vessel. Built for thin connectivity and small crews, not a shore hospital.',
+              },
+              {
+                title: 'One audited case, inspection-ready',
+                body: 'Every encounter closes as a single timestamped, defensible record. Built for MLC and P&I scrutiny from the start, not bolted on.',
+              },
+              {
+                title: 'It augments your team, it never replaces it',
+                body: 'SeaScope sits alongside your existing doctors and TMAS, and makes the people you already trust faster and safer.',
+              },
+            ].map((card) => (
+              <div
+                key={card.title}
+                className="rounded-2xl border border-sea-500/30 bg-ink-800/30 p-6"
+              >
+                <h3 className="font-display text-xl font-medium leading-snug text-ink-50">
+                  {card.title}
+                </h3>
+                <p className="mt-3 text-sm leading-relaxed text-ink-50/70">{card.body}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ─────────────── SEE IT IN ACTION (product explainer) ─────────────── */}
+      {/* Self-hosted product-motion explainer built from real UI (crisp, no
+          AI distortion). Poster + native controls; replaces the prior Loom. */}
       <section className="border-b border-ink-700/40 bg-ink-900 py-16 sm:py-24">
         <div className="mx-auto max-w-5xl px-6 lg:px-8">
           <div className="mx-auto max-w-3xl text-center">
             <div className="eyebrow mb-4">SEE IT IN ACTION</div>
             <h2 className="font-display text-3xl font-normal leading-tight text-ink-50 sm:text-4xl">
-              A demo case, end to end<span className="accent-sea">.</span>
+              The platform, in under a minute<span className="accent-sea">.</span>
             </h2>
             <p className="mt-4 text-base leading-relaxed text-ink-50/70">
-              A walkthrough of a demo STEMI case running through SeaScope — chief-complaint
-              capture, AI analysis, port-diversion recommendation, and safety-guardrail
-              demonstration. Demo data only.
+              The real product: fleet PEME review, ship-to-shore telemedicine, decision support with
+              code-enforced guardrails, and the crew app. Demo data only.
             </p>
           </div>
           <div className="relative mt-10 overflow-hidden rounded-2xl border border-ink-700/60 shadow-2xl shadow-ink-900/60 ring-1 ring-sea-500/20">
-            <div className="relative" style={{ paddingBottom: '56.25%' }}>
-              <iframe
-                src="https://www.loom.com/embed/7209e8813f08437b8b162f3e705214ea?hide_owner=true&hide_share=true&hide_title=true&hideEmbedTopBar=true"
-                title="SeaScope CDS walkthrough — demo case, end to end"
-                allowFullScreen
-                className="absolute left-0 top-0 h-full w-full"
-                style={{ border: 0 }}
-              />
-            </div>
+            <video
+              controls
+              preload="metadata"
+              poster="/videos/seascope-explainer-poster.jpg"
+              className="block w-full"
+            >
+              <source src="/videos/seascope-explainer.mp4" type="video/mp4" />
+            </video>
+          </div>
+        </div>
+      </section>
+
+      {/* ─────────────── SEE THE ACTUAL PRODUCT ─────────────── */}
+      <section className="border-b border-ink-700/40 bg-ink-800/20 py-24 sm:py-32">
+        <div className="mx-auto max-w-6xl px-6 lg:px-8">
+          <div className="mx-auto max-w-3xl text-center">
+            <div className="eyebrow mb-4">SEE THE ACTUAL PRODUCT</div>
+            <h2 className="font-display text-3xl font-normal leading-tight text-ink-50 sm:text-4xl">
+              Not slides. The real thing.
+            </h2>
+          </div>
+          <div className="mx-auto mt-14 grid max-w-6xl gap-8 md:grid-cols-3">
+            {[
+              {
+                src: '/images/product/screen-peme.png',
+                width: 2720,
+                height: 1622,
+                alt: 'SeaScope PEME workspace showing a fleet medical review list with fitness-to-sail gating.',
+                caption: "Review a whole fleet's medicals in one workspace, with safety gates the machine cannot override.",
+              },
+              {
+                src: '/images/product/screen-telemed.png',
+                width: 2720,
+                height: 1466,
+                alt: 'SeaScope telemedicine case view showing vitals, clinical decision, and prescription in a single record.',
+                caption: 'One case, ship to shore: vitals, decision, and prescription, closed as a single audited record.',
+              },
+              {
+                src: '/images/product/screen-clinical-cds.png',
+                width: 2720,
+                height: 1226,
+                alt: 'SeaScope clinical decision support screen showing a ranked differential, a calculated risk score, and a safety guardrail.',
+                caption: 'Decision support with a ranked differential, a calculated risk score, and a guardrail that blocks an unsafe order.',
+              },
+            ].map((shot) => (
+              <figure key={shot.src} className="flex flex-col">
+                <div className="overflow-hidden rounded-2xl border border-ink-700/60 shadow-2xl shadow-ink-900/60 ring-1 ring-sea-500/20">
+                  <img
+                    src={shot.src}
+                    alt={shot.alt}
+                    className="w-full"
+                    loading="lazy"
+                    width={shot.width}
+                    height={shot.height}
+                  />
+                </div>
+                <figcaption className="mt-4 text-sm leading-relaxed text-ink-50/70">
+                  {shot.caption}
+                </figcaption>
+              </figure>
+            ))}
           </div>
         </div>
       </section>
@@ -147,7 +257,7 @@ export default function Home() {
             <div className="mt-6 flex-1" />
             <button
               type="button"
-              onClick={() => setDemoOpen(true)}
+              onClick={() => openDemo('home/fleet-operators-card')}
               className="mt-8 inline-flex w-full items-center justify-center gap-2 rounded-lg border border-sea-500 px-6 py-3 text-sm font-medium text-sea-300 transition hover:bg-sea-500/10"
             >
               Book a Demo
@@ -182,17 +292,13 @@ export default function Home() {
                 </li>
               ))}
             </ul>
-            <div className="mt-8 inline-flex items-baseline gap-2 self-start rounded-lg bg-sea-300 px-4 py-2 font-medium text-ink-900">
-              <span className="text-base">$29.99 / month</span>
-              <span className="text-xs opacity-70">· Cancel anytime</span>
-            </div>
             <div className="mt-6 flex-1" />
-            <Link to="/seascope-cds" className="btn-primary mt-8 w-full">
-              Try Free for 14 Days
+            <Link to="/seascope-cds" className="btn-secondary mt-8 w-full">
+              Explore SeaScope CDS
               <ArrowRight className="h-4 w-4" />
             </Link>
             <p className="mt-3 text-xs text-ink-50/50">
-              14 days free. Credit card required &mdash; $0 charged for 14 days. Cancel anytime.
+              A personal subscription for individual physicians. Details and pricing on the SeaScope CDS page.
             </p>
           </div>
         </div>
@@ -220,7 +326,7 @@ export default function Home() {
               </p>
               <button
                 type="button"
-                onClick={() => setDemoOpen(true)}
+                onClick={() => openDemo('home/peme-strip')}
                 className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-sea-300 transition hover:text-sea-500"
               >
                 Book a Demo
@@ -253,12 +359,12 @@ export default function Home() {
                   <div className="absolute -inset-2 rounded-2xl bg-sea-500/10 blur-xl" aria-hidden="true" />
                   <div className="relative w-20 overflow-hidden rounded-xl border border-ink-700/60 ring-1 ring-sea-500/20 sm:w-24">
                     <img
-                      src="/images/wellness/home.png"
-                      alt="SeaScope Crew Wellness app home screen showing a seafarer's BP and glucose trend summary."
+                      src="/images/product/crew-home.png"
+                      alt="SeaScope Crew Wellness app home screen: mood check-in, talk to a doctor, and private health logging."
                       className="w-full object-cover"
                       loading="lazy"
-                      width="752"
-                      height="1524"
+                      width="960"
+                      height="1960"
                     />
                   </div>
                 </div>
@@ -499,20 +605,12 @@ export default function Home() {
             Tell us where you practice.
           </h2>
           <p className="mt-6 text-base leading-relaxed text-ink-900/80">
-            Or just <a href="mailto:hello@seascope.tech" className="underline">hello@seascope.tech</a>
-            {' '}— Javier reads everything.
+            Or just <a href="mailto:hello@seascope.tech" className="underline">hello@seascope.tech</a>. Javier reads everything.
           </p>
           <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <Link
-              to="/seascope-cds"
-              className="inline-flex items-center justify-center gap-2 rounded-lg bg-ink-900 px-6 py-3 text-sm font-medium text-ink-50 transition hover:bg-ink-800"
-            >
-              I'm a physician
-              <ArrowRight className="h-4 w-4" />
-            </Link>
-            <Link
               to="/cargo-solutions"
-              className="inline-flex items-center justify-center gap-2 rounded-lg border border-ink-900 px-6 py-3 text-sm font-medium text-ink-900 transition hover:bg-ink-900/10"
+              className="inline-flex items-center justify-center gap-2 rounded-lg bg-ink-900 px-6 py-3 text-sm font-medium text-ink-50 transition hover:bg-ink-800"
             >
               I run a fleet
               <ArrowRight className="h-4 w-4" />
@@ -524,6 +622,13 @@ export default function Home() {
               I need PEME or crew health
               <ArrowRight className="h-4 w-4" />
             </a>
+            <Link
+              to="/seascope-cds"
+              className="inline-flex items-center justify-center gap-2 px-6 py-3 text-sm font-medium text-ink-900/70 underline-offset-4 transition hover:text-ink-900 hover:underline"
+            >
+              I'm a physician
+              <ArrowRight className="h-4 w-4" />
+            </Link>
           </div>
         </div>
       </section>

@@ -12,10 +12,14 @@ import BookDemoModal from '../components/BookDemoModal';
  */
 export default function CargoSolutions() {
   const [demoOpen, setDemoOpen] = useState(false);
-  const openDemo = () => setDemoOpen(true);
+  const [demoSource, setDemoSource] = useState('cargo/hero');
+  const openDemo = (source = 'cargo/hero') => {
+    setDemoSource(source);
+    setDemoOpen(true);
+  };
   return (
     <>
-      <BookDemoModal open={demoOpen} onClose={() => setDemoOpen(false)} source="cargo-solutions" />
+      <BookDemoModal open={demoOpen} onClose={() => setDemoOpen(false)} source={demoSource} />
       <Helmet>
         <title>SeaScope Cargo Solutions — Officer triage. Doctor decision. One audited case.</title>
         <meta
@@ -41,7 +45,7 @@ export default function CargoSolutions() {
                 MLC-grade documentation built in.
               </p>
               <div className="mt-10 flex flex-col gap-3 sm:flex-row">
-                <button type="button" onClick={openDemo} className="btn-primary">
+                <button type="button" onClick={() => openDemo('cargo/hero')} className="btn-primary">
                   Book a Demo
                   <ArrowRight className="h-4 w-4" />
                 </button>
@@ -52,6 +56,9 @@ export default function CargoSolutions() {
                   Contact Sales
                 </a>
               </div>
+              <p className="mt-4 max-w-xl text-xs italic text-ink-50/50">
+                Physician-gated clinical decision support. SeaScope drafts, structures, and documents recommendations for clinician review; it does not diagnose, prescribe, or replace professional judgment.
+              </p>
             </div>
 
             {/* Right: brand piece (helicopter composition with embedded "When the Nearest Hospital Is 8 Hours Away." typography) */}
@@ -105,10 +112,64 @@ export default function CargoSolutions() {
                 <li>Structured packet transmits to shore in under 30 seconds.</li>
                 <li>Physician opens the case with full context, an AI-drafted recommendation tied to the actual onboard formulary.</li>
                 <li>Doctor reviews, modifies, approves. Response transmits back. Everything auto-documents.</li>
+                <li>Sits alongside your existing TMAS provider and ship's doctors. It augments the team you already trust, it does not replace them.</li>
                 <li><strong className="text-sea-300">Time to decision:</strong> 3–12 minutes.</li>
               </ul>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* ─────────────── SEE THE ACTUAL PRODUCT ─────────────── */}
+      <section className="border-t border-ink-700/40 bg-ink-800/20 py-24 sm:py-32">
+        <div className="mx-auto max-w-6xl px-6 lg:px-8">
+          <div className="mx-auto max-w-3xl text-center">
+            <div className="eyebrow mb-4">SEE THE ACTUAL PRODUCT</div>
+            <h2 className="font-display text-4xl font-normal leading-tight text-ink-50 sm:text-5xl">
+              One case, ship to shore. Closed as a single audited record.
+            </h2>
+            <p className="mt-6 text-base leading-relaxed text-ink-50/70">
+              Real product screens, demo data only. The officer's case and the doctor's
+              fleet-wide worklist, both built on the same case record.
+            </p>
+          </div>
+          <div className="mx-auto mt-14 grid max-w-6xl gap-8 md:grid-cols-2">
+            {[
+              {
+                src: '/images/product/screen-telemed.png',
+                width: 2720,
+                height: 1466,
+                alt: 'SeaScope case view showing an officer-logged chest pain case with vitals, the shoreside physician\'s decision, a prescription drawn from the ship\'s medicine chest, and a timestamped audit trail.',
+                caption: 'Vitals, decision, and prescription in one record, timestamped and signed off in minutes, not the 25 to 45 minutes voice-only triage takes.',
+              },
+              {
+                src: '/images/product/screen-telemed-worklist.png',
+                width: 2720,
+                height: 1430,
+                alt: 'SeaScope Hub fleet worklist showing open cases across multiple vessels with median response time, triage level, and diagnosis coding.',
+                caption: 'One physician queue covering the fleet: urgent cases surface first, every case gets coded, nothing sits unclaimed.',
+              },
+            ].map((shot) => (
+              <figure key={shot.src} className="flex flex-col">
+                <div className="overflow-hidden rounded-2xl border border-ink-700/60 shadow-2xl shadow-ink-900/60 ring-1 ring-sea-500/20">
+                  <img
+                    src={shot.src}
+                    alt={shot.alt}
+                    className="w-full"
+                    loading="lazy"
+                    width={shot.width}
+                    height={shot.height}
+                  />
+                </div>
+                <figcaption className="mt-4 text-sm leading-relaxed text-ink-50/70">
+                  {shot.caption}
+                </figcaption>
+              </figure>
+            ))}
+          </div>
+          <p className="mt-10 text-center text-xs italic text-ink-50/50">
+            Physician-gated clinical decision support. The shoreside physician reviews and signs every case; SeaScope drafts and structures, it does not diagnose or prescribe on its own.
+          </p>
         </div>
       </section>
 
@@ -149,7 +210,7 @@ export default function CargoSolutions() {
             type, and integration scope. We walk you through the full structure — including pilot
             conversion economics — in a 30-minute consultative call.
           </p>
-          <button type="button" onClick={openDemo} className="btn-primary mt-10">
+          <button type="button" onClick={() => openDemo('cargo/pricing')} className="btn-primary mt-10">
             Book a Demo
             <ArrowRight className="h-4 w-4" />
           </button>
@@ -240,7 +301,7 @@ export default function CargoSolutions() {
           <div className="mt-10 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
             <button
               type="button"
-              onClick={openDemo}
+              onClick={() => openDemo('cargo/final')}
               className="inline-flex items-center justify-center gap-2 rounded-lg bg-ink-900 px-8 py-4 text-base font-medium text-ink-50 transition hover:bg-ink-800"
             >
               Book a Demo

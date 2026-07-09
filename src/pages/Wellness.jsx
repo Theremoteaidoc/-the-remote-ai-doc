@@ -36,10 +36,15 @@ const BENEFITS = [
 
 export default function Wellness() {
   const [demoOpen, setDemoOpen] = useState(false);
+  const [demoSource, setDemoSource] = useState('wellness/hero');
+  const openDemo = (source = 'wellness/hero') => {
+    setDemoSource(source);
+    setDemoOpen(true);
+  };
 
   return (
     <>
-      <BookDemoModal open={demoOpen} onClose={() => setDemoOpen(false)} source="wellness" />
+      <BookDemoModal open={demoOpen} onClose={() => setDemoOpen(false)} source={demoSource} />
 
       <Helmet>
         <title>SeaScope Crew Wellness — Between-Exam Monitoring for Seafarers</title>
@@ -68,10 +73,10 @@ export default function Wellness() {
               <div className="mt-10 flex flex-col gap-3 sm:flex-row">
                 <button
                   type="button"
-                  onClick={() => setDemoOpen(true)}
+                  onClick={() => openDemo('wellness/hero')}
                   className="btn-primary"
                 >
-                  Request a demo
+                  Book a Demo
                   <ArrowRight className="h-4 w-4" />
                 </button>
                 <a
@@ -83,17 +88,17 @@ export default function Wellness() {
               </div>
             </div>
 
-            {/* Right: phone screenshot */}
+            {/* Right: phone screenshot (real product UI) */}
             <div className="relative flex justify-center lg:justify-end">
               <div className="absolute -inset-4 rounded-3xl bg-sea-500/10 blur-2xl" aria-hidden="true" />
-              <div className="relative w-56 overflow-hidden rounded-[2rem] border border-ink-700/60 shadow-2xl shadow-ink-900/60 ring-1 ring-sea-500/20 sm:w-64">
+              <div className="relative w-56 overflow-hidden rounded-2xl border border-ink-700/60 shadow-2xl shadow-ink-900/60 ring-1 ring-sea-500/20 sm:w-64">
                 <img
-                  src="/images/wellness/home.png"
-                  alt="SeaScope Crew Wellness app home screen showing a seafarer's health dashboard with blood pressure and glucose trend summary."
+                  src="/images/product/crew-home.png"
+                  alt="SeaScope Crew Wellness app home screen showing a daily mood check-in, a Talk to a doctor button available privately and around the clock, and quick actions for logging health, a guided quiet moment, learning, and check-in history."
                   className="w-full object-cover"
                   loading="eager"
-                  width="752"
-                  height="1524"
+                  width="960"
+                  height="1960"
                 />
               </div>
             </div>
@@ -206,10 +211,10 @@ export default function Wellness() {
           <div className="mt-10 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
             <button
               type="button"
-              onClick={() => setDemoOpen(true)}
+              onClick={() => openDemo('wellness/buyer-cta')}
               className="inline-flex items-center justify-center gap-2 rounded-lg bg-ink-900 px-8 py-4 text-base font-medium text-ink-50 transition hover:bg-ink-800"
             >
-              Request a demo
+              Book a Demo
               <ArrowRight className="h-4 w-4" />
             </button>
             <a
@@ -246,33 +251,33 @@ export default function Wellness() {
             </h2>
           </div>
 
-          {/* App screenshots */}
+          {/* App screenshots (real product UI) */}
           <div className="mx-auto mt-16 grid max-w-3xl grid-cols-3 gap-4 sm:gap-8">
             {[
               {
-                src: '/images/wellness/bp.png',
-                alt: 'SeaScope Crew Wellness screen for logging a blood pressure reading, showing input fields for systolic and diastolic values.',
+                src: '/images/product/crew-home.png',
+                alt: 'SeaScope Crew Wellness app home screen with a daily mood check-in and a private Talk to a doctor button, available in the crew member\'s own language.',
               },
               {
-                src: '/images/wellness/glucose.png',
-                alt: 'SeaScope Crew Wellness glucose logging screen showing a simple form for entering a blood glucose reading with date and time.',
+                src: '/images/product/crew-quiet.png',
+                alt: 'SeaScope Crew Wellness Quiet Moment screen offering a guided breathing exercise, with a language switcher for English, Spanish, Tagalog, and Hindi.',
               },
               {
-                src: '/images/wellness/sync.png',
-                alt: 'SeaScope Crew Wellness data-sync screen confirming that readings have been sent to the crew member\'s clinical record.',
+                src: '/images/product/crew-health.png',
+                alt: 'SeaScope Crew Wellness My Health screen showing a blood pressure trend, sleep, and resting heart rate, with a note that a clinician is notified automatically if a reading looks risky.',
               },
             ].map((shot) => (
               <div
                 key={shot.src}
-                className="overflow-hidden rounded-[1.5rem] border border-ink-700/60 shadow-xl shadow-ink-900/40 ring-1 ring-sea-500/10"
+                className="overflow-hidden rounded-2xl border border-ink-700/60 shadow-xl shadow-ink-900/40 ring-1 ring-sea-500/10"
               >
                 <img
                   src={shot.src}
                   alt={shot.alt}
                   className="w-full object-cover"
                   loading="lazy"
-                  width="752"
-                  height="1524"
+                  width="960"
+                  height="1960"
                 />
               </div>
             ))}
@@ -280,12 +285,17 @@ export default function Wellness() {
 
           {/* Caption row */}
           <div className="mx-auto mt-6 grid max-w-3xl grid-cols-3 gap-4 sm:gap-8">
-            {['Log BP', 'Log glucose', 'See trends'].map((label) => (
+            {['Daily check-in', 'Quiet moment', 'My health'].map((label) => (
               <p key={label} className="text-center text-xs uppercase tracking-eyebrow text-ink-50/50">
                 {label}
               </p>
             ))}
           </div>
+          <p className="mx-auto mt-8 max-w-2xl text-center text-sm leading-relaxed text-ink-50/60">
+            Available in English, Spanish, Tagalog, and Hindi, including guided audio in a real
+            human voice. If a reading looks risky, the shoreside care team is notified
+            automatically, so no seafarer has to decide alone.
+          </p>
         </div>
       </section>
 
@@ -299,25 +309,27 @@ export default function Wellness() {
                 Log in under a minute. See your own trends.
               </h2>
               <p className="mt-6 text-base leading-relaxed text-ink-50/70">
-                The SeaScope app lets you record a blood pressure or glucose reading in seconds —
+                The SeaScope app lets you record a blood pressure or glucose reading in seconds,
                 no forms, no paperwork. Your readings build a personal health baseline over time,
                 so you can see how your numbers are moving. Simple health education sits alongside
                 your data, explaining what your readings mean in plain language.
               </p>
               <p className="mt-4 text-base leading-relaxed text-ink-50/70">
-                The app is for you. It puts your own health information in your own hands.
+                If something feels wrong, you can message a doctor directly from the app, private
+                and available around the clock, in your own language. The app is for you. It puts
+                your own health information in your own hands.
               </p>
             </div>
             <div className="relative flex justify-center lg:justify-end">
               <div className="absolute -inset-4 rounded-3xl bg-sea-500/8 blur-2xl" aria-hidden="true" />
-              <div className="relative w-52 overflow-hidden rounded-[2rem] border border-ink-700/60 shadow-2xl shadow-ink-900/60 ring-1 ring-sea-500/20 sm:w-60">
+              <div className="relative w-52 overflow-hidden rounded-2xl border border-ink-700/60 shadow-2xl shadow-ink-900/60 ring-1 ring-sea-500/20 sm:w-60">
                 <img
-                  src="/images/wellness/home.png"
-                  alt="SeaScope Crew Wellness app home screen showing personal health readings and trend graphs for a crew member."
+                  src="/images/product/crew-health.png"
+                  alt="SeaScope Crew Wellness My Health screen showing a crew member's own blood pressure trend, sleep, and resting heart rate readings, with reassurance that a clinician is notified automatically if a reading looks risky."
                   className="w-full object-cover"
                   loading="lazy"
-                  width="752"
-                  height="1524"
+                  width="960"
+                  height="1960"
                 />
               </div>
             </div>
@@ -343,18 +355,18 @@ export default function Wellness() {
         </div>
       </section>
 
-      {/* ─────────────── CREW INSTALL / COMING SOON ─────────────── */}
+      {/* ─────────────── CREW INSTALL / LIVE ─────────────── */}
       <section className="border-t border-ink-700/40 bg-ink-800/20 py-24 sm:py-32">
         <div className="mx-auto max-w-3xl px-6 text-center lg:px-8">
-          <div className="inline-block rounded-md bg-sea-500/10 px-3 py-1 text-xs font-medium uppercase tracking-eyebrow text-sea-300 ring-1 ring-sea-500/20">
-            Coming soon
+          <div className="inline-block rounded-md bg-emerald-500/15 px-3 py-1 text-xs font-medium uppercase tracking-eyebrow text-emerald-300 ring-1 ring-emerald-500/40">
+            Live
           </div>
           <h2 className="mt-6 font-display text-3xl font-normal leading-tight text-ink-50 sm:text-4xl">
-            Coming soon.
+            In your crew's hands today.
           </h2>
           <p className="mt-6 text-base leading-relaxed text-ink-50/70">
-            The app is in development. When it is ready for your fleet, your company will
-            share a link to install it — no app store search required.
+            The app is live. Your operator provisions access, and crew install it from a private
+            link in four languages, no app-store search required.
           </p>
         </div>
       </section>

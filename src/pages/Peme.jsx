@@ -1,6 +1,7 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
-import { ArrowRight, Check, FileSearch, ShieldCheck, Eye, History } from 'lucide-react';
+import { ArrowRight, Check, FileSearch, ShieldCheck, Eye, History, ShieldAlert, HeartPulse } from 'lucide-react';
 import BookDemoModal from '../components/BookDemoModal';
 
 /**
@@ -16,11 +17,15 @@ import BookDemoModal from '../components/BookDemoModal';
  */
 export default function Peme() {
   const [demoOpen, setDemoOpen] = useState(false);
-  const openDemo = () => setDemoOpen(true);
+  const [demoSource, setDemoSource] = useState('peme/hero');
+  const openDemo = (source = 'peme/hero') => {
+    setDemoSource(source);
+    setDemoOpen(true);
+  };
 
   return (
     <>
-      <BookDemoModal open={demoOpen} onClose={() => setDemoOpen(false)} source="peme" />
+      <BookDemoModal open={demoOpen} onClose={() => setDemoOpen(false)} source={demoSource} />
       <Helmet>
         <title>SeaScope PEME Platform — Pre-employment exams, structured and documented.</title>
         <meta
@@ -46,7 +51,7 @@ export default function Peme() {
                 comparable, ready when the port-state inspector asks.
               </p>
               <div className="mt-10 flex flex-col gap-3 sm:flex-row">
-                <button type="button" onClick={openDemo} className="btn-primary">
+                <button type="button" onClick={() => openDemo('peme/hero')} className="btn-primary">
                   Book a Demo
                   <ArrowRight className="h-4 w-4" />
                 </button>
@@ -57,6 +62,9 @@ export default function Peme() {
                   Talk to the clinical team
                 </a>
               </div>
+              <p className="mt-4 max-w-xl text-xs italic text-ink-50/50">
+                Physician-gated decision support. SeaScope proposes a fitness disposition for the reviewer's confirmation; a licensed reviewer signs every case.
+              </p>
             </div>
 
             {/* Right: brand piece (schematic illustration, abstract — brand-voice exemption) */}
@@ -155,6 +163,56 @@ export default function Peme() {
         </div>
       </section>
 
+      {/* ─────────────── SEE THE ACTUAL PRODUCT ─────────────── */}
+      <section className="py-24 sm:py-32">
+        <div className="mx-auto max-w-6xl px-6 lg:px-8">
+          <div className="mx-auto max-w-3xl text-center">
+            <div className="eyebrow mb-4">SEE THE ACTUAL PRODUCT</div>
+            <h2 className="font-display text-4xl font-normal leading-tight text-ink-50 sm:text-5xl">
+              The reviewer queue, and the safety gate underneath it.
+            </h2>
+            <p className="mt-6 text-base leading-relaxed text-ink-50/70">
+              Real product screens, demo data only. The disposition buttons your reviewer
+              sees are Fit, Conditional, and Review, never an automatic permanent-unfit.
+            </p>
+          </div>
+          <div className="mx-auto mt-14 grid max-w-6xl gap-8 md:grid-cols-2">
+            {[
+              {
+                src: '/images/product/screen-peme.png',
+                width: 2720,
+                height: 1622,
+                alt: 'SeaScope PEME reviewer queue showing seafarers awaiting a fitness decision, with flags for elevated blood pressure, a positive IGRA test, and low-confidence audiometry, and a safety-gate notice confirming the system never issues a permanent-unfit or auto-rejects an IGRA-positive result.',
+                caption: 'Every flagged exam routes to a person, not a machine. A positive IGRA is never auto-rejected. There is no code path to a permanent-unfit disposition.',
+              },
+              {
+                src: '/images/product/screen-peme-detail.png',
+                width: 2720,
+                height: 1390,
+                alt: 'SeaScope PEME detail view showing extracted exam results including blood pressure, vision, audiometry, BMI, IGRA, HbA1c, and ECG, next to a gating-field notice, a physician-decision-required notice, and a certificate expiry radar for the fleet.',
+                caption: 'Extracted results side by side with the flag that triggered review, the disposition options, and how many fleet certificates expire in the next 30 days.',
+              },
+            ].map((shot) => (
+              <figure key={shot.src} className="flex flex-col">
+                <div className="overflow-hidden rounded-2xl border border-ink-700/60 shadow-2xl shadow-ink-900/60 ring-1 ring-sea-500/20">
+                  <img
+                    src={shot.src}
+                    alt={shot.alt}
+                    className="w-full"
+                    loading="lazy"
+                    width={shot.width}
+                    height={shot.height}
+                  />
+                </div>
+                <figcaption className="mt-4 text-sm leading-relaxed text-ink-50/70">
+                  {shot.caption}
+                </figcaption>
+              </figure>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* ─────────────── FOR YOUR FLEET (value props) ─────────────── */}
       <section className="py-24 sm:py-32">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
@@ -164,7 +222,7 @@ export default function Peme() {
               Built for the questions you'll be asked.
             </h2>
           </div>
-          <div className="mx-auto mt-14 grid max-w-5xl gap-6 md:grid-cols-2">
+          <div className="mx-auto mt-14 grid max-w-5xl gap-6 md:grid-cols-2 lg:grid-cols-3">
             {[
               {
                 icon: ShieldCheck,
@@ -184,7 +242,17 @@ export default function Peme() {
               {
                 icon: History,
                 title: 'Historical record from day one.',
-                body: 'Re-evaluation has the full prior context — what was caught, what was missed, what was overridden, by whom. No more reconstructing a paper trail months later.',
+                body: 'Re-evaluation has the full prior context, what was caught, what was missed, what was overridden, and by whom. No more reconstructing a paper trail months later.',
+              },
+              {
+                icon: ShieldAlert,
+                title: 'Fleet-wide expiry radar.',
+                body: 'One view of every certificate expiring across the fleet in the next 30 days, so a crew change never turns into a compliance gap.',
+              },
+              {
+                icon: HeartPulse,
+                title: 'Feeds SeaScope Crew Wellness.',
+                body: "A signed-off medical enrolls the seafarer into between-exam monitoring automatically, so the next PEME isn't the first time anyone looked at that trend.",
               },
             ].map((v) => (
               <div key={v.title} className="rounded-2xl border border-ink-700/60 bg-ink-800/30 p-6">
@@ -194,6 +262,13 @@ export default function Peme() {
               </div>
             ))}
           </div>
+          <p className="mx-auto mt-8 max-w-5xl text-center text-sm text-ink-50/60">
+            Curious how the medical record and the between-exam monitoring connect?{' '}
+            <Link to="/wellness" className="text-sea-300 underline">
+              See SeaScope Crew Wellness
+            </Link>
+            .
+          </p>
         </div>
       </section>
 
@@ -241,7 +316,7 @@ export default function Peme() {
           <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <button
               type="button"
-              onClick={openDemo}
+              onClick={() => openDemo('peme/final')}
               className="inline-flex items-center justify-center gap-2 rounded-lg bg-ink-900 px-6 py-3 text-sm font-medium text-ink-50 transition hover:bg-ink-800"
             >
               Book a Demo
