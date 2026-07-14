@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
 Disallow: /wellness
+Disallow: /p/pilot
 Sitemap: https://seascope.tech/sitemap.xml
