@@ -12,7 +12,6 @@ import Evidence from './pages/Evidence';
 import TrialStarted from './pages/TrialStarted';
 import Privacy from './pages/Privacy';
 import Terms from './pages/Terms';
-
 import Blog from './pages/Blog';
 import BlogPost from './pages/BlogPost';
 import Wellness from './pages/Wellness';

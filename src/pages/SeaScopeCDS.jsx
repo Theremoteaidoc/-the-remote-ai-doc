@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { ArrowRight, Check, Play } from 'lucide-react';
@@ -11,6 +12,7 @@ const STRIPE_CDS_CHECKOUT = 'https://buy.stripe.com/5kQ00i6YjgeH7Zt9lN2ZO00';
  * Hero photo: TODO: recommend porthole brand asset; placeholder gradient for now.
  */
 export default function SeaScopeCDS() {
+  const [walkthroughStarted, setWalkthroughStarted] = useState(false);
   return (
     <>
       <Helmet>
@@ -179,13 +181,27 @@ export default function SeaScopeCDS() {
               </div>
             </div>
             <div style={{ position: 'relative', paddingBottom: '56.25%', height: 0 }}>
-              <iframe
-                src="https://www.loom.com/embed/7209e8813f08437b8b162f3e705214ea?hide_owner=true&hide_share=true&hide_title=true&hideEmbedTopBar=true"
-                frameBorder="0"
-                allowFullScreen
-                style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}
-                title="SeaScope CDS walkthrough, acute inferior STEMI case at sea"
-              />
+              {walkthroughStarted ? (
+                <iframe
+                  src="https://www.loom.com/embed/7209e8813f08437b8b162f3e705214ea?hide_owner=true&hide_share=true&hide_title=true&hideEmbedTopBar=true"
+                  frameBorder="0"
+                  allowFullScreen
+                  style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}
+                  title="SeaScope CDS walkthrough, acute inferior STEMI case at sea"
+                />
+              ) : (
+                <button
+                  type="button"
+                  onClick={() => setWalkthroughStarted(true)}
+                  className="group absolute inset-0 flex w-full items-center justify-center bg-ink-800 text-left"
+                  aria-label="Play 60-second SeaScope CDS walkthrough"
+                >
+                  <span className="inline-flex items-center gap-2 rounded-full bg-ink-900/80 px-5 py-3 text-sm font-medium text-ink-50 ring-1 ring-sea-500/40 transition group-hover:ring-sea-400">
+                    <Play className="h-4 w-4 text-sea-300" fill="currentColor" />
+                    Play walkthrough
+                  </span>
+                </button>
+              )}
             </div>
           </div>
 
@@ -281,7 +297,7 @@ export default function SeaScopeCDS() {
           <h2 className="text-center font-display text-3xl font-normal text-ink-50 sm:text-4xl">
             Physicians at sea, and the operators who back them.
           </h2>
-          <div className="mx-auto mt-10 grid max-w-4xl gap-6 md:grid-cols-2">
+          <div className="mx-auto mt-10 grid max-w-5xl gap-6 md:grid-cols-3">
             <div className="editorial-card">
               <h3 className="font-display text-xl font-medium text-ink-50">Individual physicians</h3>
               <p className="mt-3 text-sm leading-relaxed text-ink-50/70">
@@ -295,6 +311,15 @@ export default function SeaScopeCDS() {
               <p className="mt-3 text-sm leading-relaxed text-ink-50/70">
                 Officer-to-clinician telemedicine: the officer captures the case onboard, shore
                 physicians review it, and an SOS voice line reaches the operator's own 24/7 desk.
+              </p>
+            </div>
+            <div className="editorial-card">
+              <h3 className="font-display text-xl font-medium text-ink-50">Cargo fleets without a physician aboard</h3>
+              <p className="mt-3 text-sm leading-relaxed text-ink-50/70">
+                The officer captures vitals, complaint, history, and photos in a guided form.
+                Shore physicians review the structured case against the chest actually onboard.
+                An SOS voice line reaches the operator's own 24/7 desk. The case closes as one
+                audited record.
               </p>
             </div>
           </div>

@@ -11,7 +11,7 @@ export default function Press() {
     <>
       <Helmet>
         <title>Press & Media: SeaScope / RemoteAid Medical Solutions</title>
-        <meta name="description" content="Resources for journalists writing about SeaScope CDS, SeaScope Cargo Solutions, and RemoteAid Medical Solutions. Founder pitch, real-patient case study, brand assets." />
+        <meta name="description" content="Resources for journalists writing about SeaScope CDS, operator telemedicine, and RemoteAid Medical Solutions. Founder pitch, case review, brand assets." />
         <link rel="canonical" href="https://seascope.tech/press" />
       </Helmet>
 
@@ -23,9 +23,8 @@ export default function Press() {
             Resources for journalists<span className="accent-sea">.</span>
           </h1>
           <p className="mt-8 max-w-2xl text-lg leading-relaxed text-ink-50/80">
-            Everything you need to write about RemoteAid Medical Solutions, SeaScope CDS, and
-            SeaScope Cargo Solutions, a copyable founder pitch, a real-patient case study, and
-            downloadable brand assets.
+            Everything you need to write about RemoteAid Medical Solutions and SeaScope CDS:
+            a copyable founder pitch, a de-identified case review, and downloadable brand assets.
           </p>
         </div>
       </section>
@@ -89,7 +88,15 @@ export default function Press() {
           <div className="eyebrow mb-4">FOUNDER</div>
           <div className="grid gap-8 md:grid-cols-[1fr_2fr]">
             <div className="aspect-[3/4] overflow-hidden rounded-2xl border border-ink-700 bg-ink-800">
-              <img src="/profile.jpg" alt="Dr. Javier Rosas" className="h-full w-full object-cover" />
+              <img
+                src="/profile.jpg"
+                alt="Dr. Javier Rosas"
+                className="h-full w-full object-cover"
+                width="597"
+                height="800"
+                loading="lazy"
+                decoding="async"
+              />
             </div>
             <div className="text-base leading-relaxed text-ink-50/75">
               <h3 className="mb-4 font-display text-2xl text-ink-50">Short bio (~50 words)</h3>

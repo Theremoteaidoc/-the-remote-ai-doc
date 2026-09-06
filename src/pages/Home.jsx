@@ -27,6 +27,7 @@ export default function Home() {
           content="Physician-built clinical technology for maritime operators. Telemedicine CDS with officer-to-clinician workflow, PEME processing, and crew wellness. Book a demo."
         />
         <link rel="canonical" href="https://seascope.tech/" />
+        <link rel="preload" as="image" href="/home-hero.jpg" fetchPriority="high" />
       </Helmet>
 
       {/* ─────────────── HERO ─────────────── */}
@@ -37,6 +38,10 @@ export default function Home() {
             alt="Aerial view of a tanker at sea with distant vessels on the horizon at sunset, representing maritime medicine practiced where specialist backup is hours away."
             className="h-full w-full object-cover"
             style={{ objectPosition: '50% 60%' }}
+            width="1200"
+            height="564"
+            fetchPriority="high"
+            decoding="async"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-ink-900/40 via-ink-900/60 to-ink-900/95" />
         </div>

@@ -89,7 +89,15 @@ export default function About() {
           <div className="eyebrow mb-4">FOUNDER & CEO</div>
           <div className="grid gap-12 md:grid-cols-[1fr_2fr]">
             <div className="aspect-[3/4] overflow-hidden rounded-2xl border border-ink-700 bg-ink-800">
-              <img src="/profile.jpg" alt="Dr. Javier Rosas, MD" className="h-full w-full object-cover" />
+              <img
+                src="/profile.jpg"
+                alt="Dr. Javier Rosas, MD"
+                className="h-full w-full object-cover"
+                width="597"
+                height="800"
+                loading="lazy"
+                decoding="async"
+              />
             </div>
             <div>
               <h2 className="font-display text-4xl font-normal text-ink-50">Dr. Javier Rosas, MD</h2>
