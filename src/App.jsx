@@ -53,7 +53,6 @@ export default function App() {
         <Route path="/seascope/evidence" element={<Navigate to="/evidence#validation" replace />} />
         <Route path="/seascope/eval-tracker" element={<Navigate to="/evidence#eval-tracker" replace />} />
         <Route path="/seascope/data-flow" element={<Navigate to="/evidence#data-flow" replace />} />
-        <Route path="/seascope/pilot" element={<Navigate to="/seascope-cds" replace />} />
 
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>

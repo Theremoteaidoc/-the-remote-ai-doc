@@ -9,7 +9,7 @@ const STRIPE_CDS_CHECKOUT = 'https://buy.stripe.com/5kQ00i6YjgeH7Zt9lN2ZO00';
 /**
  * /pricing: side-by-side. Asymmetric pricing display.
  * Copy from /root/marketing/copy/pricing-v1.md.
- * GATED per IA amendment 2: Cargo column never shows physician-seat / volume tiers / pilot rate.
+ * GATED per IA amendment 2: Cargo column never shows physician-seat / volume tiers / evaluation rate.
  */
 export default function Pricing() {
   const [demoOpen, setDemoOpen] = useState(false);
@@ -94,7 +94,7 @@ export default function Pricing() {
             </div>
             <div className="text-sm text-ink-50/60">consultative call · pricing shared on request</div>
             <div className="mt-2 inline-block rounded-md border border-sea-500/40 px-2 py-0.5 text-xs text-sea-300">
-              Volume + seat pricing on call · 30-day pilot available
+              Volume + seat pricing on call · 30-day evaluation available
             </div>
 
             <ul className="mt-8 space-y-3 text-sm">
@@ -142,7 +142,7 @@ export default function Pricing() {
                 {[
                   ['Audience', 'Individual physicians', 'Fleet operators'],
                   ['Pricing', '$29.99 / month', 'Quoted per fleet · shared on call'],
-                  ['Trial', '14-day free trial · credit card required · cancel anytime', '30-day pilot · terms shared on call'],
+                  ['Trial', '14-day free trial · credit card required · cancel anytime', '30-day evaluation · terms shared on call'],
                   ['Sales motion', 'Self-serve · sign up online', 'Consultative · book a demo'],
                   ['Onboarding', 'Instant, log into the app', '1–2 weeks per fleet'],
                   ['Sample use case', 'Ship physician at 2 AM with no specialist backup', 'Fleet operator with shore-based physicians'],
@@ -172,7 +172,7 @@ export default function Pricing() {
             {[
               {
                 q: "Why isn't Cargo Solutions pricing fully public?",
-                a: "Cargo deployments vary by fleet size, vessel type, and integration scope. We share the full pricing structure, including volume discounts and pilot terms, in a 30-minute consultative call so we can match the commercial structure to your operation. We don't gate the conversation behind a sales cycle.",
+                a: "Cargo deployments vary by fleet size, vessel type, and integration scope. We share the full pricing structure, including volume discounts and evaluation terms, in a 30-minute consultative call so we can match the commercial structure to your operation. We don't gate the conversation behind a sales cycle.",
               },
               {
                 q: 'Can I cancel SeaScope CDS anytime?',

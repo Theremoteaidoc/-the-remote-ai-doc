@@ -191,8 +191,8 @@ export default function Wellness() {
             <p className="mt-8 text-base leading-relaxed text-ink-50/70">
               SeaScope Crew Wellness is part of the broader SeaScope platform, the same clinical
               record, the same care team interface, the same audit trail. If your fleet is already
-              using SeaScope, wellness monitoring is an extension, not a separate system. Crew
-              self-enrol with a passport or ID number and date of birth.
+              using SeaScope, wellness monitoring is an extension, not a separate system. The
+              programme is in service with fleet operators.
             </p>
           </div>
         </div>

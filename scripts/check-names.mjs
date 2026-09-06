@@ -116,6 +116,27 @@ async function main() {
     process.exit(1);
   }
 
+  const PILOT_RE = /pilot/i;
+  const BLOG_HISTORY = new Set(['src/data/blogPosts.js']);
+  const pilotHits = [];
+  for (const file of files) {
+    const rel = relative(ROOT, file);
+    if (!rel.startsWith('src/')) continue;
+    if (BLOG_HISTORY.has(rel)) continue;
+    let text;
+    try {
+      text = await readFile(file, 'utf8');
+    } catch {
+      continue;
+    }
+    if (PILOT_RE.test(text)) pilotHits.push(rel);
+  }
+  if (pilotHits.length) {
+    console.error('check-names: "pilot" must not appear in src/ outside blog history:');
+    for (const file of pilotHits) console.error(`  ${file}`);
+    process.exit(1);
+  }
+
   console.log(
     `check-names: ok (${files.length} text files in ${roots.join(', ')}; ${NAMES.length} names).`,
   );
