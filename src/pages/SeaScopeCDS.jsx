@@ -167,7 +167,7 @@ export default function SeaScopeCDS() {
               Start Free Trial
               <ArrowRight className="h-4 w-4" />
             </a>
-            <p className="mt-3 text-xs text-ink-50/50">No credit card required. Cancel anytime.</p>
+            <p className="mt-3 text-xs text-ink-50/50">14-day free trial · credit card required · $0 charged for 14 days</p>
             <Link
               to="/pricing"
               className="mt-4 inline-flex items-center justify-center gap-1.5 text-xs font-medium text-sea-300 underline-offset-2 hover:text-sea-200 hover:underline"
