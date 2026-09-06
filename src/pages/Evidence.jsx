@@ -32,7 +32,7 @@ export default function Evidence() {
 
       {/* SAFETY */}
       <section id="safety" className="py-20 scroll-mt-20">
-        <div className="mx-auto max-w-5xl px-6 lg:px-8">
+        <div id="safety-case" className="mx-auto max-w-5xl px-6 lg:px-8">
           <div className="eyebrow mb-4">SAFETY ARCHITECTURE</div>
           <h2 className="font-display text-4xl font-normal text-ink-50 sm:text-5xl">
             Thirteen independent safety checks. None of them trust the model.
@@ -74,7 +74,7 @@ export default function Evidence() {
 
       {/* REGULATORY */}
       <section id="regulatory" className="border-t border-ink-700/40 bg-ink-800/20 py-20 scroll-mt-20">
-        <div className="mx-auto max-w-5xl px-6 lg:px-8">
+        <div id="data-flow" className="mx-auto max-w-5xl px-6 lg:px-8">
           <div className="eyebrow mb-4">REGULATORY ARCHITECTURE</div>
           <h2 className="font-display text-4xl font-normal text-ink-50 sm:text-5xl">
             Designed around the FDA §520(o)(1)(E) Clinical Decision Support exemption.
@@ -110,7 +110,7 @@ export default function Evidence() {
 
       {/* VALIDATION */}
       <section id="validation" className="py-20 scroll-mt-20">
-        <div className="mx-auto max-w-5xl px-6 lg:px-8">
+        <div id="eval-tracker" className="mx-auto max-w-5xl px-6 lg:px-8">
           <div className="eyebrow mb-4">VALIDATION METHODOLOGY</div>
           <h2 className="font-display text-4xl font-normal text-ink-50 sm:text-5xl">
             3,500+ evaluation, demo, synthetic, and shadow-pilot runs. 0 detected critical failures across 1,500+ automated safety tests. Not a clinical outcomes study.

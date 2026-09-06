@@ -1,5 +1,5 @@
 # SeaScope Crew Wellness — Landing Page Copy
-## Status: DRAFT — Founder approval required before any public placement.
+## Status: SHIPPED — describes the live `/wellness` page as of 2026-09-06 (main `e1c5b1a0`). Not a future-tense proposal.
 
 ---
 
@@ -14,8 +14,8 @@ PEME is the industry shorthand. The copy uses the spelled-out form "periodic med
 **F3 — MLC reference.**
 `buyer.benefits` item 4 mentions MLC alignment. This is not a compliance claim — it is framed as "supports your documentation and duty-of-care obligations under MLC." If legal has a preferred formulation for what "supports" means here, substitute it. Do not upgrade this to "compliant with" without legal sign-off.
 
-**F4 — "app" language for the crew section.**
-The crew app UI is built as an approved concept but is pre-launch. The copy uses "coming soon" framing throughout the crew section and avoids app store references. If the timeline slips further, the whole crew section should be removed or collapsed into a waitlist-only block rather than sitting live on the page.
+**F4 — "app" language for the crew section. [UPDATED 2026-09-06 to match live page]**
+The crew app is live at `app.seascope.tech/crew/`. Live page copy at `crew.install` uses "In your crew's hands today." / "The app is live..." with a private-link install in four languages, no app-store search. Do not use "coming soon" framing. Do not add app-store badges.
 
 **F5 — No numbers used in this draft.**
 The Voyager/49s/3-meds-stopped proof point belongs to the CDS engine, not to the wellness product. No wellness-specific outcome numbers exist yet that are verifiable. This draft intentionally uses no quantitative claims. If a number becomes defensible (e.g. from the MHG pilot), it can be inserted at `buyer.proof` as a new block.
@@ -29,7 +29,7 @@ meta.title        SeaScope Crew Wellness — Between-Exam Monitoring for Seafare
 meta.description  SeaScope Crew Wellness gives shore-side care teams continuous visibility into crew health between periodic medical exams, helping catch the silent progression of hypertension, diabetes, and high cholesterol before they become fit-for-duty failures.
 ```
 
-*(The page is noindex. The title and description are written for internal coherence and for the rare direct-link context, not for search.)*
+*(The page is published at `/wellness`. Helmet has no noindex. `public/sitemap.xml` already lists the URL. Title and description match the live Helmet block.)*
 
 ---
 
@@ -185,12 +185,12 @@ You choose whether your readings are shared with the ship's care team. Nothing l
 
 **Heading:**
 ```
-Coming soon.
+In your crew's hands today.
 ```
 
 **Body:**
 ```
-The app is in development. When it is ready for your fleet, your company will share a link to install it — no app store search required.
+The app is live. Your operator provisions access, and crew install it from a private link in four languages, no app-store search required.
 ```
 
 ---
@@ -201,7 +201,7 @@ The app is in development. When it is ready for your fleet, your company will sh
 
 - The page is two-audience, top-to-bottom. Part A (buyer) sits above the fold for fleet managers arriving via direct link or a sales follow-up email. Part B (crew) sits below, separated by a clear visual break — a section label like "For crew members" is enough.
 - `buyer.cta.label` should be a teal-filled button (teal-500 background, white label) linking to whatever the demo-request form or Calendly URL is. Do not link to the main app login.
-- `crew.install` is intentionally minimal. Do not add fake app store badges. If a waitlist form is built, swap this block for a single-field email-capture form with the label "Get notified when the app launches."
+- `crew.install` is the live-app block. Do not add app store badges. Do not revert to "coming soon" or a waitlist form.
 - The "Sea." accent moment (the brand accent that appears in hero treatments elsewhere on seascope.tech) can be applied to either headline. Suggest: `buyer.hero.headline` rendered as "The health risk that doesn't show up at the exam." with "Sea" in the editorial serif — editorial discretion to the frontend engineer.
 - No stock photography of ships or generic medical imagery. If hero imagery is needed, pull from `/home/theremoteaidoc/public/images/seascope/` or the showcase stills at `/home/seascope-cds/video/seascope-walkthrough/out/`. A screen recording of the Wellness Cockpit panel is a stronger visual than a stock photo.
-- The page is hidden (noindex). It should not appear in the site nav. A direct URL or a password-protected link is the intended access method for early partner conversations.
+- The page is published at `/wellness` (listed in sitemap). Keep it in the live route table. Nav inclusion is a separate product decision; this spec does not hide the page.

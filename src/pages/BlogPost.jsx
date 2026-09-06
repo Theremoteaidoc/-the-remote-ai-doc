@@ -1,5 +1,6 @@
 import { useParams, Link } from 'react-router-dom';
 import { ArrowLeft, Clock, Tag, Linkedin, Twitter } from 'lucide-react';
+import { Helmet } from 'react-helmet-async';
 import { getBlogPost } from '../data/blogPosts';
 
 const content = {
@@ -587,9 +588,17 @@ export default function BlogPost({ currentLang = 'en' }) {
     );
   }
 
-  if (post.format === 'article') {
-    return <ArticleRenderer post={post} t={t} />;
-  } else {
-    return <OriginalRenderer post={post} t={t} />;
-  }
+  const body = post.format === 'article'
+    ? <ArticleRenderer post={post} t={t} />
+    : <OriginalRenderer post={post} t={t} />;
+
+  return (
+    <>
+      <Helmet>
+        <title>{post.title}</title>
+        <meta name="description" content={post.excerpt} />
+      </Helmet>
+      {body}
+    </>
+  );
 }
