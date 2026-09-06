@@ -213,7 +213,7 @@ export default function SeaScopeCDS() {
           </div>
 
           <p className="mx-auto mt-10 max-w-2xl text-center text-sm text-ink-50/50">
-            The video shows the cruise-ship environment, the same one your $29.99 subscription unlocks for your 14-day trial.
+            The video shows the cruise-ship environment, the same one your $29.99 subscription includes in the 14-day trial.
           </p>
         </div>
       </section>
@@ -274,65 +274,52 @@ export default function SeaScopeCDS() {
         </div>
       </section>
 
-      {/* ─────────────── REAL-CASE PROOF POINT ─────────────── */}
-      {/* The killer credibility moment. Same case lives in the brand guide
-          and the founder pitch. Lands here so the abstract "different from
-          general medical AI" pivots immediately into "and here's a real
-          patient where it mattered." */}
+      {/* ─────────────── WHO IT IS FOR ─────────────── */}
       <section className="border-y border-ink-700/40 bg-ink-900 py-16 sm:py-20">
-        <div className="mx-auto max-w-4xl px-6 lg:px-8">
-          <div className="eyebrow mb-4 text-center">
-            Real case · Voyager of the Seas, near Brisbane
+        <div className="mx-auto max-w-5xl px-6 lg:px-8">
+          <div className="eyebrow mb-4 text-center">WHO IT IS FOR</div>
+          <h2 className="text-center font-display text-3xl font-normal text-ink-50 sm:text-4xl">
+            Physicians at sea, and the operators who back them.
+          </h2>
+          <div className="mx-auto mt-10 grid max-w-4xl gap-6 md:grid-cols-2">
+            <div className="editorial-card">
+              <h3 className="font-display text-xl font-medium text-ink-50">Individual physicians</h3>
+              <p className="mt-3 text-sm leading-relaxed text-ink-50/70">
+                A personal subscription for physicians practising at sea and in other
+                resource-limited settings. Formulary-locked decision support, offline PWA, audit
+                trail on every case.
+              </p>
+            </div>
+            <div className="editorial-card">
+              <h3 className="font-display text-xl font-medium text-ink-50">Fleet operators</h3>
+              <p className="mt-3 text-sm leading-relaxed text-ink-50/70">
+                Officer-to-clinician telemedicine: the officer captures the case onboard, shore
+                physicians review it, and an SOS voice line reaches the operator's own 24/7 desk.
+              </p>
+            </div>
           </div>
-          <p className="font-display text-2xl text-ink-50 leading-snug text-center sm:text-3xl">
-            78-year-old male. Rising troponin. Failing kidneys. 1,000 nautical miles from a cardiologist.
-          </p>
-          <div className="mx-auto mt-10 grid max-w-3xl grid-cols-3 gap-6 text-center">
-            <div>
-              <div className="font-display text-4xl font-medium text-sea-300 sm:text-5xl">
-                49<span className="text-2xl text-sea-300/70">s</span>
-              </div>
-              <div className="mt-2 text-xs uppercase tracking-wider text-ink-50/60">to treatment plan</div>
-            </div>
-            <div>
-              <div className="font-display text-4xl font-medium text-sea-300 sm:text-5xl">7</div>
-              <div className="mt-2 text-xs uppercase tracking-wider text-ink-50/60">tools executed</div>
-            </div>
-            <div>
-              <div className="font-display text-4xl font-medium text-sea-300 sm:text-5xl">3</div>
-              <div className="mt-2 text-xs uppercase tracking-wider text-ink-50/60">harmful medications stopped</div>
-            </div>
-          </div>
-          <p className="mx-auto mt-8 max-w-2xl text-center text-sm text-ink-50/60">
-            Patient transferred stable via boat-to-boat.
-          </p>
         </div>
       </section>
 
       {/* ─────────────── FOUNDER CREDIBILITY BAND ─────────────── */}
-      {/* Moved above pricing so trust signals (founder + peer voices) sit
-          tightly before the price ask. */}
       <section className="border-y border-ink-700/40 bg-ink-800/20 py-20">
         <div className="mx-auto max-w-4xl px-6 text-center lg:px-8">
           <blockquote className="font-display text-2xl italic text-sea-300 sm:text-3xl">
-            "I built this because I needed it on my own ship. Now you can use it on yours."
+            "Physicians built SeaScope to work where they practice: on ships, hours from shore, with the chest they actually carry."
           </blockquote>
           <p className="mt-6 text-sm text-ink-50/70">
             <span className="font-medium text-ink-50">Dr. Javier Rosas, MD</span>, Senior Ship
-            Physician, Royal Caribbean International. Chair, AI Committee at the American Board of
+            Physician with a major cruise line, practising at sea. Chair, AI Committee at the American Board of
             Maritime Medicine. Author of <em>AI Literacy for Clinicians</em> (2026).
           </p>
           <Link to="/about" className="mt-4 inline-block text-sm text-sea-300 underline">
-            Read more about Javier →
+            Read more about the founding physicians
           </Link>
           <p className="mt-4 text-xs italic text-ink-50/40">
             Institutional affiliations are listed for identification only; no employer or professional organization has endorsed SeaScope.
           </p>
         </div>
       </section>
-
-      {/* ─────────────── PEER TESTIMONIALS ─────────────── */}
-      <Testimonials />
 
       {/* ─────────────── PRICING ─────────────── */}
       <section id="pricing" className="py-24 sm:py-32">
@@ -383,11 +370,18 @@ export default function SeaScopeCDS() {
             </a>
           </div>
           <p className="mx-auto mt-8 max-w-2xl text-center text-sm text-ink-50/60">
-            Backed by a practicing ship physician. Built around the FDA §520(o)(1)(E) Clinical
-            Decision Support exemption. Your clinical judgment is always the final call.
+            Built by physicians who practice at sea. Built around the FDA §520(o)(1)(E) Clinical
+            Decision Support exemption. Clinical judgment is always the final call.{' '}
+            <Link to="/pricing" className="text-sea-300 underline">
+              Full pricing
+            </Link>
+            .
           </p>
         </div>
       </section>
+
+      {/* ─────────────── PROOF ─────────────── */}
+      <Testimonials />
 
       {/* ─────────────── FINAL CTA ─────────────── */}
       <section className="bg-sea-gradient py-20 sm:py-28">

@@ -89,7 +89,7 @@ export default function Peme() {
       <section className="py-24 sm:py-32">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="mx-auto max-w-3xl text-center">
-            <div className="eyebrow mb-4">THE GAP IN TODAY'S PEME WORKFLOW</div>
+            <div className="eyebrow mb-4">CLIENT-SPECIFIC REQUIREMENT PACKAGES, PRICED PER PEME</div>
             <h2 className="font-display text-4xl font-normal leading-tight text-ink-50 sm:text-5xl">
               Most fleets can't tell you, in one query, who has an expired PEME.
             </h2>
@@ -217,7 +217,7 @@ export default function Peme() {
       <section className="py-24 sm:py-32">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="mx-auto max-w-3xl text-center">
-            <div className="eyebrow mb-4">FOR YOUR FLEET</div>
+            <div className="eyebrow mb-4">FOR FLEET OPERATORS</div>
             <h2 className="font-display text-4xl font-normal leading-tight text-ink-50 sm:text-5xl">
               Built for the questions you'll be asked.
             </h2>
@@ -269,6 +269,24 @@ export default function Peme() {
             </Link>
             .
           </p>
+        </div>
+      </section>
+
+      {/* ─────────────── WHAT IT COSTS ─────────────── */}
+      <section className="border-t border-ink-700/40 py-24 sm:py-32">
+        <div className="mx-auto max-w-3xl px-6 text-center lg:px-8">
+          <div className="eyebrow mb-4">WHAT IT COSTS</div>
+          <h2 className="font-display text-4xl font-normal leading-tight text-ink-50 sm:text-5xl">
+            Per-PEME pricing on the requirement package for that client.
+          </h2>
+          <p className="mt-6 text-base leading-relaxed text-ink-50/70">
+            Packages are client-specific. The commercial unit is the PEME, not a seat licence.
+            Structure and rates are on the pricing page and in a 30-minute call.
+          </p>
+          <Link to="/pricing" className="btn-secondary mt-8">
+            See pricing
+            <ArrowRight className="h-4 w-4" />
+          </Link>
         </div>
       </section>
 

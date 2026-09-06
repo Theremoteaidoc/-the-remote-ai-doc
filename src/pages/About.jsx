@@ -96,8 +96,8 @@ export default function About() {
               <p className="mt-2 italic text-ink-50/60">Founder & CEO, RemoteAid Medical Solutions</p>
               <div className="mt-6 space-y-4 text-base leading-relaxed text-ink-50/75">
                 <p>
-                  Dr. Javier Rosas is a Senior Ship Physician at Royal Caribbean International,
-                  where he practices emergency medicine on cruise ships managing populations of up
+                  Dr. Javier Rosas is a Senior Ship Physician with a major cruise line, practising
+                  at sea, where he practices emergency medicine on ships managing populations of up
                   to 6,000 passengers and crew. His clinical practice routinely takes place 1,000+
                   miles from the nearest hospital, with formularies of fewer than 200 medications
                   and no on-call specialist backup.
