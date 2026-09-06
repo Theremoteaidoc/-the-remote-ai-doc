@@ -273,7 +273,7 @@ export default function CargoSolutions() {
           <p className="mt-6 text-base leading-relaxed text-ink-50/70">
             A focused pilot designed to validate workflow fit and clinical value before a
             multi-year deployment. Includes structured success metrics, shore-doctor adoption,
-            officer triage quality, time-to-decision reduction, MLC documentation completeness , 
+            officer triage quality, time-to-decision reduction, MLC documentation completeness,
             and a structured conversion review at day 30.
           </p>
           <div className="mt-8 inline-block rounded-xl border-2 border-sea-500 bg-sea-500/5 px-6 py-4 font-medium text-sea-300">

@@ -26,23 +26,23 @@
 }
 
 @layer components {
-  /* Eyebrow — small-caps tracked label used above section headlines and footer */
+  /* Eyebrow: small-caps tracked label used above section headlines and footer */
   .eyebrow {
     @apply text-xs uppercase tracking-eyebrow font-medium text-sea-300;
   }
-  /* The "Sea." accent moment — final accent word in a headline */
+  /* The "Sea." accent moment: final accent word in a headline */
   .accent-sea {
     @apply text-sea-300;
   }
-  /* Primary CTA — filled teal */
+  /* Primary CTA: filled teal */
   .btn-primary {
     @apply inline-flex items-center justify-center gap-2 rounded-lg bg-sea-500 px-6 py-3 font-medium text-ink-900 transition-all hover:bg-sea-600 active:scale-[0.98];
   }
-  /* Secondary CTA — outline teal */
+  /* Secondary CTA: outline teal */
   .btn-secondary {
     @apply inline-flex items-center justify-center gap-2 rounded-lg border border-sea-500 px-6 py-3 font-medium text-sea-300 transition-all hover:bg-sea-500/10 active:scale-[0.98];
   }
-  /* Editorial card — used for product overview cards */
+  /* Editorial card: used for product overview cards */
   .editorial-card {
     @apply rounded-2xl border border-ink-700 bg-ink-800/60 p-8 backdrop-blur-sm;
   }

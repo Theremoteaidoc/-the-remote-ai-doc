@@ -92,7 +92,7 @@ If that bothers us as clinicians, the answer is not to dismiss the technology. I
     id: 'google-amie-cardiology-rct',
     slug: 'google-amie-cardiology-rct',
     title: "Google's AMIE Just Changed the Game for Cardiology AI",
-    excerpt: "The first randomized controlled trial of an LLM in cardiology is here. Stanford and Google tested AMIE (built on Gemini 2.0 Flash) against general cardiologists — and the results are significant.",
+    excerpt: "The first randomized controlled trial of an LLM in cardiology is here. Stanford and Google tested AMIE (built on Gemini 2.0 Flash) against general cardiologists. The results are significant.",
     category: 'Clinical AI Research',
     date: 'February 10, 2026',
     readTime: '8 min read',
@@ -100,9 +100,9 @@ If that bothers us as clinicians, the answer is not to dismiss the technology. I
     // Generic article format - uses 'sections' instead of specific fields
     format: 'article',
     content: {
-      intro: `The first randomized controlled trial of an LLM in cardiology is here — and the results are significant.
+      intro: `The first randomized controlled trial of an LLM in cardiology is here, and the results are significant.
 
-Welcome back to **Clinical AI from the Edge** — your weekly breakdown of healthcare AI from a physician who practices 1,000 miles from shore.
+Welcome back to **Clinical AI from the Edge**, your weekly breakdown of healthcare AI from a physician who practices 1,000 miles from shore.
 
 This week, a study dropped in *Nature Medicine* that I think will be referenced for years. Let me break it down for you.`,
 
@@ -114,14 +114,14 @@ This week, a study dropped in *Nature Medicine* that I think will be referenced 
 **Authors:** O'Sullivan, Palepu, Saab et al. (Stanford + Google)
 **Registration:** NCT06935253
 
-Researchers at Stanford's Center for Inherited Cardiovascular Disease teamed up with Google to test whether an LLM called **AMIE** (Articulate Medical Intelligence Explorer) — built on Gemini 2.0 Flash — could improve how general cardiologists manage complex genetic heart conditions.
+Researchers at Stanford's Center for Inherited Cardiovascular Disease teamed up with Google to test whether an LLM called **AMIE** (Articulate Medical Intelligence Explorer), built on Gemini 2.0 Flash, could improve how general cardiologists manage complex genetic heart conditions.
 
 This wasn't another benchmark study. This was a **registered randomized controlled trial** using real patient data.`
         },
         {
           title: 'The Setup',
           body: `- 107 consecutive real-world patients suspected of genetic cardiomyopathy
-- Each case assessed by two general cardiologists — one with AMIE access, one without
+- Each case assessed by two general cardiologists: one with AMIE access, one without
 - Cardiologists had full access to clinical text reports AND raw data: ECGs, echocardiograms, cardiac MRI, stress tests, Holter monitors, and genetic results
 - AI-assisted cardiologists could view AMIE's assessment AND chat with it interactively
 - Three blinded subspecialists evaluated both assessments using a 10-domain rubric
@@ -133,8 +133,8 @@ This wasn't another benchmark study. This was a **registered randomized controll
 Subspecialists preferred AI-assisted assessments **46.7%** of the time vs **32.7%** for cardiologists alone (P = 0.02). The remaining 20.6% were ties.
 
 **Error Reduction**
-- Clinically significant errors: **13.1%** (AI-assisted) vs **24.3%** (unassisted) — a **45% reduction** (P = 0.033)
-- Missing content: **17.8%** vs **37.4%** — a **52% reduction** (P = 0.002)
+- Clinically significant errors: **13.1%** (AI-assisted) vs **24.3%** (unassisted), a **45% reduction** (P = 0.033)
+- Missing content: **17.8%** vs **37.4%**, a **52% reduction** (P = 0.002)
 
 **Efficiency**
 - AMIE saved time in **50.5%** of cases
@@ -142,19 +142,19 @@ Subspecialists preferred AI-assisted assessments **46.7%** of the time vs **32.7
 - Cardiologists said AMIE helped their assessment in **57%** of cases`
         },
         {
-          title: "Where AI Excelled — and Where It Didn't",
+          title: "Where AI Excelled, and Where It Didn't",
           body: `This is the part most coverage will skip:
 
 The AI did **NOT** significantly improve diagnosis or triage decisions. Those were already strong from general cardiologists.
 
-Where it moved the needle was in **management plans** — the complex treatment decisions that require synthesizing multiple data streams simultaneously.
+Where it moved the needle was in **management plans**: the complex treatment decisions that require synthesizing multiple data streams simultaneously.
 
 This is exactly where subspecialist shortages cause the most harm.`
         },
         {
           title: 'Hallucinations',
           body: `- 91.6% of cases had zero hallucinations
-- 6.5% had clinically significant hallucinations — including fabricated imaging findings and demographic assumptions
+- 6.5% had clinically significant hallucinations, including fabricated imaging findings and demographic assumptions
 - Key finding: **when cardiologists challenged the AI, it self-corrected**`
         },
         {
@@ -166,7 +166,7 @@ The American College of Cardiology has identified a "cardiology workforce crisis
 - 27 U.S. states have zero HCM subspecialist centers
 - 60%+ of HCM patients in the U.S. are undiagnosed
 - HCM is the leading cause of sudden cardiac death in young adults
-- Preventable with implantable defibrillators — if diagnosed in time
+- Preventable with implantable defibrillators, if diagnosed in time
 
 This isn't an efficiency problem. **It's a mortality problem.**
 
@@ -185,22 +185,22 @@ That's it. A general-purpose model with clever inference architecture outperform
         }
       ],
 
-      bottomLine: "This study isn't about replacing cardiologists. It's about giving every general cardiologist access to subspecialist-level support — especially in the 27 states without a single HCM center. When a 45% reduction in clinically significant errors comes from a model that wasn't even fine-tuned for cardiology, we need to pay attention.",
+      bottomLine: "This study isn't about replacing cardiologists. It's about giving every general cardiologist access to subspecialist-level support, especially in the 27 states without a single HCM center. When a 45% reduction in clinically significant errors comes from a model that wasn't even fine-tuned for cardiology, we need to pay attention.",
 
       myTake: `I manage suspected cardiomyopathies at sea with roughly 40 drugs (not 4,000), no cardiac MRI, basic ultrasound, and evacuation decisions that cost tens of thousands of dollars and take 12+ hours.
 
-When I read this paper, I don't see "AI vs doctors." I see the possibility that a physician like me — isolated, under-resourced, making high-stakes decisions alone — could have access to subspecialist-level reasoning at the point of care.
+When I read this paper, I don't see "AI vs doctors." I see the possibility that a physician like me, isolated, under-resourced, making high-stakes decisions alone, could have access to subspecialist-level reasoning at the point of care.
 
 The study is clear that autonomous deployment isn't ready. The 6.5% hallucination rate proves it. But as an assistive tool? With clinician oversight? This is the strongest evidence yet that LLMs can genuinely extend subspecialist expertise to the places that need it most.
 
-And I can tell you from experience — those places aren't just rural towns. Sometimes they're floating in the middle of the ocean.`,
+And I can tell you from experience: those places aren't just rural towns. Sometimes they're floating in the middle of the ocean.`,
 
       watchNext: [
-        'Replication — Will other centers reproduce these results with different patient populations?',
-        'Prospective trials — This used retrospective data. Real-time clinical deployment is the next frontier.',
-        'Automation bias — The study flags this concern. Clinicians may over-rely on AI suggestions.',
-        'Equity — Single-center, English-only, U.S. population. Generalizability is unknown.',
-        'Open-source data — The full dataset is publicly available at Redivis. Other teams can now test their models.'
+        'Replication: Will other centers reproduce these results with different patient populations?',
+        'Prospective trials: This used retrospective data. Real-time clinical deployment is the next frontier.',
+        'Automation bias: The study flags this concern. Clinicians may over-rely on AI suggestions.',
+        'Equity: Single-center, English-only, U.S. population. Generalizability is unknown.',
+        'Open-source data: The full dataset is publicly available at Redivis. Other teams can now test their models.'
       ],
 
       quickLinks: [
@@ -214,7 +214,7 @@ And I can tell you from experience — those places aren't just rural towns. Som
     id: '6-platform-clinical-ai-comparison',
     slug: '6-platform-clinical-ai-comparison',
     title: 'I Tested 6 AI Platforms on the Same Clinical Case. The Results Should Concern You.',
-    excerpt: 'A head-to-head evaluation of clinical AI vs. general LLMs reveals a 2.4x performance gap on FDA prescribing information accuracy — and dangerous errors that could harm patients.',
+    excerpt: 'A head-to-head evaluation of clinical AI vs. general LLMs reveals a 2.4x performance gap on FDA prescribing information accuracy, and dangerous errors that could harm patients.',
     category: 'Clinical AI Evaluation',
     date: 'February 2026',
     readTime: '12 min read',
@@ -233,13 +233,13 @@ And I can tell you from experience — those places aren't just rural towns. Som
       { name: 'Llama 4', score: 21, type: 'LLM', rank: 6 },
     ],
     content: {
-      intro: `Most conversations about AI in healthcare focus on convenience — faster documentation, smarter scheduling, streamlined workflows. But I wanted to answer a different question: **Which AI platforms keep patients safer when the clinical case gets complicated?**
+      intro: `Most conversations about AI in healthcare focus on convenience: faster documentation, smarter scheduling, streamlined workflows. But I wanted to answer a different question: **Which AI platforms keep patients safer when the clinical case gets complicated?**
 
 So I built a rubric. I created a complex clinical scenario. And I tested six AI platforms head-to-head: two purpose-built clinical AI tools (EvidenceMD and OpenEvidence) and four frontier large language models (GPT-5, Claude Opus 4, Gemini 2.5 Pro, and Llama 4).
 
 The results weren't subtle. They were alarming.`,
 
-      whyMatters: `I practice medicine 1,000 miles from the nearest hospital. As a ship physician for Royal Caribbean, I manage healthcare for over 5,000 passengers and crew with roughly 40 medications — not 4,000. When I'm treating a delirious elderly patient mid-ocean, I don't have a neurologist down the hall. I don't have a pharmacy to call. I need information I can trust.
+      whyMatters: `I practice medicine 1,000 miles from the nearest hospital. As a ship physician for Royal Caribbean, I manage healthcare for over 5,000 passengers and crew with roughly 40 medications, not 4,000. When I'm treating a delirious elderly patient mid-ocean, I don't have a neurologist down the hall. I don't have a pharmacy to call. I need information I can trust.
 
 That's why I built this evaluation. Not to crown a winner, but to understand: *Where do these tools fail? And what does that mean for patient safety?*`,
 
@@ -251,7 +251,7 @@ That's why I built this evaluation. Not to crown a winner, but to understand: *W
         question: 'How should we pharmacologically manage his agitation, and what safety warnings apply?'
       },
 
-      scenarioContext: `The case was deliberately complex. The shuffling gait and tremor raise concern for Parkinson's disease or Lewy Body Dementia — conditions where antipsychotics can be fatal. The patient is already on cholinesterase inhibitors that carry their own risks. The QTc is borderline. There are multiple ways to get this wrong.`,
+      scenarioContext: `The case was deliberately complex. The shuffling gait and tremor raise concern for Parkinson's disease or Lewy Body Dementia, conditions where antipsychotics can be fatal. The patient is already on cholinesterase inhibitors that carry their own risks. The QTc is borderline. There are multiple ways to get this wrong.`,
 
       methodology: `I created a 20-item rubric grounded entirely in FDA prescribing information for haloperidol (Haldol), olanzapine (Zyprexa), donepezil (Aricept), and memantine (Namenda). Each item was scored as pass/fail, with point values weighted by clinical importance (4-6 points per item, 100 total).`,
 
@@ -298,7 +298,7 @@ That's why I built this evaluation. Not to crown a winner, but to understand: *W
         }
       ],
 
-      universalFailure: `Perhaps most striking: **all six platforms failed to flag the Lewy Body Dementia contraindication**, despite the patient presenting with classic features — shuffling gait, resting tremor, cogwheel rigidity, and fluctuating cognition.
+      universalFailure: `Perhaps most striking: **all six platforms failed to flag the Lewy Body Dementia contraindication**, despite the patient presenting with classic features: shuffling gait, resting tremor, cogwheel rigidity, and fluctuating cognition.
 
 This matters because patients with Lewy Body pathology have severe sensitivity to D2 antagonists. Administering haloperidol or olanzapine to these patients can precipitate irreversible parkinsonism, neuroleptic malignant syndrome, or death.
 
@@ -306,17 +306,17 @@ The clinical AI tools at least flagged Parkinson's disease as a contraindication
 
       whatThisMeans: `The 2.4x performance gap between clinical AI (average 70.5) and general LLMs (average 29.8) isn't about nitpicking. It reflects fundamentally different approaches to medical information:
 
-**Clinical AI tools** are built to retrieve and cite authoritative sources — FDA labels, peer-reviewed literature, clinical guidelines.
+**Clinical AI tools** are built to retrieve and cite authoritative sources: FDA labels, peer-reviewed literature, clinical guidelines.
 
 **General LLMs** generate plausible-sounding text based on training data, which may include outdated, incorrect, or synthesized information.
 
-When GPT-5 recommends IV haloperidol, it's not lying — it's generating text that sounds like something a doctor might say. But it's not grounded in the regulatory source of truth that protects patients.`,
+When GPT-5 recommends IV haloperidol, it's not lying. It's generating text that sounds like something a doctor might say. But it's not grounded in the regulatory source of truth that protects patients.`,
 
-      bottomLine: 'Purpose-built clinical AI dramatically outperforms frontier LLMs on FDA prescribing information accuracy. General LLMs are not ready for clinical decision support — and using them as such puts patients at risk.',
+      bottomLine: 'Purpose-built clinical AI dramatically outperforms frontier LLMs on FDA prescribing information accuracy. General LLMs are not ready for clinical decision support, and using them as such puts patients at risk.',
 
       limitations: `This is a single case study with a single rater (me). The findings are hypothesis-generating, not definitive. I'm currently expanding this to a 15-case series across emergency medicine, pediatrics, infectious disease, and geriatrics, with plans to submit the full analysis as a preprint.
 
-I'm also exploring intra-rater reliability testing — re-scoring cases blinded to address the single-rater limitation.
+I'm also exploring intra-rater reliability testing: re-scoring cases blinded to address the single-rater limitation.
 
 If you're a clinician using AI tools, I'd encourage you to build your own evaluation framework. The question isn't "which AI is smartest?" It's "which AI do I trust with my patient's safety?"`,
 

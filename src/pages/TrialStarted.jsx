@@ -6,7 +6,7 @@
  * The live welcome email arrives within ~30s; this page tells the user
  * what's happening in that gap and what to do when the email lands.
  *
- * Follows the same brand tokens as Pricing.jsx / SeaScopeCDS.jsx , 
+ * Follows the same brand tokens as Pricing.jsx / SeaScopeCDS.jsx:
  * ink-* / sea-* palette, editorial-card, btn-primary, eyebrow.
  */
 

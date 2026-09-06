@@ -4,7 +4,7 @@ import { Menu, X, ArrowRight } from 'lucide-react';
 import BookDemoModal from './BookDemoModal';
 
 /**
- * SeaScope site layout — top nav + footer.
+ * SeaScope site layout: top nav + footer.
  * Used on every public page. Dark mode is the brand mode.
  */
 export default function SiteLayout({ children }) {
@@ -18,7 +18,7 @@ export default function SiteLayout({ children }) {
     setProductsMenuOpen(false);
     // Honor anchor links (e.g. /seascope-cds#testimonials) on nav.
     // When no hash, default scroll-to-top. When hash is present, let
-    // the browser land on the target — tiny delay gives React time
+    // the browser land on the target. A tiny delay gives React time
     // to render the destination section before we scroll.
     if (location.hash) {
       const id = location.hash.slice(1);
@@ -145,7 +145,7 @@ export default function SiteLayout({ children }) {
         {mobileMenuOpen && (
           <div className="border-t border-ink-700/60 bg-ink-900 md:hidden">
             <div className="space-y-1 px-6 py-4">
-              {/* Demo CTA pinned above everything else — phone visitors
+              {/* Demo CTA pinned above everything else. Phone visitors
                   should see "try it" before any product browsing. */}
               <a
                 href="https://app.seascope.tech/seascope-demo"

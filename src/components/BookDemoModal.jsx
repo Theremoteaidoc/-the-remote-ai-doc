@@ -9,7 +9,7 @@ import { X, ArrowRight } from 'lucide-react';
  *   2. Redirect the browser to the returned Google Calendar URL so the
  *      prospect can pick a slot
  *
- * The form is deliberately short — name / email / phone / company are
+ * The form is deliberately short: name / email / phone / company are
  * required; everything else optional. Long forms kill conversion.
  */
 
@@ -68,7 +68,7 @@ export default function BookDemoModal({ open, onClose, source = 'book-demo' }) {
         throw new Error(data?.detail?.[0]?.msg || 'Could not submit. Please try again.');
       }
       const { calendar_url } = await resp.json();
-      // Redirect to the booking page in the same tab — Google Calendar
+      // Redirect to the booking page in the same tab. Google Calendar
       // sends the prospect a confirmation email automatically.
       window.location.href = calendar_url;
     } catch (err) {
@@ -104,7 +104,7 @@ export default function BookDemoModal({ open, onClose, source = 'book-demo' }) {
         </h2>
         <p className="mt-3 text-sm leading-relaxed text-ink-50/70">
           Tell us a bit about your operation and we'll route you to the calendar.
-          30 minutes — consultative, no slides.
+          Thirty minutes. Consultative, no slides.
         </p>
 
         <form onSubmit={handleSubmit} className="mt-6 space-y-4">
@@ -162,7 +162,7 @@ export default function BookDemoModal({ open, onClose, source = 'book-demo' }) {
               onChange={update('notes')}
               rows={3}
               className="mt-1.5 w-full rounded-lg border border-ink-700 bg-ink-800/50 px-3 py-2 text-sm text-ink-50 placeholder-ink-50/40 focus:border-sea-500 focus:outline-none focus:ring-1 focus:ring-sea-500"
-              placeholder="Optional — operational context, timeline, specific challenges…"
+              placeholder="Optional: operational context, timeline, specific challenges…"
               maxLength={2000}
             />
           </div>
@@ -184,7 +184,7 @@ export default function BookDemoModal({ open, onClose, source = 'book-demo' }) {
 
           <p className="text-center text-xs text-ink-50/50">
             We'll redirect you to the booking calendar after you submit.
-            No spam — we only use this to prep the call.
+            No spam. We only use this to prep the call.
           </p>
         </form>
       </div>
