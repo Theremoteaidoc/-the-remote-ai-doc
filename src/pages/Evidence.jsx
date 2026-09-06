@@ -95,24 +95,16 @@ export default function Evidence() {
 
       <section id="eval-tracker" className="scroll-mt-20 border-t border-ink-700/40 py-20">
         <div className="mx-auto max-w-5xl px-6 lg:px-8">
-          <div className="eyebrow mb-4">EVALUATION TRACKER</div>
-          <h2 className="font-display text-4xl font-normal text-ink-50 sm:text-5xl">
+          <p className="max-w-3xl text-base leading-relaxed text-ink-50/75">
             Available under NDA.
-          </h2>
-          <p className="mt-6 max-w-3xl text-base leading-relaxed text-ink-50/75">
-            Evaluation tracker: available under NDA.
           </p>
         </div>
       </section>
 
       <section id="data-flow" className="scroll-mt-20 border-t border-ink-700/40 bg-ink-800/20 py-20">
         <div className="mx-auto max-w-5xl px-6 lg:px-8">
-          <div className="eyebrow mb-4">DATA FLOW</div>
-          <h2 className="font-display text-4xl font-normal text-ink-50 sm:text-5xl">
+          <p className="max-w-3xl text-base leading-relaxed text-ink-50/75">
             Available under NDA.
-          </h2>
-          <p className="mt-6 max-w-3xl text-base leading-relaxed text-ink-50/75">
-            Data-flow documentation: available under NDA.
           </p>
         </div>
       </section>

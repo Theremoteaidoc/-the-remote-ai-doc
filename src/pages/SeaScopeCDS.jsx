@@ -176,8 +176,9 @@ export default function SeaScopeCDS() {
               <ArrowRight className="h-3 w-3" />
             </Link>
           </div>
-          <p className="mx-auto mt-8 max-w-2xl text-center text-sm text-ink-50/60">
-            Built by ship physicians. Guideline-based. The clinician always decides.
+          <p className="mx-auto mt-8 max-w-2xl text-center text-sm italic text-ink-50/70">
+            "A tool I would genuinely trust in remote and maritime settings." Dr. Cameron,
+            Maritime Physician.
           </p>
         </div>
       </section>
