@@ -239,7 +239,7 @@ So I built a rubric. I created a complex clinical scenario. And I tested six AI 
 
 The results weren't subtle. They were alarming.`,
 
-      whyMatters: `I practice medicine 1,000 miles from the nearest hospital. As a ship physician for Royal Caribbean, I manage healthcare for over 5,000 passengers and crew with roughly 40 medications, not 4,000. When I'm treating a delirious elderly patient mid-ocean, I don't have a neurologist down the hall. I don't have a pharmacy to call. I need information I can trust.
+      whyMatters: `I practice medicine 1,000 miles from the nearest hospital. As a Senior Ship Physician with a major cruise line, practising at sea, I manage healthcare for over 5,000 passengers and crew with roughly 40 medications, not 4,000. When I'm treating a delirious elderly patient mid-ocean, I don't have a neurologist down the hall. I don't have a pharmacy to call. I need information I can trust.
 
 That's why I built this evaluation. Not to crown a winner, but to understand: *Where do these tools fail? And what does that mean for patient safety?*`,
 

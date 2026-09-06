@@ -2,8 +2,10 @@
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
   "framework": "vite",
+  "redirects": [
+    { "source": "/seascope/pilot", "destination": "/seascope-cds", "permanent": true }
+  ],
   "rewrites": [
-    { "source": "/p/pilot", "destination": "/p/pilot/index.html" },
     { "source": "/(.*)", "destination": "/index.html" }
   ]
 }

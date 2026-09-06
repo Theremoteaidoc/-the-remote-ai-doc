@@ -98,14 +98,11 @@ export default function TrialStarted() {
               <Step n={1} title="Sign in & set your password">
                 Takes 30 seconds. The temp password from the email works once, then you pick something memorable.
               </Step>
-              <Step n={2} title="Locate your ship or site">
-                Set lat/lon or pick a home port/clinic. This turns on nearest-hospital lookup, helicopter feasibility, sea state, and port-diversion logic.
+              <Step n={2} title="Open a case">
+                Enter the clinical facts you have. Skip what you do not have.
               </Step>
-              <Step n={3} title="Fill the patient intake form">
-                Age, sex, weight, vitals, chief complaint. Optimized for fast capture under pressure. Skip what you don't have. SeaScope flags what's missing.
-              </Step>
-              <Step n={4} title="Review the recommendation">
-                Severity, medications with formulary check, monitoring plan, escalation triggers. Every output is audited. Drill into the reasoning any time.
+              <Step n={3} title="Review the plan">
+                You decide. SeaScope does not diagnose, prescribe, or replace professional judgment.
               </Step>
             </ol>
           </div>

@@ -154,7 +154,7 @@ export default function Blog({ currentLang = 'en' }) {
 
           {/* Article List */}
           <div className="space-y-0 divide-y divide-slate-200">
-            {otherPosts.map((post, index) => (
+            {otherPosts.map((post) => (
               <Link key={post.id} to={`/blog/${post.slug}`} className="block group">
                 <article className="py-10">
                   <div className="flex items-center gap-3 mb-3 text-sm">
