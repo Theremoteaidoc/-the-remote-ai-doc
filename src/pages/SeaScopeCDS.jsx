@@ -1,43 +1,36 @@
-import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
-import { ArrowRight, Check, Play } from 'lucide-react';
-import Testimonials from '../components/Testimonials';
+import { ArrowRight, Check } from 'lucide-react';
 
 const STRIPE_CDS_CHECKOUT = 'https://buy.stripe.com/5kQ00i6YjgeH7Zt9lN2ZO00';
 
 /**
- * /seascope-cds: direct-to-MD product page.
- * Voice register: clinical-peer. Copy from /root/marketing/copy/seascope-cds-v1.md.
- * Hero photo: TODO: recommend porthole brand asset; placeholder gradient for now.
+ * /seascope-cds: telemedicine for physicians and fleet operators.
+ * Outcome copy only: what the customer gets and who it is for.
  */
 export default function SeaScopeCDS() {
-  const [walkthroughStarted, setWalkthroughStarted] = useState(false);
   return (
     <>
       <Helmet>
-        <title>SeaScope CDS: Formulary-aware AI for the doctor on the bridge at 3 AM.</title>
+        <title>SeaScope Telemedicine: A physician for the ship when the officer needs one.</title>
         <meta
           name="description"
-          content="The clinical reasoning engine you can carry in your scrubs pocket. Formulary-locked, evidence-cited, audit-trailed. $29.99/month, 14-day free trial."
+          content="Ship-to-shore telemedicine for fleet operators and ship physicians. A record for every case. $29.99/month for individual physicians, or quoted per fleet."
         />
         <link rel="canonical" href="https://seascope.tech/seascope-cds" />
       </Helmet>
 
-      {/* ─────────────── HERO (two-column: copy left, brand piece right) ─────────────── */}
       <section className="relative isolate overflow-hidden bg-gradient-to-br from-ink-900 via-ink-800 to-ink-900">
         <div className="mx-auto max-w-7xl px-6 pt-32 pb-20 lg:px-8 lg:pt-40 lg:pb-28">
           <div className="grid items-center gap-12 lg:grid-cols-[1.1fr_1fr] lg:gap-16">
-            {/* Left: copy */}
             <div>
-              <div className="eyebrow mb-6">SEASCOPE CDS: FOR PHYSICIANS</div>
+              <div className="eyebrow mb-6">TELEMEDICINE: FOR PHYSICIANS AND FLEET OPERATORS</div>
               <h1 className="font-display text-5xl font-normal leading-[1.05] text-ink-50 sm:text-6xl">
-                Formulary-aware AI for the doctor on the bridge at 3&nbsp;AM<span className="accent-sea">.</span>
+                A physician for the ship, when the officer needs one<span className="accent-sea">.</span>
               </h1>
               <p className="mt-8 max-w-xl text-lg leading-relaxed text-ink-50/80">
-                Evidence-based medicine, engineered for the edge. Grounded in the drugs
-                you actually carry, backed by the clinical guideline behind every call,
-                saved as a defensible record for every case.
+                Ship-to-shore clinical care for fleets, and a personal subscription for
+                physicians practising at sea. The clinician always decides.
               </p>
               <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
                 <a
@@ -49,33 +42,19 @@ export default function SeaScopeCDS() {
                   Start Free Trial
                   <ArrowRight className="h-4 w-4" />
                 </a>
-                <a
-                  href="https://app.seascope.tech/seascope-demo"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2 rounded-md border border-sea-500/40 bg-transparent px-6 py-3 text-sm font-medium text-sea-200 transition-colors hover:border-sea-400 hover:bg-sea-500/10 hover:text-sea-100"
-                >
-                  Try free, no signup
+                <Link to="/pricing" className="btn-secondary">
+                  See pricing
                   <ArrowRight className="h-4 w-4" />
-                </a>
+                </Link>
               </div>
-              <p className="mt-4 text-xs text-ink-50/60">
-                <a href="#walkthrough" className="text-sea-300 underline-offset-2 hover:underline">
-                  Or watch the 60-second walkthrough ↓
-                </a>
-              </p>
-              <p className="mt-6 text-xs text-ink-50/50">
-                Built by ship physicians, for ship physicians. ABMM-aligned. GDPR-compliant. BAA available.
-              </p>
             </div>
 
-            {/* Right: brand piece (porthole composition with embedded "Where Medicine Meets the Sea." typography) */}
             <div className="relative">
               <div className="absolute -inset-4 rounded-3xl bg-sea-500/10 blur-2xl" aria-hidden="true" />
               <div className="relative overflow-hidden rounded-2xl border border-ink-700/60 shadow-2xl shadow-ink-900/50 ring-1 ring-sea-500/20">
                 <img
                   src="/cds-feature.jpg"
-                  alt="A tablet displaying SeaScope CDS at a ship's desk beside a brass lamp and porthole. Where medicine meets the sea, AI clinical decision support designed for the constraints of maritime medicine."
+                  alt="A tablet at a ship's desk beside a brass lamp and porthole, representing SeaScope telemedicine at sea."
                   className="h-full w-full object-cover"
                   loading="eager"
                   width="1024"
@@ -87,28 +66,31 @@ export default function SeaScopeCDS() {
         </div>
       </section>
 
-      {/* ─────────────── PAIN ─────────────── */}
       <section className="py-24 sm:py-32">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="mx-auto max-w-3xl text-center">
-            <div className="eyebrow mb-4">WHAT YOU FACE EVERY SHIFT</div>
+            <div className="eyebrow mb-4">WHAT YOU GET</div>
             <h2 className="font-display text-4xl font-normal leading-tight text-ink-50 sm:text-5xl">
-              Three problems no chatbot was built for.
+              Clinical care the ship can use tonight.
             </h2>
           </div>
-          <div className="mx-auto mt-16 grid max-w-5xl gap-6 md:grid-cols-3">
+          <div className="mx-auto mt-16 grid max-w-5xl gap-6 md:grid-cols-2">
             {[
               {
-                title: 'No cardiologist on speed-dial.',
-                body: 'You\'re 1,000 miles from the nearest hospital. The patient has rising troponin and you\'ve got a chest of 40 drugs. SeaScope shows you the differential, the dosing, the contraindications, and the evacuation logic in one view, in under 60 seconds.',
+                title: 'A plan when shore is hours away.',
+                body: 'The officer on the bridge gets a physician-ready response, not a waiting room.',
               },
               {
-                title: 'You can\'t prescribe what\'s not in the chest.',
-                body: 'Generic AI tools don\'t know what\'s onboard. SeaScope only recommends drugs your formulary actually carries, and warns you when the right drug isn\'t onboard so you can plan around it.',
+                title: 'An SOS line to your own desk.',
+                body: 'Fleet operators keep a voice line from the ship to their 24/7 medical desk.',
               },
               {
-                title: 'Documentation that holds up under review.',
-                body: 'Every case auto-documents. Audit-ready PDF for every encounter, with timestamps, citations, your decisions, and the safety checks that ran. When the case gets reviewed three months later, the record is already there.',
+                title: 'A record that holds up under review.',
+                body: 'Every case closes as documentation the operator can produce for inspection.',
+              },
+              {
+                title: 'The clinician remains in charge.',
+                body: 'SeaScope supports the physician. It does not diagnose, prescribe, or replace judgment.',
               },
             ].map((card) => (
               <div key={card.title} className="editorial-card">
@@ -120,177 +102,6 @@ export default function SeaScopeCDS() {
         </div>
       </section>
 
-      {/* ─────────────── WHAT YOU GET ─────────────── */}
-      <section className="border-t border-ink-700/40 bg-ink-800/20 py-24 sm:py-32">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="mx-auto max-w-3xl text-center">
-            <div className="eyebrow mb-4">INSIDE THE APP</div>
-            <h2 className="font-display text-4xl font-normal leading-tight text-ink-50 sm:text-5xl">
-              Engineered around the constraints you actually work in.
-            </h2>
-          </div>
-          <p className="mx-auto mt-4 max-w-3xl text-center text-xs italic text-ink-50/50">
-            Physician-gated clinical decision support. SeaScope drafts, structures, and documents recommendations for clinician review; it does not diagnose, prescribe, or replace professional judgment.
-          </p>
-          <div className="mx-auto mt-12 grid max-w-6xl gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {[
-              { title: 'Agentic clinical reasoning', body: 'Multi-stage pipeline with deterministic critique gates. Not a single LLM call. Each step is auditable.' },
-              { title: '13 deterministic safety guardrails', body: 'Allergy cross-check, drug interactions, dose ceilings, formulary verification, indication-efficacy, renal dosing, pregnancy safety. All rule-based, none AI-trusted.' },
-              { title: 'Formulary lock', body: 'Recommendations constrained to your environment\'s actual drug list. 5 environments built in (cruise ship, expedition, military FOB, 2× rural clinic).' },
-              { title: 'Evidence retrieval', body: 'Live citations from PubMed, OpenFDA, RxNorm, DailyMed, ClinicalTrials.gov, FAERS: every recommendation has its receipts.' },
-              { title: 'Offline PWA', body: 'Full formulary, protocols, and reasoning engine cached locally. When the satellite drops, SeaScope keeps working.' },
-              { title: 'Audit trail with PDF export', body: 'Every encounter exports as a single PDF: case data, recommendations, safety checks, your overrides, citations. Structured for medical recordkeeping and review.' },
-            ].map((feat) => (
-              <div key={feat.title} className="editorial-card">
-                <h3 className="font-display text-lg font-medium text-ink-50">{feat.title}</h3>
-                <p className="mt-3 text-sm leading-relaxed text-ink-50/70">{feat.body}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ─────────────── WALKTHROUGH VIDEO ─────────────── */}
-      <section id="walkthrough" className="border-t border-ink-700/40 py-24 sm:py-32">
-        <div className="mx-auto max-w-6xl px-6 lg:px-8">
-          <div className="mx-auto max-w-3xl text-center mb-12">
-            <div className="eyebrow mb-4 flex items-center justify-center gap-2">
-              <Play className="h-4 w-4 text-sea-400" strokeWidth={2.4} />
-              <span>60-second walkthrough</span>
-            </div>
-            <h2 className="font-display text-4xl font-normal leading-tight text-ink-50 sm:text-5xl">
-              See SeaScope CDS handle a real STEMI at sea<span className="accent-sea">.</span>
-            </h2>
-            <p className="mt-6 text-base text-ink-50/70 leading-relaxed">
-              A 62-year-old male presents with crushing chest pain on a cruise ship near New Caledonia. Watch the engine triage, ask the right follow-up questions, propose a fibrinolysis decision tree, generate a port-diversion recommendation, and run the safety guardrails, all before the satellite link wavers.
-            </p>
-          </div>
-
-          {/* Browser-chrome frame mirrors the original look */}
-          <div className="device-frame relative mx-auto max-w-5xl overflow-hidden rounded-2xl border border-sea-500/20 bg-ink-900 shadow-2xl shadow-sea-500/10">
-            <div className="flex items-center gap-3 border-b border-ink-700/60 bg-ink-800 px-4 py-3">
-              <div className="flex gap-1.5">
-                <div className="h-3 w-3 rounded-full bg-red-500/80" />
-                <div className="h-3 w-3 rounded-full bg-yellow-500/80" />
-                <div className="h-3 w-3 rounded-full bg-green-500/80" />
-              </div>
-              <div className="flex-1">
-                <div className="rounded-md bg-ink-700/60 px-3 py-1 text-center text-xs font-mono text-ink-50/60">
-                  app.seascope.tech, Live Clinical Assessment
-                </div>
-              </div>
-            </div>
-            <div style={{ position: 'relative', paddingBottom: '56.25%', height: 0 }}>
-              {walkthroughStarted ? (
-                <iframe
-                  src="https://www.loom.com/embed/7209e8813f08437b8b162f3e705214ea?hide_owner=true&hide_share=true&hide_title=true&hideEmbedTopBar=true"
-                  frameBorder="0"
-                  allowFullScreen
-                  style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}
-                  title="SeaScope CDS walkthrough, acute inferior STEMI case at sea"
-                />
-              ) : (
-                <button
-                  type="button"
-                  onClick={() => setWalkthroughStarted(true)}
-                  className="group absolute inset-0 flex w-full items-center justify-center bg-ink-800 text-left"
-                  aria-label="Play 60-second SeaScope CDS walkthrough"
-                >
-                  <span className="inline-flex items-center gap-2 rounded-full bg-ink-900/80 px-5 py-3 text-sm font-medium text-ink-50 ring-1 ring-sea-500/40 transition group-hover:ring-sea-400">
-                    <Play className="h-4 w-4 text-sea-300" fill="currentColor" />
-                    Play walkthrough
-                  </span>
-                </button>
-              )}
-            </div>
-          </div>
-
-          {/* Three-up callout: what to look for in the video */}
-          <div className="mx-auto mt-12 grid max-w-5xl gap-6 sm:grid-cols-3">
-            {[
-              {
-                t: '0:00, Triage',
-                b: 'Watch the engine recognize STEMI from chief complaint + vitals before any LLM call. Deterministic, sub-second.',
-              },
-              {
-                t: '0:18, Reasoning',
-                b: 'Multi-step pipeline pulls live PubMed citations, checks the cruise-ship formulary, and sequences the management plan.',
-              },
-              {
-                t: '0:42, Safety',
-                b: '13 guardrails fire post-LLM: allergy cross-check, dose ceilings, pregnancy safety, port-diversion logic. The plan is yours to override.',
-              },
-            ].map((step) => (
-              <div key={step.t} className="editorial-card">
-                <div className="font-mono text-xs font-bold tracking-wider text-sea-400">{step.t}</div>
-                <p className="mt-2 text-sm leading-relaxed text-ink-50/75">{step.b}</p>
-              </div>
-            ))}
-          </div>
-
-          <p className="mx-auto mt-10 max-w-2xl text-center text-sm text-ink-50/50">
-            The video shows the cruise-ship environment, the same one your $29.99 subscription includes in the 14-day trial.
-          </p>
-        </div>
-      </section>
-
-      {/* ─────────────── WHY SEASCOPE IS DIFFERENT ─────────────── */}
-      {/* Frames the comparison ourselves, before a doctor does it for us.
-          Claims kept concrete + defensible, every bullet describes what
-          SeaScope does, not what other tools fail to do. */}
-      <section className="border-t border-ink-700/40 bg-ink-800/20 py-24 sm:py-32">
-        <div className="mx-auto max-w-6xl px-6 lg:px-8">
-          <div className="mx-auto max-w-3xl text-center mb-14">
-            <div className="eyebrow mb-4">POSITIONING</div>
-            <h2 className="font-display text-4xl font-normal leading-tight text-ink-50 sm:text-5xl">
-              Why SeaScope is different from general medical AI<span className="accent-sea">.</span>
-            </h2>
-            <p className="mt-6 text-base leading-relaxed text-ink-50/70">
-              ChatGPT, Doximity GPT, OpenEvidence and similar tools are remarkable general-medical assistants. SeaScope CDS is built for a narrower job: physicians practicing in remote, resource-constrained environments where the next nearest hospital is hours or days away.
-            </p>
-          </div>
-
-          <div className="mx-auto grid max-w-5xl gap-5 md:grid-cols-2">
-            {[
-              {
-                t: 'Formulary-locked recommendations',
-                b: 'Every recommendation is checked against what is actually onboard. The reasoning engine knows the cruise-ship medical chest at the drug-strength-and-form level, not just the molecule.',
-              },
-              {
-                t: 'Maritime evacuation context',
-                b: 'Plans factor in port capability, vessel position, helicopter range, and transfer constraints. The output considers whether MEDEVAC is realistic before recommending it.',
-              },
-              {
-                t: 'Audit-ready reasoning',
-                b: 'Every recommendation is structured for physician review and documentation: triage call, decision rationale, citations, safety checks, your overrides. Exports as a single PDF per encounter.',
-              },
-              {
-                t: 'Physician-gated CDS',
-                b: 'Designed under FDA §520(o)(1)(E), the engine supports the clinician; your judgment remains the gate. We do not autonomously dose, prescribe, or override. The plan is yours.',
-              },
-              {
-                t: 'Remote-care assumptions',
-                b: 'Built for limited equipment, delayed escalation, and constrained environments. Offline-capable, citation-bearing, satellite-friendly. The opposite of "have the patient go to the ED."',
-              },
-              {
-                t: 'Deterministic safety guardrails',
-                b: '13 rule-based checks fire post-LLM: allergy cross-references, dose ceilings, formulary verification, renal dosing, pregnancy safety, drug interactions. Rules, not vibes.',
-              },
-            ].map((row) => (
-              <div key={row.t} className="editorial-card">
-                <h3 className="font-display text-lg font-medium text-ink-50">{row.t}</h3>
-                <p className="mt-3 text-sm leading-relaxed text-ink-50/75">{row.b}</p>
-              </div>
-            ))}
-          </div>
-
-          <p className="mx-auto mt-12 max-w-3xl text-center text-sm text-ink-50/50">
-            This is a complement to general medical AI, not a replacement. If you want a polymath assistant, those tools are excellent. If you are the only physician between a patient and the open ocean, SeaScope is built for that hour.
-          </p>
-        </div>
-      </section>
-
-      {/* ─────────────── WHO IT IS FOR ─────────────── */}
       <section className="border-y border-ink-700/40 bg-ink-900 py-16 sm:py-20">
         <div className="mx-auto max-w-5xl px-6 lg:px-8">
           <div className="eyebrow mb-4 text-center">WHO IT IS FOR</div>
@@ -302,57 +113,32 @@ export default function SeaScopeCDS() {
               <h3 className="font-display text-xl font-medium text-ink-50">Individual physicians</h3>
               <p className="mt-3 text-sm leading-relaxed text-ink-50/70">
                 A personal subscription for physicians practising at sea and in other
-                resource-limited settings. Formulary-locked decision support, offline PWA, audit
-                trail on every case.
+                resource-limited settings.
               </p>
             </div>
             <div className="editorial-card">
               <h3 className="font-display text-xl font-medium text-ink-50">Fleet operators</h3>
               <p className="mt-3 text-sm leading-relaxed text-ink-50/70">
-                Officer-to-clinician telemedicine: the officer captures the case onboard, shore
-                physicians review it, and an SOS voice line reaches the operator's own 24/7 desk.
+                Ship-to-shore telemedicine for the fleet, with an SOS voice line to the
+                operator's own 24/7 desk.
               </p>
             </div>
             <div className="editorial-card">
               <h3 className="font-display text-xl font-medium text-ink-50">Cargo fleets without a physician aboard</h3>
               <p className="mt-3 text-sm leading-relaxed text-ink-50/70">
-                The officer captures vitals, complaint, history, and photos in a guided form.
-                Shore physicians review the structured case against the chest actually onboard.
-                An SOS voice line reaches the operator's own 24/7 desk. The case closes as one
-                audited record.
+                The officer on the bridge reaches a physician. The case closes as one record.
               </p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* ─────────────── FOUNDER CREDIBILITY BAND ─────────────── */}
-      <section className="border-y border-ink-700/40 bg-ink-800/20 py-20">
-        <div className="mx-auto max-w-4xl px-6 text-center lg:px-8">
-          <blockquote className="font-display text-2xl italic text-sea-300 sm:text-3xl">
-            "Physicians built SeaScope to work where they practice: on ships, hours from shore, with the chest they actually carry."
-          </blockquote>
-          <p className="mt-6 text-sm text-ink-50/70">
-            <span className="font-medium text-ink-50">Dr. Javier Rosas, MD</span>, Senior Ship
-            Physician with a major cruise line, practising at sea. Chair, AI Committee at the American Board of
-            Maritime Medicine. Author of <em>AI Literacy for Clinicians</em> (2026).
-          </p>
-          <Link to="/about" className="mt-4 inline-block text-sm text-sea-300 underline">
-            Read more about the founding physicians
-          </Link>
-          <p className="mt-4 text-xs italic text-ink-50/40">
-            Institutional affiliations are listed for identification only; no employer or professional organization has endorsed SeaScope.
-          </p>
-        </div>
-      </section>
-
-      {/* ─────────────── PRICING ─────────────── */}
       <section id="pricing" className="py-24 sm:py-32">
         <div className="mx-auto max-w-3xl px-6 lg:px-8">
           <div className="text-center">
             <div className="eyebrow mb-4">PRICING</div>
             <h2 className="font-display text-4xl font-normal leading-tight text-ink-50 sm:text-5xl">
-              Priced for one practitioner, not a procurement department.
+              Priced for one practitioner, or quoted per fleet.
             </h2>
           </div>
           <div className="mx-auto mt-12 max-w-md rounded-3xl border-2 border-sea-500 bg-ink-800/60 p-10 text-center backdrop-blur">
@@ -361,11 +147,9 @@ export default function SeaScopeCDS() {
             <div className="text-sm text-ink-50/60">per month · cancel anytime</div>
             <ul className="mt-8 space-y-3 text-left">
               {[
-                'Full clinical reasoning engine',
-                'Cruise-ship environment, 50+ medications, full formulary lock',
-                'Offline PWA for satellite-down work',
-                'Unlimited cases, unlimited PDFs',
-                'Audit trail kept for 7 years',
+                'Clinical decision support for physicians at sea',
+                'Documentation for every encounter',
+                '14-day free trial',
                 'Cancel anytime, no penalty',
               ].map((item) => (
                 <li key={item} className="flex items-start gap-3 text-sm text-ink-50/85">
@@ -384,38 +168,27 @@ export default function SeaScopeCDS() {
               <ArrowRight className="h-4 w-4" />
             </a>
             <p className="mt-3 text-xs text-ink-50/50">No credit card required. Cancel anytime.</p>
-            <a
-              href="https://app.seascope.tech/seascope-demo"
-              target="_blank"
-              rel="noopener noreferrer"
+            <Link
+              to="/pricing"
               className="mt-4 inline-flex items-center justify-center gap-1.5 text-xs font-medium text-sea-300 underline-offset-2 hover:text-sea-200 hover:underline"
             >
-              Or try it free, no signup
+              Full pricing, including fleet telemedicine
               <ArrowRight className="h-3 w-3" />
-            </a>
+            </Link>
           </div>
           <p className="mx-auto mt-8 max-w-2xl text-center text-sm text-ink-50/60">
-            Built by physicians who practice at sea. Built around the FDA §520(o)(1)(E) Clinical
-            Decision Support exemption. Clinical judgment is always the final call.{' '}
-            <Link to="/pricing" className="text-sea-300 underline">
-              Full pricing
-            </Link>
-            .
+            Built by ship physicians. Guideline-based. The clinician always decides.
           </p>
         </div>
       </section>
 
-      {/* ─────────────── PROOF ─────────────── */}
-      <Testimonials />
-
-      {/* ─────────────── FINAL CTA ─────────────── */}
       <section className="bg-sea-gradient py-20 sm:py-28">
         <div className="mx-auto max-w-3xl px-6 text-center lg:px-8">
           <h2 className="font-display text-4xl font-normal leading-tight text-ink-900 sm:text-5xl">
-            Start practicing with the tool you wish existed.
+            Start with a trial, or book a fleet demo.
           </h2>
           <p className="mt-6 text-base text-ink-900/80">
-            14 days free. Credit card required to start. $0 charged for 14 days. Cancel anytime in one click.
+            14 days free for individual physicians. Fleet operators: a 30-minute call.
           </p>
           <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <a
@@ -427,20 +200,14 @@ export default function SeaScopeCDS() {
               Start Free Trial
               <ArrowRight className="h-4 w-4" />
             </a>
-            <a
-              href="https://app.seascope.tech/seascope-demo"
-              target="_blank"
-              rel="noopener noreferrer"
+            <Link
+              to="/pricing"
               className="inline-flex items-center justify-center gap-2 rounded-lg border border-ink-900/40 px-8 py-4 text-base font-medium text-ink-900 transition hover:bg-ink-900/10"
             >
-              Or try the demo first
+              See pricing
               <ArrowRight className="h-4 w-4" />
-            </a>
+            </Link>
           </div>
-          <p className="mt-6 text-sm text-ink-900/70">
-            Already have an account?{' '}
-            <a href="https://app.seascope.tech" className="underline">Sign in →</a>
-          </p>
         </div>
       </section>
     </>

@@ -1,21 +1,17 @@
 import { Helmet } from 'react-helmet-async';
-import CountUp from '../components/CountUp';
 
 /**
- * /press: Media kit page.
- * Copy from /root/marketing/copy/press-v1.md.
- * Pulls verified canonical founder pitch + 78yo killer case from brand-voice skill.
+ * /press: Media kit. Who we are and how to reach us. No internals.
  */
 export default function Press() {
   return (
     <>
       <Helmet>
         <title>Press & Media: SeaScope / RemoteAid Medical Solutions</title>
-        <meta name="description" content="Resources for journalists writing about SeaScope CDS, operator telemedicine, and RemoteAid Medical Solutions. Founder pitch, case review, brand assets." />
+        <meta name="description" content="Press contact for SeaScope and RemoteAid Medical Solutions. Clinical services for fleets: telemedicine, PEME processing, and crew wellness." />
         <link rel="canonical" href="https://seascope.tech/press" />
       </Helmet>
 
-      {/* HERO */}
       <section className="bg-gradient-to-br from-ink-900 via-ink-800 to-ink-900 pt-32 pb-20 lg:pt-40">
         <div className="mx-auto max-w-5xl px-6 lg:px-8">
           <div className="eyebrow mb-4">PRESS & MEDIA</div>
@@ -23,23 +19,19 @@ export default function Press() {
             Resources for journalists<span className="accent-sea">.</span>
           </h1>
           <p className="mt-8 max-w-2xl text-lg leading-relaxed text-ink-50/80">
-            Everything you need to write about RemoteAid Medical Solutions and SeaScope CDS:
-            a copyable founder pitch, a de-identified case review, and downloadable brand assets.
+            RemoteAid Medical Solutions provides clinical services for fleets at sea:
+            telemedicine, PEME processing, and crew wellness. SeaScope is the service brand.
           </p>
         </div>
       </section>
 
-      {/* FOUNDER PITCH */}
       <section className="py-20">
         <div className="mx-auto max-w-3xl px-6 lg:px-8">
           <div className="eyebrow mb-4">THE FOUNDER PITCH (COPYABLE)</div>
           <blockquote className="rounded-2xl border border-ink-700 bg-ink-800/40 p-8 font-display text-xl italic leading-relaxed text-ink-50">
-            "I'm a ship physician who practices medicine 1,000 miles from shore, no specialists,
-            no imaging, no backup. In a de-identified maritime case review, SeaScope generated a
-            structured draft plan in 49 seconds. It identified three medications that would have
-            interacted dangerously and triggered a structured evacuation handoff. The tool is
-            pre-seed, live, and I think it's a different story than the clinical AI you usually
-            cover, would you want it as an exclusive before I go wider?"
+            "I'm a ship physician. We provide clinical services for fleets: a physician for
+            the ship, PEMEs on file, and health oversight between exams. I would be glad to
+            brief you under embargo."
           </blockquote>
           <p className="mt-4 text-sm text-ink-50/60">
             Dr. Javier Rosas, MD · Founder & CEO, RemoteAid Medical Solutions
@@ -47,42 +39,16 @@ export default function Press() {
         </div>
       </section>
 
-      {/* PROOF POINT */}
       <section className="border-t border-ink-700/40 bg-ink-800/20 py-20">
         <div className="mx-auto max-w-4xl px-6 lg:px-8">
-          <div className="eyebrow mb-4">REAL CASE: ANONYMIZED</div>
+          <div className="eyebrow mb-4">CASE REVIEWS</div>
           <p className="text-lg leading-relaxed text-ink-50/85">
-            A 78-year-old male presented with rising troponin and acute kidney injury aboard a
-            cruise vessel in international waters. SeaScope CDS produced a structured treatment
-            plan in <strong className="text-sea-300">49 seconds</strong> at a query cost of{' '}
-            <strong className="text-sea-300">$0.06</strong>, executing{' '}
-            <strong className="text-sea-300">7 retrieval and verification tools</strong> against the
-            ship's actual formulary. The recommendation{' '}
-            <strong className="text-sea-300">stopped three medications</strong> that would have
-            interacted dangerously with the patient's renal status, and triggered a structured
-            medical evacuation handoff. The patient was transferred stable via boat-to-boat transfer.
-          </p>
-          <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-3">
-            {[
-              { value: 49, suffix: 's', label: 'Time to treatment plan' },
-              { value: 7,  suffix: '',  label: 'Tools executed' },
-              { value: 3,  suffix: '',  label: 'Medications stopped' },
-            ].map((stat) => (
-              <div key={stat.label} className="text-center">
-                <div className="font-display text-3xl font-medium text-sea-300 tabular-nums">
-                  <CountUp value={stat.value} suffix={stat.suffix} />
-                </div>
-                <div className="mt-2 text-xs text-ink-50/60">{stat.label}</div>
-              </div>
-            ))}
-          </div>
-          <p className="mt-8 text-xs text-ink-50/40">
-            In a de-identified maritime case review, SeaScope generated a structured draft plan in 49 seconds. Full details available under NDA after privacy review.
+            De-identified case reviews are available to journalists under NDA after privacy
+            review.
           </p>
         </div>
       </section>
 
-      {/* FOUNDER BIO */}
       <section className="py-20">
         <div className="mx-auto max-w-4xl px-6 lg:px-8">
           <div className="eyebrow mb-4">FOUNDER</div>
@@ -110,7 +76,6 @@ export default function Press() {
         </div>
       </section>
 
-      {/* CONTACT */}
       <section className="border-t border-ink-700/40 bg-sea-gradient py-20">
         <div className="mx-auto max-w-3xl px-6 text-center lg:px-8">
           <h2 className="font-display text-3xl font-normal text-ink-900 sm:text-4xl">
