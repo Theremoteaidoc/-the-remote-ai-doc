@@ -1,5 +1,5 @@
 /**
- * Testimonials — practicing-physician social proof, rendered on the
+ * Testimonials: practicing-physician social proof, rendered on the
  * SeaScope CDS product page between founder credibility and the final CTA.
  *
  * Brand-compliant with the repo's existing design system:
@@ -9,7 +9,7 @@
  *   - eyebrow utility for the tracked small-caps label
  *
  * Pull quotes are curated highlights; full context sits below each.
- * Named attribution (specific over generic — brand voice rule).
+ * Named attribution (specific over generic: brand voice rule).
  */
 
 import { Quote } from 'lucide-react';
@@ -25,7 +25,7 @@ const TESTIMONIALS = [
   },
   {
     pull:
-      'A reliable adjunct to clinical judgment — structured, evidence-based, safety-first.',
+      'A reliable adjunct to clinical judgment: structured, evidence-based, safety-first.',
     full:
       'SeaScope CDS provides valuable clinical support by assisting in diagnostic assessment and treatment guidance, particularly in remote or resource-limited settings. I recommend the use of this AI diagnostic and clinical decision-support tool.',
     author: 'Dr. Jaramillo',
@@ -33,9 +33,9 @@ const TESTIMONIALS = [
   },
   {
     pull:
-      'A clear panorama of the patient condition — with the reasoning behind every recommendation.',
+      'A clear panorama of the patient condition, with the reasoning behind every recommendation.',
     full:
-      'SeaScope is a helpful AI tool in critical scenarios. It allows the physician to analyse the situation and take the best decision for the patient — interventions come with explanations of the reasoning behind every recommendation.',
+      'SeaScope is a helpful AI tool in critical scenarios. It allows the physician to analyse the situation and take the best decision for the patient. Interventions come with explanations of the reasoning behind every recommendation.',
     author: 'Dra. Arrieta',
     affiliation: 'Maritime Physician',
   },

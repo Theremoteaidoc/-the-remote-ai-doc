@@ -321,8 +321,8 @@ export default function Home() {
               <h3 className="font-display text-xl font-medium text-ink-50">SeaScope PEME Platform</h3>
               <p className="mt-2 text-sm leading-relaxed text-ink-50/70">
                 Pre-employment medical exams, structured and documented. OCR ingestion,
-                rules-based fitness logic, and a PDF record that travels with the seafarer , 
-                not the paper file.
+                rules-based fitness logic, and a PDF record that travels with the seafarer
+                rather than the paper file.
               </p>
               <button
                 type="button"

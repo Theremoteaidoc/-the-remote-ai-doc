@@ -43,7 +43,7 @@ export default function Press() {
             cover, would you want it as an exclusive before I go wider?"
           </blockquote>
           <p className="mt-4 text-sm text-ink-50/60">
-           , Dr. Javier Rosas, MD · Founder & CEO, RemoteAid Medical Solutions
+            Dr. Javier Rosas, MD · Founder & CEO, RemoteAid Medical Solutions
           </p>
         </div>
       </section>

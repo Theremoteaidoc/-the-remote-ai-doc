@@ -59,8 +59,8 @@ export default function About() {
           <div className="mt-8 space-y-6 text-base leading-relaxed text-ink-50/75">
             <p>
               RemoteAid Medical Solutions inverts that assumption. We treat limited formularies,
-              absent specialists, and degraded connectivity as first-class design constraints , 
-              not edge cases to be patched later. The result is clinical AI that works where it
+              absent specialists, and degraded connectivity as first-class design constraints
+              rather than edge cases to be patched later. The result is clinical AI that works where it
               matters most: at 2 AM, miles from any hospital, with the chest you have and the
               connectivity you can rely on.
             </p>

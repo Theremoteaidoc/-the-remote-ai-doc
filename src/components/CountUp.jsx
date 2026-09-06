@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from 'react';
 /**
  * Count-up animation triggered once when the element scrolls into view.
  * Uses ease-out cubic so the figure lands crisply instead of drifting.
- * Respects prefers-reduced-motion — jumps straight to target if set.
+ * Respects prefers-reduced-motion. Jumps straight to target if set.
  */
 export default function CountUp({ value, suffix = '', duration = 1800 }) {
   const [display, setDisplay] = useState(0);
