@@ -4,7 +4,7 @@ import { ArrowRight, TrendingDown, Users, FileCheck, Clock } from 'lucide-react'
 import BookDemoModal from '../components/BookDemoModal';
 
 /**
- * /wellness — SeaScope Crew Wellness landing page.
+ * /wellness: SeaScope Crew Wellness landing page.
  * Published (was hidden until 2026-06-07 per founder decision in the
  * ecosystem-reframe Week 1 plan; product is live in prod at app.seascope.tech/crew/).
  * Audience: fleet operators (Part A) + crew members (Part B).
@@ -15,7 +15,7 @@ const BENEFITS = [
   {
     icon: TrendingDown,
     title: 'Earlier visibility of risk',
-    body: 'The care team sees the trend before it becomes a clinical event — not after the exam reveals a problem.',
+    body: 'The care team sees the trend before it becomes a clinical event, not after the exam reveals a problem.',
   },
   {
     icon: Users,
@@ -47,7 +47,7 @@ export default function Wellness() {
       <BookDemoModal open={demoOpen} onClose={() => setDemoOpen(false)} source={demoSource} />
 
       <Helmet>
-        <title>SeaScope Crew Wellness — Between-Exam Monitoring for Seafarers</title>
+        <title>SeaScope Crew Wellness: Between-Exam Monitoring for Seafarers</title>
         <meta
           name="description"
           content="SeaScope Crew Wellness gives shore-side care teams continuous visibility into crew health between periodic medical exams, helping catch the silent progression of hypertension, diabetes, and high cholesterol before they become fit-for-duty failures."
@@ -60,12 +60,12 @@ export default function Wellness() {
           <div className="grid items-center gap-12 lg:grid-cols-[1.15fr_1fr] lg:gap-16">
             {/* Left: copy */}
             <div>
-              <div className="eyebrow mb-6">SEASCOPE CREW WELLNESS — FOR FLEET OPERATORS</div>
+              <div className="eyebrow mb-6">SEASCOPE CREW WELLNESS: FOR FLEET OPERATORS</div>
               <h1 className="font-display text-5xl font-normal leading-[1.05] text-ink-50 sm:text-6xl">
                 The health risk that doesn't show up at the exam<span className="accent-sea">.</span>
               </h1>
               <p className="mt-8 max-w-xl text-lg leading-relaxed text-ink-50/80">
-                Chronic conditions — hypertension, type 2 diabetes, high cholesterol — develop
+                Chronic conditions: hypertension, type 2 diabetes, high cholesterol. They develop
                 silently between PEMEs. SeaScope Crew Wellness gives your care team visibility
                 into that gap, so the problems that ground crews and trigger evacuations are
                 caught months earlier.
@@ -119,7 +119,7 @@ export default function Wellness() {
             <p className="text-base leading-relaxed text-ink-50/70">
               A seafarer passes their exam, returns to sea, and spends the next 24 months with no
               systematic health monitoring. Blood pressure climbs. Glucose trends upward.
-              Cholesterol drifts. None of it is visible until the next PEME — when the reading
+              Cholesterol drifts. None of it is visible until the next PEME: when the reading
               that was borderline is now disqualifying.
             </p>
             <p className="mt-4 text-base leading-relaxed text-ink-50/70">
@@ -144,7 +144,7 @@ export default function Wellness() {
               SeaScope Crew Wellness bridges the gap between periodic medical exams. Crew
               self-log blood pressure and glucose readings through a simple phone app. Those
               readings sync directly into the SeaScope clinical record, where your shore-side
-              care team sees trends over time — not just a single snapshot at exam day.
+              care team sees trends over time, not just a single snapshot at exam day.
             </p>
             <p className="mt-4 text-base leading-relaxed text-ink-50/70">
               When a reading trends in the wrong direction, the care team can act. When it
@@ -189,7 +189,7 @@ export default function Wellness() {
               Built into the platform you may already be running.
             </h2>
             <p className="mt-8 text-base leading-relaxed text-ink-50/70">
-              SeaScope Crew Wellness is part of the broader SeaScope platform — the same clinical
+              SeaScope Crew Wellness is part of the broader SeaScope platform, the same clinical
               record, the same care team interface, the same audit trail. If your fleet is already
               using SeaScope, wellness monitoring is an extension, not a separate system. The
               programme is being piloted with fleet partners.
@@ -228,7 +228,7 @@ export default function Wellness() {
       </section>
 
       {/* ═════════════════════════════════════════════════════════════════ */}
-      {/* PART B — FOR CREW MEMBERS                                       */}
+      {/* PART B: FOR CREW MEMBERS                                       */}
       {/* ═════════════════════════════════════════════════════════════════ */}
 
       {/* ─────────────── CREW DIVIDER ─────────────── */}
@@ -348,7 +348,7 @@ export default function Wellness() {
             <p className="mt-8 text-base leading-relaxed text-ink-50/70">
               You choose whether your readings are shared with the ship's care team. Nothing
               leaves your record without your knowledge. SeaScope Crew Wellness is a
-              self-tracking and health-education tool — it does not diagnose conditions,
+              self-tracking and health-education tool, it does not diagnose conditions,
               prescribe treatment, or replace a medical exam or a doctor's assessment.
             </p>
           </div>

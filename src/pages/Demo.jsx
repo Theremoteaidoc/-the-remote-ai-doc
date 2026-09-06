@@ -86,9 +86,9 @@ const languages = {
     },
     whatsapp: {
       en: (name, doctor, date, time) => 
-        `Hello ${name || 'María'} 👋 Your appointment with ${doctor || 'Dr. García'} (General Medicine) has been confirmed for ${date || 'Monday, February 24'} at ${time || '10:00 AM'}.\n\n📍 123 Medical Plaza, Healthcare District\n\nReply CONFIRM to accept or CHANGE to reschedule. — Medical Demo | AutoMed`,
+        `Hello ${name || 'María'} 👋 Your appointment with ${doctor || 'Dr. García'} (General Medicine) has been confirmed for ${date || 'Monday, February 24'} at ${time || '10:00 AM'}.\n\n📍 123 Medical Plaza, Healthcare District\n\nReply CONFIRM to accept or CHANGE to reschedule., Medical Demo | AutoMed`,
       es: (name, doctor, date, time) => 
-        `Hola ${name || 'María'} 👋 Tu cita con ${doctor || 'Dra. García'} (Medicina General) ha sido confirmada para el ${date || 'Lunes 24 de Febrero'} a las ${time || '10:00'}.\n\n📍 Calle 10 #43A-25, El Poblado\n\nResponde CONFIRMAR para aceptar o CAMBIAR para reprogramar. — Clínica Demo | AutoMed`
+        `Hola ${name || 'María'} 👋 Tu cita con ${doctor || 'Dra. García'} (Medicina General) ha sido confirmada para el ${date || 'Lunes 24 de Febrero'} a las ${time || '10:00'}.\n\n📍 Calle 10 #43A-25, El Poblado\n\nResponde CONFIRMAR para aceptar o CAMBIAR para reprogramar., Clínica Demo | AutoMed`
     },
     results: {
       title: 'Real Results',
@@ -187,9 +187,9 @@ const languages = {
     },
     whatsapp: {
       en: (name, doctor, date, time) => 
-        `Hello ${name || 'María'} 👋 Your appointment with ${doctor || 'Dr. García'} (General Medicine) has been confirmed for ${date || 'Monday, February 24'} at ${time || '10:00 AM'}.\n\n📍 123 Medical Plaza, Healthcare District\n\nReply CONFIRM to accept or CHANGE to reschedule. — Medical Demo | AutoMed`,
+        `Hello ${name || 'María'} 👋 Your appointment with ${doctor || 'Dr. García'} (General Medicine) has been confirmed for ${date || 'Monday, February 24'} at ${time || '10:00 AM'}.\n\n📍 123 Medical Plaza, Healthcare District\n\nReply CONFIRM to accept or CHANGE to reschedule., Medical Demo | AutoMed`,
       es: (name, doctor, date, time) => 
-        `Hola ${name || 'María'} 👋 Tu cita con ${doctor || 'Dra. García'} (Medicina General) ha sido confirmada para el ${date || 'Lunes 24 de Febrero'} a las ${time || '10:00'}.\n\n📍 Calle 10 #43A-25, El Poblado\n\nResponde CONFIRMAR para aceptar o CAMBIAR para reprogramar. — Clínica Demo | AutoMed`
+        `Hola ${name || 'María'} 👋 Tu cita con ${doctor || 'Dra. García'} (Medicina General) ha sido confirmada para el ${date || 'Lunes 24 de Febrero'} a las ${time || '10:00'}.\n\n📍 Calle 10 #43A-25, El Poblado\n\nResponde CONFIRMAR para aceptar o CAMBIAR para reprogramar., Clínica Demo | AutoMed`
     },
     results: {
       title: 'Resultados Reales',
@@ -277,13 +277,13 @@ const AutoPlayingPipeline = ({ language = 'en' }) => {
     }
     if (stepIndex === 4) {
       return language === 'es' 
-        ? "Hola María 📋 Recordatorio: Mañana Martes 25 a las 10:00 AM con Dra. García (Medicina General). No olvides tu documento de identidad.\n\n📍 Calle 10 #43A-25, El Poblado, Medellín\n\n¿Necesitas reprogramar? Responde CAMBIAR.\n— Clínica Demo | AutoMed"
-        : "Hello María 📋 Reminder: Tomorrow Tuesday 25th at 10:00 AM with Dr. García (General Medicine). Don't forget your ID.\n\n📍 123 Medical Plaza, Healthcare District\n\nNeed to reschedule? Reply CHANGE.\n— Medical Demo | AutoMed";
+        ? "Hola María 📋 Recordatorio: Mañana Martes 25 a las 10:00 AM con Dra. García (Medicina General). No olvides tu documento de identidad.\n\n📍 Calle 10 #43A-25, El Poblado, Medellín\n\n¿Necesitas reprogramar? Responde CAMBIAR.\n,  Clínica Demo | AutoMed"
+        : "Hello María 📋 Reminder: Tomorrow Tuesday 25th at 10:00 AM with Dr. García (General Medicine). Don't forget your ID.\n\n📍 123 Medical Plaza, Healthcare District\n\nNeed to reschedule? Reply CHANGE.\n,  Medical Demo | AutoMed";
     }
     if (stepIndex === 5) {
       return language === 'es'
-        ? "Hola María 😊 Gracias por tu visita con Dra. García en Clínica Demo. ¿Nos ayudas con una reseña? Solo 30 segundos:\n\n⭐ bit.ly/clinica-demo-review\n\nTu opinión nos ayuda a mejorar. ¡Gracias! 🙏\n— Clínica Demo | AutoMed"
-        : "Hello María 😊 Thanks for your visit with Dr. García at Medical Demo. Would you help us with a review? Just 30 seconds:\n\n⭐ bit.ly/medical-demo-review\n\nYour feedback helps us improve. Thank you! 🙏\n— Medical Demo | AutoMed";
+        ? "Hola María 😊 Gracias por tu visita con Dra. García en Clínica Demo. ¿Nos ayudas con una reseña? Solo 30 segundos:\n\n⭐ bit.ly/clinica-demo-review\n\nTu opinión nos ayuda a mejorar. ¡Gracias! 🙏\n,  Clínica Demo | AutoMed"
+        : "Hello María 😊 Thanks for your visit with Dr. García at Medical Demo. Would you help us with a review? Just 30 seconds:\n\n⭐ bit.ly/medical-demo-review\n\nYour feedback helps us improve. Thank you! 🙏\n,  Medical Demo | AutoMed";
     }
     return null;
   };
@@ -487,7 +487,7 @@ const AutoPlayingPipeline = ({ language = 'en' }) => {
 };
 
 // WhatsApp Phone Component
-// WhatsAppPhone — always active when mounted. Use key= to remount cleanly between steps.
+// WhatsAppPhone: always active when mounted. Use key= to remount cleanly between steps.
 const WhatsAppPhone = ({ message }) => {
   const [displayedText, setDisplayedText] = useState('');
   const [showTyping, setShowTyping] = useState(true);
@@ -503,7 +503,7 @@ const WhatsAppPhone = ({ message }) => {
     const TYPING_DELAY = 1500; // ms before typing starts
     const CHAR_INTERVAL = 100; // ms per character
 
-    // Use requestAnimationFrame for typing — no intervals to leak
+    // Use requestAnimationFrame for typing: no intervals to leak
     const animate = (timestamp) => {
       if (!mountedRef.current) return;
       if (!startTimeRef.current) startTimeRef.current = timestamp;
@@ -516,7 +516,7 @@ const WhatsAppPhone = ({ message }) => {
         return;
       }
       
-      // Typing phase — transition from dots to text
+      // Typing phase: transition from dots to text
       setShowTyping(false);
       
       const typingElapsed = elapsed - TYPING_DELAY;
@@ -527,7 +527,7 @@ const WhatsAppPhone = ({ message }) => {
       if (charsToShow >= message.length) {
         setIsComplete(true);
         setShowTyping(false);
-        return; // Stop — animation complete
+        return; // Stop, animation complete
       }
       
       rafRef.current = requestAnimationFrame(animate);
@@ -542,7 +542,7 @@ const WhatsAppPhone = ({ message }) => {
         rafRef.current = null;
       }
     };
-  }, [message]); // Only depends on message — component remounts via key= for new steps
+  }, [message]); // Only depends on message, component remounts via key= for new steps
 
   return (
     <div className="max-w-xs mx-auto" style={{ perspective: '1200px' }}>

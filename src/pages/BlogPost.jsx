@@ -12,7 +12,7 @@ const content = {
       bio: 'I practice medicine 1,000 miles from shore and train AI systems that will help the next generation of doctors do the same. I work with leading AI companies on medical LLM evaluation, RLHF, and clinical AI safety.',
       newsletter: {
         title: 'Get More Clinical AI Insights',
-        subtitle: 'Subscribe to "Clinical AI from the Edge" — weekly on LinkedIn.',
+        subtitle: 'Subscribe to "Clinical AI from the Edge", weekly on LinkedIn.',
         button: 'Subscribe on LinkedIn'
       },
       share: 'Share this article',
@@ -29,7 +29,7 @@ const content = {
       bio: 'Practico medicina a 1,000 millas de la costa y entreno sistemas de IA que ayudarán a la próxima generación de médicos a hacer lo mismo. Trabajo con compañías líderes en IA en evaluación de LLMs médicos, RLHF y seguridad de IA clínica.',
       newsletter: {
         title: 'Obtén Más Perspectivas de IA Clínica',
-        subtitle: 'Suscríbete a "IA Clínica desde el Mar" — semanal en LinkedIn.',
+        subtitle: 'Suscríbete a "IA Clínica desde el Mar", semanal en LinkedIn.',
         button: 'Suscribirse en LinkedIn'
       },
       share: 'Compartir este artículo',
@@ -204,7 +204,7 @@ const ArticleRenderer = ({ post, t }) => {
         {/* CTA */}
         <div className="mt-12 bg-gradient-to-br from-emerald-700 to-emerald-600 rounded-2xl p-8 text-center">
           <h3 className="text-white text-2xl font-bold mb-3">Get More Clinical AI Insights</h3>
-          <p className="text-emerald-100/80 mb-6">Subscribe to "Clinical AI from the Edge" — weekly on LinkedIn.</p>
+          <p className="text-emerald-100/80 mb-6">Subscribe to "Clinical AI from the Edge", weekly on LinkedIn.</p>
           <a
             href="https://www.linkedin.com/newsletters/the-remote-ai-doc-weekly-clinical-ai-briefing-7296304837241720832/"
             target="_blank"
@@ -405,7 +405,7 @@ const OriginalRenderer = ({ post, t }) => {
               {content.rubricCovered.map((item, i) => (
                 <li key={i} className="flex items-start gap-3 text-slate-200">
                   <span className="text-emerald-600 mt-1">→</span>
-                  <span><strong className="text-slate-900">{item.title}</strong> — {item.desc}</span>
+                  <span><strong className="text-slate-900">{item.title}</strong>, {item.desc}</span>
                 </li>
               ))}
             </ul>
@@ -434,7 +434,7 @@ const OriginalRenderer = ({ post, t }) => {
           <div>
             <h2 className="text-2xl font-bold text-slate-900 mt-12 mb-4">Where the General LLMs Failed</h2>
             <p className="text-lg text-slate-700 leading-relaxed mb-8">
-              This is where the data gets concerning. All four frontier LLMs — models that dominate AI headlines — scored below 35%. They didn't just miss nuances. They made errors that could directly harm patients.
+              This is where the data gets concerning. All four frontier LLMs, models that dominate AI headlines, scored below 35%. They didn't just miss nuances. They made errors that could directly harm patients.
             </p>
 
             <div className="space-y-4">
@@ -540,7 +540,7 @@ const OriginalRenderer = ({ post, t }) => {
         {/* CTA */}
         <div className="mt-12 bg-gradient-to-br from-emerald-700 to-emerald-600 rounded-2xl p-8 text-center">
           <h3 className="text-white text-2xl font-bold mb-3">Get More Clinical AI Insights</h3>
-          <p className="text-emerald-100/80 mb-6">Subscribe to "Clinical AI from the Edge" — weekly on LinkedIn.</p>
+          <p className="text-emerald-100/80 mb-6">Subscribe to "Clinical AI from the Edge", weekly on LinkedIn.</p>
           <a
             href="https://www.linkedin.com/newsletters/the-remote-ai-doc-weekly-clinical-ai-briefing-7296304837241720832/"
             target="_blank"

@@ -7,7 +7,7 @@ import BookDemoModal from '../components/BookDemoModal';
 const STRIPE_CDS_CHECKOUT = 'https://buy.stripe.com/5kQ00i6YjgeH7Zt9lN2ZO00';
 
 /**
- * /pricing — side-by-side. Asymmetric pricing display.
+ * /pricing: side-by-side. Asymmetric pricing display.
  * Copy from /root/marketing/copy/pricing-v1.md.
  * GATED per IA amendment 2: Cargo column never shows physician-seat / volume tiers / pilot rate.
  */
@@ -17,7 +17,7 @@ export default function Pricing() {
     <>
       <BookDemoModal open={demoOpen} onClose={() => setDemoOpen(false)} source="pricing" />
       <Helmet>
-        <title>Pricing — SeaScope CDS & SeaScope Cargo Solutions</title>
+        <title>Pricing: SeaScope CDS & SeaScope Cargo Solutions</title>
         <meta
           name="description"
           content="SeaScope CDS for individual physicians: $29.99/month. SeaScope Cargo Solutions for fleet operators: quoted per fleet on a 30-minute call. Two products, one engine, asymmetric pricing."
@@ -43,7 +43,7 @@ export default function Pricing() {
       {/* SIDE-BY-SIDE */}
       <section className="pb-24 pt-16 sm:pb-32">
         <div className="mx-auto grid max-w-7xl gap-8 px-6 lg:grid-cols-2 lg:px-8">
-          {/* SeaScope CDS — exact, public */}
+          {/* SeaScope CDS: exact, public */}
           <div className="editorial-card border-sea-500/40">
             <div className="eyebrow mb-3">FOR PHYSICIANS</div>
             <h2 className="font-display text-3xl font-medium text-ink-50">SeaScope CDS</h2>
@@ -62,10 +62,10 @@ export default function Pricing() {
                 'All 5 environments (cruise, expedition, FOB, 2× rural)',
                 '13 deterministic safety guardrails',
                 'Live evidence retrieval (PubMed, OpenFDA, RxNorm, ClinicalTrials.gov)',
-                'Offline PWA — works satellite-down',
+                'Offline PWA: works satellite-down',
                 'Audit trail retention configurable; default 7 years where customer agreement requires',
                 'PDF export for every encounter',
-                'Cancel anytime — no annual commitment',
+                'Cancel anytime, no annual commitment',
               ].map((item) => (
                 <li key={item} className="flex items-start gap-3 text-ink-50/85">
                   <Check className="mt-0.5 h-4 w-4 flex-shrink-0 text-sea-500" />
@@ -85,7 +85,7 @@ export default function Pricing() {
             </a>
           </div>
 
-          {/* SeaScope Cargo Solutions — gated, consultative */}
+          {/* SeaScope Cargo Solutions: gated, consultative */}
           <div className="editorial-card border-sea-500/40">
             <div className="eyebrow mb-3">FOR FLEET OPERATORS</div>
             <h2 className="font-display text-3xl font-medium text-ink-50">SeaScope Cargo Solutions</h2>
@@ -99,13 +99,13 @@ export default function Pricing() {
 
             <ul className="mt-8 space-y-3 text-sm">
               {[
-                'SeaScope Officer Mode — bridge-computer triage app',
-                'SeaScope Hub — shore physician dashboard with case queue',
+                'SeaScope Officer Mode, bridge-computer triage app',
+                'SeaScope Hub, shore physician dashboard with case queue',
                 'AI-drafted recommendations constrained to your vessel formularies',
-                'MLC 2026 documentation — auto-generated structured PDF designed to support maritime medical recordkeeping and inspection workflows',
+                'MLC 2026 documentation, auto-generated structured PDF designed to support maritime medical recordkeeping and inspection workflows',
                 'Fleet-wide map and analytics dashboard',
                 'Per-tenant white-label theming',
-                'Integration support — PEME data, chest inventory, evacuation handoff',
+                'Integration support, PEME data, chest inventory, evacuation handoff',
                 '24/7 platform support · onboarding training · ongoing clinical updates',
               ].map((item) => (
                 <li key={item} className="flex items-start gap-3 text-ink-50/85">
@@ -144,7 +144,7 @@ export default function Pricing() {
                   ['Pricing', '$29.99 / month', 'Quoted per fleet · shared on call'],
                   ['Trial', '14-day free trial · credit card required · cancel anytime', '30-day pilot · terms shared on call'],
                   ['Sales motion', 'Self-serve · sign up online', 'Consultative · book a demo'],
-                  ['Onboarding', 'Instant — log into the app', '1–2 weeks per fleet'],
+                  ['Onboarding', 'Instant, log into the app', '1–2 weeks per fleet'],
                   ['Sample use case', 'Ship physician at 2 AM with no specialist backup', 'OneCare-style operator with 100+ vessels and shore-based physicians'],
                 ].map(([label, cds, cargo]) => (
                   <tr key={label} className="bg-ink-900/40">
@@ -172,7 +172,7 @@ export default function Pricing() {
             {[
               {
                 q: "Why isn't Cargo Solutions pricing fully public?",
-                a: "Cargo deployments vary by fleet size, vessel type, and integration scope. We share the full pricing structure — including volume discounts and pilot terms — in a 30-minute consultative call so we can match the commercial structure to your operation. We don't gate the conversation behind a sales cycle.",
+                a: "Cargo deployments vary by fleet size, vessel type, and integration scope. We share the full pricing structure, including volume discounts and pilot terms, in a 30-minute consultative call so we can match the commercial structure to your operation. We don't gate the conversation behind a sales cycle.",
               },
               {
                 q: 'Can I cancel SeaScope CDS anytime?',
@@ -188,7 +188,7 @@ export default function Pricing() {
               },
               {
                 q: 'Do you offer educational, non-profit, or humanitarian pricing?',
-                a: 'Yes — for SeaScope CDS direct-to-MD, we offer free or reduced-cost access for clinicians working with humanitarian organizations (MSF, Red Cross, faith-based mission medicine). Email hello@seascope.tech with proof of affiliation.',
+                a: 'Yes, for SeaScope CDS direct-to-MD, we offer free or reduced-cost access for clinicians working with humanitarian organizations (MSF, Red Cross, faith-based mission medicine). Email hello@seascope.tech with proof of affiliation.',
               },
             ].map((item) => (
               <div key={item.q} className="editorial-card">
@@ -211,7 +211,7 @@ export default function Pricing() {
               to="/seascope-cds"
               className="inline-flex items-center justify-center gap-2 rounded-lg bg-ink-900 px-6 py-3 text-sm font-medium text-ink-50 transition hover:bg-ink-800"
             >
-              Start Free — Solo physician
+              Start Free, Solo physician
               <ArrowRight className="h-4 w-4" />
             </Link>
             <button
@@ -219,13 +219,13 @@ export default function Pricing() {
               onClick={() => setDemoOpen(true)}
               className="inline-flex items-center justify-center gap-2 rounded-lg border border-ink-900 px-6 py-3 text-sm font-medium text-ink-900 transition hover:bg-ink-900/10"
             >
-              Book a Demo — Fleet operator
+              Book a Demo, Fleet operator
               <ArrowRight className="h-4 w-4" />
             </button>
           </div>
           <p className="mt-6 text-sm text-ink-900/70">
             Not sure which fits? Email{' '}
-            <a href="mailto:hello@seascope.tech" className="underline">hello@seascope.tech</a> — we'll route you in one reply.
+            <a href="mailto:hello@seascope.tech" className="underline">hello@seascope.tech</a>, we'll route you in one reply.
           </p>
         </div>
       </section>

@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 
 /**
- * /evidence — Validation, safety, regulatory.
+ * /evidence: Validation, safety, regulatory.
  * Replaces 7 prior /seascope/* sub-pages.
  * Copy from /root/marketing/copy/evidence-v1.md.
  * Build week: port content from existing SeaScopeSafety/SafetyCase/Regulatory/etc files into the anchor sections below.
@@ -11,7 +11,7 @@ export default function Evidence() {
   return (
     <>
       <Helmet>
-        <title>Evidence & Validation — SeaScope CDS</title>
+        <title>Evidence & Validation: SeaScope CDS</title>
         <meta name="description" content="13 deterministic safety guardrails. 3,500+ evaluation, demo, synthetic, and shadow-pilot runs. 0 detected critical failures across 1,500+ automated safety tests. Not a clinical outcomes study. FDA §520(o)(1)(E) Clinical Decision Support architected. MLC 2006 aligned." />
         <link rel="canonical" href="https://seascope.tech/evidence" />
       </Helmet>
@@ -39,7 +39,7 @@ export default function Evidence() {
           </h2>
           <p className="mt-6 text-base leading-relaxed text-ink-50/75">
             SeaScope CDS runs every recommendation through a sequence of rule-based safety checks
-            before the clinician sees the output. Each check is deterministic — pass/fail logic,
+            before the clinician sees the output. Each check is deterministic, pass/fail logic,
             not probabilistic judgment. If any check fails, the recommendation is either modified
             or blocked entirely with a clear explanation to the clinician.
           </p>
@@ -146,7 +146,7 @@ export default function Evidence() {
           </h2>
           <p className="mt-6 text-base text-ink-900/80">
             Validation methodology, regulatory documentation, data-flow specification, and
-            evaluation tracker — all available to NDA partners in a single technical pack.
+            evaluation tracker, all available to NDA partners in a single technical pack.
           </p>
           <a
             href="mailto:hello@seascope.tech?subject=Request%20-%20Technical%20Brief%20(NDA)"

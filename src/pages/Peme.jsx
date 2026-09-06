@@ -5,7 +5,7 @@ import { ArrowRight, Check, FileSearch, ShieldCheck, Eye, History, ShieldAlert, 
 import BookDemoModal from '../components/BookDemoModal';
 
 /**
- * /peme — SeaScope PEME Platform pillar page.
+ * /peme: SeaScope PEME Platform pillar page.
  * Voice register: operations-credible (matches Cargo Solutions).
  * Copy approved by founder 2026-06-07 (calibration: keep all 3 stats,
  *   leave comorbidity-detection claim in, do NOT show internal disposition
@@ -27,7 +27,7 @@ export default function Peme() {
     <>
       <BookDemoModal open={demoOpen} onClose={() => setDemoOpen(false)} source={demoSource} />
       <Helmet>
-        <title>SeaScope PEME Platform — Pre-employment exams, structured and documented.</title>
+        <title>SeaScope PEME Platform: Pre-employment exams, structured and documented.</title>
         <meta
           name="description"
           content="SeaScope PEME Platform turns scattered clinic PDFs into a structured, auditable record. Clinics submit, the engine reads and flags, your reviewer signs off in one queue."
@@ -41,13 +41,13 @@ export default function Peme() {
           <div className="grid items-center gap-12 lg:grid-cols-[1.15fr_1fr] lg:gap-16">
             {/* Left: copy */}
             <div>
-              <div className="eyebrow mb-6">SEASCOPE PEME PLATFORM — FOR FLEET OPERATORS</div>
+              <div className="eyebrow mb-6">SEASCOPE PEME PLATFORM: FOR FLEET OPERATORS</div>
               <h1 className="font-display text-5xl font-normal leading-[1.05] text-ink-50 sm:text-6xl">
                 Pre-employment exams, structured and documented<span className="accent-sea">.</span>
               </h1>
               <p className="mt-8 max-w-xl text-lg leading-relaxed text-ink-50/80">
                 Clinics submit. The engine reads, structures, and flags. Your reviewer signs off
-                in one queue. Every fitness decision becomes a structured record — searchable,
+                in one queue. Every fitness decision becomes a structured record, searchable,
                 comparable, ready when the port-state inspector asks.
               </p>
               <div className="mt-10 flex flex-col gap-3 sm:flex-row">
@@ -67,7 +67,7 @@ export default function Peme() {
               </p>
             </div>
 
-            {/* Right: brand piece (schematic illustration, abstract — brand-voice exemption) */}
+            {/* Right: brand piece (schematic illustration, abstract: brand-voice exemption) */}
             <div className="relative flex justify-center lg:justify-end">
               <div className="absolute -inset-6 rounded-3xl bg-sea-500/10 blur-2xl" aria-hidden="true" />
               <div className="relative overflow-hidden rounded-2xl border border-ink-700/60 shadow-2xl shadow-ink-900/60 ring-1 ring-sea-500/20">
@@ -99,7 +99,7 @@ export default function Peme() {
               Pre-employment medical exams happen at dozens of partner clinics, in PDF reports
               that arrive by email, in no consistent format. Manning teams track expiry dates in
               spreadsheets. Medical directors review edge cases by reading the PDF. Outlier
-              clinics, missing tests, comorbidities flagged on one exam but not the next — none
+              clinics, missing tests, comorbidities flagged on one exam but not the next, none
               of it surfaces until someone notices, usually too late.
             </p>
             <p className="mt-5 text-base leading-relaxed text-ink-50/70">

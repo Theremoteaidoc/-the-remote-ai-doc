@@ -41,7 +41,7 @@ function SeaScopeEvidenceContent() {
 
       {/* Confidential Badge */}
       <div className="fixed top-4 right-4 z-40 bg-red-600/90 text-white px-3 py-1 rounded-full text-xs font-medium backdrop-blur-sm border border-red-500/50">
-        CONFIDENTIAL — Shared under NDA
+        CONFIDENTIAL: Shared under NDA
       </div>
 
       <SeaScopeNav />

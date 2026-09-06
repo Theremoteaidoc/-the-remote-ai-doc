@@ -1,14 +1,14 @@
 import { Helmet } from 'react-helmet-async';
 
 /**
- * /security — Legal placeholder pending full policy.
+ * /security: Legal placeholder pending full policy.
  * Effective 2026-05-05. Final policy in preparation.
  */
 export default function Security() {
   return (
     <>
       <Helmet>
-        <title>Security — SeaScope / RemoteAid Medical Solutions</title>
+        <title>Security: SeaScope / RemoteAid Medical Solutions</title>
         <meta name="description" content="Security practices for SeaScope CDS and SeaScope Cargo Solutions. Effective 2026-05-05. Final policy in preparation." />
         <link rel="canonical" href="https://seascope.tech/security" />
       </Helmet>
