@@ -355,19 +355,94 @@ export default function Wellness() {
         </div>
       </section>
 
-      {/* ─────────────── CREW INSTALL / LIVE ─────────────── */}
-      <section className="border-t border-ink-700/40 bg-ink-800/20 py-24 sm:py-32">
-        <div className="mx-auto max-w-3xl px-6 text-center lg:px-8">
-          <div className="inline-block rounded-md bg-emerald-500/15 px-3 py-1 text-xs font-medium uppercase tracking-eyebrow text-emerald-300 ring-1 ring-emerald-500/40">
-            Live
+      {/* ─────────────── GET THE APP / QR ─────────────── */}
+      {/* DRAFT — pending Dr. Rosas ratification */}
+      <section
+        id="get-the-app"
+        className="border-t border-ink-700/40 bg-ink-800/20 py-24 sm:py-32"
+        aria-labelledby="get-the-app-heading"
+      >
+        <div className="mx-auto max-w-5xl px-6 lg:px-8">
+          <div className="grid items-center gap-12 lg:grid-cols-[1.15fr_auto] lg:gap-16">
+            <div>
+              <div className="inline-block rounded-md bg-emerald-500/15 px-3 py-1 text-xs font-medium uppercase tracking-eyebrow text-emerald-300 ring-1 ring-emerald-500/40">
+                Live
+              </div>
+              <div className="eyebrow mt-6 mb-4">GET THE APP</div>
+              <h2
+                id="get-the-app-heading"
+                className="font-display text-3xl font-normal leading-tight text-ink-50 sm:text-4xl"
+              >
+                Get the app.
+              </h2>
+              <p className="mt-6 text-base leading-relaxed text-ink-50/70">
+                A companion app for logging blood pressure and glucose, and for seeing the
+                health record that supports your next PEME.
+              </p>
+              <p className="mt-4 text-base leading-relaxed text-ink-50/70">
+                Those readings become trends you and your fleet's care team can act on.
+              </p>
+              <ol className="mt-8 space-y-4">
+                <li className="flex items-start gap-4">
+                  <span
+                    className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-sea-500/15 font-mono text-sm font-bold text-sea-300 ring-1 ring-sea-500/30"
+                    aria-hidden="true"
+                  >
+                    1
+                  </span>
+                  <span className="pt-0.5 text-base leading-relaxed text-ink-50/80">
+                    Scan the QR code to open the join page.
+                  </span>
+                </li>
+                <li className="flex items-start gap-4">
+                  <span
+                    className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-sea-500/15 font-mono text-sm font-bold text-sea-300 ring-1 ring-sea-500/30"
+                    aria-hidden="true"
+                  >
+                    2
+                  </span>
+                  <span className="pt-0.5 text-base leading-relaxed text-ink-50/80">
+                    Confirm your passport or ID number, date of birth, and email.
+                  </span>
+                </li>
+                <li className="flex items-start gap-4">
+                  <span
+                    className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-sea-500/15 font-mono text-sm font-bold text-sea-300 ring-1 ring-sea-500/30"
+                    aria-hidden="true"
+                  >
+                    3
+                  </span>
+                  <span className="pt-0.5 text-base leading-relaxed text-ink-50/80">
+                    Set a password.
+                  </span>
+                </li>
+              </ol>
+              <p className="mt-8 text-sm leading-relaxed text-ink-50/60">
+                You choose whether your readings are shared with the ship's care team. The
+                app does not diagnose, prescribe, or replace a medical exam.
+              </p>
+            </div>
+            <div className="flex flex-col items-center">
+              <div className="rounded-2xl bg-white p-4 shadow-xl ring-1 ring-ink-700/40">
+                <img
+                  src="/images/wellness/crew-app-qr.svg"
+                  alt="QR code for the SeaScope Crew Wellness join page at app.seascope.tech/crew/join"
+                  width="192"
+                  height="192"
+                  className="h-48 w-48"
+                />
+              </div>
+              <p className="mt-4 text-center text-xs uppercase tracking-eyebrow text-ink-50/50">
+                Scan to open the app
+              </p>
+              <a
+                href="https://app.seascope.tech/crew/join"
+                className="mt-3 text-sm text-sea-300 underline"
+              >
+                Open the SeaScope Crew Wellness join page
+              </a>
+            </div>
           </div>
-          <h2 className="mt-6 font-display text-3xl font-normal leading-tight text-ink-50 sm:text-4xl">
-            In your crew's hands today.
-          </h2>
-          <p className="mt-6 text-base leading-relaxed text-ink-50/70">
-            The app is live. Your operator provisions access, and crew install it from a private
-            link in four languages, no app-store search required.
-          </p>
         </div>
       </section>
     </>
