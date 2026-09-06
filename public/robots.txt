@@ -1,4 +1,3 @@
 User-agent: *
 Allow: /
-Disallow: /p/pilot
 Sitemap: https://seascope.tech/sitemap.xml
