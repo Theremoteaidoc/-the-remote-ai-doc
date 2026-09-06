@@ -422,10 +422,10 @@ export default function Home() {
       </section>
 
       {/* ─────────────── ENGINE CREDIBILITY ─────────────── */}
-      <section className="relative overflow-hidden border-t border-ink-700/40 bg-ink-800/20 py-24 sm:py-32">
+      <section className="relative isolate overflow-hidden overflow-x-clip border-t border-ink-700/40 bg-ink-800/20 py-24 sm:py-32">
         {/* iOS-style aurora: three blurred orbs, slow opacity drift.
             Respects prefers-reduced-motion via motion-reduce:animate-none. */}
-        <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
+        <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden overflow-x-clip [clip-path:inset(0)]">
           <div className="absolute left-[8%] top-[15%] h-[420px] w-[420px] rounded-full bg-sea-500/25 blur-3xl motion-reduce:animate-none animate-pulse [animation-duration:9s]" />
           <div className="absolute right-[6%] top-[8%] h-[520px] w-[520px] rounded-full bg-violet-500/20 blur-3xl motion-reduce:animate-none animate-pulse [animation-duration:13s] [animation-delay:2s]" />
           <div className="absolute bottom-[12%] left-[35%] h-[460px] w-[460px] rounded-full bg-amber-500/10 blur-3xl motion-reduce:animate-none animate-pulse [animation-duration:11s] [animation-delay:4s]" />
