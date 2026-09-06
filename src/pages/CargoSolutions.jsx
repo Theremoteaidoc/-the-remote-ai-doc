@@ -5,10 +5,10 @@ import { ArrowRight, Check } from 'lucide-react';
 import BookDemoModal from '../components/BookDemoModal';
 
 /**
- * /cargo-solutions — operator product page.
+ * /cargo-solutions: operator product page.
  * Voice register: operations-credible. Copy from /root/marketing/copy/cargo-solutions-v1.md.
- * Hero photo: TODO — recommend reuse helicopter brand asset; placeholder gradient for now.
- * Pricing: FULLY GATED — no public number. Quote shared on the 30-minute call.
+ * Hero photo: TODO: recommend reuse helicopter brand asset; placeholder gradient for now.
+ * Pricing: FULLY GATED: no public number. Quote shared on the 30-minute call.
  */
 export default function CargoSolutions() {
   const [demoOpen, setDemoOpen] = useState(false);
@@ -21,7 +21,7 @@ export default function CargoSolutions() {
     <>
       <BookDemoModal open={demoOpen} onClose={() => setDemoOpen(false)} source={demoSource} />
       <Helmet>
-        <title>SeaScope Cargo Solutions — Officer triage. Doctor decision. One audited case.</title>
+        <title>SeaScope Cargo Solutions: Officer triage. Doctor decision. One audited case.</title>
         <meta
           name="description"
           content="Structured medical case workflow for cargo fleets. Officer triage onboard, AI-augmented physician hub on shore. MLC-grade documentation built in."
@@ -35,7 +35,7 @@ export default function CargoSolutions() {
           <div className="grid items-center gap-12 lg:grid-cols-[1.1fr_1fr] lg:gap-16">
             {/* Left: copy */}
             <div>
-              <div className="eyebrow mb-6">SEASCOPE CARGO SOLUTIONS — FOR FLEET OPERATORS</div>
+              <div className="eyebrow mb-6">SEASCOPE CARGO SOLUTIONS: FOR FLEET OPERATORS</div>
               <h1 className="font-display text-5xl font-normal leading-[1.05] text-ink-50 sm:text-6xl">
                 Officer triage. Doctor decision. One audited case<span className="accent-sea">.</span>
               </h1>
@@ -67,7 +67,7 @@ export default function CargoSolutions() {
               <div className="relative overflow-hidden rounded-2xl border border-ink-700/60 shadow-2xl shadow-ink-900/50 ring-1 ring-sea-500/20">
                 <img
                   src="https://images.unsplash.com/photo-1583857671904-a716bf4ee5d8?q=80&w=880&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                  alt="Cargo ship at sea — when the nearest hospital is 8 hours away, every clinical decision carries weight no algorithm alone can shoulder."
+                  alt="Cargo ship at sea, when the nearest hospital is 8 hours away, every clinical decision carries weight no algorithm alone can shoulder."
                   className="h-full w-full object-cover"
                   loading="eager"
                   width="880"
@@ -185,7 +185,7 @@ export default function CargoSolutions() {
           <div className="mx-auto mt-16 grid max-w-5xl gap-6 md:grid-cols-2">
             {[
               { title: 'MLC 2026 documentation', body: 'Every case produces a structured PDF designed to support MLC 2006 documentation requirements. Available on demand, per vessel, date-ranged. No after-the-fact reconstruction.' },
-              { title: 'Faster decisions, fewer evacuations', body: 'Voice triage averages 25–45 minutes. Structured cases close in 3–12. Faster decisions mean fewer "evacuate to be safe" defaults — and the cases that genuinely need evacuation get there sooner.' },
+              { title: 'Faster decisions, fewer evacuations', body: 'Voice triage averages 25–45 minutes. Structured cases close in 3–12. Faster decisions mean fewer "evacuate to be safe" defaults, and the cases that genuinely need evacuation get there sooner.' },
               { title: 'Lower P&I exposure', body: 'Documented clinical decision trail, citation-backed, physician-signed. The kind of record that reduces malpractice risk and the premium that comes with it.' },
               { title: 'Fleet-wide visibility', body: 'One physician seat can manage 100+ vessels with confidence. The Hub queue surfaces the urgent cases first, the routine ones get the time they deserve, and the medical director sees fleet-wide trends in real time.' },
             ].map((outcome) => (
@@ -207,8 +207,8 @@ export default function CargoSolutions() {
           </h2>
           <p className="mt-8 text-base leading-relaxed text-ink-50/70">
             Volume pricing, physician-seat licensing, and pilot terms vary by fleet size, vessel
-            type, and integration scope. We walk you through the full structure — including pilot
-            conversion economics — in a 30-minute consultative call.
+            type, and integration scope. We walk you through the full structure, including pilot
+            conversion economics, in a 30-minute consultative call.
           </p>
           <button type="button" onClick={() => openDemo('cargo/pricing')} className="btn-primary mt-10">
             Book a Demo
@@ -227,10 +227,10 @@ export default function CargoSolutions() {
           <div className="mx-auto max-w-3xl text-center">
             <div className="eyebrow mb-4">WHAT'S UNDERNEATH</div>
             <h2 className="font-display text-3xl font-normal leading-tight text-ink-50 sm:text-4xl">
-              Powered by SeaScope CDS — the trademark engine.
+              Powered by SeaScope CDS: the trademark engine.
             </h2>
             <p className="mt-6 text-base text-ink-50/70">
-              SeaScope Cargo Solutions runs on SeaScope CDS — evidence-based medicine
+              SeaScope Cargo Solutions runs on SeaScope CDS: evidence-based medicine
               engineered for the edge. Every recommendation is grounded in the vessel's
               actual formulary, traceable to the clinical guideline behind it, and saved
               as a defensible case record. Architected under the FDA §520(o)(1)(E)
@@ -253,7 +253,7 @@ export default function CargoSolutions() {
             ))}
           </div>
           <p className="mt-10 text-center text-xs uppercase tracking-eyebrow text-ink-50/50">
-            Expanding every release — 2026 Q2 snapshot, numbers grow monthly
+            Expanding every release, 2026 Q2 snapshot, numbers grow monthly
           </p>
           <div className="mt-6 text-center">
             <Link to="/evidence" className="text-sm text-sea-300 underline">
@@ -272,8 +272,8 @@ export default function CargoSolutions() {
           </h2>
           <p className="mt-6 text-base leading-relaxed text-ink-50/70">
             A focused pilot designed to validate workflow fit and clinical value before a
-            multi-year deployment. Includes structured success metrics — shore-doctor adoption,
-            officer triage quality, time-to-decision reduction, MLC documentation completeness —
+            multi-year deployment. Includes structured success metrics, shore-doctor adoption,
+            officer triage quality, time-to-decision reduction, MLC documentation completeness , 
             and a structured conversion review at day 30.
           </p>
           <div className="mt-8 inline-block rounded-xl border-2 border-sea-500 bg-sea-500/5 px-6 py-4 font-medium text-sea-300">

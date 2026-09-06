@@ -56,7 +56,7 @@ export default function Servicios() {
 
             <ScrollReveal delay={200}>
               <p className="text-lg text-slate-600 leading-relaxed max-w-3xl mx-auto mb-10">
-                Aplicando experiencia clínica en IA para automatizar procesos médicos, reducir carga administrativa y mejorar la atención al paciente — construido por un médico que usa lo que automatiza.
+                Aplicando experiencia clínica en IA para automatizar procesos médicos, reducir carga administrativa y mejorar la atención al paciente, construido por un médico que usa lo que automatiza.
               </p>
             </ScrollReveal>
 
@@ -202,7 +202,7 @@ export default function Servicios() {
               <h2 className="text-4xl lg:text-5xl font-bold tracking-tight mb-4 text-slate-900">Elige Tu Nivel de Automatización</h2>
             </ScrollReveal>
             <ScrollReveal delay={100}>
-              <p className="text-lg text-slate-600 max-w-3xl mx-auto">Desde automatización básica hasta soluciones IA empresariales — todo diseñado con experiencia clínica</p>
+              <p className="text-lg text-slate-600 max-w-3xl mx-auto">Desde automatización básica hasta soluciones IA empresariales, todo diseñado con experiencia clínica</p>
             </ScrollReveal>
           </div>
 
@@ -398,7 +398,7 @@ export default function Servicios() {
               <h3 className="text-2xl text-teal-600 mb-6">Construido por un Médico que Automatiza Su Propia Práctica</h3>
             </ScrollReveal>
             <ScrollReveal delay={200}>
-              <p className="text-lg text-slate-600 max-w-3xl mx-auto">No solo construyo sistemas de IA — los uso todos los días en ambientes clínicos de alto riesgo. Esta experiencia del mundo real asegura que tu automatización realmente funcione cuando más importa.</p>
+              <p className="text-lg text-slate-600 max-w-3xl mx-auto">No solo construyo sistemas de IA, los uso todos los días en ambientes clínicos de alto riesgo. Esta experiencia del mundo real asegura que tu automatización realmente funcione cuando más importa.</p>
             </ScrollReveal>
           </div>
 
@@ -409,7 +409,7 @@ export default function Servicios() {
                   <Users className="w-8 h-8 text-teal-600 group-hover:scale-110 transition-transform duration-300" />
                 </div>
                 <h3 className="text-xl font-bold text-slate-900 mb-3">Entendimiento Clínico</h3>
-                <p className="text-slate-600">Experiencia médica real en ambientes de alta presión — 1,000 millas de la costa sin respaldo médico.</p>
+                <p className="text-slate-600">Experiencia médica real en ambientes de alta presión, 1,000 millas de la costa sin respaldo médico.</p>
               </div>
             </ScrollReveal>
 
@@ -429,7 +429,7 @@ export default function Servicios() {
                   <Globe className="w-8 h-8 text-teal-600 group-hover:scale-110 transition-transform duration-300" />
                 </div>
                 <h3 className="text-xl font-bold text-slate-900 mb-3">Medicina Remota</h3>
-                <p className="text-slate-600">Construido para equipos distribuidos y telemedicina — probado en las ubicaciones más remotas de la Tierra.</p>
+                <p className="text-slate-600">Construido para equipos distribuidos y telemedicina, probado en las ubicaciones más remotas de la Tierra.</p>
               </div>
             </ScrollReveal>
 
@@ -515,7 +515,7 @@ export default function Servicios() {
                   Agenda una llamada gratuita de 30 minutos para explorar cómo la IA puede transformar tus procesos médicos.
                 </p>
                 <p className="text-slate-300">
-                  Sin presentación de ventas — solo una conversación estratégica sobre el potencial de automatización de tu consulta.
+                  Sin presentación de ventas, solo una conversación estratégica sobre el potencial de automatización de tu consulta.
                 </p>
                 
                 <button

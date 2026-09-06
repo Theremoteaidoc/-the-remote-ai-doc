@@ -2,7 +2,7 @@ import { Helmet } from 'react-helmet-async';
 import CountUp from '../components/CountUp';
 
 /**
- * /press — Media kit page.
+ * /press: Media kit page.
  * Copy from /root/marketing/copy/press-v1.md.
  * Pulls verified canonical founder pitch + 78yo killer case from brand-voice skill.
  */
@@ -10,7 +10,7 @@ export default function Press() {
   return (
     <>
       <Helmet>
-        <title>Press & Media — SeaScope / RemoteAid Medical Solutions</title>
+        <title>Press & Media: SeaScope / RemoteAid Medical Solutions</title>
         <meta name="description" content="Resources for journalists writing about SeaScope CDS, SeaScope Cargo Solutions, and RemoteAid Medical Solutions. Founder pitch, real-patient case study, brand assets." />
         <link rel="canonical" href="https://seascope.tech/press" />
       </Helmet>
@@ -24,7 +24,7 @@ export default function Press() {
           </h1>
           <p className="mt-8 max-w-2xl text-lg leading-relaxed text-ink-50/80">
             Everything you need to write about RemoteAid Medical Solutions, SeaScope CDS, and
-            SeaScope Cargo Solutions — a copyable founder pitch, a real-patient case study, and
+            SeaScope Cargo Solutions, a copyable founder pitch, a real-patient case study, and
             downloadable brand assets.
           </p>
         </div>
@@ -35,15 +35,15 @@ export default function Press() {
         <div className="mx-auto max-w-3xl px-6 lg:px-8">
           <div className="eyebrow mb-4">THE FOUNDER PITCH (COPYABLE)</div>
           <blockquote className="rounded-2xl border border-ink-700 bg-ink-800/40 p-8 font-display text-xl italic leading-relaxed text-ink-50">
-            "I'm a ship physician who practices medicine 1,000 miles from shore — no specialists,
+            "I'm a ship physician who practices medicine 1,000 miles from shore, no specialists,
             no imaging, no backup. In a de-identified maritime case review, SeaScope generated a
             structured draft plan in 49 seconds. It identified three medications that would have
             interacted dangerously and triggered a structured evacuation handoff. The tool is
             pre-seed, live, and I think it's a different story than the clinical AI you usually
-            cover — would you want it as an exclusive before I go wider?"
+            cover, would you want it as an exclusive before I go wider?"
           </blockquote>
           <p className="mt-4 text-sm text-ink-50/60">
-            — Dr. Javier Rosas, MD · Founder & CEO, RemoteAid Medical Solutions
+           , Dr. Javier Rosas, MD · Founder & CEO, RemoteAid Medical Solutions
           </p>
         </div>
       </section>
@@ -51,7 +51,7 @@ export default function Press() {
       {/* PROOF POINT */}
       <section className="border-t border-ink-700/40 bg-ink-800/20 py-20">
         <div className="mx-auto max-w-4xl px-6 lg:px-8">
-          <div className="eyebrow mb-4">REAL CASE — ANONYMIZED</div>
+          <div className="eyebrow mb-4">REAL CASE: ANONYMIZED</div>
           <p className="text-lg leading-relaxed text-ink-50/85">
             A 78-year-old male presented with rising troponin and acute kidney injury aboard a
             cruise vessel in international waters. SeaScope CDS produced a structured treatment

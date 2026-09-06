@@ -1,12 +1,12 @@
 /**
- * TrialStarted — post-Stripe-checkout success page at /trial-started.
+ * TrialStarted: post-Stripe-checkout success page at /trial-started.
  *
  * Configured as the payment link's after_completion.redirect.url, so
  * Stripe sends customers here immediately after completing checkout.
  * The live welcome email arrives within ~30s; this page tells the user
  * what's happening in that gap and what to do when the email lands.
  *
- * Follows the same brand tokens as Pricing.jsx / SeaScopeCDS.jsx —
+ * Follows the same brand tokens as Pricing.jsx / SeaScopeCDS.jsx , 
  * ink-* / sea-* palette, editorial-card, btn-primary, eyebrow.
  */
 
@@ -24,7 +24,7 @@ export default function TrialStarted() {
   return (
     <>
       <Helmet>
-        <title>Your trial is active — SeaScope CDS</title>
+        <title>Your trial is active: SeaScope CDS</title>
         <meta name="description" content="Your SeaScope CDS 14-day free trial is active. Check your email for sign-in credentials." />
         <meta name="robots" content="noindex, nofollow" />
         <link rel="canonical" href="https://seascope.tech/trial-started" />
@@ -41,7 +41,7 @@ export default function TrialStarted() {
             Your trial is active<span className="accent-sea">.</span>
           </h1>
           <p className="mx-auto mt-6 max-w-2xl text-base text-ink-50/70">
-            Welcome to SeaScope CDS. You have <strong className="text-ink-50">14 days</strong> of full access — no charge until day 15, cancel any time.
+            Welcome to SeaScope CDS. You have <strong className="text-ink-50">14 days</strong> of full access: no charge until day 15, cancel any time.
           </p>
         </div>
       </section>
@@ -102,17 +102,17 @@ export default function TrialStarted() {
                 Set lat/lon or pick a home port/clinic. This turns on nearest-hospital lookup, helicopter feasibility, sea state, and port-diversion logic.
               </Step>
               <Step n={3} title="Fill the patient intake form">
-                Age, sex, weight, vitals, chief complaint. Optimized for fast capture under pressure. Skip what you don't have — SeaScope flags what's missing.
+                Age, sex, weight, vitals, chief complaint. Optimized for fast capture under pressure. Skip what you don't have. SeaScope flags what's missing.
               </Step>
               <Step n={4} title="Review the recommendation">
-                Severity, medications with formulary check, monitoring plan, escalation triggers. Every output is audited — drill into the reasoning any time.
+                Severity, medications with formulary check, monitoring plan, escalation triggers. Every output is audited. Drill into the reasoning any time.
               </Step>
             </ol>
           </div>
         </div>
       </section>
 
-      {/* PRIVACY — strong visual priority */}
+      {/* PRIVACY: strong visual priority */}
       <section className="pb-10">
         <div className="mx-auto max-w-3xl px-6 lg:px-8">
           <div className="rounded-xl border-l-4 border-red-500 bg-red-500/10 p-5">
@@ -123,7 +123,7 @@ export default function TrialStarted() {
                   Important · Privacy
                 </div>
                 <p className="text-sm leading-relaxed text-red-100">
-                  <strong className="text-red-50">Never enter patient-identifying information</strong> — names, date of birth, passport or ID numbers, medical record numbers. SeaScope CDS is a clinical decision-support tool, not a patient record. Use de-identified clinical descriptions only.
+                  <strong className="text-red-50">Never enter patient-identifying information</strong>: names, date of birth, passport or ID numbers, medical record numbers. SeaScope CDS is a clinical decision-support tool, not a patient record. Use de-identified clinical descriptions only.
                 </p>
               </div>
             </div>

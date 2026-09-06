@@ -1,14 +1,14 @@
 import { Helmet } from 'react-helmet-async';
 
 /**
- * /terms — Legal placeholder pending full policy.
+ * /terms: Legal placeholder pending full policy.
  * Effective 2026-05-05. Final policy in preparation.
  */
 export default function Terms() {
   return (
     <>
       <Helmet>
-        <title>Terms of Service — SeaScope / RemoteAid Medical Solutions</title>
+        <title>Terms of Service: SeaScope / RemoteAid Medical Solutions</title>
         <meta name="description" content="Terms of service for SeaScope CDS and SeaScope Cargo Solutions. Effective 2026-05-05. Final policy in preparation." />
         <link rel="canonical" href="https://seascope.tech/terms" />
       </Helmet>

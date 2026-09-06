@@ -6,7 +6,7 @@ import CountUp from '../components/CountUp';
 import BookDemoModal from '../components/BookDemoModal';
 
 /**
- * SeaScope family home — replaces the prior Javier personal landing.
+ * SeaScope family home: replaces the prior Javier personal landing.
  * Copy locked in /root/marketing/copy/home-v3.md (Apr 19 2026).
  * Hero image: /home-hero.jpg (Unsplash 1496347326319-2935d381b307).
  */
@@ -22,7 +22,7 @@ export default function Home() {
     <>
       <BookDemoModal open={demoOpen} onClose={() => setDemoOpen(false)} source={demoSource} />
       <Helmet>
-        <title>SeaScope — Clinical care for places medicine wasn't built for.</title>
+        <title>SeaScope: Clinical care for places medicine wasn't built for.</title>
         <meta
           name="description"
           content="Physician-built clinical technology for maritime operators, P&I clubs, cruise and expedition lines, and medical providers. Decision support, PEME, telemedicine, and crew health, with deterministic safety built in."
@@ -36,7 +36,7 @@ export default function Home() {
         <div className="absolute inset-0 -z-10">
           <img
             src="/home-hero.jpg"
-            alt="Aerial view of a tanker at sea with distant vessels on the horizon at sunset — representing maritime medicine practiced where specialist backup is hours away."
+            alt="Aerial view of a tanker at sea with distant vessels on the horizon at sunset, representing maritime medicine practiced where specialist backup is hours away."
             className="h-full w-full object-cover"
             style={{ objectPosition: '50% 60%' }}
           />
@@ -47,7 +47,7 @@ export default function Home() {
         <div className="mx-auto flex min-h-[88vh] max-w-7xl flex-col justify-end px-6 pb-20 pt-32 lg:px-8 lg:pb-32 lg:pt-40">
           <div className="max-w-3xl">
             <div className="eyebrow mb-6">
-              SEASCOPE — A REMOTEAID MEDICAL SOLUTIONS COMPANY
+              SEASCOPE: A REMOTEAID MEDICAL SOLUTIONS COMPANY
             </div>
             <h1 className="font-display text-5xl font-normal leading-[1.05] text-ink-50 sm:text-6xl lg:text-7xl">
               Clinical care for places medicine wasn't built for<span className="accent-sea">.</span>
@@ -231,20 +231,20 @@ export default function Home() {
       {/* ─────────────── PRODUCT CARDS (Variant B: Cargo first) ─────────────── */}
       <section className="py-24 sm:py-32">
         <div className="mx-auto grid max-w-7xl gap-8 px-6 lg:grid-cols-2 lg:px-8">
-          {/* Card 1 — Cargo Solutions */}
+          {/* Card 1: Cargo Solutions */}
           <div className="editorial-card flex flex-col">
             <div className="eyebrow mb-3">FOR FLEET OPERATORS</div>
             <h3 className="font-display text-3xl font-medium leading-tight text-ink-50 sm:text-4xl">
-              <em className="not-italic">Every crew emergency — handled by a doctor, logged for inspection.</em>
+              <em className="not-italic">Every crew emergency, handled by a doctor, logged for inspection.</em>
             </h3>
             <p className="mt-5 text-base leading-relaxed text-ink-50/70">
               When a crew member gets sick or hurt at sea, SeaScope turns the call into a structured
               medical case. Your officer captures it onboard. A shore doctor reviews it with AI
-              support and sends back the treatment plan. You get a structured PDF designed to support maritime medical recordkeeping and inspection workflows — no more paper logs or phone-tag gaps.
+              support and sends back the treatment plan. You get a structured PDF designed to support maritime medical recordkeeping and inspection workflows, no more paper logs or phone-tag gaps.
             </p>
             <ul className="mt-6 space-y-3">
               {[
-                'Officer onboard uses a guided app — no more free-text radio notes',
+                'Officer onboard uses a guided app, no more free-text radio notes',
                 'Shore doctor reviews with AI support and approves the plan in minutes',
                 'Every case becomes a PDF ready for port-state inspections',
               ].map((item, i) => (
@@ -268,7 +268,7 @@ export default function Home() {
             </p>
           </div>
 
-          {/* Card 2 — SeaScope CDS */}
+          {/* Card 2: SeaScope CDS */}
           <div className="editorial-card flex flex-col">
             <div className="eyebrow mb-3">FOR PHYSICIANS</div>
             <h3 className="font-display text-3xl font-medium leading-tight text-ink-50 sm:text-4xl">
@@ -281,10 +281,10 @@ export default function Home() {
             </p>
             <ul className="mt-6 space-y-3">
               {[
-                "Only suggests drugs you actually carry — grounded in your ship's formulary",
-                'Every recommendation cites the guideline behind it — AHA, ACEP, IDSA, WHO, and more',
-                '13 safety checks — interactions, contraindications, dosing — before you see the answer',
-                'One-click defensible PDF for every case — structured for medical recordkeeping and review',
+                "Only suggests drugs you actually carry, grounded in your ship's formulary",
+                'Every recommendation cites the guideline behind it: AHA, ACEP, IDSA, WHO, and more',
+                '13 safety checks: interactions, contraindications, dosing, before you see the answer',
+                'One-click defensible PDF for every case, structured for medical recordkeeping and review',
               ].map((item, i) => (
                 <li key={i} className="flex items-start gap-3 text-sm text-ink-50/85">
                   <Check className="mt-0.5 h-4 w-4 flex-shrink-0 text-sea-500" />
@@ -321,7 +321,7 @@ export default function Home() {
               <h3 className="font-display text-xl font-medium text-ink-50">SeaScope PEME Platform</h3>
               <p className="mt-2 text-sm leading-relaxed text-ink-50/70">
                 Pre-employment medical exams, structured and documented. OCR ingestion,
-                rules-based fitness logic, and a PDF record that travels with the seafarer —
+                rules-based fitness logic, and a PDF record that travels with the seafarer , 
                 not the paper file.
               </p>
               <button
@@ -333,7 +333,7 @@ export default function Home() {
                 <ArrowRight className="h-3.5 w-3.5" />
               </button>
             </div>
-            {/* Crew Wellness — with real app-screenshot thumbnail (founder pref:
+            {/* Crew Wellness: with real app-screenshot thumbnail (founder pref:
                 use real product UI, not AI-generated, where we have it) */}
             <div className="rounded-2xl border border-ink-700/60 bg-ink-800/30 p-6">
               <div className="flex gap-5">
@@ -354,7 +354,7 @@ export default function Home() {
                     <ArrowRight className="h-3.5 w-3.5" />
                   </Link>
                 </div>
-                {/* Phone screenshot — real product UI */}
+                {/* Phone screenshot: real product UI */}
                 <div className="relative hidden flex-shrink-0 sm:block">
                   <div className="absolute -inset-2 rounded-2xl bg-sea-500/10 blur-xl" aria-hidden="true" />
                   <div className="relative w-20 overflow-hidden rounded-xl border border-ink-700/60 ring-1 ring-sea-500/20 sm:w-24">
@@ -374,7 +374,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ─────────────── THREE PILLARS — EBM POSITIONING ─────────────── */}
+      {/* ─────────────── THREE PILLARS: EBM POSITIONING ─────────────── */}
       <section className="border-t border-ink-700/40 py-20 sm:py-24">
         <div className="mx-auto max-w-5xl px-6 lg:px-8">
           <div className="mx-auto max-w-3xl text-center">
@@ -383,7 +383,7 @@ export default function Home() {
               Evidence-based medicine, engineered for the edge.
             </h2>
             <p className="mt-6 text-base leading-relaxed text-ink-50/70">
-              Every SeaScope recommendation stands on three pillars — so when a port-state
+              Every SeaScope recommendation stands on three pillars, so when a port-state
               inspector, a medico-legal review, or a peer physician asks <em>why</em>, the
               answer is already on the page.
             </p>
@@ -393,12 +393,12 @@ export default function Home() {
               {
                 eyebrow: 'GROUNDED',
                 title: 'Only recommends what you actually carry.',
-                body: 'The engine reads your ship\'s medicine chest before it thinks. No recommendation ever lists a drug you don\'t have — no workaround, no "if only."',
+                body: 'The engine reads your ship\'s medicine chest before it thinks. No recommendation ever lists a drug you don\'t have, no workaround, no "if only."',
               },
               {
                 eyebrow: 'GUIDELINE-BACKED',
                 title: 'Every answer cites the guideline behind it.',
-                body: 'AHA, ACEP, IDSA, WHO, SSC, GINA, AGS Beers, and more. Inline citations on every medication, dose, and decision — traceable to the authority.',
+                body: 'AHA, ACEP, IDSA, WHO, SSC, GINA, AGS Beers, and more. Inline citations on every medication, dose, and decision, traceable to the authority.',
               },
               {
                 eyebrow: 'DEFENSIBLE',
@@ -460,7 +460,7 @@ export default function Home() {
             ))}
           </div>
           <p className="mt-12 text-center text-xs uppercase tracking-eyebrow text-ink-50/50">
-            Expanding every release — 2026 Q2 snapshot, numbers grow monthly
+            Expanding every release, 2026 Q2 snapshot, numbers grow monthly
           </p>
         </div>
       </section>
@@ -468,7 +468,7 @@ export default function Home() {
       {/* ─────────────── KILLER CASE ─────────────── */}
       <section className="py-24 sm:py-32">
         <div className="mx-auto max-w-4xl px-6 lg:px-8">
-          <div className="eyebrow mb-6 text-center">REAL CASE — ANONYMIZED</div>
+          <div className="eyebrow mb-6 text-center">REAL CASE: ANONYMIZED</div>
           <blockquote className="text-center font-display text-2xl font-light italic leading-relaxed text-ink-50 sm:text-3xl">
             "A 78-year-old male presented with rising troponin and acute kidney injury. SeaScope
             produced a structured treatment plan in 49 seconds, executing 7 retrieval and verification
@@ -498,10 +498,10 @@ export default function Home() {
 
       {/* ─────────────── THE PLATFORM ─────────────── */}
       {/* Anchored from the hero "See the full platform" CTA. Was "FUTURE
-          FAMILY / COMING" — relabeled because four of the six cards below
+          FAMILY / COMING", relabeled because four of the six cards below
           now carry the LIVE badge. The family IS the platform, today.
           Backdrop image generated 2026-06-07 via gemini-2.5-flash-image
-          under the brand-voice "abstract / schematic" exemption — purely
+          under the brand-voice "abstract / schematic" exemption, purely
           textural, no foreground composition, sits behind text overlay. */}
       <section
         id="platform"
@@ -541,7 +541,7 @@ export default function Home() {
               },
               {
                 name: 'SeaScope PEME Platform',
-                description: 'Digital pre-employment medical exams — fit-to-sail assessments, document workflow, and expiry tracking that syncs directly into the case engine.',
+                description: 'Digital pre-employment medical exams, fit-to-sail assessments, document workflow, and expiry tracking that syncs directly into the case engine.',
                 status: 'live',
               },
               {
@@ -566,7 +566,7 @@ export default function Home() {
               },
               {
                 name: 'SeaScope Smart Inventory',
-                description: 'Medicine-chest intelligence — stock tracking, expiry alerts, and restock recommendations tied to your fleet\'s case history.',
+                description: 'Medicine-chest intelligence, stock tracking, expiry alerts, and restock recommendations tied to your fleet\'s case history.',
                 status: 'in_development',
               },
             ].map((sibling) => {

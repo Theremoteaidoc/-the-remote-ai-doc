@@ -240,7 +240,7 @@ function SeaScopeContent() {
                     It's 3 AM in the middle of the Pacific Ocean. A ship physician faces a complex medical case with no specialist backup, limited formulary, and unreliable connectivity.
                   </p>
                   <p className="text-lg text-slate-600 leading-relaxed">
-                    Today, many resort to consumer AI tools like ChatGPT—tools never designed for clinical use, lacking safety guardrails, and potentially dangerous in high-stakes medical decisions.
+                    Today, many resort to consumer AI tools like ChatGPT, tools never designed for clinical use, lacking safety guardrails, and potentially dangerous in high-stakes medical decisions.
                   </p>
                 </div>
                 <div className="bg-red-50 border-l-4 border-red-400 p-4 rounded-lg">
@@ -324,7 +324,7 @@ function SeaScopeContent() {
                 <h3 className="text-xl font-bold mb-3">Reduces Cognitive Load</h3>
                 <p className="text-white/70 leading-relaxed">
                   At 3 AM when a physician is alone with a complex case, SeaScope provides structured
-                  clinical reasoning—drug selection, dosing, interactions—so they can focus on the patient.
+                  clinical reasoning, drug selection, dosing, interactions, so they can focus on the patient.
                 </p>
               </div>
             </ScrollReveal>
@@ -350,7 +350,7 @@ function SeaScopeContent() {
                 <h3 className="text-xl font-bold mb-3">Auditable Decision Trails</h3>
                 <p className="text-white/70 leading-relaxed">
                   Every recommendation, safety check, and physician action is logged in a comprehensive audit
-                  database—creating complete medicolegal documentation for every encounter.
+                  database, creating complete medicolegal documentation for every encounter.
                 </p>
               </div>
             </ScrollReveal>
@@ -381,7 +381,7 @@ function SeaScopeContent() {
       </section>
 
       {/* ══════════════════════════════════════════════════════════
-          PRODUCT SHOWCASE — Animated Feature Displays
+          PRODUCT SHOWCASE: Animated Feature Displays
          ══════════════════════════════════════════════════════════ */}
       <section className="py-24 bg-slate-950 overflow-hidden">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
@@ -409,7 +409,7 @@ function SeaScopeContent() {
             <div className="mb-20">
               <div className="flex items-center justify-center space-x-2 text-teal-400 mb-6">
                 <Play className="w-5 h-5" />
-                <span className="text-sm font-medium tracking-wider uppercase">Live Walkthrough — Acute STEMI Case</span>
+                <span className="text-sm font-medium tracking-wider uppercase">Live Walkthrough, Acute STEMI Case</span>
               </div>
               <div className="device-frame relative rounded-2xl overflow-hidden border border-teal-500/20 bg-slate-900 max-w-5xl mx-auto">
                 <div className="flex items-center space-x-2 px-4 py-3 bg-slate-800 border-b border-slate-700">
@@ -420,7 +420,7 @@ function SeaScopeContent() {
                   </div>
                   <div className="flex-1 mx-4">
                     <div className="bg-slate-700 rounded-md px-3 py-1 text-xs text-slate-400 font-mono">
-                      app.seascope.tech — Live Clinical Assessment
+                      app.seascope.tech, Live Clinical Assessment
                     </div>
                   </div>
                 </div>
@@ -484,7 +484,7 @@ function SeaScopeContent() {
                 </div>
                 <img
                   src="/images/seascope/seascope-maritime.png"
-                  alt="SeaScope CDS maritime mode — cruise vessel mid-ocean with satellite telemetry, AIS ship tracking, sea conditions, and patient assessment panel"
+                  alt="SeaScope CDS maritime mode, cruise vessel mid-ocean with satellite telemetry, AIS ship tracking, sea conditions, and patient assessment panel"
                   className="w-full"
                   loading="lazy"
                 />
@@ -504,7 +504,7 @@ function SeaScopeContent() {
                   </div>
                   <div className="flex-1 mx-4">
                     <div className="bg-slate-700 rounded-md px-3 py-1 text-xs text-slate-400 font-mono">
-                      app.seascope.tech — Workflow Decision Surface
+                      app.seascope.tech, Workflow Decision Surface
                     </div>
                   </div>
                 </div>
@@ -606,7 +606,7 @@ function SeaScopeContent() {
                   </div>
                   <div className="flex-1 mx-4">
                     <div className="bg-slate-700 rounded-md px-3 py-1 text-xs text-slate-400 font-mono">
-                      app.seascope.tech — Safety Pipeline
+                      app.seascope.tech, Safety Pipeline
                     </div>
                   </div>
                 </div>
@@ -632,7 +632,7 @@ function SeaScopeContent() {
                     </div>
                   ))}
                   <div className="text-center pt-1 text-[10px] text-green-400/70 font-mono">
-                    ALL 7 GUARDRAILS PASSED — RECOMMENDATION CLEARED
+                    ALL 7 GUARDRAILS PASSED: RECOMMENDATION CLEARED
                   </div>
                 </div>
               </div>
@@ -651,13 +651,13 @@ function SeaScopeContent() {
                   </div>
                   <div className="flex-1 mx-4">
                     <div className="bg-slate-700 rounded-md px-3 py-1 text-xs text-slate-400 font-mono">
-                      app.seascope.tech — ROLE 1 BAS / TCCC
+                      app.seascope.tech, ROLE 1 BAS / TCCC
                     </div>
                   </div>
                 </div>
                 <img
                   src="/images/seascope/seascope-tactical.png"
-                  alt="SeaScope CDS tactical military mode — TCCC casualty assessment with GSW case, tactical medical map near Darwin Australia, MEDEVAC status, and triage priority system"
+                  alt="SeaScope CDS tactical military mode, TCCC casualty assessment with GSW case, tactical medical map near Darwin Australia, MEDEVAC status, and triage priority system"
                   className="w-full"
                   loading="lazy"
                 />
@@ -814,7 +814,7 @@ function SeaScopeContent() {
                   Dr. Javier Rosas
                 </h2>
                 <p className="text-lg text-slate-600 leading-relaxed">
-                  SeaScope CDS was created by a physician who lives this reality daily—not by
+                  SeaScope CDS was created by a physician who lives this reality daily, not by
                   engineers guessing what clinicians need from a Silicon Valley office.
                 </p>
                 <div className="space-y-3">
@@ -824,7 +824,7 @@ function SeaScopeContent() {
                   </div>
                   <div className="flex items-center space-x-3">
                     <CheckCircle className="w-5 h-5 text-teal-600 flex-shrink-0" />
-                    <span className="text-slate-700">Chair, AI Committee — American Board of Maritime Medicine</span>
+                    <span className="text-slate-700">Chair, AI Committee, American Board of Maritime Medicine</span>
                   </div>
                   <div className="flex items-center space-x-3">
                     <CheckCircle className="w-5 h-5 text-teal-600 flex-shrink-0" />
@@ -943,7 +943,7 @@ function SeaScopeContent() {
                   <Shield className="w-6 h-6 text-teal-600" />
                 </div>
                 <h3 className="font-bold text-slate-900 mb-2">Offline Protocols</h3>
-                <p className="text-sm text-slate-600">Embedded protocol engine for satellite-down scenarios — safety never depends on connectivity</p>
+                <p className="text-sm text-slate-600">Embedded protocol engine for satellite-down scenarios, safety never depends on connectivity</p>
               </div>
             </ScrollReveal>
           </div>
@@ -998,7 +998,7 @@ function SeaScopeContent() {
       <section className="py-8 bg-slate-900 border-t border-white/10">
         <div className="max-w-7xl mx-auto px-6 lg:px-8 text-center space-y-2">
           <p className="text-slate-400 text-sm font-medium">
-            SeaScope CDS — A product of Remote AiD Medical, Corp.
+            SeaScope CDS: A product of Remote AiD Medical, Corp.
           </p>
           <p className="text-slate-500 text-xs">
             © {new Date().getFullYear()} Remote AiD Medical, Corp. All rights reserved. | Delaware C-Corp | Miami, FL

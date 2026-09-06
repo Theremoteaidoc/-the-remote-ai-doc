@@ -171,7 +171,7 @@ const content = {
       badge: 'AI-Powered Healthcare Automation',
       title: 'AI-Powered Automation',
       titleHighlight: 'for Healthcare',
-      subtitle: 'Bringing clinical AI expertise to automate healthcare workflows, reduce administrative burden, and improve patient outcomes — built by a doctor who practices what he automates.',
+      subtitle: 'Bringing clinical AI expertise to automate healthcare workflows, reduce administrative burden, and improve patient outcomes, built by a doctor who practices what he automates.',
       cta: 'Schedule Discovery Call',
       demoButton: 'See Live Demo'
     },
@@ -185,7 +185,7 @@ const content = {
     },
     tiers: {
       title: 'Choose Your Automation Level',
-      subtitle: 'From basic workflow automation to enterprise AI solutions — all designed with clinical expertise',
+      subtitle: 'From basic workflow automation to enterprise AI solutions, all designed with clinical expertise',
       tier1: {
         name: 'Workflow Automation',
         price: '$497',
@@ -247,11 +247,11 @@ const content = {
     whyUs: {
       title: 'Why Choose The Remote AI Doc',
       subtitle: 'Built by a Doctor Who Automates His Own Practice',
-      description: 'I don\'t just build AI systems — I use them every day in high-stakes clinical environments. This real-world experience ensures your automation actually works when it matters most.',
+      description: 'I don\'t just build AI systems, I use them every day in high-stakes clinical environments. This real-world experience ensures your automation actually works when it matters most.',
       values: [
         {
           title: 'Clinical Understanding',
-          description: 'Real medical experience in high-pressure environments — 1,000 miles from shore with no backup.',
+          description: 'Real medical experience in high-pressure environments, 1,000 miles from shore with no backup.',
           icon: 'users'
         },
         {
@@ -261,7 +261,7 @@ const content = {
         },
         {
           title: 'Remote-First',
-          description: 'Built for distributed teams and telehealth — tested in the most remote locations on Earth.',
+          description: 'Built for distributed teams and telehealth, tested in the most remote locations on Earth.',
           icon: 'globe'
         },
         {
@@ -327,7 +327,7 @@ const content = {
         },
         {
           question: 'What makes you different from other automation companies?',
-          answer: 'I\'m a practicing physician who uses these systems daily in high-stakes environments. This real-world clinical experience means your automation actually works when it matters most — not just in theory.'
+          answer: 'I\'m a practicing physician who uses these systems daily in high-stakes environments. This real-world clinical experience means your automation actually works when it matters most, not just in theory.'
         },
         {
           question: 'Can you work with international practices?',
@@ -342,7 +342,7 @@ const content = {
     cta: {
       title: 'Ready to Automate Your Practice?',
       subtitle: 'Book a free 30-minute discovery call to explore how AI can transform your healthcare workflows.',
-      description: 'No sales pitch — just a strategic conversation about your practice\'s automation potential.',
+      description: 'No sales pitch, just a strategic conversation about your practice\'s automation potential.',
       button: 'Book Discovery Call',
       calendlyUrl: 'https://calendly.com/theremoteaidoc/30min'
     },
@@ -410,7 +410,7 @@ const content = {
       badge: 'Automatización Médica con IA',
       title: 'Automatización Inteligente',
       titleHighlight: 'para Consultorios',
-      subtitle: 'Aplicando experiencia clínica en IA para automatizar procesos médicos, reducir carga administrativa y mejorar la atención al paciente — construido por un médico que usa lo que automatiza.',
+      subtitle: 'Aplicando experiencia clínica en IA para automatizar procesos médicos, reducir carga administrativa y mejorar la atención al paciente, construido por un médico que usa lo que automatiza.',
       cta: 'Agenda tu Llamada Gratis',
       demoButton: 'Ver Demo en Vivo'
     },
@@ -424,7 +424,7 @@ const content = {
     },
     tiers: {
       title: 'Elige Tu Nivel de Automatización',
-      subtitle: 'Desde automatización básica hasta soluciones IA empresariales — todo diseñado con experiencia clínica',
+      subtitle: 'Desde automatización básica hasta soluciones IA empresariales, todo diseñado con experiencia clínica',
       tier1: {
         name: 'Automatización de Procesos',
         price: '$2.100.000',
@@ -480,11 +480,11 @@ const content = {
     whyUs: {
       title: 'Por Qué Elegir The Remote AI Doc',
       subtitle: 'Construido por un Médico que Automatiza Su Propia Práctica',
-      description: 'No solo construyo sistemas de IA — los uso todos los días en ambientes clínicos de alto riesgo. Esta experiencia del mundo real asegura que tu automatización realmente funcione cuando más importa.',
+      description: 'No solo construyo sistemas de IA, los uso todos los días en ambientes clínicos de alto riesgo. Esta experiencia del mundo real asegura que tu automatización realmente funcione cuando más importa.',
       values: [
         {
           title: 'Entendimiento Clínico',
-          description: 'Experiencia médica real en ambientes de alta presión — 1,000 millas de la costa sin respaldo médico.',
+          description: 'Experiencia médica real en ambientes de alta presión, 1,000 millas de la costa sin respaldo médico.',
           icon: 'users'
         },
         {
@@ -494,7 +494,7 @@ const content = {
         },
         {
           title: 'Medicina Remota',
-          description: 'Construido para equipos distribuidos y telemedicina — probado en las ubicaciones más remotas de la Tierra.',
+          description: 'Construido para equipos distribuidos y telemedicina, probado en las ubicaciones más remotas de la Tierra.',
           icon: 'globe'
         },
         {
@@ -575,7 +575,7 @@ const content = {
     cta: {
       title: '¿Listo para Automatizar tu Consultorio?',
       subtitle: 'Agenda una llamada gratuita de 30 minutos para explorar cómo la IA puede transformar tus procesos médicos.',
-      description: 'Sin presentación de ventas — solo una conversación estratégica sobre el potencial de automatización de tu consulta.',
+      description: 'Sin presentación de ventas, solo una conversación estratégica sobre el potencial de automatización de tu consulta.',
       button: 'Agendar Llamada Gratis',
       calendlyUrl: 'https://calendly.com/theremoteaidoc/30min'
     },

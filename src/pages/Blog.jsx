@@ -12,7 +12,7 @@ const content = {
     header: {
       subtitle: 'The Remote AI Doc',
       title: 'Clinical AI from the Edge',
-      description: 'Evidence-based analysis of healthcare AI — research reviews, clinical evaluations, and critical commentary from a physician practicing 1,000 miles from shore.'
+      description: 'Evidence-based analysis of healthcare AI, research reviews, clinical evaluations, and critical commentary from a physician practicing 1,000 miles from shore.'
     },
     badges: {
       featured: 'Featured'
@@ -35,7 +35,7 @@ const content = {
     header: {
       subtitle: 'The Remote AI Doc',
       title: 'IA Clínica desde el Mar',
-      description: 'Análisis basado en evidencia de IA médica — revisiones de investigación, evaluaciones clínicas y comentarios críticos desde un médico practicando a 1,000 millas de la costa.'
+      description: 'Análisis basado en evidencia de IA médica, revisiones de investigación, evaluaciones clínicas y comentarios críticos desde un médico practicando a 1,000 millas de la costa.'
     },
     badges: {
       featured: 'Destacado'

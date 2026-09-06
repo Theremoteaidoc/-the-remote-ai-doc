@@ -49,7 +49,7 @@ function SeaScopeSafetyCaseContent() {
       what: "Rejects AI-fabricated lab values not in patient input",
       failureMode: "AI references plausible but unsubmitted lab value",
       fallback: "Hard rejection of any lab value not in input data",
-      residualRisk: "Near zero — deterministic string matching",
+      residualRisk: "Near zero, deterministic string matching",
       severity: "CRITICAL"
     },
     {
@@ -79,7 +79,7 @@ function SeaScopeSafetyCaseContent() {
       what: "Catches AI-generated data not present in patient input",
       failureMode: "Sophisticated confabulation that mirrors input patterns",
       fallback: "Deterministic input matching + Maverick peer review as second layer",
-      residualRisk: "Low — dual-layer detection system",
+      residualRisk: "Low, dual-layer detection system",
       severity: "CRITICAL"
     },
     {
@@ -99,31 +99,31 @@ function SeaScopeSafetyCaseContent() {
       category: "Database Currency",
       risk: "Lag between medical knowledge updates and system database",
       mitigation: "Regular automated updates, manual urgent updates for critical changes",
-      residual: "Low — typically <24 hours for critical updates"
+      residual: "Low, typically <24 hours for critical updates"
     },
     {
       category: "Novel Drug Interactions",
       risk: "Newly discovered drug interactions not yet in database",
       mitigation: "Conservative interaction screening, physician clinical judgment",
-      residual: "Low-Medium — relies on clinical expertise for novel interactions"
+      residual: "Low-Medium, relies on clinical expertise for novel interactions"
     },
     {
       category: "Input Data Quality",
       risk: "Incorrect patient data entry affecting all downstream decisions",
       mitigation: "Data validation checks, physician verification prompts",
-      residual: "Medium — garbage-in-garbage-out principle applies"
+      residual: "Medium, garbage-in-garbage-out principle applies"
     },
     {
       category: "Rare Medical Scenarios",
       risk: "Edge cases not covered in training or validation data",
       mitigation: "Conservative approach, mandatory physician review for low-confidence cases",
-      residual: "Low-Medium — system designed to fail safe"
+      residual: "Low-Medium, system designed to fail safe"
     },
     {
       category: "Technical Infrastructure",
       risk: "System failures, connectivity issues, hardware problems",
       mitigation: "Offline mode, degraded mode operation, manual fallback procedures",
-      residual: "Low — multiple backup systems and manual procedures"
+      residual: "Low, multiple backup systems and manual procedures"
     }
   ];
 
@@ -150,7 +150,7 @@ function SeaScopeSafetyCaseContent() {
 
       {/* Confidential Badge */}
       <div className="fixed top-4 right-4 z-40 bg-red-600/90 text-white px-3 py-1 rounded-full text-xs font-medium backdrop-blur-sm border border-red-500/50">
-        CONFIDENTIAL — Shared under NDA
+        CONFIDENTIAL: Shared under NDA
       </div>
 
       <SeaScopeNav />
@@ -183,7 +183,7 @@ function SeaScopeSafetyCaseContent() {
             
             <ScrollReveal delay={200}>
               <h1 className="text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
-                Safety Case — Failure Mode Analysis
+                Safety Case: Failure Mode Analysis
               </h1>
             </ScrollReveal>
             
@@ -305,14 +305,14 @@ function SeaScopeSafetyCaseContent() {
                     <Lock className="w-6 h-6 text-teal-600 mt-1" />
                     <div>
                       <h3 className="font-semibold text-slate-900">Code-Enforced Safety</h3>
-                      <p className="text-slate-600 text-sm">Safety rules implemented in code, not just prompts — cannot be bypassed or ignored</p>
+                      <p className="text-slate-600 text-sm">Safety rules implemented in code, not just prompts, cannot be bypassed or ignored</p>
                     </div>
                   </div>
                   <div className="flex items-start space-x-3">
                     <Database className="w-6 h-6 text-teal-600 mt-1" />
                     <div>
                       <h3 className="font-semibold text-slate-900">Model-Agnostic Design</h3>
-                      <p className="text-slate-600 text-sm">Safety architecture independent of underlying AI model — works with any LLM</p>
+                      <p className="text-slate-600 text-sm">Safety architecture independent of underlying AI model, works with any LLM</p>
                     </div>
                   </div>
                   <div className="flex items-start space-x-3">
@@ -336,7 +336,7 @@ function SeaScopeSafetyCaseContent() {
                   </div>
                   <div className="bg-blue-50 border-l-4 border-blue-400 p-4 rounded-lg">
                     <h4 className="font-semibold text-blue-900">Redundant Protection</h4>
-                    <p className="text-blue-800 text-sm">Multiple guardrails can catch the same error — no single point of failure</p>
+                    <p className="text-blue-800 text-sm">Multiple guardrails can catch the same error, no single point of failure</p>
                   </div>
                   <div className="bg-purple-50 border-l-4 border-purple-400 p-4 rounded-lg">
                     <h4 className="font-semibold text-purple-900">Human Oversight</h4>

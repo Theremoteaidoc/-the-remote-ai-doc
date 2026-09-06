@@ -1,7 +1,7 @@
 import { Helmet } from 'react-helmet-async';
 
 /**
- * /about — Company + founder. Third-person institutional voice.
+ * /about: Company + founder. Third-person institutional voice.
  * Copy from /root/marketing/copy/about-v1.md.
  * EIN removed per IA amendment 3.
  */
@@ -23,7 +23,7 @@ export default function About() {
           </h1>
           <p className="mt-8 max-w-2xl text-lg leading-relaxed text-ink-50/80">
             RemoteAid Medical Solutions is a Delaware C-Corporation building clinical reasoning
-            infrastructure for the places medicine wasn't built for — ships, expeditions, military
+            infrastructure for the places medicine wasn't built for, ships, expeditions, military
             forward bases, and remote clinics. Our flagship product, SeaScope CDS, is the trademark
             engine that powers our growing family of operator solutions.
           </p>
@@ -59,14 +59,14 @@ export default function About() {
           <div className="mt-8 space-y-6 text-base leading-relaxed text-ink-50/75">
             <p>
               RemoteAid Medical Solutions inverts that assumption. We treat limited formularies,
-              absent specialists, and degraded connectivity as first-class design constraints —
+              absent specialists, and degraded connectivity as first-class design constraints , 
               not edge cases to be patched later. The result is clinical AI that works where it
               matters most: at 2 AM, miles from any hospital, with the chest you have and the
               connectivity you can rely on.
             </p>
             <p>
-              Our approach is bifurcated by design. Deterministic safety guardrails — formulary
-              verification, allergy cross-checks, dose ceilings, drug-interaction screens — run as
+              Our approach is bifurcated by design. Deterministic safety guardrails, formulary
+              verification, allergy cross-checks, dose ceilings, drug-interaction screens, run as
               rule-based code, never as AI judgment. The agentic reasoning layer drafts the
               recommendation; the deterministic layer ensures it's safe to surface. Together they
               meet the clinical bar that the FDA §520(o)(1)(E) Clinical Decision Support exemption
@@ -111,7 +111,7 @@ export default function About() {
                   and general AI platforms using FDA prescribing rubrics.
                 </p>
                 <p>
-                  Dr. Rosas trains and evaluates AI systems for four leading AI companies — work
+                  Dr. Rosas trains and evaluates AI systems for four leading AI companies, work
                   that gives RemoteAid Medical Solutions an unusually direct line into the
                   strengths and failure modes of frontier AI as it applies to clinical
                   decision-making.
