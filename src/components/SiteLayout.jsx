@@ -126,7 +126,7 @@ export default function SiteLayout({ children }) {
         <div className="container-wide grid gap-12 md:grid-cols-4">
           <div>
             <Link to="/" aria-label="SeaScope home" className="inline-flex">
-              <Wordmark markClassName="h-6" textClassName="text-xl" />
+              <Wordmark />
             </Link>
             <p className="mt-6 text-sm leading-relaxed text-ink-3">
               RemoteAid Medical Solutions, Corp.

@@ -50,4 +50,5 @@ run('check-names.mjs', extra);
 run('check-mechanism.mjs');
 run('check-header-video.mjs');
 run('check-appointment.mjs');
+run('check-mark.mjs');
 assertNoPublicIntro();

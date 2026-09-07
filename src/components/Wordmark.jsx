@@ -2,7 +2,7 @@ export default function Wordmark({ markClassName = 'h-8', textClassName = 'text-
   return (
     <span className="inline-flex items-center gap-3">
       <img
-        src="/rebuild/images/seascope-mark.png"
+        src="/rebuild/brand/seascope-mark.png"
         alt=""
         className={`${markClassName} w-auto`}
         width="32"
