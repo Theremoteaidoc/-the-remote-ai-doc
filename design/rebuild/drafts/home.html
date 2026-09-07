@@ -1,0 +1,365 @@
+<!DOCTYPE html><html lang="en"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SeaScope | Clinical Services for Fleet Operators</title>
+  <meta name="view-transition" content="same-origin">
+  <link rel="prefetch" href="https://p.superdesign.dev/draft/15756530-34b0-4e2c-8301-5bd835d5221b" as="document">
+  <link rel="prefetch" href="https://p.superdesign.dev/draft/7304e61c-5a98-4247-a00b-991e58aefb1f" as="document">
+  <link rel="prefetch" href="https://p.superdesign.dev/draft/749b5fbd-378a-4c4c-b1f2-080d56b016eb" as="document">
+  <link rel="prefetch" href="https://p.superdesign.dev/draft/c78a328c-5748-4c1e-ae62-9bcadbd72a7c" as="document">
+  <link rel="prefetch" href="https://p.superdesign.dev/draft/37e78f0a-81db-4495-81ff-fb9ac4c19a96" as="document">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600&amp;family=Noto+Serif+Display:ital,wght@0,500;1,400&amp;display=swap" rel="stylesheet">
+  <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+  <style>
+    :root {
+      --bg: #FFFFFF;
+      --bg-alt: #F6F5F1;
+      --surface: #FFFFFF;
+      --ink: #0F172A;
+      --ink-2: #334155;
+      --ink-3: #64748B;
+      --line: #E2E8F0;
+      --teal: #14B8A6;
+      --teal-strong: #0F766E;
+      --teal-tint: #E6FAF7;
+      --navy: #1E3A5F;
+    }
+    body {
+      font-family: 'Noto Sans', system-ui, sans-serif;
+      background-color: var(--bg);
+      color: var(--ink-2);
+      -webkit-font-smoothing: antialiased;
+    }
+    h1, h2, h3, .font-serif {
+      font-family: 'Noto Serif Display', Georgia, serif;
+      color: var(--ink);
+      letter-spacing: -0.01em;
+    }
+    .container-wide {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    .btn-primary {
+      background-color: var(--teal);
+      color: #FFFFFF;
+      height: 48px;
+      padding: 0 24px;
+      border-radius: 8px;
+      font-weight: 500;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: background-color 150ms ease-out;
+    }
+    .btn-primary:hover {
+      background-color: var(--teal-strong);
+    }
+    .btn-secondary {
+      background-color: #FFFFFF;
+      border: 1px solid var(--line);
+      color: var(--ink);
+      height: 48px;
+      padding: 0 24px;
+      border-radius: 8px;
+      font-weight: 500;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: background-color 150ms ease-out;
+    }
+    .btn-secondary:hover {
+      background-color: var(--bg-alt);
+    }
+    .text-link {
+      color: var(--teal-strong);
+      text-underline-offset: 4px;
+      transition: all 150ms ease-out;
+    }
+    .text-link:hover {
+      text-decoration: underline;
+    }
+    .shadow-soft {
+      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
+    }
+    .label-caps {
+      font-size: 13px;
+      line-height: 20px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--navy);
+      font-weight: 600;
+    }
+    section {
+      padding: 96px 0;
+    }
+    @view-transition { navigation: auto; }
+    ::view-transition-old(main-nav), ::view-transition-new(main-nav) {
+      animation: none;
+      mix-blend-mode: normal;
+    }
+    ::view-transition-old(main-content) {
+      animation: 0.25s ease-out both fade-out;
+    }
+    ::view-transition-new(main-content) {
+      animation: 0.25s ease-in 0.1s both fade-in;
+    }
+    @keyframes fade-out { from { opacity: 1; } to { opacity: 0; } }
+    @keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
+    @media (max-width: 768px) {
+      section {
+        padding: 64px 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="min-h-screen" data-sd-id="1">
+    <!-- Navigation -->
+    <nav class="sticky top-0 z-50 bg-white border-b border-[#E2E8F0] h-[80px] flex items-center" style="view-transition-name: main-nav" data-sd-id="2">
+      <div class="container-wide w-full flex items-center justify-between" data-sd-id="3">
+        <a href="/" id="nav-brand" class="flex items-center gap-3" data-sd-id="4">
+          <img src="https://vgbujcuwptvheqijyjbe.supabase.co/storage/v1/object/public/hmac-uploads/projects/d2bb03e8-202c-48e5-818a-9852d270b893/brand-assets/seascope-mark/m_teal.png" alt="SeaScope Logo" class="h-8 w-auto" data-sd-id="5">
+          <span class="text-2xl font-serif" data-sd-id="6">
+            <span style="color: var(--ink)" data-sd-id="7">Sea</span><span style="color: var(--teal)" data-sd-id="8">Scope</span>
+          </span>
+        </a>
+        <div class="hidden lg:flex items-center gap-8" data-sd-id="9">
+          <a href="https://p.superdesign.dev/draft/15756530-34b0-4e2c-8301-5bd835d5221b" id="nav-peme" class="text-[15px] font-medium text-[#334155] hover:text-[#14B8A6]" data-sd-id="10">PEME</a>
+          <a href="https://p.superdesign.dev/draft/7304e61c-5a98-4247-a00b-991e58aefb1f" id="nav-tele" class="text-[15px] font-medium text-[#334155] hover:text-[#14B8A6]" data-sd-id="11">Telemedicine</a>
+          <a href="https://p.superdesign.dev/draft/749b5fbd-378a-4c4c-b1f2-080d56b016eb" id="nav-wellness" class="text-[15px] font-medium text-[#334155] hover:text-[#14B8A6]" data-sd-id="12">Crew Wellness</a>
+          <a href="https://p.superdesign.dev/draft/c78a328c-5748-4c1e-ae62-9bcadbd72a7c" id="nav-security" class="text-[15px] font-medium text-[#334155] hover:text-[#14B8A6]" data-sd-id="13">Evidence &amp; Security</a>
+          <a href="https://p.superdesign.dev/draft/37e78f0a-81db-4495-81ff-fb9ac4c19a96" id="nav-company" class="text-[15px] font-medium text-[#334155] hover:text-[#14B8A6]" data-sd-id="14">Company</a>
+        </div>
+        <div class="flex items-center gap-6" data-sd-id="15">
+          <a href="#demo" id="nav-demo-btn" class="btn-primary text-sm" data-sd-id="17">Book a demo</a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- 1. Hero: WHAT IS THIS -->
+    <header class="py-24 lg:py-32 overflow-hidden relative" style="view-transition-name: main-content; background-image:url(https://vgbujcuwptvheqijyjbe.supabase.co/storage/v1/object/public/hmac-uploads/projects/d2bb03e8-202c-48e5-818a-9852d270b893/content-assets/img2-ship-aerial/ship-aerial.jpg); background-size:cover; background-position:center right; min-height:640px;" data-sd-id="18"><div style="position:absolute;inset:0;background:linear-gradient(90deg, rgba(255,255,255,.97) 0%, rgba(255,255,255,.93) 42%, rgba(255,255,255,.40) 70%, rgba(255,255,255,0) 100%);pointer-events:none;"></div>
+      <div class="container-wide relative" data-sd-id="19">
+        <div class="grid grid-cols-1 items-center" data-sd-id="20">
+          <div class="max-w-[580px]" data-sd-id="21">
+            <span class="label-caps block mb-6" data-sd-id="22">Clinical services for fleets</span>
+            <h1 class="text-[56px] leading-[64px] mb-8 text-balance font-medium" data-sd-id="23">Medical decisions at sea, made with physicians ashore</h1>
+            <p class="text-[18px] leading-[30px] text-[#334155] mb-10 max-w-[500px]" data-sd-id="24">
+              Our platform provides fleet operators with structured clinical governance, connecting vessels to verified medical expertise in minutes.
+            </p>
+            <div class="flex items-center gap-4" data-sd-id="25">
+              <a href="#demo" id="hero-cta-demo" class="btn-primary" data-sd-id="26">Book a demo</a>
+              <a href="#products" id="hero-cta-pricing" class="btn-secondary" data-sd-id="27">Our services</a> <a id="hero-watch-intro" href="#introduction" class="inline-flex items-center gap-2 text-[#0F766E] font-medium hover:underline ml-2">Watch the introduction (30 s)</a>
+            </div>
+          </div>
+          <div class="relative" data-sd-id="28">
+            <div class="hidden" data-sd-id="29">
+              <div class="w-full aspect-[4/3] bg-[#F6F5F1] rounded-[12px] flex items-center justify-center relative overflow-hidden rounded-xl shadow-[0_8px_24px_rgba(15,23,42,.06)]" data-sd-id="30">
+                 
+                 <div class="absolute inset-0 bg-teal-900/10 mix-blend-overlay" data-sd-id="32"></div>
+              </div>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- 2. WHAT WE HAVE BUILT -->
+    <section class="bg-white pt-0" data-sd-id="34">
+      <div class="container-wide border-t border-[#E2E8F0] pt-24" data-sd-id="35">
+        <h2 class="text-[36px] leading-[44px] text-center max-w-[900px] mx-auto" data-sd-id="36">
+          One platform for the three medical moments of a seafarer's contract: the pre-employment medical, the case at sea, the health between.
+        </h2>
+      </div>
+    </section>
+
+    <!-- 3. THE PRODUCTS -->
+    <section class="bg-[#F6F5F1] px-4 md:px-0" data-sd-id="37" id="products">
+      <div class="container-wide" data-sd-id="38">
+        <div class="grid md:grid-cols-3 gap-8 mb-16" data-sd-id="39">
+          <!-- PEME -->
+          <div class="bg-white rounded-[12px] overflow-hidden border border-[#E2E8F0] shadow-soft group" data-sd-id="40">
+            <div class="aspect-[4/3] bg-[#E6FAF7] overflow-hidden relative" data-sd-id="41">
+              <img src="https://vgbujcuwptvheqijyjbe.supabase.co/storage/v1/object/public/hmac-uploads/projects/d2bb03e8-202c-48e5-818a-9852d270b893/content-assets/img2-peme-exam/peme-exam.jpg" alt="PEME examination" class="absolute inset-0 w-full h-full object-cover" data-sd-id="42">
+            </div>
+            <div class="p-8" data-sd-id="43">
+              <span class="label-caps block mb-3 text-[11px]" data-sd-id="44">PEME</span>
+              <h3 class="text-2xl mb-4" data-sd-id="45">PEME Processing</h3>
+              <p class="text-[17px] leading-[26px] text-[#334155] mb-6 line-clamp-2" data-sd-id="46">
+                Complete, consistent medicals checked against each client's requirements before a seafarer travels.
+              </p>
+              <a href="https://p.superdesign.dev/draft/15756530-34b0-4e2c-8301-5bd835d5221b" id="learn-more-peme" class="text-link font-medium" data-sd-id="47">Learn more</a>
+            </div>
+          </div>
+          <!-- Telemedicine -->
+          <div class="bg-white rounded-[12px] overflow-hidden border border-[#E2E8F0] shadow-soft group" data-sd-id="48">
+            <div class="aspect-[4/3] bg-[#E6FAF7] overflow-hidden relative" data-sd-id="49">
+              <img src="https://vgbujcuwptvheqijyjbe.supabase.co/storage/v1/object/public/hmac-uploads/projects/d2bb03e8-202c-48e5-818a-9852d270b893/content-assets/img2-bridge-officer/bridge-officer.jpg" alt="Telemedicine" class="absolute inset-0 w-full h-full object-cover" data-sd-id="50">
+            </div>
+            <div class="p-8" data-sd-id="51">
+              <span class="label-caps block mb-3 text-[11px]" data-sd-id="52">Telemedicine</span>
+              <h3 class="text-2xl mb-4" data-sd-id="53">Telemedicine &amp; Televideo</h3>
+              <p class="text-[17px] leading-[26px] text-[#334155] mb-6 line-clamp-2" data-sd-id="54">
+                Officers reach a nurse or physician in minutes, with video, and an SOS line to the operator's own 24/7 desk.
+              </p>
+              <a href="https://p.superdesign.dev/draft/7304e61c-5a98-4247-a00b-991e58aefb1f" id="learn-more-tele" class="text-link font-medium" data-sd-id="55">Learn more</a>
+            </div>
+          </div>
+          <!-- Wellness -->
+          <div class="bg-white rounded-[12px] overflow-hidden border border-[#E2E8F0] shadow-soft group" data-sd-id="56">
+            <div class="aspect-[4/3] bg-[#E6FAF7] overflow-hidden relative" data-sd-id="57">
+              <img src="https://vgbujcuwptvheqijyjbe.supabase.co/storage/v1/object/public/hmac-uploads/projects/d2bb03e8-202c-48e5-818a-9852d270b893/content-assets/img2-crew-reading/crew-reading.jpg" alt="Crew Wellness" class="absolute inset-0 w-full h-full object-cover" data-sd-id="58">
+            </div>
+            <div class="p-8" data-sd-id="59">
+              <span class="label-caps block mb-3 text-[11px]" data-sd-id="60">Crew Wellness</span>
+              <h3 class="text-2xl mb-4" data-sd-id="61">Crew Wellness</h3>
+              <p class="text-[17px] leading-[26px] text-[#334155] mb-6 line-clamp-2" data-sd-id="62">
+                Seafarers log readings from their phone, clinicians see trends and alerts to maintain health across contracts.
+              </p>
+              <a href="https://p.superdesign.dev/draft/749b5fbd-378a-4c4c-b1f2-080d56b016eb" id="learn-more-wellness" class="text-link font-medium" data-sd-id="63">Learn more</a>
+            </div>
+          </div>
+        </div>
+        <div class="text-center" data-sd-id="64">
+          <p class="text-[#64748B] text-[15px]" data-sd-id="65">Also available: Clinical Decision Support for individual physicians.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. WHAT WE SOLVE AND WHY -->
+    <section id="sectors" class="bg-white py-16"><div class="container-wide"><p class="text-[13px] tracking-[.12em] uppercase text-[#1E3A5F] mb-3">Sectors we serve</p><h2 class="text-[36px] leading-[44px] mb-10" style="font-family:'Noto Serif Display',Georgia,serif">Built for the fleets that carry the world</h2><div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+<div><h3 class="text-[20px] mb-2" style="font-family:'Noto Serif Display',Georgia,serif">Commercial and cargo fleets</h3><p class="text-[#334155]">Container, bulk, tanker and general cargo operators with crews far from a clinic.</p></div>
+<div><h3 class="text-[20px] mb-2" style="font-family:'Noto Serif Display',Georgia,serif">Cruise and passenger</h3><p class="text-[#334155]">Ships with a medical team on board that needs structured cases and shore support.</p></div>
+<div><h3 class="text-[20px] mb-2" style="font-family:'Noto Serif Display',Georgia,serif">Offshore</h3><p class="text-[#334155]">Rigs, supply and service vessels where every evacuation is a project.</p></div>
+<div><h3 class="text-[20px] mb-2" style="font-family:'Noto Serif Display',Georgia,serif">Crew managers and PEME clinics</h3><p class="text-[#334155]">Consistent pre-employment medicals for the seafarers you place.</p></div>
+</div></div></section><section class="bg-[#F6F5F1] pt-0" data-sd-id="66">
+      <div class="container-wide" data-sd-id="67">
+        <div class="grid lg:grid-cols-2 gap-24 items-start" data-sd-id="68">
+          <h2 class="text-[36px] leading-[44px] text-balance" data-sd-id="69">
+            Fewer errors, less time, a documented duty of care
+          </h2>
+          <div class="space-y-8 text-[18px] leading-[30px] text-[#334155]" data-sd-id="70">
+            <p data-sd-id="71">
+              Traditional medical review processes often lead to missed certificates and unclear medical conditions at the gangway. Our systems ensure every requirement is met before deployment.
+            </p>
+            <p data-sd-id="72">
+              In urgent situations, it can take hours to reach a doctor from a ship. We reduce this to minutes, providing officers with immediate clinical support via televideo consults.
+            </p>
+            <p data-sd-id="73">
+              Current maritime health practices often overlook wellness between medicals. We provide the tools for seafarers to log health data, giving fleet operators visibility into the health of their crew.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. OUR POSTURE -->
+    <section class="bg-[#F6F5F1] border-t border-[#E2E8F0]" data-sd-id="74">
+      <div class="container-wide" data-sd-id="75">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-y-12 gap-x-12" data-sd-id="76">
+          <div class="flex items-start gap-4" data-sd-id="77">
+            <iconify-icon icon="lucide:check" class="text-[20px] mt-1 text-[#14B8A6]"></iconify-icon>
+            <p class="text-[17px] font-medium text-[#0F172A]" data-sd-id="78">Physician oversight on every clinical output</p>
+          </div>
+          <div class="flex items-start gap-4" data-sd-id="79">
+            <iconify-icon icon="lucide:check" class="text-[20px] mt-1 text-[#14B8A6]"></iconify-icon>
+            <p class="text-[17px] font-medium text-[#0F172A]" data-sd-id="80">The clinician always decides</p>
+          </div>
+          <div class="flex items-start gap-4" data-sd-id="81">
+            <iconify-icon icon="lucide:check" class="text-[20px] mt-1 text-[#14B8A6]"></iconify-icon>
+            <p class="text-[17px] font-medium text-[#0F172A]" data-sd-id="82">MLC 2006 aligned</p>
+          </div>
+          <div class="flex items-start gap-4" data-sd-id="83">
+            <iconify-icon icon="lucide:check" class="text-[20px] mt-1 text-[#14B8A6]"></iconify-icon>
+            <p class="text-[17px] font-medium text-[#0F172A]" data-sd-id="84">GDPR, HIPAA-aligned practices</p>
+          </div>
+          <div class="flex items-start gap-4" data-sd-id="85">
+            <iconify-icon icon="lucide:check" class="text-[20px] mt-1 text-[#14B8A6]"></iconify-icon>
+            <p class="text-[17px] font-medium text-[#0F172A]" data-sd-id="86">Data held in the EU/UK</p>
+          </div>
+          <div class="flex items-start gap-4" data-sd-id="87">
+            <iconify-icon icon="lucide:check" class="text-[20px] mt-1 text-[#14B8A6]"></iconify-icon>
+            <p class="text-[17px] font-medium text-[#0F172A]" data-sd-id="88">Encrypted in transit and at rest with audited access and tenant isolation</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. PROOF LINE -->
+    <section class="bg-white" data-sd-id="89">
+      <div class="container-wide text-center" data-sd-id="90">
+        <blockquote class="max-w-[800px] mx-auto" data-sd-id="91">
+          <p class="text-[32px] font-serif italic text-[#334155] leading-relaxed mb-8" data-sd-id="92">
+            "The team's care pathways read like a good colleague in the room."
+          </p>
+          <cite class="not-italic">
+            <span class="label-caps block mb-1" data-sd-id="93">Chief Medical Officer</span>
+            <span class="text-[#64748B] text-[15px]" data-sd-id="94">Cruise Operator</span>
+          </cite>
+        </blockquote>
+      </div>
+    </section>
+
+    <!-- 7. CTA BAND -->
+    <section class="bg-white pt-0" data-sd-id="95">
+      <div class="container-wide" data-sd-id="96">
+        <div class="bg-[#F6F5F1] rounded-[12px] p-16 text-center" data-sd-id="97">
+          <h2 class="text-[36px] mb-10" data-sd-id="98">See it on your own vessels</h2>
+          <div class="flex flex-col sm:flex-row items-center justify-center gap-8" data-sd-id="99">
+            <a href="#demo" id="cta-final-demo" class="btn-primary" data-sd-id="100">Book a demo</a>
+            <a href="#contact" id="cta-final-contact" class="text-link font-medium" data-sd-id="101">Talk to our physicians</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <section id="introduction" class="bg-[#F6F5F1] py-20"><div class="container-wide grid grid-cols-1 lg:grid-cols-2 gap-12 items-center"><div><p class="text-[13px] tracking-[.12em] uppercase text-[#1E3A5F] mb-3">Introduction</p><h2 class="text-[36px] leading-[44px] mb-4" style="font-family:'Noto Serif Display',Georgia,serif">Thirty seconds on what we do</h2><p class="text-[#334155] mb-6">A ship's officer, a physician ashore, and the crew between medicals.</p><p class="text-[#334155]">Prefer to talk? <a id="intro-contact" href="mailto:hello@seascope.tech" class="text-[#0F766E] underline">hello@seascope.tech</a>, weekdays 08:00 to 18:00 UTC.</p></div><div class="relative rounded-[12px] overflow-hidden shadow-[0_8px_24px_rgba(15,23,42,.06)] bg-white" style="aspect-ratio:16/9"><img src="https://vgbujcuwptvheqijyjbe.supabase.co/storage/v1/object/public/hmac-uploads/projects/d2bb03e8-202c-48e5-818a-9852d270b893/content-assets/img2-ship-aerial/ship-aerial.jpg" alt="Introduction video poster" class="absolute inset-0 w-full h-full object-cover"><a id="intro-play" href="#introduction" class="absolute inset-0 flex items-center justify-center"><span class="bg-white/90 text-[#0F766E] rounded-full px-6 py-3 font-medium shadow">Play introduction</span></a></div></div></section><footer class="bg-white border-t border-[#E2E8F0] py-24" data-sd-id="102">
+      <div class="container-wide" data-sd-id="103">
+        <div class="grid md:grid-cols-4 gap-12" data-sd-id="104">
+          <div data-sd-id="105">
+            <a href="/" id="footer-brand" class="flex items-center gap-3 mb-6" data-sd-id="106">
+              <img src="https://vgbujcuwptvheqijyjbe.supabase.co/storage/v1/object/public/hmac-uploads/projects/d2bb03e8-202c-48e5-818a-9852d270b893/brand-assets/seascope-mark/m_teal.png" alt="SeaScope Logo" class="h-6 w-auto" data-sd-id="107">
+              <span class="text-xl font-serif" data-sd-id="108">
+                <span style="color: var(--ink)" data-sd-id="109">Sea</span><span style="color: var(--teal)" data-sd-id="110">Scope</span>
+              </span>
+            </a>
+            <p class="text-[14px] text-[#64748B] leading-relaxed" data-sd-id="111">
+              RemoteAid Medical Solutions, Corp.<br>
+              Provision of clinical governance and technology for global maritime operations.
+            </p>
+          </div>
+          <div data-sd-id="112">
+            <h4 class="label-caps mb-6 text-[12px]" data-sd-id="113">Products</h4>
+            <ul class="space-y-4" data-sd-id="114">
+              <li data-sd-id="115"><a href="https://p.superdesign.dev/draft/15756530-34b0-4e2c-8301-5bd835d5221b" id="foot-peme" class="text-[15px] text-[#334155] hover:text-[#14B8A6]" data-sd-id="116">PEME Processing</a></li>
+              <li data-sd-id="117"><a href="https://p.superdesign.dev/draft/7304e61c-5a98-4247-a00b-991e58aefb1f" id="foot-tele" class="text-[15px] text-[#334155] hover:text-[#14B8A6]" data-sd-id="118">Telemedicine</a></li>
+              <li data-sd-id="119"><a href="https://p.superdesign.dev/draft/749b5fbd-378a-4c4c-b1f2-080d56b016eb" id="foot-wellness" class="text-[15px] text-[#334155] hover:text-[#14B8A6]" data-sd-id="120">Crew Wellness</a></li>
+            </ul>
+          </div>
+          <div data-sd-id="121">
+            <h4 class="label-caps mb-6 text-[12px]" data-sd-id="122">Company</h4>
+            <ul class="space-y-4" data-sd-id="123">
+              <li data-sd-id="124"><a href="https://p.superdesign.dev/draft/37e78f0a-81db-4495-81ff-fb9ac4c19a96" id="foot-about" class="text-[15px] text-[#334155] hover:text-[#14B8A6]" data-sd-id="125">About</a></li>
+              <li data-sd-id="126"><a href="#pricing" id="foot-pricing" class="text-[15px] text-[#334155] hover:text-[#14B8A6]" data-sd-id="127">Pricing</a></li>
+              <li data-sd-id="128"><a href="#blog" id="foot-blog" class="text-[15px] text-[#334155] hover:text-[#14B8A6]" data-sd-id="129">Blog</a></li>
+            </ul>
+          </div>
+          <div data-sd-id="130">
+            <h4 class="label-caps mb-6 text-[12px]" data-sd-id="131">Legal</h4>
+            <ul class="space-y-4" data-sd-id="132">
+              <li data-sd-id="133"><a href="#privacy" id="foot-privacy" class="text-[15px] text-[#334155] hover:text-[#14B8A6]" data-sd-id="134">Privacy</a></li>
+              <li data-sd-id="135"><a href="#terms" id="foot-terms" class="text-[15px] text-[#334155] hover:text-[#14B8A6]" data-sd-id="136">Terms of Service</a></li>
+              <li data-sd-id="137"><a href="https://p.superdesign.dev/draft/c78a328c-5748-4c1e-ae62-9bcadbd72a7c" id="foot-sec" class="text-[15px] text-[#334155] hover:text-[#14B8A6]" data-sd-id="138">Security</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+</body></html>
