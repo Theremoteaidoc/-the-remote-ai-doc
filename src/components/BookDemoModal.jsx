@@ -82,28 +82,28 @@ export default function BookDemoModal({ open, onClose, source = 'book-demo' }) {
       role="dialog"
       aria-modal="true"
       aria-labelledby="book-demo-title"
-      className="fixed inset-0 z-50 flex items-start justify-center overflow-y-auto bg-ink-900/80 px-4 py-10 backdrop-blur-sm"
+      className="fixed inset-0 z-[60] flex items-start justify-center overflow-y-auto bg-ink/40 px-4 py-10"
       onClick={onClose}
     >
       <div
-        className="relative w-full max-w-lg rounded-2xl border border-ink-700/60 bg-ink-900 p-8 shadow-2xl"
+        className="relative w-full max-w-lg rounded-card border border-line bg-white p-8 shadow-soft"
         onClick={(e) => e.stopPropagation()}
       >
         <button
           type="button"
           onClick={onClose}
           aria-label="Close"
-          className="absolute right-4 top-4 rounded-md p-1.5 text-ink-50/60 transition hover:bg-ink-800 hover:text-ink-50"
+          className="absolute right-4 top-4 rounded-btn p-1.5 text-ink-3 transition-colors duration-150 hover:bg-bg-alt hover:text-ink"
         >
           <X className="h-5 w-5" />
         </button>
 
-        <div className="eyebrow mb-3">BOOK A DEMO</div>
-        <h2 id="book-demo-title" className="font-display text-3xl font-normal leading-tight text-ink-50">
-          Let's find a time that works.
+        <div className="label-caps mb-3">Book a demo</div>
+        <h2 id="book-demo-title" className="font-display text-3xl font-medium leading-tight text-ink">
+          Let us find a time that works.
         </h2>
-        <p className="mt-3 text-sm leading-relaxed text-ink-50/70">
-          Tell us a bit about your operation and we'll route you to the calendar.
+        <p className="mt-3 text-sm leading-relaxed text-ink-2">
+          Tell us a bit about your operation and we will route you to the calendar.
           Thirty minutes. Consultative, no slides.
         </p>
 
@@ -154,15 +154,15 @@ export default function BookDemoModal({ open, onClose, source = 'book-demo' }) {
             />
           </div>
           <div>
-            <label className="block text-xs uppercase tracking-eyebrow text-ink-50/60">
+            <label className="label-caps block text-[11px]">
               Anything we should know before the call?
             </label>
             <textarea
               value={form.notes}
               onChange={update('notes')}
               rows={3}
-              className="mt-1.5 w-full rounded-lg border border-ink-700 bg-ink-800/50 px-3 py-2 text-sm text-ink-50 placeholder-ink-50/40 focus:border-sea-500 focus:outline-none focus:ring-1 focus:ring-sea-500"
-              placeholder="Optional: operational context, timeline, specific challenges…"
+              className="mt-1.5 w-full rounded-btn border border-line bg-white px-3 py-2 text-sm text-ink placeholder-ink-3 focus:border-teal focus:outline-none focus:ring-1 focus:ring-teal"
+              placeholder="Optional: operational context, timeline, specific challenges"
               maxLength={2000}
             />
           </div>
@@ -178,12 +178,12 @@ export default function BookDemoModal({ open, onClose, source = 'book-demo' }) {
             disabled={submitting}
             className="btn-primary w-full justify-center disabled:opacity-60"
           >
-            {submitting ? 'Sending…' : 'Continue to calendar'}
+            {submitting ? 'Sending' : 'Continue to calendar'}
             {!submitting && <ArrowRight className="h-4 w-4" />}
           </button>
 
-          <p className="text-center text-xs text-ink-50/50">
-            We'll redirect you to the booking calendar after you submit.
+          <p className="text-center text-xs text-ink-3">
+            We will redirect you to the booking calendar after you submit.
             No spam. We only use this to prep the call.
           </p>
         </form>
@@ -195,8 +195,8 @@ export default function BookDemoModal({ open, onClose, source = 'book-demo' }) {
 function Field({ label, required, type = 'text', value, onChange, placeholder, autoComplete, inputRef }) {
   return (
     <div>
-      <label className="block text-xs uppercase tracking-eyebrow text-ink-50/60">
-        {label}{required && <span className="text-sea-300"> *</span>}
+      <label className="label-caps block text-[11px]">
+        {label}{required && <span className="text-teal"> *</span>}
       </label>
       <input
         ref={inputRef}
@@ -206,7 +206,7 @@ function Field({ label, required, type = 'text', value, onChange, placeholder, a
         required={required}
         placeholder={placeholder}
         autoComplete={autoComplete}
-        className="mt-1.5 w-full rounded-lg border border-ink-700 bg-ink-800/50 px-3 py-2 text-sm text-ink-50 placeholder-ink-50/40 focus:border-sea-500 focus:outline-none focus:ring-1 focus:ring-sea-500"
+        className="mt-1.5 w-full rounded-btn border border-line bg-white px-3 py-2 text-sm text-ink placeholder-ink-3 focus:border-teal focus:outline-none focus:ring-1 focus:ring-teal"
       />
     </div>
   );

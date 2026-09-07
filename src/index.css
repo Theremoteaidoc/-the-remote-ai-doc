@@ -4,7 +4,7 @@
 
 @layer base {
   :root {
-    color-scheme: dark;
+    color-scheme: light;
   }
   html {
     scroll-behavior: smooth;
@@ -12,42 +12,70 @@
     -moz-osx-font-smoothing: grayscale;
   }
   body {
-    @apply font-sans bg-ink-900 text-ink-50;
-    font-feature-settings: 'ss01', 'ss02';
+    @apply font-sans bg-white text-ink-2;
   }
   h1, h2, h3 {
-    @apply font-display tracking-tight;
-    font-feature-settings: 'ss01';
+    @apply font-display text-ink tracking-tight;
   }
-  /* Editorial serif optical-sizing */
-  h1 { font-variation-settings: 'opsz' 96; }
-  h2 { font-variation-settings: 'opsz' 64; }
-  h3 { font-variation-settings: 'opsz' 32; }
+  h1 {
+    text-wrap: balance;
+  }
 }
 
 @layer components {
-  /* Eyebrow: small-caps tracked label used above section headlines and footer */
   .eyebrow {
-    @apply text-xs uppercase tracking-eyebrow font-medium text-sea-300;
+    @apply text-xs font-medium uppercase tracking-eyebrow text-sea-300;
   }
-  /* The "Sea." accent moment: final accent word in a headline */
+  .label-caps {
+    @apply text-[13px] font-semibold uppercase leading-5 tracking-eyebrow text-navy;
+  }
   .accent-sea {
-    @apply text-sea-300;
+    @apply text-teal;
   }
-  /* Primary CTA: filled teal */
   .btn-primary {
-    @apply inline-flex items-center justify-center gap-2 rounded-lg bg-sea-500 px-6 py-3 font-medium text-ink-900 transition-all hover:bg-sea-600 active:scale-[0.98];
+    @apply inline-flex h-12 items-center justify-center gap-2 rounded-btn bg-teal px-6 font-medium text-white transition-colors duration-150 ease-out hover:bg-teal-strong;
   }
-  /* Secondary CTA: outline teal */
   .btn-secondary {
-    @apply inline-flex items-center justify-center gap-2 rounded-lg border border-sea-500 px-6 py-3 font-medium text-sea-300 transition-all hover:bg-sea-500/10 active:scale-[0.98];
+    @apply inline-flex h-12 items-center justify-center gap-2 rounded-btn border border-line bg-white px-6 font-medium text-ink transition-colors duration-150 ease-out hover:bg-bg-alt;
   }
-  /* Editorial card: used for product overview cards */
+  .text-link {
+    @apply text-teal-strong underline-offset-4 transition-colors duration-150 ease-out hover:underline;
+  }
   .editorial-card {
     @apply rounded-2xl border border-ink-700 bg-ink-800/60 p-8 backdrop-blur-sm;
   }
-  /* Footer-pattern hairline */
   .hairline-top {
-    @apply border-t border-sea-500/20;
+    @apply border-t border-teal/20;
+  }
+  .container-wide {
+    @apply mx-auto w-full max-w-container px-6;
+  }
+  .reveal {
+    animation: reveal 200ms ease-out both;
+  }
+}
+
+@keyframes reveal {
+  from {
+    opacity: 0.85;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .reveal {
+    animation: none;
+  }
+  .btn-primary,
+  .btn-secondary,
+  .text-link {
+    transition: none;
   }
 }

@@ -6,45 +6,60 @@ export default {
   ],
   theme: {
     extend: {
-      // SeaScope brand palette — verified against live CSS extract Apr 2026
       colors: {
-        // Slate primary — depth, maritime night
+        bg: '#FFFFFF',
+        'bg-alt': '#F6F5F1',
+        surface: '#FFFFFF',
         ink: {
-          900: '#0F172A',
-          800: '#1E293B',
+          DEFAULT: '#0F172A',
+          2: '#334155',
+          3: '#64748B',
+          50: '#F8FAFC',
           700: '#334155',
-          50:  '#F8FAFC',
+          800: '#1E293B',
+          900: '#0F172A',
         },
-        // Teal accent — clinical-fresh, ocean, "safe" signal
+        line: '#E2E8F0',
+        teal: {
+          DEFAULT: '#14B8A6',
+          strong: '#0F766E',
+          tint: '#E6FAF7',
+          300: '#5EEAD4',
+          500: '#14B8A6',
+          600: '#0D9488',
+          700: '#0F766E',
+        },
+        navy: '#1E3A5F',
         sea: {
           300: '#5EEAD4',
           500: '#14B8A6',
           600: '#0D9488',
           700: '#0F766E',
         },
-        // Emerald success — PASS guardrails, healthy metrics
         pass: {
           500: '#10B981',
           600: '#059669',
         },
-        // Warm off-white — accent surface, legal/footer panels
         sand: '#EFEAE2',
       },
       fontFamily: {
-        // Editorial serif for hero displays — the "Sea." accent moment
-        display: ['Fraunces', 'ui-serif', 'Georgia', 'serif'],
-        // Body sans
-        sans: ['"IBM Plex Sans"', 'system-ui', 'sans-serif'],
-        // Mono — code blocks, stat figures
-        mono: ['"IBM Plex Mono"', 'ui-monospace', 'monospace'],
+        display: ['"Noto Serif Display"', 'Georgia', 'serif'],
+        sans: ['"Noto Sans"', 'system-ui', 'sans-serif'],
+        mono: ['ui-monospace', 'monospace'],
       },
       letterSpacing: {
-        // Small-caps tracked footer / eyebrow pattern
-        'eyebrow': '0.15em',
+        eyebrow: '0.12em',
       },
-      backgroundImage: {
-        // Brand gradient — teal to deep teal, used on CTA bands
-        'sea-gradient': 'linear-gradient(135deg, #14B8A6 0%, #0F766E 100%)',
+      borderRadius: {
+        card: '12px',
+        btn: '8px',
+        chip: '999px',
+      },
+      boxShadow: {
+        soft: '0 8px 24px rgba(15, 23, 42, 0.06)',
+      },
+      maxWidth: {
+        container: '1200px',
       },
     },
   },
