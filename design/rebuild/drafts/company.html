@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Company | SeaScope</title>
+  <meta name="view-transition" content="same-origin">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600&family=Noto+Serif+Display:ital,wght@0,500;1,400&display=swap" rel="stylesheet">
+  <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+  <link rel="prefetch" href="https://p.superdesign.dev/draft/442c37d4-51d5-4651-af2c-a346be7de431" as="document">
+  <link rel="prefetch" href="https://p.superdesign.dev/draft/15756530-34b0-4e2c-8301-5bd835d5221b" as="document">
+  <link rel="prefetch" href="https://p.superdesign.dev/draft/7304e61c-5a98-4247-a00b-991e58aefb1f" as="document">
+  <link rel="prefetch" href="https://p.superdesign.dev/draft/749b5fbd-378a-4c4c-b1f2-080d56b016eb" as="document">
+  <link rel="prefetch" href="https://p.superdesign.dev/draft/c78a328c-5748-4c1e-ae62-9bcadbd72a7c" as="document">
+  <link rel="prefetch" href="https://p.superdesign.dev/draft/37e78f0a-81db-4495-81ff-fb9ac4c19a96" as="document">
+  <style>
+    :root {
+      --bg: #FFFFFF;
+      --bg-alt: #F6F5F1;
+      --surface: #FFFFFF;
+      --ink: #0F172A;
+      --ink-2: #334155;
+      --ink-3: #64748B;
+      --line: #E2E8F0;
+      --teal: #14B8A6;
+      --teal-strong: #0F766E;
+      --teal-tint: #E6FAF7;
+      --navy: #1E3A5F;
+    }
+    body {
+      font-family: 'Noto Sans', system-ui, sans-serif;
+      background-color: var(--bg);
+      color: var(--ink-2);
+      -webkit-font-smoothing: antialiased;
+    }
+    h1, h2, h3, .font-serif {
+      font-family: 'Noto Serif Display', Georgia, serif;
+      color: var(--ink);
+      letter-spacing: -0.01em;
+    }
+    .container-wide {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    .btn-primary {
+      background-color: var(--teal);
+      color: #FFFFFF;
+      height: 48px;
+      padding: 0 24px;
+      border-radius: 8px;
+      font-weight: 500;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: background-color 150ms ease-out;
+    }
+    .btn-primary:hover {
+      background-color: var(--teal-strong);
+    }
+    .btn-secondary {
+      background-color: #FFFFFF;
+      border: 1px solid var(--line);
+      color: var(--ink);
+      height: 48px;
+      padding: 0 24px;
+      border-radius: 8px;
+      font-weight: 500;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: background-color 150ms ease-out;
+    }
+    .btn-secondary:hover {
+      background-color: var(--bg-alt);
+    }
+    .text-link {
+      color: var(--teal-strong);
+      text-underline-offset: 4px;
+      transition: all 150ms ease-out;
+    }
+    .text-link:hover {
+      text-decoration: underline;
+    }
+    .shadow-soft {
+      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
+    }
+    .label-caps {
+      font-size: 13px;
+      line-height: 20px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--navy);
+      font-weight: 600;
+    }
+
+    /* View Transitions */
+    html {
+      background-color: var(--bg);
+    }
+    @view-transition {
+      navigation: auto;
+    }
+    ::view-transition-old(main-nav),
+    ::view-transition-new(main-nav) {
+      animation: none;
+      mix-blend-mode: normal;
+    }
+    ::view-transition-old(main-content) {
+      animation: 0.25s ease-out both fade-out;
+    }
+    ::view-transition-new(main-content) {
+      animation: 0.25s ease-in 0.1s both fade-in;
+    }
+    @keyframes fade-out { from { opacity: 1; } to { opacity: 0; } }
+    @keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
+  </style>
+</head>
+<body>
+  <div class="min-h-screen">
+    <!-- Navigation (Persistent) -->
+    <nav style="view-transition-name: main-nav" class="sticky top-0 z-50 bg-white border-b border-[#E2E8F0] h-[80px] flex items-center">
+      <div class="container-wide w-full flex items-center justify-between">
+        <a href="https://p.superdesign.dev/draft/442c37d4-51d5-4651-af2c-a346be7de431" id="nav-brand" class="flex items-center gap-3">
+          <img src="https://vgbujcuwptvheqijyjbe.supabase.co/storage/v1/object/public/hmac-uploads/projects/d2bb03e8-202c-48e5-818a-9852d270b893/brand-assets/seascope-mark/m_teal.png" alt="SeaScope Logo" class="h-8 w-auto">
+          <span class="text-2xl font-serif">
+            <span style="color: var(--ink)">Sea</span><span style="color: var(--teal)">Scope</span>
+          </span>
+        </a>
+        <div class="hidden lg:flex items-center gap-8">
+          <a href="https://p.superdesign.dev/draft/15756530-34b0-4e2c-8301-5bd835d5221b" id="nav-peme" class="text-[15px] font-medium text-[#334155] hover:text-[#14B8A6]">PEME</a>
+          <a href="https://p.superdesign.dev/draft/7304e61c-5a98-4247-a00b-991e58aefb1f" id="nav-tele" class="text-[15px] font-medium text-[#334155] hover:text-[#14B8A6]">Telemedicine</a>
+          <a href="https://p.superdesign.dev/draft/749b5fbd-378a-4c4c-b1f2-080d56b016eb" id="nav-wellness" class="text-[15px] font-medium text-[#334155] hover:text-[#14B8A6]">Crew Wellness</a>
+          <a href="https://p.superdesign.dev/draft/c78a328c-5748-4c1e-ae62-9bcadbd72a7c" id="nav-security" class="text-[15px] font-medium text-[#334155] hover:text-[#14B8A6]">Evidence &amp; Security</a>
+          <a href="https://p.superdesign.dev/draft/37e78f0a-81db-4495-81ff-fb9ac4c19a96" id="nav-company" class="text-[15px] font-medium text-[#14B8A6]">Company</a>
+        </div>
+        <div class="flex items-center gap-6">
+          <a href="#pricing" id="nav-pricing" class="text-[15px] font-medium text-[#334155] hover:text-[#14B8A6]">Pricing</a>
+          <a href="#demo" id="nav-demo-btn" class="btn-primary text-sm">Book a demo</a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main style="view-transition-name: main-content">
+      <!-- Hero -->
+      <header class="py-24 lg:py-32 bg-white">
+        <div class="container-wide">
+          <div class="max-w-4xl">
+            <span class="label-caps block mb-6">Company</span>
+            <h1 class="text-[56px] leading-[64px] mb-8 font-medium text-balance">Built by physicians who have practised at sea.</h1>
+            <p class="text-[18px] leading-[30px] text-[#334155] max-w-2xl">
+              RemoteAid Medical Solutions, Corp. provides the clinical governance and technology for medicine practiced at sea. SeaScope is our unified service brand.
+            </p>
+          </div>
+        </div>
+      </header>
+
+      <!-- Image Band -->
+      <section class="py-0">
+        <div class="container-wide">
+          <div class="relative aspect-[21/9] w-full overflow-hidden rounded-[12px] shadow-soft">
+            <img src="https://vgbujcuwptvheqijyjbe.supabase.co/storage/v1/object/public/hmac-uploads/projects/d2bb03e8-202c-48e5-818a-9852d270b893/content-assets/img2-ops-desk/ops-desk.jpg" alt="Operations desk for fleet medical support" class="absolute inset-0 w-full h-full object-cover">
+          </div>
+        </div>
+      </section>
+
+      <!-- Founder Section -->
+      <section class="py-24 lg:py-32">
+        <div class="container-wide">
+          <div class="grid lg:grid-cols-2 gap-20 items-start">
+            <div class="max-w-md">
+              <div class="aspect-[3/4] bg-[#F6F5F1] rounded-[12px] overflow-hidden border border-[#E2E8F0] shadow-soft">
+                 <!-- Profile placeholder image as per instruction -->
+                 <div class="w-full h-full flex flex-col items-center justify-center p-12 text-center">
+                    <iconify-icon icon="lucide:user" class="text-6xl text-[#E2E8F0] mb-4"></iconify-icon>
+                    <span class="text-sm text-[#64748B]">Dr. Javier Rosas, MD</span>
+                 </div>
+              </div>
+              <div class="mt-8">
+                <h2 class="text-3xl mb-1">Dr. Javier Rosas, MD</h2>
+                <p class="label-caps text-[#64748B]">Founder &amp; CEO</p>
+              </div>
+            </div>
+            <div class="space-y-8">
+              <div class="label-caps">Leadership</div>
+              <p class="text-[18px] leading-[32px] text-[#334155]">
+                Dr. Javier Rosas is a Senior Ship Physician with a major cruise line, where he oversees clinical practice in remote environments often thousands of miles from shore medical facilities. His experience in occupational and maritime medicine led to the founding of RemoteAid Medical Solutions, Corp.
+              </p>
+              <p class="text-[18px] leading-[32px] text-[#334155]">
+                SeaScope exists to bridge the gap between ship and shore. By applying structured clinical review to the pre-employment medical and televideo consults at sea, we provide fleet operators with the documented duty of care required in modern global shipping.
+              </p>
+              <div class="pt-8 grid grid-cols-1 md:grid-cols-2 gap-8 border-t border-[#E2E8F0]">
+                <div class="flex items-start gap-3">
+                  <iconify-icon icon="lucide:check" class="text-xl text-[#14B8A6] mt-1"></iconify-icon>
+                  <p class="text-[15px] font-medium text-[#0F172A]">Clinical governance focused on the seafarer contract</p>
+                </div>
+                <div class="flex items-start gap-3">
+                  <iconify-icon icon="lucide:check" class="text-xl text-[#14B8A6] mt-1"></iconify-icon>
+                  <p class="text-[15px] font-medium text-[#0F172A]">Evidence based pathways for remote practice</p>
+                </div>
+                <div class="flex items-start gap-3">
+                  <iconify-icon icon="lucide:check" class="text-xl text-[#14B8A6] mt-1"></iconify-icon>
+                  <p class="text-[15px] font-medium text-[#0F172A]">Institutional focus on maritime health</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Press Section -->
+      <section class="py-24 lg:py-32 bg-[#F6F5F1]">
+        <div class="container-wide">
+          <div class="mb-16">
+            <span class="label-caps block mb-4">News</span>
+            <h2 class="text-4xl">Press &amp; Updates</h2>
+          </div>
+          <div class="grid md:grid-cols-3 gap-8">
+            <!-- Press Card 1 -->
+            <div class="bg-white p-8 rounded-[12px] border border-[#E2E8F0] shadow-soft">
+              <time class="text-[13px] text-[#64748B] font-medium">October 2026</time>
+              <h3 class="text-xl my-4 leading-tight">SeaScope expands PEME processing for global cruise operators.</h3>
+              <p class="text-[15px] text-[#334155] mb-6 leading-relaxed">Our physicians now review medicals for multiple major fleets across the Atlantic and Pacific routes.</p>
+              <a href="#" class="text-link text-[15px] font-medium">Read release</a>
+            </div>
+            <!-- Press Card 2 -->
+            <div class="bg-white p-8 rounded-[12px] border border-[#E2E8F0] shadow-soft">
+              <time class="text-[13px] text-[#64748B] font-medium">September 2026</time>
+              <h3 class="text-xl my-4 leading-tight">MLC 2006 alignment update for maritime telemedicine providers.</h3>
+              <p class="text-[15px] text-[#334155] mb-6 leading-relaxed">RemoteAid Medical Solutions, Corp. publishes new guidance on televideo consult documentation.</p>
+              <a href="#" class="text-link text-[15px] font-medium">View publication</a>
+            </div>
+            <!-- Press Card 3 -->
+            <div class="bg-white p-8 rounded-[12px] border border-[#E2E8F0] shadow-soft">
+              <time class="text-[13px] text-[#64748B] font-medium">August 2026</time>
+              <h3 class="text-xl my-4 leading-tight">Physician oversight in maritime health: A new standard.</h3>
+              <p class="text-[15px] text-[#334155] mb-6 leading-relaxed">Founding principles regarding independent physician decision making in fleet operations.</p>
+              <a href="#" class="text-link text-[15px] font-medium">Read statement</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Contact -->
+      <section class="py-24 lg:py-32 bg-white">
+        <div class="container-wide text-center">
+          <h2 class="text-4xl mb-10">Talk to our physicians</h2>
+          <div class="flex flex-col sm:flex-row items-center justify-center gap-8">
+            <a href="#demo" id="company-cta-demo" class="btn-primary min-w-[200px]">Book a demo</a>
+            <a href="mailto:hello@seascope.tech" id="company-cta-email" class="text-link font-medium">hello@seascope.tech</a>
+          </div>
+          <p class="mt-16 text-[13px] text-[#64748B] uppercase tracking-[0.12em]">
+            RemoteAid Medical Solutions, Corp. · Miami, Florida
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-[#E2E8F0] py-24">
+      <div class="container-wide">
+        <div class="grid md:grid-cols-4 gap-12">
+          <div>
+            <a href="https://p.superdesign.dev/draft/442c37d4-51d5-4651-af2c-a346be7de431" id="footer-brand" class="flex items-center gap-3 mb-6">
+              <img src="https://vgbujcuwptvheqijyjbe.supabase.co/storage/v1/object/public/hmac-uploads/projects/d2bb03e8-202c-48e5-818a-9852d270b893/brand-assets/seascope-mark/m_teal.png" alt="SeaScope Logo" class="h-6 w-auto">
+              <span class="text-xl font-serif">
+                <span style="color: var(--ink)">Sea</span><span style="color: var(--teal)">Scope</span>
+              </span>
+            </a>
+            <p class="text-[14px] text-[#64748B] leading-relaxed">
+              RemoteAid Medical Solutions, Corp.<br>
+              Provision of clinical governance and technology for global maritime operations.
+            </p>
+          </div>
+          <div>
+            <h4 class="label-caps mb-6 text-[12px]">Products</h4>
+            <ul class="space-y-4">
+              <li><a href="https://p.superdesign.dev/draft/15756530-34b0-4e2c-8301-5bd835d5221b" id="foot-peme" class="text-[15px] text-[#334155] hover:text-[#14B8A6]">PEME Processing</a></li>
+              <li><a href="https://p.superdesign.dev/draft/7304e61c-5a98-4247-a00b-991e58aefb1f" id="foot-tele" class="text-[15px] text-[#334155] hover:text-[#14B8A6]">Telemedicine</a></li>
+              <li><a href="https://p.superdesign.dev/draft/749b5fbd-378a-4c4c-b1f2-080d56b016eb" id="foot-wellness" class="text-[15px] text-[#334155] hover:text-[#14B8A6]">Crew Wellness</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="label-caps mb-6 text-[12px]">Company</h4>
+            <ul class="space-y-4">
+              <li><a href="https://p.superdesign.dev/draft/37e78f0a-81db-4495-81ff-fb9ac4c19a96" id="foot-about" class="text-[15px] text-[#14B8A6]">About</a></li>
+              <li><a href="#pricing" id="foot-pricing" class="text-[15px] text-[#334155] hover:text-[#14B8A6]">Pricing</a></li>
+              <li><a href="#blog" id="foot-blog" class="text-[15px] text-[#334155] hover:text-[#14B8A6]">Blog</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="label-caps mb-6 text-[12px]">Legal</h4>
+            <ul class="space-y-4">
+              <li><a href="#privacy" id="foot-privacy" class="text-[15px] text-[#334155] hover:text-[#14B8A6]">Privacy</a></li>
+              <li><a href="#terms" id="foot-terms" class="text-[15px] text-[#334155] hover:text-[#14B8A6]">Terms of Service</a></li>
+              <li><a href="https://p.superdesign.dev/draft/c78a328c-5748-4c1e-ae62-9bcadbd72a7c" id="foot-sec" class="text-[15px] text-[#334155] hover:text-[#14B8A6]">Security</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>
