@@ -6,6 +6,6 @@ Rules: outcome not mechanism (scripts/check-mechanism.mjs), no client or lead na
 
 **Internal only:** `design/rebuild/internal-video/` holds the 30 s cut from the 2025 footage (actors with invented doctor names). Never copy it under `public/`; it must not be served.
 
-**Brand mark (founder ruling 7 Sep evening):** the wordmark uses the SeaScope compass-cross mark `public/rebuild/brand/seascope-mark.png` (transparent), NOT the Asclepius S from demos/brand/mark. "Sea" ink + "Scope" teal text stays.
+**Brand mark (founder ruling 7 Sep evening, A13):** nav uses `public/rebuild/brand/seascope-mark.png` at ~32 px plus "SeaScope" (ink) "CDS" (teal). Footer uses `seascope-logo-lockup.png` as an image ~110 px tall. Favicon and apple-touch come from `seascope-mark-256.png`. Wordmark reads `/rebuild/brand/`. Do not ship `public/rebuild/images/seascope-mark.png`.
 
-**Canonical logo (founder, 7 Sep 2026, same file as the Postmark email logo):** `public/rebuild/brand/seascope-logo-canonical.jpg` is the source of truth. Derived: `seascope-logo-lockup.png` (transparent, mark + "SeaScope CDS" + tagline, use in the footer and on print), `seascope-logo-lockup-notagline.png`, `seascope-mark.png` (mark only, nav + favicon). Wordmark text reads "SeaScope CDS": "SeaScope" ink, "CDS" teal. `public/rebuild/images/seascope-mark.png` is now the same compass mark (the Asclepius S is retired from the website).
+**Canonical logo (founder, 7 Sep 2026, same file as the Postmark email logo):** `public/rebuild/brand/seascope-logo-canonical.jpg` is the source of truth. Derived: `seascope-logo-lockup.png` (transparent, mark + "SeaScope CDS" + tagline, footer and print), `seascope-logo-lockup-notagline.png`, `seascope-mark.png` (mark only, nav + favicon).

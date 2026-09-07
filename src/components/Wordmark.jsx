@@ -9,8 +9,8 @@ export default function Wordmark({ markClassName = 'h-8', textClassName = 'text-
         height="32"
       />
       <span className={`font-display font-medium leading-none ${textClassName}`}>
-        <span className="text-ink">Sea</span>
-        <span className="text-teal-strong">Scope</span>
+        <span className="text-ink">SeaScope</span>{' '}
+        <span className="text-teal-strong">CDS</span>
       </span>
     </span>
   );

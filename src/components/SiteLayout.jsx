@@ -58,7 +58,7 @@ export default function SiteLayout({ children }) {
     <div className="min-h-screen bg-white text-ink-2 antialiased">
       <nav className="sticky top-0 z-50 h-20 border-b border-line bg-white">
         <div className="container-wide flex h-full items-center justify-between">
-          <Link to="/" aria-label="SeaScope home">
+          <Link to="/" aria-label="SeaScope CDS home">
             <Wordmark />
           </Link>
 
@@ -125,8 +125,14 @@ export default function SiteLayout({ children }) {
       <footer className="border-t border-line bg-white py-16 lg:py-24">
         <div className="container-wide grid gap-12 md:grid-cols-4">
           <div>
-            <Link to="/" aria-label="SeaScope home" className="inline-flex">
-              <Wordmark />
+            <Link to="/" className="inline-flex">
+              <img
+                src="/rebuild/brand/seascope-logo-lockup.png"
+                alt="SeaScope CDS, AI Clinical Decision Support"
+                className="h-[110px] w-auto"
+                width="131"
+                height="110"
+              />
             </Link>
             <p className="mt-6 text-sm leading-relaxed text-ink-3">
               RemoteAid Medical Solutions, Corp.

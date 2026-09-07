@@ -1,8 +1,9 @@
 #!/usr/bin/env node
 /**
- * A12 R-MARK: wordmark uses the compass-cross at /rebuild/brand/,
- * not the Asclepius S. Nav/footer ~32 px. Favicon and apple-touch
- * are generated from the 256 px file.
+ * A13 R-MARK: nav wordmark is the brand mark at /rebuild/brand/
+ * plus "SeaScope" (ink) "CDS" (teal). Footer is the lockup image
+ * at ~110 px. Favicon and apple-touch come from the 256 px file.
+ * The images/ copy of the mark must not ship.
  */
 import { existsSync, readFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
@@ -10,7 +11,9 @@ import { fileURLToPath } from 'node:url';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const BRAND = '/rebuild/brand/seascope-mark.png';
+const LOCKUP = '/rebuild/brand/seascope-logo-lockup.png';
 const OLD = '/rebuild/images/seascope-mark.png';
+const ALT = 'SeaScope CDS, AI Clinical Decision Support';
 let failed = false;
 
 function fail(msg) {
@@ -20,13 +23,22 @@ function fail(msg) {
 
 const wordmark = readFileSync(join(ROOT, 'src/components/Wordmark.jsx'), 'utf8');
 if (!wordmark.includes(BRAND)) fail(`Wordmark.jsx must load ${BRAND}`);
-if (wordmark.includes(OLD)) fail('Wordmark.jsx still points at the Asclepius S path');
+if (wordmark.includes(OLD)) fail('Wordmark.jsx still points at the retired images/ path');
 if (!/markClassName = 'h-8'/.test(wordmark)) fail('Wordmark default mark height must be h-8 (~32 px)');
-if (!/<span className="text-ink">Sea<\/span>/.test(wordmark)) fail('Wordmark "Sea" must be ink');
-if (!/<span className="text-teal-strong">Scope<\/span>/.test(wordmark)) fail('Wordmark "Scope" must be teal');
+if (!/<span className="text-ink">SeaScope<\/span>/.test(wordmark)) fail('Wordmark "SeaScope" must be ink');
+if (!/<span className="text-teal-strong">CDS<\/span>/.test(wordmark)) fail('Wordmark "CDS" must be teal');
+if (/<span className="text-ink">Sea<\/span>/.test(wordmark)) fail('A12 Sea/Scope split must not remain');
+if (/<span className="text-teal-strong">Scope<\/span>/.test(wordmark)) fail('A12 Sea/Scope split must not remain');
 
 const layout = readFileSync(join(ROOT, 'src/components/SiteLayout.jsx'), 'utf8');
-if (/markClassName="h-6"/.test(layout)) fail('SiteLayout footer mark must be ~32 px, not h-6');
+if (!layout.includes(LOCKUP)) fail(`SiteLayout footer must load ${LOCKUP}`);
+if (!layout.includes(ALT)) fail(`SiteLayout lockup alt must be "${ALT}"`);
+if (!/h-\[110px\]/.test(layout) && !/height="110"/.test(layout)) {
+  fail('SiteLayout lockup must be ~110 px tall');
+}
+if ((layout.match(/<Wordmark/g) || []).length !== 1) {
+  fail('SiteLayout must use Wordmark only in the nav, not the footer');
+}
 
 if (existsSync(join(ROOT, 'public/rebuild/images/seascope-mark.png'))) {
   fail('public/rebuild/images/seascope-mark.png must not ship');
@@ -34,6 +46,7 @@ if (existsSync(join(ROOT, 'public/rebuild/images/seascope-mark.png'))) {
 for (const rel of [
   'public/rebuild/brand/seascope-mark.png',
   'public/rebuild/brand/seascope-mark-256.png',
+  'public/rebuild/brand/seascope-logo-lockup.png',
   'public/favicon.png',
   'public/apple-touch-icon.png',
 ]) {
@@ -50,4 +63,4 @@ if (!html.includes('"logo": "https://seascope.tech/favicon.png"')) {
 }
 
 if (failed) process.exit(1);
-console.log('check-mark: ok (compass-cross brand path, no Asclepius S, h-8, favicon + apple-touch).');
+console.log('check-mark: ok (brand mark nav, lockup footer, no images/ copy, favicon + apple-touch).');
