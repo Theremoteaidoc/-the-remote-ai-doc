@@ -1,8 +1,7 @@
-import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { Check } from 'lucide-react';
-import BookDemoModal from '../components/BookDemoModal';
+import { APPOINTMENT_URL } from '../components/appointment.js';
 import HeaderVideo from '../components/HeaderVideo';
 
 const PRODUCTS = [
@@ -61,11 +60,8 @@ const POSTURE = [
 ];
 
 export default function Home() {
-  const [demoOpen, setDemoOpen] = useState(false);
-
   return (
     <>
-      <BookDemoModal open={demoOpen} onClose={() => setDemoOpen(false)} source="home/hero" />
       <Helmet>
         <title>SeaScope | Clinical services for fleet operators</title>
         <meta
@@ -96,9 +92,14 @@ export default function Home() {
               connecting vessels to verified medical expertise in minutes.
             </p>
             <div className="flex flex-col items-start gap-4 sm:flex-row sm:items-center">
-              <button type="button" onClick={() => setDemoOpen(true)} className="btn-primary">
-                Book a demo
-              </button>
+              <a
+                href={APPOINTMENT_URL}
+                target="_blank"
+                rel="noopener"
+                className="btn-primary"
+              >
+                Request an appointment
+              </a>
               <a href="#products" className="btn-secondary">
                 Our services
               </a>
@@ -238,9 +239,14 @@ export default function Home() {
           <div className="rounded-card bg-bg-alt px-6 py-12 text-center lg:p-16">
             <h2 className="mb-10 text-[28px] font-medium lg:text-[36px]">See it on your own vessels</h2>
             <div className="flex flex-col items-center justify-center gap-8 sm:flex-row">
-              <button type="button" onClick={() => setDemoOpen(true)} className="btn-primary">
-                Book a demo
-              </button>
+              <a
+                href={APPOINTMENT_URL}
+                target="_blank"
+                rel="noopener"
+                className="btn-primary"
+              >
+                Request an appointment
+              </a>
               <a href="mailto:hello@seascope.tech" className="text-link font-medium">
                 Talk to our physicians
               </a>

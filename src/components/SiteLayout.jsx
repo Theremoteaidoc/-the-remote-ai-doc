@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
-import BookDemoModal from './BookDemoModal';
+import { APPOINTMENT_URL } from './appointment.js';
 import Wordmark from './Wordmark';
 
 const NAV = [
@@ -37,7 +37,6 @@ const FOOTER_LEGAL = [
  */
 export default function SiteLayout({ children }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [demoOpen, setDemoOpen] = useState(false);
   const location = useLocation();
   const isHome = location.pathname === '/';
 
@@ -76,13 +75,14 @@ export default function SiteLayout({ children }) {
           </div>
 
           <div className="hidden items-center lg:flex">
-            <button
-              type="button"
-              onClick={() => setDemoOpen(true)}
+            <a
+              href={APPOINTMENT_URL}
+              target="_blank"
+              rel="noopener"
               className="btn-primary text-sm"
             >
-              Book a demo
-            </button>
+              Request an appointment
+            </a>
           </div>
 
           <button
@@ -104,19 +104,19 @@ export default function SiteLayout({ children }) {
                   {item.label}
                 </Link>
               ))}
-              <button
-                type="button"
-                onClick={() => { setMobileMenuOpen(false); setDemoOpen(true); }}
+              <a
+                href={APPOINTMENT_URL}
+                target="_blank"
+                rel="noopener"
                 className="btn-primary mt-3 w-full"
+                onClick={() => setMobileMenuOpen(false)}
               >
-                Book a demo
-              </button>
+                Request an appointment
+              </a>
             </div>
           </div>
         )}
       </nav>
-
-      <BookDemoModal open={demoOpen} onClose={() => setDemoOpen(false)} source="nav" />
 
       <main className={isHome ? undefined : 'bg-ink-900 text-ink-50'}>
         {children}

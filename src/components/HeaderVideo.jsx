@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { shouldAttachHeaderClip } from './headerVideoPolicy.js';
 
 /**
  * Hero background: muted looping ship clip, poster-only when the user
@@ -9,9 +10,9 @@ export default function HeaderVideo() {
   const [mode, setMode] = useState('poster');
 
   useEffect(() => {
-    const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const saveData = Boolean(navigator.connection?.saveData);
-    if (mq.matches || saveData) return undefined;
+    if (!shouldAttachHeaderClip({ reducedMotion, saveData })) return undefined;
     const id = requestAnimationFrame(() => setMode('video'));
     return () => cancelAnimationFrame(id);
   }, []);

@@ -1,13 +1,13 @@
 import { useEffect, useRef, useState } from 'react';
 import { X, ArrowRight } from 'lucide-react';
+import { APPOINTMENT_URL } from './appointment.js';
 
 /**
- * Book-a-Demo lead capture modal.
+ * Lead capture modal used by PR #12 product pages until stages 2-4.
  *
  * Controlled via `open` / `onClose`. On submit:
  *   1. POST /api/v1/leads/demo-request → backend emails sales
- *   2. Redirect the browser to the returned Google Calendar URL so the
- *      prospect can pick a slot
+ *   2. Open the founder appointment calendar (not the demo slug)
  *
  * The form is deliberately short: name / email / phone / company are
  * required; everything else optional. Long forms kill conversion.
@@ -67,10 +67,8 @@ export default function BookDemoModal({ open, onClose, source = 'book-demo' }) {
         }
         throw new Error(data?.detail?.[0]?.msg || 'Could not submit. Please try again.');
       }
-      const { calendar_url } = await resp.json();
-      // Redirect to the booking page in the same tab. Google Calendar
-      // sends the prospect a confirmation email automatically.
-      window.location.href = calendar_url;
+      await resp.json();
+      window.location.href = APPOINTMENT_URL;
     } catch (err) {
       setError(err.message || 'Something went wrong. Please email hello@seascope.tech.');
       setSubmitting(false);
@@ -98,7 +96,7 @@ export default function BookDemoModal({ open, onClose, source = 'book-demo' }) {
           <X className="h-5 w-5" />
         </button>
 
-        <div className="label-caps mb-3">Book a demo</div>
+        <div className="label-caps mb-3">Request an appointment</div>
         <h2 id="book-demo-title" className="font-display text-3xl font-medium leading-tight text-ink">
           Let us find a time that works.
         </h2>
