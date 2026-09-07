@@ -2,35 +2,32 @@ import { Helmet } from 'react-helmet-async';
 
 /**
  * /about: Company + founder. Third-person institutional voice.
- * Copy from /root/marketing/copy/about-v1.md.
- * EIN removed per IA amendment 3.
+ * Outcome copy: who we are and who we serve. No internals.
  */
 export default function About() {
   return (
     <>
       <Helmet>
         <title>About RemoteAid Medical Solutions</title>
-        <meta name="description" content="RemoteAid Medical Solutions builds clinical reasoning infrastructure for medicine practiced at the edge. Delaware C-Corporation founded 2026, headquartered in Miami, FL." />
+        <meta name="description" content="RemoteAid Medical Solutions provides clinical services for fleets at sea. Delaware C-Corporation founded 2026, headquartered in Miami, FL." />
         <link rel="canonical" href="https://seascope.tech/about" />
       </Helmet>
 
-      {/* HERO */}
       <section className="bg-gradient-to-br from-ink-900 via-ink-800 to-ink-900 pt-32 pb-20 lg:pt-40">
         <div className="mx-auto max-w-5xl px-6 lg:px-8">
           <div className="eyebrow mb-4">ABOUT REMOTEAID MEDICAL SOLUTIONS</div>
           <h1 className="font-display text-5xl font-normal leading-tight text-ink-50 sm:text-6xl lg:text-7xl">
-            Building clinical infrastructure for medicine practiced at the edge<span className="accent-sea">.</span>
+            Clinical services for medicine practiced at sea<span className="accent-sea">.</span>
           </h1>
           <p className="mt-8 max-w-2xl text-lg leading-relaxed text-ink-50/80">
-            RemoteAid Medical Solutions is a Delaware C-Corporation building clinical reasoning
-            infrastructure for the places medicine wasn't built for, ships, expeditions, military
-            forward bases, and remote clinics. Our flagship product, SeaScope CDS, is the trademark
-            engine that powers our growing family of operator solutions.
+            RemoteAid Medical Solutions is a Delaware C-Corporation providing telemedicine,
+            PEME processing, and crew wellness for fleet operators, and clinical decision
+            support for physicians practising where shore hospitals are hours away. SeaScope
+            is the service brand.
           </p>
         </div>
       </section>
 
-      {/* COMPANY FACTS */}
       <section className="border-y border-ink-700/40 bg-ink-800/20 py-16">
         <div className="mx-auto grid max-w-5xl grid-cols-1 gap-8 px-6 text-center sm:grid-cols-3 lg:px-8">
           {[
@@ -49,32 +46,22 @@ export default function About() {
         </p>
       </section>
 
-      {/* MISSION */}
       <section className="py-24">
         <div className="mx-auto max-w-3xl px-6 lg:px-8">
           <div className="eyebrow mb-4">WHY WE BUILD</div>
           <h2 className="font-display text-4xl font-normal leading-tight text-ink-50 sm:text-5xl">
-            Most clinical AI assumes hospital-grade resources.
+            Built by physicians who practice where it is used.
           </h2>
           <div className="mt-8 space-y-6 text-base leading-relaxed text-ink-50/75">
             <p>
-              RemoteAid Medical Solutions inverts that assumption. We treat limited formularies,
-              absent specialists, and degraded connectivity as first-class design constraints
-              rather than edge cases to be patched later. The result is clinical AI that works where it
-              matters most: at 2 AM, miles from any hospital, with the chest you have and the
-              connectivity you can rely on.
+              Most clinical services assume a hospital is nearby. Fleet operators and ship
+              physicians work hours or days from that assumption. We provide the clinical
+              services that job actually needs: a physician for the ship, PEMEs on file, and
+              health oversight between exams.
             </p>
             <p>
-              Our approach is bifurcated by design. Deterministic safety guardrails, formulary
-              verification, allergy cross-checks, dose ceilings, drug-interaction screens, run as
-              rule-based code, never as AI judgment. The agentic reasoning layer drafts the
-              recommendation; the deterministic layer ensures it's safe to surface. Together they
-              meet the clinical bar that the FDA §520(o)(1)(E) Clinical Decision Support exemption
-              was designed to enable.
-            </p>
-            <p>
-              We build for the doctors and crews who have been waiting a long time for technology
-              that understands their reality.
+              The clinician always decides. SeaScope does not diagnose, prescribe, or replace
+              professional judgment.
             </p>
           </div>
           <p className="mt-12 border-l-2 border-sea-500 pl-6 font-display text-2xl italic text-sea-300">
@@ -83,38 +70,35 @@ export default function About() {
         </div>
       </section>
 
-      {/* FOUNDER */}
       <section className="border-t border-ink-700/40 bg-ink-800/20 py-24">
         <div className="mx-auto max-w-5xl px-6 lg:px-8">
           <div className="eyebrow mb-4">FOUNDER & CEO</div>
           <div className="grid gap-12 md:grid-cols-[1fr_2fr]">
             <div className="aspect-[3/4] overflow-hidden rounded-2xl border border-ink-700 bg-ink-800">
-              <img src="/profile.jpg" alt="Dr. Javier Rosas, MD" className="h-full w-full object-cover" />
+              <img
+                src="/profile.jpg"
+                alt="Dr. Javier Rosas, MD"
+                className="h-full w-full object-cover"
+                width="597"
+                height="800"
+                loading="lazy"
+                decoding="async"
+              />
             </div>
             <div>
               <h2 className="font-display text-4xl font-normal text-ink-50">Dr. Javier Rosas, MD</h2>
               <p className="mt-2 italic text-ink-50/60">Founder & CEO, RemoteAid Medical Solutions</p>
               <div className="mt-6 space-y-4 text-base leading-relaxed text-ink-50/75">
                 <p>
-                  Dr. Javier Rosas is a Senior Ship Physician at Royal Caribbean International,
-                  where he practices emergency medicine on cruise ships managing populations of up
+                  Dr. Javier Rosas is a Senior Ship Physician with a major cruise line, practising
+                  at sea, where he practices emergency medicine on ships managing populations of up
                   to 6,000 passengers and crew. His clinical practice routinely takes place 1,000+
-                  miles from the nearest hospital, with formularies of fewer than 200 medications
-                  and no on-call specialist backup.
+                  miles from the nearest hospital, with no on-call specialist backup.
                 </p>
                 <p>
                   In parallel with his clinical work, Dr. Rosas serves as Chair of the AI Committee
-                  at the American Board of Maritime Medicine (ABMM), the field's first governance
-                  body for clinical AI in maritime contexts. He is the author of <em>AI Literacy
-                  for Clinicians</em> (2026), a practical guide for physicians evaluating AI tools
-                  for clinical use, drawn from his original head-to-head evaluation of six clinical
-                  and general AI platforms using FDA prescribing rubrics.
-                </p>
-                <p>
-                  Dr. Rosas trains and evaluates AI systems for four leading AI companies, work
-                  that gives RemoteAid Medical Solutions an unusually direct line into the
-                  strengths and failure modes of frontier AI as it applies to clinical
-                  decision-making.
+                  at the American Board of Maritime Medicine (ABMM). He is the author of <em>AI
+                  Literacy for Clinicians</em> (2026).
                 </p>
               </div>
               <blockquote className="mt-8 border-l-2 border-sea-500 pl-6 font-display text-xl italic text-sea-300">
@@ -140,7 +124,6 @@ export default function About() {
         </div>
       </section>
 
-      {/* CONTACT */}
       <section className="py-20">
         <div className="mx-auto max-w-3xl px-6 text-center lg:px-8">
           <div className="eyebrow mb-4">GET IN TOUCH</div>

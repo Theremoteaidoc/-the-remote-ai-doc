@@ -15,7 +15,7 @@ export default function CountUp({ value, suffix = '', duration = 1800 }) {
     if (!el) return;
     if (typeof window !== 'undefined' &&
         window.matchMedia?.('(prefers-reduced-motion: reduce)').matches) {
-      setDisplay(value);
+      setDisplay(value); // eslint-disable-line react-hooks/set-state-in-effect
       return;
     }
     const io = new IntersectionObserver((entries) => {

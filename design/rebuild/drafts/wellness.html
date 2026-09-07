@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Crew Wellness | SeaScope</title>
+  <meta name="view-transition" content="same-origin">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600&amp;family=Noto+Serif+Display:ital,wght@0,500;1,400&amp;display=swap" rel="stylesheet">
+  <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+  <link rel="prefetch" href="https://p.superdesign.dev/draft/442c37d4-51d5-4651-af2c-a346be7de431" as="document">
+  <link rel="prefetch" href="https://p.superdesign.dev/draft/15756530-34b0-4e2c-8301-5bd835d5221b" as="document">
+  <link rel="prefetch" href="https://p.superdesign.dev/draft/7304e61c-5a98-4247-a00b-991e58aefb1f" as="document">
+  <link rel="prefetch" href="https://p.superdesign.dev/draft/c78a328c-5748-4c1e-ae62-9bcadbd72a7c" as="document">
+  <link rel="prefetch" href="https://p.superdesign.dev/draft/37e78f0a-81db-4495-81ff-fb9ac4c19a96" as="document">
+  <style>
+    :root {
+      --bg: #FFFFFF;
+      --bg-alt: #F6F5F1;
+      --surface: #FFFFFF;
+      --ink: #0F172A;
+      --ink-2: #334155;
+      --ink-3: #64748B;
+      --line: #E2E8F0;
+      --teal: #14B8A6;
+      --teal-strong: #0F766E;
+      --teal-tint: #E6FAF7;
+      --navy: #1E3A5F;
+    }
+    html {
+      background-color: var(--bg);
+    }
+    body {
+      font-family: 'Noto Sans', system-ui, sans-serif;
+      background-color: var(--bg);
+      color: var(--ink-2);
+      -webkit-font-smoothing: antialiased;
+    }
+    h1, h2, h3, .font-serif {
+      font-family: 'Noto Serif Display', Georgia, serif;
+      color: var(--ink);
+      letter-spacing: -0.01em;
+    }
+    .container-wide {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    .btn-primary {
+      background-color: var(--teal);
+      color: #FFFFFF;
+      height: 48px;
+      padding: 0 24px;
+      border-radius: 8px;
+      font-weight: 500;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: background-color 150ms ease-out;
+    }
+    .btn-primary:hover {
+      background-color: var(--teal-strong);
+    }
+    .btn-secondary {
+      background-color: #FFFFFF;
+      border: 1px solid var(--line);
+      color: var(--ink);
+      height: 48px;
+      padding: 0 24px;
+      border-radius: 8px;
+      font-weight: 500;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: background-color 150ms ease-out;
+    }
+    .btn-secondary:hover {
+      background-color: var(--bg-alt);
+    }
+    .text-link {
+      color: var(--teal-strong);
+      text-underline-offset: 4px;
+      transition: all 150ms ease-out;
+    }
+    .text-link:hover {
+      text-decoration: underline;
+    }
+    .shadow-soft {
+      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
+    }
+    .label-caps {
+      font-size: 13px;
+      line-height: 20px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--navy);
+      font-weight: 600;
+    }
+    section {
+      padding: 96px 0;
+    }
+    @media (max-width: 768px) {
+      section {
+        padding: 64px 0;
+      }
+    }
+
+    @view-transition {
+      navigation: auto;
+    }
+
+    ::view-transition-old(main-nav),
+    ::view-transition-new(main-nav) {
+      animation: none;
+      mix-blend-mode: normal;
+    }
+
+    ::view-transition-old(main-content) {
+      animation: 0.25s ease-out both fade-out;
+    }
+    ::view-transition-new(main-content) {
+      animation: 0.25s ease-in 0.1s both fade-in;
+    }
+
+    @keyframes fade-out { from { opacity: 1; } to { opacity: 0; } }
+    @keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
+
+    ::view-transition-old(root),
+    ::view-transition-new(root) {
+      animation: none;
+      mix-blend-mode: normal;
+    }
+  </style>
+</head>
+<body>
+  <div class="min-h-screen flex flex-col">
+    <nav style="view-transition-name: main-nav" class="sticky top-0 z-50 bg-white border-b border-[#E2E8F0] h-[80px] flex items-center">
+      <div class="container-wide w-full flex items-center justify-between">
+        <a href="https://p.superdesign.dev/draft/442c37d4-51d5-4651-af2c-a346be7de431" id="nav-brand" class="flex items-center gap-3">
+          <img src="https://vgbujcuwptvheqijyjbe.supabase.co/storage/v1/object/public/hmac-uploads/projects/d2bb03e8-202c-48e5-818a-9852d270b893/brand-assets/seascope-mark/m_teal.png" alt="SeaScope Logo" class="h-8 w-auto">
+          <span class="text-2xl font-serif">
+            <span style="color: var(--ink)">Sea</span><span style="color: var(--teal)">Scope</span>
+          </span>
+        </a>
+        <div class="hidden lg:flex items-center gap-8">
+          <a href="https://p.superdesign.dev/draft/15756530-34b0-4e2c-8301-5bd835d5221b" id="nav-peme" class="text-[15px] font-medium text-[#334155] hover:text-[#14B8A6]">PEME</a>
+          <a href="https://p.superdesign.dev/draft/7304e61c-5a98-4247-a00b-991e58aefb1f" id="nav-tele" class="text-[15px] font-medium text-[#334155] hover:text-[#14B8A6]">Telemedicine</a>
+          <a href="https://p.superdesign.dev/draft/749b5fbd-378a-4c4c-b1f2-080d56b016eb" id="nav-wellness" class="text-[15px] font-medium text-[#14B8A6]">Crew Wellness</a>
+          <a href="https://p.superdesign.dev/draft/c78a328c-5748-4c1e-ae62-9bcadbd72a7c" id="nav-security" class="text-[15px] font-medium text-[#334155] hover:text-[#14B8A6]">Evidence &amp; Security</a>
+          <a href="https://p.superdesign.dev/draft/37e78f0a-81db-4495-81ff-fb9ac4c19a96" id="nav-company" class="text-[15px] font-medium text-[#334155] hover:text-[#14B8A6]">Company</a>
+        </div>
+        <div class="flex items-center gap-6">
+          <a href="#pricing" id="nav-pricing" class="text-[15px] font-medium text-[#334155] hover:text-[#14B8A6]">Pricing</a>
+          <a href="#demo" id="nav-demo-btn" class="btn-primary text-sm">Book a demo</a>
+        </div>
+      </div>
+    </nav>
+
+    <main style="view-transition-name: main-content" class="flex-1">
+      <!-- Hero Section -->
+      <header class="bg-white py-24 lg:py-32 overflow-hidden">
+        <div class="container-wide">
+          <div class="grid lg:grid-cols-2 gap-16 items-center">
+            <div class="max-w-[580px]">
+              <span class="label-caps block mb-6">Crew Wellness</span>
+              <h1 class="text-[56px] leading-[64px] mb-8 text-balance font-medium">Health between medicals, in the seafarer's own hands</h1>
+              <p class="text-[18px] leading-[30px] text-[#334155] mb-10 max-w-[500px]">
+                Seafarers log their own blood pressure and glucose readings, maintaining a health record that fleet physicians can monitor across entire contracts.
+              </p>
+              <div class="flex items-center gap-4">
+                <a href="#demo" id="hero-cta-demo" class="btn-primary">Book a demo</a>
+                <a href="#pricing" id="hero-cta-pricing" class="btn-secondary">See pricing</a>
+              </div>
+            </div>
+            <div class="relative">
+              <div class="bg-white p-2 rounded-[14px] shadow-soft inline-block">
+                <div class="w-full aspect-[4/3] bg-[#F6F5F1] rounded-[12px] flex items-center justify-center relative overflow-hidden">
+                   <img src="https://vgbujcuwptvheqijyjbe.supabase.co/storage/v1/object/public/hmac-uploads/projects/d2bb03e8-202c-48e5-818a-9852d270b893/content-assets/img2-crew-reading/crew-reading.jpg" alt="Seafarer logging health data" class="absolute inset-0 w-full h-full object-cover">
+                   <div class="absolute inset-0 bg-teal-900/10 mix-blend-overlay"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <!-- Benefits Grid -->
+      <section class="bg-[#F6F5F1] border-y border-[#E2E8F0]">
+        <div class="container-wide">
+          <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div class="bg-white p-8 rounded-[12px] border border-[#E2E8F0] shadow-soft">
+              <h3 class="text-[20px] mb-4">Seafarer-led logging</h3>
+              <p class="text-[15px] leading-[24px] text-[#334155]">Crew members log blood pressure and glucose readings directly from their own phone.</p>
+            </div>
+            <div class="bg-white p-8 rounded-[12px] border border-[#E2E8F0] shadow-soft">
+              <h3 class="text-[20px] mb-4">Clinical visibility</h3>
+              <p class="text-[15px] leading-[24px] text-[#334155]">Clinicians see trends and receive alerts immediately when a reading needs clinical attention.</p>
+            </div>
+            <div class="bg-white p-8 rounded-[12px] border border-[#E2E8F0] shadow-soft">
+              <h3 class="text-[20px] mb-4">Clear consent</h3>
+              <p class="text-[15px] leading-[24px] text-[#334155]">Data ownership and consent belong strictly to the seafarer, ensuring transparent privacy.</p>
+            </div>
+            <div class="bg-white p-8 rounded-[12px] border border-[#E2E8F0] shadow-soft">
+              <h3 class="text-[20px] mb-4">Documented care</h3>
+              <p class="text-[15px] leading-[24px] text-[#334155]">Provides a documented record of duty of care that fleet operators can show to regulatory bodies.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- For Crew Section -->
+      <section class="bg-white">
+        <div class="container-wide">
+          <div class="grid lg:grid-cols-2 gap-16 items-center">
+            <div class="relative flex justify-center lg:justify-start order-2 lg:order-1">
+              <div class="bg-white p-4 rounded-[14px] shadow-soft ring-1 ring-[#E2E8F0]">
+                <div class="w-[280px] h-[580px] bg-[#0F172A] rounded-[10px] overflow-hidden relative border-[8px] border-[#0F172A]">
+                   <img src="https://vgbujcuwptvheqijyjbe.supabase.co/storage/v1/object/public/hmac-uploads/projects/d2bb03e8-202c-48e5-818a-9852d270b893/content-assets/img2-crew-reading/crew-reading.jpg" alt="Crew App interface" class="absolute inset-0 w-full h-full object-cover opacity-80">
+                   <div class="absolute inset-0 flex flex-col items-center justify-end p-8 text-white">
+                      <div class="w-full h-1 bg-white/20 mb-4 rounded"></div>
+                      <div class="w-2/3 h-1 bg-white/20 mb-8 rounded"></div>
+                   </div>
+                </div>
+              </div>
+            </div>
+            <div class="order-1 lg:order-2">
+              <span class="label-caps block mb-6">For Crew Members</span>
+              <h2 class="text-[36px] leading-[44px] mb-8">Joining is simple.</h2>
+              <div class="space-y-10">
+                <div class="flex gap-6">
+                  <div class="flex-shrink-0 w-10 h-10 rounded-full bg-teal-50 border border-teal-100 flex items-center justify-center text-[#14B8A6] font-medium">1</div>
+                  <div>
+                    <h4 class="text-lg font-medium mb-1">Open the app</h4>
+                    <p class="text-[#64748B]">Scan the QR code on the ship's medical poster.</p>
+                  </div>
+                </div>
+                <div class="flex gap-6">
+                  <div class="flex-shrink-0 w-10 h-10 rounded-full bg-teal-50 border border-teal-100 flex items-center justify-center text-[#14B8A6] font-medium">2</div>
+                  <div>
+                    <h4 class="text-lg font-medium mb-1">Create your account</h4>
+                    <p class="text-[#64748B]">Use your passport or ID number and date of birth.</p>
+                  </div>
+                </div>
+                <div class="flex gap-6">
+                  <div class="flex-shrink-0 w-10 h-10 rounded-full bg-teal-50 border border-teal-100 flex items-center justify-center text-[#14B8A6] font-medium">3</div>
+                  <div>
+                    <h4 class="text-lg font-medium mb-1">Set a password</h4>
+                    <p class="text-[#64748B]">Access your health trends anytime, from anywhere.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="mt-12 p-8 border border-[#E2E8F0] rounded-[12px] flex items-center gap-6 bg-[#F6F5F1]">
+                <div class="w-24 h-24 bg-white border border-[#E2E8F0] rounded-[8px] flex items-center justify-center p-2">
+                  <iconify-icon icon="lucide:qr-code" class="text-4xl text-[#0F172A]"></iconify-icon>
+                </div>
+                <div>
+                  <p class="text-[13px] font-semibold text-[#0F172A] uppercase tracking-wider mb-1">Scan to open the app</p>
+                  <p class="text-[14px] text-[#64748B]">Join the wellness programme directly from your device.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- For Operators / Pricing -->
+      <section class="bg-[#F6F5F1] border-t border-[#E2E8F0]">
+        <div class="container-wide text-center">
+          <div class="max-w-[700px] mx-auto">
+            <h2 class="text-[36px] mb-8">For Fleet Operators</h2>
+            <p class="text-[18px] leading-[30px] text-[#334155] mb-10">
+              Provide your crew with the tools to manage their own health between contracts, and give your medical department the oversight required to prevent emergencies at sea.
+            </p>
+            <a href="#pricing" id="operator-pricing-link" class="text-link font-medium text-[18px]">See pricing for fleet deployments</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Proof Line -->
+      <section class="bg-white">
+        <div class="container-wide text-center">
+          <blockquote class="max-w-[800px] mx-auto">
+            <p class="text-[32px] font-serif italic text-[#334155] leading-relaxed mb-8">
+              "Documented health oversight between mandatory exams is a critical layer of safety for our crew."
+            </p>
+            <cite class="not-italic">
+              <span class="label-caps block mb-1">Fleet Medical Director</span>
+              <span class="text-[#64748B] text-[15px]">Cargo Operator</span>
+            </cite>
+          </blockquote>
+        </div>
+      </section>
+
+      <!-- CTA Band -->
+      <section class="bg-white pt-0">
+        <div class="container-wide">
+          <div class="bg-[#F6F5F1] rounded-[12px] p-16 text-center">
+            <h2 class="text-[36px] mb-10">Close the health gap between exams</h2>
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-8">
+              <a href="#demo" id="cta-final-demo" class="btn-primary">Book a demo</a>
+              <a href="#contact" id="cta-final-contact" class="text-link font-medium">Talk to our physicians</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-[#E2E8F0] py-24">
+      <div class="container-wide">
+        <div class="grid md:grid-cols-4 gap-12">
+          <div>
+            <a href="https://p.superdesign.dev/draft/442c37d4-51d5-4651-af2c-a346be7de431" id="footer-brand" class="flex items-center gap-3 mb-6">
+              <img src="https://vgbujcuwptvheqijyjbe.supabase.co/storage/v1/object/public/hmac-uploads/projects/d2bb03e8-202c-48e5-818a-9852d270b893/brand-assets/seascope-mark/m_teal.png" alt="SeaScope Logo" class="h-6 w-auto">
+              <span class="text-xl font-serif">
+                <span style="color: var(--ink)">Sea</span><span style="color: var(--teal)">Scope</span>
+              </span>
+            </a>
+            <p class="text-[14px] text-[#64748B] leading-relaxed">
+              RemoteAid Medical Solutions, Corp.<br>
+              Provision of clinical governance and technology for global maritime operations.
+            </p>
+          </div>
+          <div>
+            <h4 class="label-caps mb-6 text-[12px]">Products</h4>
+            <ul class="space-y-4">
+              <li><a href="https://p.superdesign.dev/draft/15756530-34b0-4e2c-8301-5bd835d5221b" id="foot-peme" class="text-[15px] text-[#334155] hover:text-[#14B8A6]">PEME Processing</a></li>
+              <li><a href="https://p.superdesign.dev/draft/7304e61c-5a98-4247-a00b-991e58aefb1f" id="foot-tele" class="text-[15px] text-[#334155] hover:text-[#14B8A6]">Telemedicine</a></li>
+              <li><a href="https://p.superdesign.dev/draft/749b5fbd-378a-4c4c-b1f2-080d56b016eb" id="foot-wellness" class="text-[15px] text-[#14B8A6]">Crew Wellness</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="label-caps mb-6 text-[12px]">Company</h4>
+            <ul class="space-y-4">
+              <li><a href="https://p.superdesign.dev/draft/37e78f0a-81db-4495-81ff-fb9ac4c19a96" id="foot-about" class="text-[15px] text-[#334155] hover:text-[#14B8A6]">About</a></li>
+              <li><a href="#pricing" id="foot-pricing" class="text-[15px] text-[#334155] hover:text-[#14B8A6]">Pricing</a></li>
+              <li><a href="#blog" id="foot-blog" class="text-[15px] text-[#334155] hover:text-[#14B8A6]">Blog</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="label-caps mb-6 text-[12px]">Legal</h4>
+            <ul class="space-y-4">
+              <li><a href="#privacy" id="foot-privacy" class="text-[15px] text-[#334155] hover:text-[#14B8A6]">Privacy</a></li>
+              <li><a href="#terms" id="foot-terms" class="text-[15px] text-[#334155] hover:text-[#14B8A6]">Terms of Service</a></li>
+              <li><a href="https://p.superdesign.dev/draft/c78a328c-5748-4c1e-ae62-9bcadbd72a7c" id="foot-sec" class="text-[15px] text-[#334155] hover:text-[#14B8A6]">Security</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>

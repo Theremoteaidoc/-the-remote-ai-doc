@@ -3,13 +3,14 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <!-- Primary Meta Tags -->
-    <title>SeaScope: Clinical care for places medicine wasn't built for.</title>
-    <meta name="title" content="SeaScope: Clinical care for places medicine wasn't built for." />
-    <meta name="description" content="The clinical reasoning engine for medicine practiced at the edge. SeaScope CDS for physicians ($29.99/mo). SeaScope Cargo Solutions for fleet operators." />
-    <meta name="keywords" content="clinical decision support, maritime medicine, ship physician, cargo vessel medical, formulary-aware AI, clinical AI safety, MLC 2006, telemedicine" />
+    <title>SeaScope | Clinical services for fleet operators</title>
+    <meta name="title" content="SeaScope | Clinical services for fleet operators" />
+    <meta name="description" content="Medical decisions at sea, made with physicians ashore. Telemedicine, PEME processing, and crew wellness for fleet operators." />
+    <meta name="keywords" content="maritime medicine, ship physician, telemedicine, PEME, crew wellness, MLC 2006" />
     <meta name="author" content="RemoteAid Medical Solutions" />
     <!-- No static robots meta: absence = index,follow by default for public pages.
          Per-page robots is controlled via react-helmet-async so noindex pages
@@ -17,25 +18,39 @@
          leave two conflicting robots metas in the DOM). -->
     <link rel="canonical" href="https://seascope.tech/" />
 
-    <!-- Fonts: Fraunces (editorial serif) + IBM Plex Sans (body) + IBM Plex Mono -->
+    <!-- Fonts: Noto Serif Display (headings) + Noto Sans (body).
+         Loaded after first paint so they do not block LCP on mobile. -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link
+      rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600&family=Noto+Serif+Display:ital,wght@0,500;1,400&display=optional"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600&family=Noto+Serif+Display:ital,wght@0,500;1,400&display=optional"
+      media="print"
+      onload="this.media='all'"
+    />
+    <noscript>
+      <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600&family=Noto+Serif+Display:ital,wght@0,500;1,400&display=optional" rel="stylesheet" />
+    </noscript>
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://seascope.tech/" />
-    <meta property="og:title" content="SeaScope: Clinical care for places medicine wasn't built for." />
-    <meta property="og:description" content="The clinical reasoning engine for medicine practiced at the edge. A personal tool for physicians. An operator platform for fleets." />
-    <meta property="og:image" content="https://seascope.tech/home-hero.jpg" />
+    <meta property="og:title" content="SeaScope | Clinical services for fleet operators" />
+    <meta property="og:description" content="Medical decisions at sea, made with physicians ashore. Telemedicine, PEME processing, and crew wellness for fleet operators." />
+    <meta property="og:image" content="https://seascope.tech/rebuild/images/ship-aerial.webp" />
     <meta property="og:site_name" content="SeaScope: RemoteAid Medical Solutions" />
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
     <meta property="twitter:url" content="https://seascope.tech/" />
-    <meta property="twitter:title" content="SeaScope: Clinical care for places medicine wasn't built for." />
-    <meta property="twitter:description" content="The clinical reasoning engine for medicine practiced at the edge. A personal tool for physicians. An operator platform for fleets." />
-    <meta property="twitter:image" content="https://seascope.tech/home-hero.jpg" />
+    <meta property="twitter:title" content="SeaScope | Clinical services for fleet operators" />
+    <meta property="twitter:description" content="Medical decisions at sea, made with physicians ashore. Telemedicine, PEME processing, and crew wellness for fleet operators." />
+    <meta property="twitter:image" content="https://seascope.tech/rebuild/images/ship-aerial.webp" />
 
     <!-- Structured Data -->
     <script type="application/ld+json">
@@ -45,7 +60,7 @@
       "name": "RemoteAid Medical Solutions",
       "url": "https://seascope.tech",
       "logo": "https://seascope.tech/favicon.png",
-      "description": "Clinical reasoning infrastructure for medicine practiced at the edge.",
+      "description": "Clinical services for fleets at sea: telemedicine, PEME processing, and crew wellness.",
       "founder": {
         "@type": "Person",
         "name": "Dr. Javier Rosas, MD",
@@ -72,17 +87,17 @@
       "@type": "WebSite",
       "name": "SeaScope",
       "url": "https://seascope.tech",
-      "description": "Clinical care for places medicine wasn't built for. SeaScope CDS for physicians, SeaScope Cargo Solutions for fleet operators."
+      "description": "Clinical services for fleet operators. Telemedicine, PEME processing, and crew wellness."
     }
     </script>
 
   </head>
   <body>
     <noscript>
-      <h1>SeaScope: Clinical care for places medicine wasn't built for.</h1>
-      <p>The clinical reasoning engine for medicine practiced at the edge.</p>
+      <h1>Medical decisions at sea, made with physicians ashore</h1>
+      <p>Clinical services for fleets at sea: telemedicine, PEME processing, and crew wellness.</p>
       <p>SeaScope CDS for physicians: <a href="https://seascope.tech/seascope-cds">$29.99/month</a>.</p>
-      <p>SeaScope Cargo Solutions for fleet operators: <a href="https://seascope.tech/cargo-solutions">book a demo for pricing</a>.</p>
+      <p>Operator telemedicine for fleets: <a href="https://calendar.app.google/QfxzbNEejLnwudC49" target="_blank" rel="noopener">Request an appointment</a>.</p>
       <p>A product of RemoteAid Medical Solutions, Delaware C-Corporation.</p>
     </noscript>
     <div id="root"></div>

@@ -233,7 +233,7 @@ const ArticleRenderer = ({ post, t }) => {
 };
 
 // Original format renderer
-const OriginalRenderer = ({ post, t }) => {
+const OriginalRenderer = ({ post }) => {
   const { content } = post;
 
   return (
