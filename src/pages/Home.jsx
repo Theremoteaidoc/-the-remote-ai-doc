@@ -4,7 +4,6 @@ import { Helmet } from 'react-helmet-async';
 import { Check } from 'lucide-react';
 import BookDemoModal from '../components/BookDemoModal';
 import HeaderVideo from '../components/HeaderVideo';
-import IntroVideo from '../components/IntroVideo';
 
 const PRODUCTS = [
   {
@@ -102,9 +101,6 @@ export default function Home() {
               </button>
               <a href="#products" className="btn-secondary">
                 Our services
-              </a>
-              <a href="#introduction" className="inline-flex items-center font-medium text-teal-strong hover:underline">
-                Watch the introduction (30 s)
               </a>
             </div>
           </div>
@@ -237,28 +233,6 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="introduction" className="bg-bg-alt py-16 lg:py-24">
-        <div className="container-wide grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
-          <div>
-            <p className="label-caps mb-3">Introduction</p>
-            <h2 className="mb-4 text-[28px] font-medium leading-9 lg:text-[36px] lg:leading-[44px]">
-              Thirty seconds on what we do
-            </h2>
-            <p className="mb-6 text-ink-2">
-              A ship's officer, a physician ashore, and the crew between medicals.
-            </p>
-            <p className="text-ink-2">
-              Prefer to talk?{' '}
-              <a href="mailto:hello@seascope.tech" className="text-link underline">
-                hello@seascope.tech
-              </a>
-              , weekdays 08:00 to 18:00 UTC.
-            </p>
-          </div>
-          <IntroVideo />
-        </div>
-      </section>
-
       <section className="bg-white py-16 lg:py-24">
         <div className="container-wide">
           <div className="rounded-card bg-bg-alt px-6 py-12 text-center lg:p-16">
@@ -271,6 +245,12 @@ export default function Home() {
                 Talk to our physicians
               </a>
             </div>
+            <p className="mt-8 text-[15px] text-ink-2">
+              <a href="mailto:hello@seascope.tech" className="text-link underline">
+                hello@seascope.tech
+              </a>
+              , weekdays 08:00 to 18:00 UTC.
+            </p>
           </div>
         </div>
       </section>
