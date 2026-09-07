@@ -149,7 +149,7 @@ export default function Home() {
               </article>
             ))}
           </div>
-          <p className="text-center text-[15px] text-ink-3">
+          <p className="text-center text-[15px] text-ink-2">
             Also available:{' '}
             <Link to="/seascope-cds" className="text-link">
               Clinical Decision Support for individual physicians

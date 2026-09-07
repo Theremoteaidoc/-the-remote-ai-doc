@@ -35,7 +35,7 @@ export default function IntroVideo() {
             type="button"
             onClick={play}
             className="absolute inset-0 flex items-center justify-center"
-            aria-label="Play 30 second introduction"
+            aria-label="Play introduction"
           >
             <span className="rounded-chip bg-white/90 px-6 py-3 font-medium text-teal-strong shadow-soft">
               Play introduction

@@ -68,7 +68,7 @@ export default function SiteLayout({ children }) {
               <Link
                 key={item.to}
                 to={item.to}
-                className="text-[15px] font-medium text-ink-2 transition-colors duration-150 ease-out hover:text-teal"
+                className="text-[15px] font-medium text-ink-2 transition-colors duration-150 ease-out hover:text-teal-strong"
               >
                 {item.label}
               </Link>
@@ -135,11 +135,11 @@ export default function SiteLayout({ children }) {
             </p>
           </div>
           <div>
-            <h4 className="label-caps mb-6 text-xs">Products</h4>
+            <p className="label-caps mb-6 text-xs">Products</p>
             <ul className="space-y-4">
               {FOOTER_PRODUCTS.map((item) => (
                 <li key={item.to}>
-                  <Link to={item.to} className="text-[15px] text-ink-2 transition-colors duration-150 hover:text-teal">
+                  <Link to={item.to} className="text-[15px] text-ink-2 transition-colors duration-150 hover:text-teal-strong">
                     {item.label}
                   </Link>
                 </li>
@@ -147,28 +147,28 @@ export default function SiteLayout({ children }) {
             </ul>
           </div>
           <div>
-            <h4 className="label-caps mb-6 text-xs">Company</h4>
+            <p className="label-caps mb-6 text-xs">Company</p>
             <ul className="space-y-4">
               {FOOTER_COMPANY.map((item) => (
                 <li key={item.to}>
-                  <Link to={item.to} className="text-[15px] text-ink-2 transition-colors duration-150 hover:text-teal">
+                  <Link to={item.to} className="text-[15px] text-ink-2 transition-colors duration-150 hover:text-teal-strong">
                     {item.label}
                   </Link>
                 </li>
               ))}
               <li>
-                <a href="mailto:hello@seascope.tech" className="text-[15px] text-ink-2 transition-colors duration-150 hover:text-teal">
+                <a href="mailto:hello@seascope.tech" className="text-[15px] text-ink-2 transition-colors duration-150 hover:text-teal-strong">
                   hello@seascope.tech
                 </a>
               </li>
             </ul>
           </div>
           <div>
-            <h4 className="label-caps mb-6 text-xs">Legal</h4>
+            <p className="label-caps mb-6 text-xs">Legal</p>
             <ul className="space-y-4">
               {FOOTER_LEGAL.map((item) => (
                 <li key={item.to}>
-                  <Link to={item.to} className="text-[15px] text-ink-2 transition-colors duration-150 hover:text-teal">
+                  <Link to={item.to} className="text-[15px] text-ink-2 transition-colors duration-150 hover:text-teal-strong">
                     {item.label}
                   </Link>
                 </li>
